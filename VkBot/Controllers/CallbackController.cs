@@ -6,6 +6,7 @@ using VkNet.Model;
 using VkNet.Model.RequestParams;
 using VkNet.Utils;
 using VkNet.Model.GroupUpdate;
+using VkBot;
 
 namespace Cookie.Controllers
 {
@@ -40,6 +41,12 @@ namespace Cookie.Controllers
                 case "message_new":
                     // Десериализация
                     var msg = Message.FromJson(new VkResponse(updates.Object));
+                    using (MyContext db = new MyContext())
+                    {
+                        Game game = new Game { Team1 = "111" };
+                        db.Add(game);
+                        db.SaveChanges();
+                    }
 
                     // Отправим в ответ полученный от пользователя текст
                     _vkApi.Messages.Send(new MessagesSendParams
