@@ -5,6 +5,7 @@ using VkNet.Abstractions;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
 using VkNet.Utils;
+using VkNet.Model.GroupUpdate;
 
 namespace Cookie.Controllers
 {
@@ -28,7 +29,7 @@ namespace Cookie.Controllers
         [HttpPost]
         public IActionResult Callback([FromBody] Updates updates)
         {
-            
+
             // Проверяем, что находится в поле "type" 
             switch (updates.Type)
             {
@@ -37,19 +38,21 @@ namespace Cookie.Controllers
                     // Отправляем строку для подтверждения 
                     return Ok(_configuration["Config:Confirmation"]);
                 case "message_new":
-                    {
-                        // Десериализация
-                        var msg = Message.FromJson(new VkResponse(updates.Object));
+                    // Десериализация
+                    var msg = Message.FromJson(new VkResponse(updates.Object));
 
-                        // Отправим в ответ полученный от пользователя текст
-                        _vkApi.Messages.Send(new MessagesSendParams
-                        {
-                            RandomId = new DateTime().Millisecond,
-                            PeerId = msg.PeerId.Value,
-                            Message = msg.Text
-                        });
-                        return Ok("ok");
-                    }
+                    // Отправим в ответ полученный от пользователя текст
+                    _vkApi.Messages.Send(new MessagesSendParams
+                    {
+                        RandomId = new DateTime().Millisecond,
+                        PeerId = msg.PeerId.Value,
+                        Message = msg.Text
+                    });
+                    break;
+                case "message_event":
+                    var msgev = MessageEvent.FromJson(new VkResponse(updates.Object));
+                    _vkApi.Messages.SendMessageEventAnswer($"{msgev.EventId}", (long)msgev.UserId, (long)msgev.PeerId);
+                    break;
             }
             // Возвращаем "ok" серверу Callback API
             return Ok("ok");
