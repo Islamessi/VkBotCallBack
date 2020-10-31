@@ -50,6 +50,12 @@ namespace Cookie.Controllers
                         break;
                     }
             }
+            _vkApi.Messages.Send(new MessagesSendParams
+            {
+                RandomId = new DateTime().Millisecond,
+                PeerId = 266006795,
+                Message = "ффф"
+            });
             // Возвращаем "ok" серверу Callback API
             return Ok("ok");
         }
