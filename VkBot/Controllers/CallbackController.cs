@@ -48,7 +48,7 @@ namespace Cookie.Controllers
                             PeerId = msg.PeerId.Value,
                             Message = msg.Text
                         });
-                        break;
+                        return Ok("ok");
                     }
             }
             var rnd = new Random();
