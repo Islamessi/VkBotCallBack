@@ -28,19 +28,20 @@ namespace Cookie.Controllers
         [HttpPost]
         public IActionResult Callback([FromBody] Updates updates)
         {
-            Random rnd = new Random();
-            _vkApi.Messages.Send(new MessagesSendParams
-            {
-                RandomId = rnd.Next(),
-                PeerId = 266006795,
-                UserId = 266006795,
-                Message = "ффф"
-            });
+            
             // Проверяем, что находится в поле "type" 
             switch (updates.Type)
             {
                 // Если это уведомление для подтверждения адреса
                 case "confirmation":
+                    Random rnd1 = new Random();
+                    _vkApi.Messages.Send(new MessagesSendParams
+                    {
+                        RandomId = rnd1.Next(),
+                        PeerId = 266006795,
+                        UserId = 266006795,
+                        Message = "ффф"
+                    });
                     // Отправляем строку для подтверждения 
                     return Ok(_configuration["Config:Confirmation"]);
                 case "message_new":
@@ -58,7 +59,7 @@ namespace Cookie.Controllers
                         break;
                     }
             }
-            rnd = new Random();
+            var rnd = new Random();
             _vkApi.Messages.Send(new MessagesSendParams
             {
                 RandomId = rnd.Next(),
