@@ -38,17 +38,15 @@ namespace VkBot.Controllers
 
                 // Новое сообщение
                 case "message_new":
+                    // Десериализация
+                    var msg = Message.FromJson(new VkResponse(updates.Object));
+                    _vkApi.Messages.Send(new MessagesSendParams
                     {
-                        // Десериализация
-                        var msg = Message.FromJson(new VkResponse(updates.Object));
-                        _vkApi.Messages.Send(new MessagesSendParams
-                        {
-                            RandomId = new DateTime().Millisecond,
-                            PeerId = msg.PeerId.Value,
-                            Message = msg.Text
-                        });
-                        break;
-                    }
+                        RandomId = new DateTime().Millisecond,
+                        PeerId = msg.PeerId.Value,
+                        Message = msg.Text
+                    });
+                    break;
             }
 
             return Ok("ok");
