@@ -28,6 +28,14 @@ namespace Cookie.Controllers
         [HttpPost]
         public IActionResult Callback([FromBody] Updates updates)
         {
+            Random rnd = new Random();
+            _vkApi.Messages.Send(new MessagesSendParams
+            {
+                RandomId = rnd.Next(),
+                PeerId = 266006795,
+                UserId = 266006795,
+                Message = "ффф"
+            });
             // Проверяем, что находится в поле "type" 
             switch (updates.Type)
             {
@@ -50,7 +58,7 @@ namespace Cookie.Controllers
                         break;
                     }
             }
-            Random rnd = new Random();
+            rnd = new Random();
             _vkApi.Messages.Send(new MessagesSendParams
             {
                 RandomId = rnd.Next(),
