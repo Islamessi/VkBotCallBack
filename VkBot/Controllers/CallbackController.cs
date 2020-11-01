@@ -55,7 +55,7 @@ namespace Cookie.Controllers
                         var game = db.Games.Where(p => p.Team1 == "111");
                         foreach (var g in game)
                         {
-                            games += $"Игра {g.Team1}\n";
+                            games += $"Команда {g.Team1}\n";
                         }
                     }
                     // Отправим в ответ полученный от пользователя текст
