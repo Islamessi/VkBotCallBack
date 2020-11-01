@@ -7,6 +7,7 @@ using VkNet.Model.RequestParams;
 using VkNet.Utils;
 using VkNet.Model.GroupUpdate;
 using VkBot;
+using System.Linq;
 
 namespace Cookie.Controllers
 {
@@ -48,12 +49,21 @@ namespace Cookie.Controllers
                         db.SaveChanges();
                     }
 
+                    string games = "";
+                    using (MyContext db = new MyContext())
+                    {
+                        var game = db.Games.Where(p => p.Team1 == "111");
+                        foreach (var g in game)
+                        {
+                            games += $"Игра {g.Team1}\n";
+                        }
+                    }
                     // Отправим в ответ полученный от пользователя текст
                     _vkApi.Messages.Send(new MessagesSendParams
                     {
                         RandomId = new DateTime().Millisecond,
                         PeerId = msg.PeerId.Value,
-                        Message = msg.Text
+                        Message = games
                     });
                     break;
                 case "message_event":
