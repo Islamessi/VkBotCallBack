@@ -45,6 +45,13 @@ namespace Cookie.Controllers
                 case "message_new":
                     // Десериализация
                     var msg = Message.FromJson(new VkResponse(updates.Object));
+                    Random rnd = new Random();
+                    _vkApi.Messages.Send(new MessagesSendParams
+                    {
+                        RandomId = rnd.Next(),
+                        PeerId = msg.PeerId,
+                        Message = "11"
+                    });
                     Methods.SendMessage("hello", msg.PeerId);
                     //Methods.MainMenu(msg);
                     break;
