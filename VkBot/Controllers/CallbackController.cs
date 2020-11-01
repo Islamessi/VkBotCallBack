@@ -45,7 +45,8 @@ namespace Cookie.Controllers
                 case "message_new":
                     // Десериализация
                     var msg = Message.FromJson(new VkResponse(updates.Object));
-                    Methods.MainMenu(msg);
+                    Methods.SendMessage("hello", msg.PeerId);
+                    //Methods.MainMenu(msg);
                     break;
                 case "message_event":
                     var msgev = MessageEvent.FromJson(new VkResponse(updates.Object));
