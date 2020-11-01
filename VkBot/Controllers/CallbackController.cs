@@ -8,6 +8,7 @@ using VkNet.Utils;
 using VkNet.Model.GroupUpdate;
 using VkBot;
 using System.Linq;
+using VkNet;
 
 namespace Cookie.Controllers
 {
@@ -18,9 +19,11 @@ namespace Cookie.Controllers
         /// <summary>
         /// Конфигурация приложения
         /// </summary>
-        private readonly IConfiguration _configuration;
+        private static IConfiguration _configuration;
 
-        private readonly IVkApi _vkApi;
+        private static IVkApi _vkApi { get; set; }
+
+        public static IVkApi VkApi { get; } = _vkApi;
 
         public CallbackController(IVkApi vkApi, IConfiguration configuration)
         {
@@ -42,33 +45,11 @@ namespace Cookie.Controllers
                 case "message_new":
                     // Десериализация
                     var msg = Message.FromJson(new VkResponse(updates.Object));
-                    using (MyContext db = new MyContext())
-                    {
-                        Game game = new Game { Team1 = "111" };
-                        db.Add(game);
-                        db.SaveChanges();
-                    }
-
-                    string games = "";
-                    using (MyContext db = new MyContext())
-                    {
-                        var game = db.Games.Where(p => p.Team1 == "111");
-                        foreach (var g in game)
-                        {
-                            games += $"Команда {g.Team1}\n";
-                        }
-                    }
-                    // Отправим в ответ полученный от пользователя текст
-                    _vkApi.Messages.Send(new MessagesSendParams
-                    {
-                        RandomId = new DateTime().Millisecond,
-                        PeerId = msg.PeerId.Value,
-                        Message = games
-                    });
+                    Methods.MainMenu(msg);
                     break;
                 case "message_event":
                     var msgev = MessageEvent.FromJson(new VkResponse(updates.Object));
-                    _vkApi.Messages.SendMessageEventAnswer($"{msgev.EventId}", (long)msgev.UserId, (long)msgev.PeerId);
+                    Methods.MessageEventAsync(msgev);
                     break;
             }
             // Возвращаем "ok" серверу Callback API
