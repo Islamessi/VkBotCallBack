@@ -52,7 +52,6 @@ namespace Cookie.Controllers
                         PeerId = msg.PeerId,
                         Message = "11"
                     });
-                    Methods.SendMessage("hello", msg.PeerId);
                     //Methods.MainMenu(msg);
                     break;
                 case "message_event":
