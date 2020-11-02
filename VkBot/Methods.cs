@@ -62,7 +62,7 @@ namespace VkBot
                             }
                             catch
                             {
-                                SendMessage("Выберите число от 1 до 9!", peerID);
+                                CallbackController.SendMessage("Выберите число от 1 до 9!", peerID);
                             }
                             break;
                         case 10://игра пенальти
@@ -71,16 +71,16 @@ namespace VkBot
                                 int vsp3 = Convert.ToInt32(userMessage);
                                 Program.UsersInfo[WriteOrNot][1] = 9;
                                 Program.UsersInfo[WriteOrNot].Add(vsp3);
-                                SendMessage("Уровень выбран, начинайте игру)", peerID, Keyboards.PenaltyKeyboard);
+                                CallbackController.SendMessage("Уровень выбран, начинайте игру)", peerID, Keyboards.PenaltyKeyboard);
                             }
                             catch
                             {
-                                SendMessage("Выберите уровень от 1 до 5 на клавиатуре!", peerID);
+                                CallbackController.SendMessage("Выберите уровень от 1 до 5 на клавиатуре!", peerID);
                             }
                             break;
                     }
                 }
-                CallbackController.VkApi.Messages.SendMessageEventAnswer($"{msgev.EventId}", (long)msgev.UserId, (long)msgev.PeerId);
+                CallbackController._vkApi.Messages.SendMessageEventAnswer($"{msgev.EventId}", (long)msgev.UserId, (long)msgev.PeerId);
             });
         }
 
@@ -107,16 +107,16 @@ namespace VkBot
                 {
                     case "начать":
                         if (Program.admins.Contains(peerID))
-                            Methods.SendMessage("Мы то сообщество, которое поможет тебе найти ссылки на матчи и поделать ставки без реальных денег.", peerID, Keyboards.AdminKeyboard);
+                            CallbackController.SendMessage("Мы то сообщество, которое поможет тебе найти ссылки на матчи и поделать ставки без реальных денег.", peerID, Keyboards.AdminKeyboard);
                         else
-                            Methods.SendMessage("Мы то сообщество, которое поможет тебе найти ссылки на матчи и поделать ставки без реальных денег.", peerID, Keyboards.UserKeyboard);
+                            CallbackController.SendMessage("Мы то сообщество, которое поможет тебе найти ссылки на матчи и поделать ставки без реальных денег.", peerID, Keyboards.UserKeyboard);
                         break;
                     case "добавить матч":
                         if (Program.admins.Contains(peerID))
                         {
                             Program.UsersInfo.Add(new List<long?> { peerID });
                             Program.UsersInfo[Program.UsersInfo.Count - 1].Add(1);
-                            Methods.SendMessage("Теперь введите, пожалуйста, данные о матче по формату:\n" +
+                            CallbackController.SendMessage("Теперь введите, пожалуйста, данные о матче по формату:\n" +
                                 "\"Команда1 Команда2 Дата_игры Ссылки(через пробел)\"", peerID, Keyboards.CanselKeyboard);
                         }
                         break;
@@ -145,7 +145,7 @@ namespace VkBot
                             var user = db.Users.Where(p => p.VkId == peerID);
                             if (user.Count() == 0)
                             {
-                                var users = CallbackController.VkApi.Users.Get(new long[] { (long)peerID }).FirstOrDefault();
+                                var users = CallbackController._vkApi.Users.Get(new long[] { (long)peerID }).FirstOrDefault();
                                 User user1 = new User { VkId = peerID, FirstName = users.FirstName, LastName = users.LastName };
                                 db.Users.Add(user1);
                                 db.SaveChanges();
@@ -169,7 +169,7 @@ namespace VkBot
                                 allMatch += $"{game.Team1}-{game.Team2} {b.ScoreGame}\n";
                             }
                         }
-                        Methods.SendMessage(allMatch, peerID);
+                        CallbackController.SendMessage(allMatch, peerID);
                         break;
                     case "топ игроков":
                         string vsp3 = "Вот топ 10 игроков 🏆\n";
@@ -194,7 +194,7 @@ namespace VkBot
                                 vsp3 += $"\nВаш рейтинг:\n" +
                                     $"{mesto}) [id{user.VkId}|{user.FirstName} {user.LastName}] - {user.Score} ⚽";
                             }
-                            Methods.SendMessage(vsp3, peerID);
+                            CallbackController.SendMessage(vsp3, peerID);
                         }
                         break;
                     case "ввести результат матча":
@@ -222,7 +222,7 @@ namespace VkBot
                             var user = db.Users.Where(p => p.VkId == peerID);
                             if (user.Count() == 0)
                             {
-                                var users = CallbackController.VkApi.Users.Get(new long[] { (long)peerID }).FirstOrDefault();
+                                var users = CallbackController._vkApi.Users.Get(new long[] { (long)peerID }).FirstOrDefault();
                                 User user1 = new User { VkId = peerID, FirstName = users.FirstName, LastName = users.LastName };
                                 db.Users.Add(user1);
                                 db.SaveChanges();
@@ -233,7 +233,7 @@ namespace VkBot
                         Program.UsersInfo[Program.UsersInfo.Count - 1].Add(0);
                         Program.UsersInfo[Program.UsersInfo.Count - 1].Add(0);
                         Program.UsersInfo[Program.UsersInfo.Count - 1].Add(0);
-                        Methods.SendMessage("Цель данной игры, забить больше по пенальти и победить)) " +
+                        CallbackController.SendMessage("Цель данной игры, забить больше по пенальти и победить)) " +
                             "Вы первым стоите на воротах, перед вами 9 кнопок. Вы выбираете, ту, " +
                             "куда прыгаете. Бот рандомно выбирает куда бить, если вы попали в ту же область, " +
                             "вы ловите мяч. После 5 ударов вы бьете 5 раз, а бот становится на ворота. В случае победы вы получите " +
@@ -242,9 +242,9 @@ namespace VkBot
                         break;
                     default:
                         if (Program.admins.Contains(peerID))
-                            Methods.SendMessage("Меню:", peerID, Keyboards.AdminKeyboard);
+                            CallbackController.SendMessage("Меню:", peerID, Keyboards.AdminKeyboard);
                         else
-                            Methods.SendMessage("Меню:", peerID, Keyboards.UserKeyboard);
+                            CallbackController.SendMessage("Меню:", peerID, Keyboards.UserKeyboard);
                         break;
                 }
             }
@@ -256,7 +256,7 @@ namespace VkBot
                         if (userMessage == "отмена")
                         {
                             Program.UsersInfo.RemoveAt(WriteOrNot);
-                            Methods.SendMessage("Меню:", peerID, Keyboards.AdminKeyboard);
+                            CallbackController.SendMessage("Меню:", peerID, Keyboards.AdminKeyboard);
                         }
                         else
                         {
@@ -300,11 +300,11 @@ namespace VkBot
                                     db.SaveChanges();
                                 }
                                 Program.UsersInfo.RemoveAt(WriteOrNot);
-                                Methods.SendMessage("Этот матч успешно добавлен ✔", peerID, Keyboards.AdminKeyboard);
+                                CallbackController.SendMessage("Этот матч успешно добавлен ✔", peerID, Keyboards.AdminKeyboard);
                             }
                             catch
                             {
-                                Methods.SendMessage("Введите, пожалуйста, данные о матче по формату:\n" +
+                                CallbackController.SendMessage("Введите, пожалуйста, данные о матче по формату:\n" +
                             "\"Команда1 Команда2 Дата_игры Ссылки(через пробел)\"", peerID);
                             }
                         }
@@ -313,7 +313,7 @@ namespace VkBot
                         if (userMessage == "отмена")
                         {
                             Program.UsersInfo.RemoveAt(WriteOrNot);
-                            Methods.SendMessage("Меню:", peerID, Keyboards.AdminKeyboard);
+                            CallbackController.SendMessage("Меню:", peerID, Keyboards.AdminKeyboard);
                         }
                         else
                         {
@@ -331,11 +331,11 @@ namespace VkBot
                                     db.SaveChanges();
                                 }
                                 Program.UsersInfo.RemoveAt(WriteOrNot);
-                                Methods.SendMessage("Этот матч успешно удален ✔", peerID, Keyboards.AdminKeyboard);
+                                CallbackController.SendMessage("Этот матч успешно удален ✔", peerID, Keyboards.AdminKeyboard);
                             }
                             catch
                             {
-                                Methods.SendMessage("Не удалось удалить матч, возможно, на этот матч уже ставки.", peerID);
+                                CallbackController.SendMessage("Не удалось удалить матч, возможно, на этот матч уже ставки.", peerID);
                             }
                         }
                         break;
@@ -343,7 +343,7 @@ namespace VkBot
                         if (userMessage == "отмена")
                         {
                             Program.UsersInfo.RemoveAt(WriteOrNot);
-                            Methods.SendMessage("Меню:", peerID, Keyboards.AdminKeyboard);
+                            CallbackController.SendMessage("Меню:", peerID, Keyboards.AdminKeyboard);
                         }
                         else
                         {
@@ -362,11 +362,11 @@ namespace VkBot
                                     Program.UsersInfo[Program.UsersInfo.Count - 1].Add(game.Id);
                                 }
                                 Program.UsersInfo.RemoveAt(WriteOrNot);
-                                Methods.SendMessage("Матч выбран. Теперь добавьте ссылки через пробел.", peerID);
+                                CallbackController.SendMessage("Матч выбран. Теперь добавьте ссылки через пробел.", peerID);
                             }
                             catch
                             {
-                                Methods.SendMessage("Выберите, пожалуйста, существующий матч.", peerID);
+                                CallbackController.SendMessage("Выберите, пожалуйста, существующий матч.", peerID);
                             }
                         }
                         break;
@@ -374,7 +374,7 @@ namespace VkBot
                         if (userMessage == "отмена")
                         {
                             Program.UsersInfo.RemoveAt(WriteOrNot);
-                            Methods.SendMessage("Меню:", peerID, Keyboards.AdminKeyboard);
+                            CallbackController.SendMessage("Меню:", peerID, Keyboards.AdminKeyboard);
                         }
                         else
                         {
@@ -393,11 +393,11 @@ namespace VkBot
                                     db.SaveChanges();
                                 }
                                 Program.UsersInfo.RemoveAt(WriteOrNot);
-                                Methods.SendMessage("Ссылки на этот матч успешно добавлены ✔", peerID, Keyboards.AdminKeyboard);
+                                CallbackController.SendMessage("Ссылки на этот матч успешно добавлены ✔", peerID, Keyboards.AdminKeyboard);
                             }
                             catch
                             {
-                                Methods.SendMessage("Введите, пожалуйста, ссылки через пробел.", peerID);
+                                CallbackController.SendMessage("Введите, пожалуйста, ссылки через пробел.", peerID);
                             }
                         }
                         break;
@@ -406,9 +406,9 @@ namespace VkBot
                         {
                             Program.UsersInfo.RemoveAt(WriteOrNot);
                             if (Program.admins.Contains(peerID))
-                                Methods.SendMessage("Меню:", peerID, Keyboards.AdminKeyboard);
+                                CallbackController.SendMessage("Меню:", peerID, Keyboards.AdminKeyboard);
                             else
-                                Methods.SendMessage("Меню:", peerID, Keyboards.UserKeyboard);
+                                CallbackController.SendMessage("Меню:", peerID, Keyboards.UserKeyboard);
                             break;
                         }
                         else
@@ -431,21 +431,21 @@ namespace VkBot
                                         Program.UsersInfo[Program.UsersInfo.Count - 1].Add(6);
                                         Program.UsersInfo[Program.UsersInfo.Count - 1].Add(game.Id);
                                         Program.UsersInfo.RemoveAt(WriteOrNot);
-                                        Methods.SendMessage("Матч выбран. Теперь введите счет по формату:\n" +
+                                        CallbackController.SendMessage("Матч выбран. Теперь введите счет по формату:\n" +
                                             "<счет первой команды>-<счет второй команды>.", peerID);
                                     }
                                     else if (DateTime.Now > game.DateGame.AddMinutes(5))
                                     {
-                                        Methods.SendMessage("После начала матча прогнозы не принимаются. Выберите другой матч.", peerID);
+                                        CallbackController.SendMessage("После начала матча прогнозы не принимаются. Выберите другой матч.", peerID);
                                     }
                                     else
-                                        Methods.SendMessage("Выберите матч, на который не сделана ставка.", peerID);
+                                        CallbackController.SendMessage("Выберите матч, на который не сделана ставка.", peerID);
                                 }
 
                             }
                             catch
                             {
-                                Methods.SendMessage("Выберите, пожалуйста, существующий матч.", peerID);
+                                CallbackController.SendMessage("Выберите, пожалуйста, существующий матч.", peerID);
                             }
                         }
                         break;
@@ -454,9 +454,9 @@ namespace VkBot
                         {
                             Program.UsersInfo.RemoveAt(WriteOrNot);
                             if (Program.admins.Contains(peerID))
-                                Methods.SendMessage("Меню:", peerID, Keyboards.AdminKeyboard);
+                                CallbackController.SendMessage("Меню:", peerID, Keyboards.AdminKeyboard);
                             else
-                                Methods.SendMessage("Меню:", peerID, Keyboards.UserKeyboard);
+                                CallbackController.SendMessage("Меню:", peerID, Keyboards.UserKeyboard);
                             break;
                         }
                         else
@@ -482,22 +482,22 @@ namespace VkBot
                                         Program.UsersInfo.RemoveAt(WriteOrNot);
                                         Program.UsersInfo.Add(new List<long?> { peerID });
                                         Program.UsersInfo[Program.UsersInfo.Count - 1].Add(5);
-                                        Methods.SendMessage("Счет записан. Вы можете поставить на другие матчи или вернуться в меню.", peerID);
+                                        CallbackController.SendMessage("Счет записан. Вы можете поставить на другие матчи или вернуться в меню.", peerID);
                                     }
                                 }
                                 catch
                                 {
-                                    Methods.SendMessage("Произошла ошибка.", peerID);
+                                    CallbackController.SendMessage("Произошла ошибка.", peerID);
                                 }
                             }
-                            else Methods.SendMessage("Введите счет, через тире(-)!!!", peerID);
+                            else CallbackController.SendMessage("Введите счет, через тире(-)!!!", peerID);
                         }
                         break;
                     case 7://Выбор матча для записывания результата матча
                         if (userMessage == "отмена")
                         {
                             Program.UsersInfo.RemoveAt(WriteOrNot);
-                            Methods.SendMessage("Меню:", peerID, Keyboards.AdminKeyboard);
+                            CallbackController.SendMessage("Меню:", peerID, Keyboards.AdminKeyboard);
                         }
                         else
                         {
@@ -527,16 +527,16 @@ namespace VkBot
                                         Program.UsersInfo[Program.UsersInfo.Count - 1].Add(game.Id);
                                         Program.UsersInfo[Program.UsersInfo.Count - 1].Add(Program.UsersInfo[WriteOrNot][2]);
                                         Program.UsersInfo.RemoveAt(WriteOrNot);
-                                        Methods.SendMessage("Матч выбран. Теперь введите счет матча через тире(-).", peerID);
+                                        CallbackController.SendMessage("Матч выбран. Теперь введите счет матча через тире(-).", peerID);
                                     }
                                     else
-                                        Methods.SendMessage("Выберите, матч, к которому еще не введен результат.", peerID);
+                                        CallbackController.SendMessage("Выберите, матч, к которому еще не введен результат.", peerID);
                                 }
 
                             }
                             catch
                             {
-                                Methods.SendMessage("Выберите, пожалуйста, существующий матч.", peerID);
+                                CallbackController.SendMessage("Выберите, пожалуйста, существующий матч.", peerID);
                             }
                         }
                         break;
@@ -556,7 +556,7 @@ namespace VkBot
                         }
                         catch
                         {
-                            Methods.SendMessage("Выберите число от 1 до 9!", peerID);
+                            CallbackController.SendMessage("Выберите число от 1 до 9!", peerID);
                         }
                         break;
                     case 10://игра пенальти
@@ -565,11 +565,11 @@ namespace VkBot
                             int vsp3 = Convert.ToInt32(userMessage);
                             Program.UsersInfo[WriteOrNot][1] = 9;
                             Program.UsersInfo[WriteOrNot].Add(vsp3);
-                            Methods.SendMessage("Уровень выбран, начинайте игру)", peerID, Keyboards.PenaltyKeyboard);
+                            CallbackController.SendMessage("Уровень выбран, начинайте игру)", peerID, Keyboards.PenaltyKeyboard);
                         }
                         catch
                         {
-                            Methods.SendMessage("Выберите уровень от 1 до 5 на клавиатуре!", peerID);
+                            CallbackController.SendMessage("Выберите уровень от 1 до 5 на клавиатуре!", peerID);
                         }
                         break;
                 }
@@ -586,7 +586,7 @@ namespace VkBot
             if (userMessage == "отмена")
             {
                 UsersInfo.RemoveAt(WriteOrNot);
-                SendMessage("Меню:", peerID, Keyboards.AdminKeyboard);
+                CallbackController.SendMessage("Меню:", peerID, Keyboards.AdminKeyboard);
             }
             else
             {
@@ -605,12 +605,12 @@ namespace VkBot
                             if (Info[0] == score[0] && Info[1] == score[1])
                             {
                                 user.Score += 3;
-                                SendMessage($"Вы заработали на матче {game.Team1}-{game.Team2} 3 гола ⚽!", b.VkId);
+                                CallbackController.SendMessage($"Вы заработали на матче {game.Team1}-{game.Team2} 3 гола ⚽!", b.VkId);
                             }
                             else if (Info[0] == score[0] || Info[1] == score[1])
                             {
                                 user.Score += 1;
-                                SendMessage($"Вы заработали на матче {game.Team1}-{game.Team2} 1 гол ⚽!", b.VkId);
+                                CallbackController.SendMessage($"Вы заработали на матче {game.Team1}-{game.Team2} 1 гол ⚽!", b.VkId);
                             }
 
                         }
@@ -621,11 +621,11 @@ namespace VkBot
                     Program.UsersInfo[Program.UsersInfo.Count - 1].Add(7);
                     Program.UsersInfo[Program.UsersInfo.Count - 1].Add(Program.UsersInfo[WriteOrNot][3]);
                     Program.UsersInfo.RemoveAt(WriteOrNot);
-                    SendMessage("Счет записан, всем игрокам, угадавшим счет, добавлены голы.", peerID);
+                    CallbackController.SendMessage("Счет записан, всем игрокам, угадавшим счет, добавлены голы.", peerID);
                 }
                 catch
                 {
-                    SendMessage("Выберите, пожалуйста, существующий матч.", peerID);
+                    CallbackController.SendMessage("Выберите, пожалуйста, существующий матч.", peerID);
                 }
             }
         }
@@ -648,36 +648,13 @@ namespace VkBot
                         {
                             for (int i = 0; i < admins.Count; i++)
                             {
-                                SendMessage($"Матч {g.Team1}-{g.Team2} скорее всего окончен. Нужно ввести результат.", admins[i]);
+                                CallbackController.SendMessage($"Матч {g.Team1}-{g.Team2} скорее всего окончен. Нужно ввести результат.", admins[i]);
                             }
                         }
                     }
                 }
                 Thread.Sleep(15 * 60 * 1000);
             }
-        }
-
-        public static void SendMessage(string message, long? peerId)
-        {
-            Random rnd = new Random();
-            CallbackController.VkApi.Messages.Send(new MessagesSendParams
-            {
-                RandomId = rnd.Next(),
-                PeerId = peerId,
-                Message = message
-            });
-        }
-        public static void SendMessage(string message, long? peerId, MessageKeyboard keyboard)
-        {
-
-            Random rnd = new Random();
-            CallbackController.VkApi.Messages.Send(new MessagesSendParams
-            {
-                RandomId = rnd.Next(),
-                PeerId = peerId,
-                Message = message,
-                Keyboard = keyboard
-            });
         }
 
         public static void PenaltyGameForward(int WriteOrNot, string userMessage, long? peerID)
@@ -700,19 +677,19 @@ namespace VkBot
             {
                 Program.UsersInfo[WriteOrNot][3] += 1;
                 if (Program.UsersInfo[WriteOrNot][2] > 5 && Program.UsersInfo[WriteOrNot][2] < 10)
-                    SendMessage("Вы забили гоооол ⚽. Бейте следующий удар.\n\n" +
+                    CallbackController.SendMessage("Вы забили гоооол ⚽. Бейте следующий удар.\n\n" +
                         $"Счет: {Program.UsersInfo[WriteOrNot][3]}-{Program.UsersInfo[WriteOrNot][4]}", peerID);
                 else
-                    SendMessage("Вы забили гоооол ⚽.\n\n" +
+                    CallbackController.SendMessage("Вы забили гоооол ⚽.\n\n" +
                         $"Счет: {Program.UsersInfo[WriteOrNot][3]}-{Program.UsersInfo[WriteOrNot][4]}", peerID);
             }
             else
             {
                 if (Program.UsersInfo[WriteOrNot][2] > 5 && Program.UsersInfo[WriteOrNot][2] < 10)
-                    SendMessage("Вратарь делает сейв 🧤. Бейте следующий удар.\n\n" +
+                    CallbackController.SendMessage("Вратарь делает сейв 🧤. Бейте следующий удар.\n\n" +
                         $"Счет: {Program.UsersInfo[WriteOrNot][3]}-{Program.UsersInfo[WriteOrNot][4]}", peerID);
                 else
-                    SendMessage("Вратарь делает сейв 🧤.\n\n" +
+                    CallbackController.SendMessage("Вратарь делает сейв 🧤.\n\n" +
                         $"Счет: {Program.UsersInfo[WriteOrNot][3]}-{Program.UsersInfo[WriteOrNot][4]}", peerID);
             }
             if (Program.UsersInfo[WriteOrNot][2] >= 10 && Program.UsersInfo[WriteOrNot][3] > Program.UsersInfo[WriteOrNot][4])
@@ -724,25 +701,25 @@ namespace VkBot
                     db.SaveChanges();
                 }
                 if (Program.admins.Contains(peerID))
-                    SendMessage($"Поздравляю! Вы победили! Заработали голов: {Program.UsersInfo[WriteOrNot][3]}*{Program.UsersInfo[WriteOrNot][5]} = " +
+                    CallbackController.SendMessage($"Поздравляю! Вы победили! Заработали голов: {Program.UsersInfo[WriteOrNot][3]}*{Program.UsersInfo[WriteOrNot][5]} = " +
                         $"{Program.UsersInfo[WriteOrNot][3] * Program.UsersInfo[WriteOrNot][5]}",
                         peerID, Keyboards.AdminKeyboard);
                 else
-                    SendMessage($"Поздравляю! Вы победили! Заработали голов: {Program.UsersInfo[WriteOrNot][3]}*{Program.UsersInfo[WriteOrNot][5]} = " +
+                    CallbackController.SendMessage($"Поздравляю! Вы победили! Заработали голов: {Program.UsersInfo[WriteOrNot][3]}*{Program.UsersInfo[WriteOrNot][5]} = " +
                         $"{Program.UsersInfo[WriteOrNot][3] * Program.UsersInfo[WriteOrNot][5]}",
                         peerID, Keyboards.UserKeyboard);
                 Program.UsersInfo.RemoveAt(WriteOrNot);
             }
             else if (Program.UsersInfo[WriteOrNot][2] >= 10 && Program.UsersInfo[WriteOrNot][3] == Program.UsersInfo[WriteOrNot][4])
             {
-                SendMessage("Пока счет равный. Еще по одному удару! Ловите.", peerID);
+                CallbackController.SendMessage("Пока счет равный. Еще по одному удару! Ловите.", peerID);
             }
             else if (Program.UsersInfo[WriteOrNot][2] >= 10 && Program.UsersInfo[WriteOrNot][3] < Program.UsersInfo[WriteOrNot][4])
             {
                 if (Program.admins.Contains(peerID))
-                    SendMessage("Вы проиграли! Повезет в другой раз.", peerID, Keyboards.AdminKeyboard);
+                    CallbackController.SendMessage("Вы проиграли! Повезет в другой раз.", peerID, Keyboards.AdminKeyboard);
                 else
-                    SendMessage("Вы проиграли! Повезет в другой раз.", peerID, Keyboards.UserKeyboard);
+                    CallbackController.SendMessage("Вы проиграли! Повезет в другой раз.", peerID, Keyboards.UserKeyboard);
                 Program.UsersInfo.RemoveAt(WriteOrNot);
             }
         }
@@ -766,19 +743,19 @@ namespace VkBot
             {
                 Program.UsersInfo[WriteOrNot][4] += 1;
                 if (Program.UsersInfo[WriteOrNot][2] < 5)
-                    SendMessage("Вам забили гоооол ⚽. Ловите следующий удар!\n\n" +
+                    CallbackController.SendMessage("Вам забили гоооол ⚽. Ловите следующий удар!\n\n" +
                         $"Счет: {Program.UsersInfo[WriteOrNot][3]}-{Program.UsersInfo[WriteOrNot][4]}", peerID);
                 else
-                    SendMessage("Вам забили гоооол ⚽. Теперь вы бьете по воротам.\n\n" +
+                    CallbackController.SendMessage("Вам забили гоооол ⚽. Теперь вы бьете по воротам.\n\n" +
                         $"Счет: {Program.UsersInfo[WriteOrNot][3]}-{Program.UsersInfo[WriteOrNot][4]}", peerID);
             }
             else
             {
                 if (Program.UsersInfo[WriteOrNot][2] < 5)
-                    SendMessage("Вы делаете сейв 🧤. Ловите следующий удар!\n\n" +
+                    CallbackController.SendMessage("Вы делаете сейв 🧤. Ловите следующий удар!\n\n" +
                         $"Счет: {Program.UsersInfo[WriteOrNot][3]}-{Program.UsersInfo[WriteOrNot][4]}", peerID);
                 else
-                    SendMessage("Вы делаете сейв 🧤. Теперь вы бьете по воротам.\n\n" +
+                    CallbackController.SendMessage("Вы делаете сейв 🧤. Теперь вы бьете по воротам.\n\n" +
                         $"Счет: {Program.UsersInfo[WriteOrNot][3]}-{Program.UsersInfo[WriteOrNot][4]}", peerID);
             }
         }
@@ -813,11 +790,11 @@ namespace VkBot
             }
             var keyb = key.Build();
             if (cansel)
-                SendMessage("Выберите нужный матч.", peerID, keyb);
+                CallbackController.SendMessage("Выберите нужный матч.", peerID, keyb);
             else if (admins.Contains(peerID))
-                SendMessage(allMatch, peerID, Keyboards.AdminKeyboard);
+                CallbackController.SendMessage(allMatch, peerID, Keyboards.AdminKeyboard);
             else
-                SendMessage(allMatch, peerID, Keyboards.UserKeyboard);
+                CallbackController.SendMessage(allMatch, peerID, Keyboards.UserKeyboard);
         }
     }
 }

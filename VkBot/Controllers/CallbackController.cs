@@ -22,9 +22,7 @@ namespace Cookie.Controllers
         /// </summary>
         private static IConfiguration _configuration;
 
-        private static IVkApi _vkApi { get; set; }
-
-        public static IVkApi VkApi { get; } = _vkApi;
+        public static IVkApi _vkApi { get; set; }
 
         public CallbackController(IVkApi vkApi, IConfiguration configuration)
         {
