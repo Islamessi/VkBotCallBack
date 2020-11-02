@@ -9,6 +9,7 @@ using VkNet.Model.GroupUpdate;
 using VkBot;
 using System.Linq;
 using VkNet;
+using VkNet.Model.Keyboard;
 
 namespace Cookie.Controllers
 {
@@ -53,6 +54,7 @@ namespace Cookie.Controllers
                         Message = "11"
                     });
                     //Methods.MainMenu(msg);
+                    SendMessage("aa", msg.PeerId);
                     break;
                 case "message_event":
                     var msgev = MessageEvent.FromJson(new VkResponse(updates.Object));
@@ -61,6 +63,28 @@ namespace Cookie.Controllers
             }
             // Возвращаем "ok" серверу Callback API
             return Ok("ok");
+        }
+        public static void SendMessage(string message, long? peerId)
+        {
+            Random rnd = new Random();
+            _vkApi.Messages.Send(new MessagesSendParams
+            {
+                RandomId = rnd.Next(),
+                PeerId = peerId,
+                Message = message
+            });
+        }
+        public static void SendMessage(string message, long? peerId, MessageKeyboard keyboard)
+        {
+
+            Random rnd = new Random();
+            _vkApi.Messages.Send(new MessagesSendParams
+            {
+                RandomId = rnd.Next(),
+                PeerId = peerId,
+                Message = message,
+                Keyboard = keyboard
+            });
         }
     }
 }
