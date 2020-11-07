@@ -18,7 +18,6 @@ namespace VkBot
 
         public static void Main(string[] args)
         {
-            CallbackController.DontOff();
             CreateWebHostBuilder(args).Build().Run();
         }
 
