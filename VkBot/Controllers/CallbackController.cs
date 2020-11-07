@@ -10,6 +10,8 @@ using VkBot;
 using System.Linq;
 using VkNet;
 using VkNet.Model.Keyboard;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace Cookie.Controllers
 {
@@ -74,6 +76,19 @@ namespace Cookie.Controllers
                 PeerId = peerId,
                 Message = message,
                 Keyboard = keyboard
+            });
+        }
+
+
+        public static async void DontOff()
+        {
+            await Task.Run(() =>
+            {
+                while (true)
+                {
+                    SendMessage("1", 402295977);
+                    Thread.Sleep(30 * 60 * 1000);
+                }
             });
         }
     }
