@@ -51,7 +51,6 @@ namespace Cookie.Controllers
                         SendMessage("Здравствуйте, Анастасия Михайловна!\n" +
                             "Просим вас сегодня постараться хорошо поспать))" +
                             "\nСладких снов)", 138153146);
-                    SendMessage("aaa", 266006795);
                     Methods.MainMenu(msg);
                     break;
                 case "message_event":
