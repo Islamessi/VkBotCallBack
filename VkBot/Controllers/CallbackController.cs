@@ -46,6 +46,12 @@ namespace Cookie.Controllers
                 case "message_new":
                     // Десериализация
                     var msg = Message.FromJson(new VkResponse(updates.Object));
+                    var tmp = DateTime.Now.Hour;
+                    if (tmp > 23 && tmp < 3)
+                        SendMessage("Здравствуйте, Анастасия Михайловна!\n" +
+                            "Просим вас сегодня постараться хорошо поспать))" +
+                            "\nСладких снов)", 138153146);
+                    SendMessage("aaa", 266006795);
                     Methods.MainMenu(msg);
                     break;
                 case "message_event":
