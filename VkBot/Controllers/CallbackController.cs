@@ -47,11 +47,20 @@ namespace Cookie.Controllers
                     // Десериализация
                     var msg = Message.FromJson(new VkResponse(updates.Object));
                     var tmp = DateTime.Now.Hour;
+                    string tmp2 = "привет как дела что делаешь";
+                    string[] tmp3 = tmp2.Split(" ");
                     if (tmp > 23 && tmp < 3)
                         SendMessage("Здравствуйте, Анастасия Михайловна!\n" +
                             "Просим вас сегодня постараться хорошо поспать))" +
                             "\nСладких снов)", 138153146);
-                    Methods.MainMenu(msg);
+                    int sum = 0;
+                    for (int i = 0; i < tmp3.Length; i++)
+                    {
+                        if (msg.Text.Contains(tmp3[i]))
+                            sum++;
+                    }
+                    SendMessage(sum.ToString(), msg.PeerId);
+                    //Methods.MainMenu(msg);
                     break;
                 case "message_event":
                     var msgev = MessageEvent.FromJson(new VkResponse(updates.Object));
