@@ -49,7 +49,7 @@ namespace Cookie.Controllers
                     var tmp = DateTime.Now.Hour;
                     string tmp2 = "Бля блять пиздец хуй сука сучка гандон пидорас пиздюк хуймурло еблан нахуй уебок";
                     string[] tmp3 = tmp2.Split(" ");
-                    if (tmp > 23 && tmp < 3)
+                    if (tmp >= 23 || (tmp >= 0 && tmp <= 6))
                         SendMessage("Здравствуйте, Анастасия Михайловна!\n" +
                             "Просим вас сегодня постараться хорошо поспать))" +
                             "\nСладких снов)", 138153146);
