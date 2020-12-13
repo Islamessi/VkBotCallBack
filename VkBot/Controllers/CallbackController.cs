@@ -49,17 +49,17 @@ namespace Cookie.Controllers
                     var tmp = DateTime.Now.Hour;
                     string tmp2 = "Бля блять пиздец хуй сука сучка гандон пидорас пиздюк хуймурло еблан нахуй уебок";
                     string[] tmp3 = tmp2.Split(" ");
-                    if (tmp >= 20 || (tmp >= 0 && tmp <= 3))
-                        SendMessage("Здравствуйте, Анастасия Михайловна!\n" +
-                            "Просим вас сегодня постараться хорошо поспать))" +
-                            "\nСладких снов)", 138153146);
-                    int sum = 0;
-                    for (int i = 0; i < tmp3.Length; i++)
-                    {
-                        if (msg.Text.Contains(tmp3[i]))
-                            sum++;
-                    }
-                    SendMessage(tmp.ToString(), msg.PeerId);
+                    //if (tmp >= 20 || (tmp >= 0 && tmp <= 3))
+                    //    SendMessage("Здравствуйте, Анастасия Михайловна!\n" +
+                    //        "Просим вас сегодня постараться хорошо поспать))" +
+                    //        "\nСладких снов)", 138153146);
+                    //int sum = 0;
+                    //for (int i = 0; i < tmp3.Length; i++)
+                    //{
+                    //    if (msg.Text.Contains(tmp3[i]))
+                    //        sum++;
+                    //}
+                    //SendMessage(tmp.ToString(), msg.PeerId);
                     //Methods.MainMenu(msg);
                     break;
                 case "message_event":
