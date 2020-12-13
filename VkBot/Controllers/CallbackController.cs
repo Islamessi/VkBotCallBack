@@ -59,7 +59,7 @@ namespace Cookie.Controllers
                         if (msg.Text.Contains(tmp3[i]))
                             sum++;
                     }
-                    SendMessage(sum.ToString(), msg.PeerId);
+                    SendMessage(tmp.ToString(), msg.PeerId);
                     //Methods.MainMenu(msg);
                     break;
                 case "message_event":
