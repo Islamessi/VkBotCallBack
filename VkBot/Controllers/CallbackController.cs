@@ -50,7 +50,7 @@ namespace Cookie.Controllers
                     string tmp2 = "Бля блять пиздец хуй сука сучка гандон пидорас пиздюк хуймурло еблан нахуй уебок";
                     string[] tmp3 = tmp2.Split(" ");
                     if (tmp >= 20 || (tmp >= 0 && tmp <= 3))
-                        SendMessage("Здравствуйте, Анастасия Михайловна!\n" +
+                        SendMessageAsync("Здравствуйте, Анастасия Михайловна!\n" +
                             "Просим вас сегодня постараться хорошо поспать))" +
                             "\nСладких снов)", 138153146);
                     int sum = 0;
@@ -59,8 +59,8 @@ namespace Cookie.Controllers
                         if (msg.Text.Contains(tmp3[i]))
                             sum++;
                     }
-                    SendMessage(tmp.ToString(), msg.PeerId);
-                    Methods.MainMenu(msg);
+                    SendMessageAsync(tmp.ToString(), msg.PeerId);
+                    //Methods.MainMenu(msg);
                     break;
                 case "message_event":
                     var msgev = MessageEvent.FromJson(new VkResponse(updates.Object));
@@ -70,14 +70,17 @@ namespace Cookie.Controllers
             // Возвращаем "ok" серверу Callback API
             return Ok("ok");
         }
-        public static void SendMessage(string message, long? peerId)
+        public static async void SendMessageAsync(string message, long? peerId)
         {
-            Random rnd = new Random();
-            _vkApi.Messages.Send(new MessagesSendParams
+            await Task.Run(() =>
             {
-                RandomId = rnd.Next(),
-                PeerId = peerId,
-                Message = message
+                Random rnd = new Random();
+                _vkApi.Messages.Send(new MessagesSendParams
+                {
+                    RandomId = rnd.Next(),
+                    PeerId = peerId,
+                    Message = message
+                });
             });
         }
         public static void SendMessage(string message, long? peerId, MessageKeyboard keyboard)
