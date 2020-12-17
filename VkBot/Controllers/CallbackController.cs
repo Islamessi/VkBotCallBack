@@ -49,10 +49,14 @@ namespace Cookie.Controllers
                     var tmp = DateTime.Now.Hour;
                     string tmp2 = "Бля блять пиздец хуй сука сучка гандон пидорас пиздюк хуймурло еблан нахуй уебок";
                     string[] tmp3 = tmp2.Split(" ");
-                    if (tmp >= 20 || (tmp >= 0 && tmp <= 3))
-                        SendMessage("Здравствуйте, Анастасия Михайловна!\n" +
+                    if (tmp >= 10 || (tmp >= 0 && tmp <= 3))
+                    {
+                        var a = _vkApi.Messages.GetHistory(new MessagesGetHistoryParams { Count = 1, PeerId = 266006795 }).Messages.ToList();
+                        if (a[0].Date.Value.Date.AddDays(1) == DateTime.Now.Date)
+                            SendMessage("Здравствуйте, Анастасия Михайловна!\n" +
                             "Просим вас сегодня постараться хорошо поспать))" +
-                            "\nСладких снов)", 138153146);
+                            "\nСладких снов)", 266006795);
+                    }
                     int sum = 0;
                     for (int i = 0; i < tmp3.Length; i++)
                     {
