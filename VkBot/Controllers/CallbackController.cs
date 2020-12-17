@@ -52,10 +52,14 @@ namespace Cookie.Controllers
                     if (tmp >= 10 || (tmp >= 0 && tmp <= 3))
                     {
                         var a = _vkApi.Messages.GetHistory(new MessagesGetHistoryParams { Count = 1, PeerId = 266006795 }).Messages.ToList();
+                        SendMessage("Здравствуйте, Анастасия Михайловна!\n" +
+                            "Просим вас сегодня постараться хорошо поспать))" +
+                            "\nСладких снов)" + a[0].Date.Value.Date.AddDays(1), 266006795);
+                       
                         if (a[0].Date.Value.Date.AddDays(1) == DateTime.Now.Date)
                             SendMessage("Здравствуйте, Анастасия Михайловна!\n" +
                             "Просим вас сегодня постараться хорошо поспать))" +
-                            "\nСладких снов)", 266006795);
+                            "\nСладких снов)" + a[0].Date.Value.Date.AddDays(1), 266006795);
                     }
                     int sum = 0;
                     for (int i = 0; i < tmp3.Length; i++)
