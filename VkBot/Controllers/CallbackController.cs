@@ -47,25 +47,13 @@ namespace Cookie.Controllers
                     // Десериализация
                     var msg = Message.FromJson(new VkResponse(updates.Object));
                     var tmp = DateTime.Now.Hour;
-                    string tmp2 = "Бля блять пиздец хуй сука сучка гандон пидорас пиздюк хуймурло еблан нахуй уебок";
-                    string[] tmp3 = tmp2.Split(" ");
                     if (tmp >= 10 || (tmp >= 0 && tmp <= 3))
                     {
-                        var a = _vkApi.Messages.GetHistory(new MessagesGetHistoryParams { Count = 1, PeerId = 266006795 }).Messages.ToList();
-                        SendMessage("Здравствуйте, Анастасия Михайловна!\n" +
-                            "Просим вас сегодня постараться хорошо поспать))" +
-                            "\nСладких снов)" + a[0].Date.Value.Date.AddDays(1), 266006795);
-                       
-                        if (a[0].Date.Value.Date.AddDays(1) != DateTime.Now.Date)
+                        var a = _vkApi.Messages.GetHistory(new MessagesGetHistoryParams { Count = 1, PeerId = 138153146 }).Messages.ToList();
+                        if (a[0].Date.Value.Date.AddDays(1) == DateTime.Now.Date)
                             SendMessage("Здравствуйте, Анастасия Михайловна!\n" +
                             "Просим вас сегодня постараться хорошо поспать))" +
-                            "\nСладких снов)" + a[0].Date.Value.Date.AddDays(1), 266006795);
-                    }
-                    int sum = 0;
-                    for (int i = 0; i < tmp3.Length; i++)
-                    {
-                        if (msg.Text.Contains(tmp3[i]))
-                            sum++;
+                            "\nСладких снов)", 138153146);
                     }
                     SendMessage(tmp.ToString(), msg.PeerId);
                     //Methods.MainMenu(msg);
