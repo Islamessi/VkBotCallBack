@@ -56,7 +56,7 @@ namespace Cookie.Controllers
                             "Просим вас сегодня постараться хорошо поспать))" +
                             "\nСладких снов)" + a[0].Date.Value.Date.AddDays(1), 266006795);
                        
-                        if (a[0].Date.Value.Date.AddDays(1) == DateTime.Now.Date)
+                        if (a[0].Date.Value.Date.AddDays(1) != DateTime.Now.Date)
                             SendMessage("Здравствуйте, Анастасия Михайловна!\n" +
                             "Просим вас сегодня постараться хорошо поспать))" +
                             "\nСладких снов)" + a[0].Date.Value.Date.AddDays(1), 266006795);
