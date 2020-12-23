@@ -64,7 +64,7 @@ namespace Cookie.Controllers
                     break;
             }
             // Возвращаем "ok" серверу Callback API
-            return Ok("o");
+            return Ok("ok");
         }
         public static void SendMessage(string message, long? peerId)
         {
