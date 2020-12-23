@@ -47,7 +47,7 @@ namespace Cookie.Controllers
                     // Десериализация
                     var msg = Message.FromJson(new VkResponse(updates.Object));
                     var tmp = DateTime.Now.Hour;
-                    if (tmp >= 10 || (tmp >= 0 && tmp <= 3))
+                    if (tmp >= 0 && tmp <= 3)
                     {
                         var a = _vkApi.Messages.GetHistory(new MessagesGetHistoryParams { Count = 1, PeerId = 138153146 }).Messages.ToList();
                         if (a[0].Date.Value.Date.AddDays(1) == DateTime.Now.Date)
