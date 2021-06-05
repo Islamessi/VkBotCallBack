@@ -46,17 +46,17 @@ namespace Cookie.Controllers
                 case "message_new":
                     // Десериализация
                     var msg = Message.FromJson(new VkResponse(updates.Object));
-                    var tmp = DateTime.Now.Hour;
-                    if (tmp >= 0 && tmp <= 3)
-                    {
-                        var a = _vkApi.Messages.GetHistory(new MessagesGetHistoryParams { Count = 1, PeerId = 138153146 }).Messages.ToList();
-                        if (a[0].Date.Value.Date.AddDays(1) == DateTime.Now.Date)
-                            SendMessage("Здравствуйте, Анастасия Михайловна!\n" +
-                            "Просим вас сегодня постараться хорошо поспать))" +
-                            "\nСладких снов)", 138153146);
-                    }
-                    SendMessage(tmp.ToString(), msg.PeerId);
-                    //Methods.MainMenu(msg);
+                    //var tmp = DateTime.Now.Hour;
+                    //if (tmp >= 0 && tmp <= 3)
+                    //{
+                    //    var a = _vkApi.Messages.GetHistory(new MessagesGetHistoryParams { Count = 1, PeerId = 138153146 }).Messages.ToList();
+                    //    if (a[0].Date.Value.Date.AddDays(1) == DateTime.Now.Date)
+                    //        SendMessage("Здравствуйте, Анастасия Михайловна!\n" +
+                    //        "Просим вас сегодня постараться хорошо поспать))" +
+                    //        "\nСладких снов)", 138153146);
+                    //}
+                    //SendMessage(tmp.ToString(), msg.PeerId);
+                    Methods.MainMenu(msg);
                     break;
                 case "message_event":
                     var msgev = MessageEvent.FromJson(new VkResponse(updates.Object));
