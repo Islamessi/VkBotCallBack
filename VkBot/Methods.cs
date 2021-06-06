@@ -302,7 +302,7 @@ namespace VkBot
                                         Links = links
                                     };
                                     game.CreateGame(Info[0], Info[1], date, links);
-                                    CallbackController.SendMessage(date.ToString(), peerID, Keyboards.AdminKeyboard);
+                                    CallbackController.SendMessage(game.DateGame+" "+game.Team1, peerID, Keyboards.AdminKeyboard);
                                     db.Games.Add(game);
                                     db.SaveChanges();
                                 }
