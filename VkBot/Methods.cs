@@ -332,8 +332,8 @@ namespace VkBot
                                 {
                                     Game game = db.Games.Where(p => p.Team1 == Info[0])
                                         .Intersect(db.Games.Where(p => p.Team2 == Info[1])).
-                                        Intersect(db.Games.Where(p => p.DateGame > vsp3)).
-                                        Intersect(db.Games.Where(p => p.DateGame < vsp3.AddDays(1))).FirstOrDefault();
+                                        Intersect(db.Games.Where(p => p.DateGame >= vsp3)).
+                                        Intersect(db.Games.Where(p => p.DateGame <= vsp3.AddDays(1))).FirstOrDefault();
                                     db.Games.Remove(game);
                                     db.SaveChanges();
                                 }
@@ -362,8 +362,8 @@ namespace VkBot
                                 {
                                     Game game = db.Games.Where(p => p.Team1 == Info[0])
                                         .Intersect(db.Games.Where(p => p.Team2 == Info[1])).
-                                        Intersect(db.Games.Where(p => p.DateGame > vsp3)).
-                                        Intersect(db.Games.Where(p => p.DateGame < vsp3.AddDays(1))).FirstOrDefault();
+                                        Intersect(db.Games.Where(p => p.DateGame >= vsp3)).
+                                        Intersect(db.Games.Where(p => p.DateGame <= vsp3.AddDays(1))).FirstOrDefault();
                                     Program.UsersInfo.Add(new List<long?> { peerID });
                                     Program.UsersInfo[Program.UsersInfo.Count - 1].Add(4);
                                     Program.UsersInfo[Program.UsersInfo.Count - 1].Add(game.Id);
