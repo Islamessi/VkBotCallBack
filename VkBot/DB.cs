@@ -10,6 +10,7 @@ namespace VkBot
         public string Team1 { get; set; }
         public string Team2 { get; set; }
         public DateTime DateGame { get; set; }
+        public string Group { get; set }
         public string Links { get; set; }
         public bool Completed { get; set; } = false;
 
