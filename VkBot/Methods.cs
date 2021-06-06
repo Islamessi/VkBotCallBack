@@ -287,6 +287,7 @@ namespace VkBot
                             //    date2 = Convert.ToDateTime(date[0]).ToString();
                             try
                             {
+                                string tmp1;
                                 using (var db = new MyContext())
                                 {
                                     var links = "";
@@ -302,12 +303,13 @@ namespace VkBot
                                         Links = links
                                     };
                                     game.CreateGame(Info[0], Info[1], date, links);
-                                    CallbackController.SendMessage(date.ToString(), peerID, Keyboards.AdminKeyboard);
+                                    tmp1 = game.DateGame.ToString();
+                                    //CallbackController.SendMessage(date.ToString(), peerID, Keyboards.AdminKeyboard);
                                     db.Games.Add(game);
                                     db.SaveChanges();
                                 }
                                 Program.UsersInfo.RemoveAt(WriteOrNot);
-                                CallbackController.SendMessage("Этот матч успешно добавлен ✔", peerID, Keyboards.AdminKeyboard);
+                                CallbackController.SendMessage("Этот матч успешно добавлен ✔"+tmp1, peerID, Keyboards.AdminKeyboard);
                             }
                             catch
                             {
