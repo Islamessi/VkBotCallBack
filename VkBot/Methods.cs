@@ -774,8 +774,8 @@ namespace VkBot
             var key = new KeyboardBuilder();
             using (var db = new MyContext())
             {
-                var game = db.Games.Where(p => p.DateGame > date)
-                    .Intersect(db.Games.Where(p => p.DateGame < date.AddDays(1)));
+                var game = db.Games.Where(p => p.DateGame >= date)
+                    .Intersect(db.Games.Where(p => p.DateGame <= date.AddDays(1)));
                 foreach (var g in game)
                 {
                     string vsp3 = g.Links.Replace(" ", "\n");
