@@ -11,6 +11,8 @@ namespace VkBot
             get
             {
                 KeyboardBuilder adminKey = new KeyboardBuilder();
+                adminKey.AddButton("ЕВРО-2020", "", KeyboardButtonColor.Positive, "");
+                adminKey.AddLine();
                 adminKey.AddButton("Добавить матч", "", KeyboardButtonColor.Primary, "");
                 adminKey.AddButton("Удалить матч", "", KeyboardButtonColor.Negative, "");
                 adminKey.AddLine();
@@ -18,8 +20,8 @@ namespace VkBot
                 adminKey.AddLine();
                 adminKey.AddButton("Ввести результат матча", "", KeyboardButtonColor.Primary, "");
                 adminKey.AddLine();
-                adminKey.AddButton("Ввести результат матча вчера", "", KeyboardButtonColor.Primary, "");
-                adminKey.AddLine();
+                //adminKey.AddButton("Ввести результат матча вчера", "", KeyboardButtonColor.Primary, "");
+                //adminKey.AddLine();
                 adminKey.AddButton("Все матчи сегодня", "", KeyboardButtonColor.Default, "");
                 adminKey.AddLine();
                 adminKey.AddButton("Игра \"Пенальти\"", "", KeyboardButtonColor.Positive, "");
@@ -37,6 +39,8 @@ namespace VkBot
             get
             {
                 KeyboardBuilder userKey = new KeyboardBuilder();
+                userKey.AddButton("ЕВРО-2020", "", KeyboardButtonColor.Positive, "");
+                userKey.AddLine();
                 userKey.AddButton("Все матчи сегодня", "", KeyboardButtonColor.Default, "");
                 userKey.AddLine();
                 userKey.AddButton("Игра \"Пенальти\"", "", KeyboardButtonColor.Positive, "");
