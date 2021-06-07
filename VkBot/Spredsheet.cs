@@ -19,8 +19,8 @@ namespace VkBot
     {
         static readonly string[] Scopes = { SheetsService.Scope.Spreadsheets };
         static readonly string ApplicationName = "Legislators";
-        static string SpreedsheetId = "1ZhbX7wI1a92182vUCjVim-02OcWXP5iz4lNfCGBQ7lk";
-        static string sheet = "Malikat";
+        //static string SpreedsheetId = "1ZhbX7wI1a92182vUCjVim-02OcWXP5iz4lNfCGBQ7lk";
+        //static string sheet = "Malikat";
         static SheetsService service;
         public static void ReadEntriesMas2()//Ввод данных пользователей из таблицы с данными
         {
@@ -41,10 +41,13 @@ namespace VkBot
                 //var user = db.Users.Where(p => p.VkId == peerID).FirstOrDefault();
                 //user.Score += Program.UsersInfo[WriteOrNot][3] * Program.UsersInfo[WriteOrNot][5];
                 //db.SaveChanges();
-                
-                SpreedsheetId = "1nV16Eu3xerecw1_Gm3tXyTfьQKe_oCOklnTVsx9zO_AA";
-                sheet = "LiveBall(Top)";
+                CallbackController.SendMessage("1/0", 266006795);
+                string SpreedsheetId = "1nV16Eu3xerecw1_Gm3tXyTfьQKe_oCOklnTVsx9zO_AA";
+                CallbackController.SendMessage("1/1", 266006795);
+                string sheet = "LiveBall(Top)";
+                CallbackController.SendMessage("1/2", 266006795);
                 int i = 0;
+                CallbackController.SendMessage("1/3", 266006795);
                 var range = $"{sheet}!A:E";
                 CallbackController.SendMessage("1", 266006795);
                 var request = service.Spreadsheets.Values.Get(SpreedsheetId, range);
