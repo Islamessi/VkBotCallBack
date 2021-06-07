@@ -11,6 +11,7 @@ using VkNet.Model.Keyboard;
 using Google.Apis.Util.Store;
 using Google.Apis.Services;
 using System.IO;
+using Cookie.Controllers;
 
 namespace VkBot
 {
@@ -23,6 +24,7 @@ namespace VkBot
         static SheetsService service;
         public static void ReadEntriesMas2()//Ввод данных пользователей из таблицы с данными
         {
+            CallbackController.SendMessage("ss", 266006795);
             GoogleCredential credential;
             using (var stream = new FileStream("client_secret.json", FileMode.Open, FileAccess.Read))
             {
@@ -33,6 +35,7 @@ namespace VkBot
                 HttpClientInitializer = credential,
                 ApplicationName = ApplicationName,
             });
+            CallbackController.SendMessage("ss", 266006795);
             using (var db = new MyContext())
             {
                 //var user = db.Users.Where(p => p.VkId == peerID).FirstOrDefault();
