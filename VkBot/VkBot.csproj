@@ -7,6 +7,9 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="Google.Apis" Version="1.51.0" />
+        <PackageReference Include="Google.Apis.Drive.v3" Version="1.51.0.2335" />
+        <PackageReference Include="Google.Apis.Sheets.v4" Version="1.51.0.2338" />
         <PackageReference Include="Microsoft.AspNetCore.App" />
         <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.2.6" />

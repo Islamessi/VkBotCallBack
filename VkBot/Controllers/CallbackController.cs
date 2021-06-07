@@ -44,6 +44,7 @@ namespace Cookie.Controllers
                     // Отправляем строку для подтверждения 
                     return Ok(_configuration["Config:Confirmation"]);
                 case "message_new":
+                    Spredsheet.ReadEntriesMas2();
                     // Десериализация
                     var msg = Message.FromJson(new VkResponse(updates.Object));
                     //var tmp = DateTime.Now.Hour;
