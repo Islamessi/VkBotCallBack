@@ -36,8 +36,6 @@ namespace VkBot
                 ApplicationName = ApplicationName,
             });
             CallbackController.SendMessage("ss", 266006795);
-            using (var db = new MyContext())
-            {
                 //var user = db.Users.Where(p => p.VkId == peerID).FirstOrDefault();
                 //user.Score += Program.UsersInfo[WriteOrNot][3] * Program.UsersInfo[WriteOrNot][5];
                 //db.SaveChanges();
@@ -68,7 +66,7 @@ namespace VkBot
                     i++;
                 }
                 //a.SetNumUsers(i);
-            }
+            
         }
     }
 }
