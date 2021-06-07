@@ -46,8 +46,8 @@ namespace Cookie.Controllers
                 case "message_new":
                     //Spredsheet.ReadEntriesMas2();
                     // Десериализация
-                    SendMessage("aaa", 266006795);
-                    Spredsheet.ReadEntriesMas2();
+                    //SendMessage("aaa", 266006795);
+                    //Spredsheet.ReadEntriesMas2();
                     var msg = Message.FromJson(new VkResponse(updates.Object));
                     //var tmp = DateTime.Now.Hour;
                     //if (tmp >= 0 && tmp <= 3)
