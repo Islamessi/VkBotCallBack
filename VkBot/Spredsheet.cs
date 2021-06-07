@@ -35,7 +35,7 @@ namespace VkBot
                 HttpClientInitializer = credential,
                 ApplicationName = ApplicationName,
             });
-            CallbackController.SendMessage("ss", 266006795);
+                CallbackController.SendMessage("ss", 266006795);
                 //var user = db.Users.Where(p => p.VkId == peerID).FirstOrDefault();
                 //user.Score += Program.UsersInfo[WriteOrNot][3] * Program.UsersInfo[WriteOrNot][5];
                 //db.SaveChanges();
