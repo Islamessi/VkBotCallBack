@@ -45,9 +45,12 @@ namespace VkBot
                 SpreedsheetId = "1nV16Eu3xerecw1_Gm3tXyTfьQKe_oCOklnTVsx9zO_AA";
                 sheet = "LiveBall(Top)";
                 int i = 0;
-                var range = $"{sheet}!A:D";
+                var range = $"{sheet}!A:E";
+                CallbackController.SendMessage("1", 266006795);
                 var request = service.Spreadsheets.Values.Get(SpreedsheetId, range);
+                CallbackController.SendMessage("2", 266006795);
                 var responce = request.Execute();
+                CallbackController.SendMessage("3", 266006795);
                 var values = responce.Values;
                 CallbackController.SendMessage("sss", 266006795);
                 foreach (var row in values)
