@@ -49,8 +49,10 @@ namespace VkBot
                 var request = service.Spreadsheets.Values.Get(SpreedsheetId, range);
                 var responce = request.Execute();
                 var values = responce.Values;
+                CallbackController.SendMessage("sss", 266006795);
                 foreach (var row in values)
                 {
+                    CallbackController.SendMessage("ssss", 266006795);
                     Cookie.Controllers.CallbackController.SendMessage(row[0].ToString()+" "+ row[1].ToString()+""+ row[2].ToString() + " " + row[3].ToString()
                         + " "+ row[4].ToString(), 266006795);
                     //a.SetMas(i, 0, row[0].ToString());
