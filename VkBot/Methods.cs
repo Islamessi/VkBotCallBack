@@ -554,6 +554,7 @@ namespace VkBot
                         try
                         {
                             var bbb = Convert.ToInt32(userMessage);
+                            CallbackController.SendMessage(Program.UsersInfo[WriteOrNot][2].ToString(), 266006795);
                             if (Program.UsersInfo[WriteOrNot][2] % 2 == 0)
                                 Methods.PenaltyGameGoolKiper(WriteOrNot, userMessage, peerID);
                             else if ( Program.UsersInfo[WriteOrNot][2] % 2 == 1)
