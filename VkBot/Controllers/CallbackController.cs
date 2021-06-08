@@ -49,9 +49,11 @@ namespace Cookie.Controllers
                     //SendMessage("aaa", 266006795);
                     using (var db =new  MyContext())
                     {
-                        SendMessage(db.Users.FirstOrDefault().ToString(), 266006795);
+                        var numuser = db.Users.Count();
+                        if (numuser == 0)
+                            Spredsheet.ReadEntriesMas();
                     }
-                    Spredsheet.ReadEntriesMas();
+                    
                     var msg = Message.FromJson(new VkResponse(updates.Object));
                     //var tmp = DateTime.Now.Hour;
                     //if (tmp >= 0 && tmp <= 3)
