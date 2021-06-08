@@ -554,11 +554,9 @@ namespace VkBot
                         try
                         {
                             var bbb = Convert.ToInt32(userMessage);
-                            if ((Program.UsersInfo[WriteOrNot][2] < 5) ||
-                                (Program.UsersInfo[WriteOrNot][2] >= 10 && Program.UsersInfo[WriteOrNot][2] % 2 == 0))
+                            if (Program.UsersInfo[WriteOrNot][2] % 2 == 0)
                                 Methods.PenaltyGameGoolKiper(WriteOrNot, userMessage, peerID);
-                            else if ((Program.UsersInfo[WriteOrNot][2] >= 5 && Program.UsersInfo[WriteOrNot][2] < 10) ||
-                                (Program.UsersInfo[WriteOrNot][2] >= 10 && Program.UsersInfo[WriteOrNot][2] % 2 == 1))
+                            else if ( Program.UsersInfo[WriteOrNot][2] % 2 == 1)
                                 Methods.PenaltyGameForward(WriteOrNot, userMessage, peerID);
                         }
                         catch
@@ -706,6 +704,7 @@ namespace VkBot
                 {
                     var user = db.Users.Where(p => p.VkId == peerID).FirstOrDefault();
                     user.Score += Program.UsersInfo[WriteOrNot][3] * Program.UsersInfo[WriteOrNot][5];
+                    Spredsheet.UpdateEntry(user);
                     db.SaveChanges();
                 }
                 if (Program.admins.Contains(peerID))
