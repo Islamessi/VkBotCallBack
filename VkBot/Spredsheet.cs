@@ -24,7 +24,16 @@ namespace VkBot
         static SheetsService service;
         public static void ReadEntriesMas()//Ввод данных пользователей из таблицы с данными
         {
-            
+            GoogleCredential credential;
+            using (var stream = new FileStream("client_secret.json", FileMode.Open, FileAccess.Read))
+            {
+                credential = GoogleCredential.FromStream(stream).CreateScoped(Scopes);
+            }
+            service = new SheetsService(new Google.Apis.Services.BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential,
+                ApplicationName = ApplicationName,
+            });
             string SpreedsheetId = "1nV16Eu3xerecw1_Gm3tXyTfQKe_oCOklnTVsx9zO_AA";
             string sheet = "LiveBall(Top)";
             int i = 0;
