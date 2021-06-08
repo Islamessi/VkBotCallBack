@@ -619,10 +619,11 @@ namespace VkBot
                                 user.Score += 1;
                                 CallbackController.SendMessage($"Вы заработали на матче {game.Team1}-{game.Team2} 1 гол ⚽!", b.VkId);
                             }
-
+                            Spredsheet.UpdateEntry(user);
                         }
                         game.Completed = true;
                         db.SaveChanges();
+                        
                     }
                     Program.UsersInfo.Add(new List<long?> { peerID });
                     Program.UsersInfo[Program.UsersInfo.Count - 1].Add(7);

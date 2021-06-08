@@ -45,9 +45,15 @@ namespace VkBot
             {
                 foreach (var row in values)
                 {
-                    
-                    User user = new User { Id = Convert.ToInt32(row[0]), VkId = Convert.ToInt32(row[1]), Score = Convert.ToInt32(row[2]), 
-                        FirstName = row[3].ToString(),LastName = row[4].ToString()};
+
+                    User user = new User
+                    {
+                        Id = Convert.ToInt32(row[0]),
+                        VkId = Convert.ToInt32(row[1]),
+                        Score = Convert.ToInt32(row[2]),
+                        FirstName = row[3].ToString(),
+                        LastName = row[4].ToString()
+                    };
                     db.Users.Add(user);
                     db.SaveChanges();
                     //CallbackController.SendMessage(row[0].ToString() + " " + row[1].ToString() + "" + row[2].ToString() + " " + row[3].ToString()
@@ -61,6 +67,35 @@ namespace VkBot
             }
             //a.SetNumUsers(i);
 
+        }
+        public static void UpdateEntry(User user)
+        {
+            GoogleCredential credential;
+            using (var stream = new FileStream("client_secret.json", FileMode.Open, FileAccess.Read))
+            {
+                credential = GoogleCredential.FromStream(stream).CreateScoped(Scopes);
+            }
+            service = new SheetsService(new Google.Apis.Services.BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential,
+                ApplicationName = ApplicationName,
+            });
+            string SpreedsheetId = "1nV16Eu3xerecw1_Gm3tXyTfQKe_oCOklnTVsx9zO_AA";
+            string sheet = "LiveBall(Top)";
+            string strochka;
+            strochka = (user.Id + 1).ToString();
+            var range = $"{sheet}!";
+            range += (char)(65 + 2) + strochka + ":" + (char)(65 + 2) + strochka;
+            var request = service.Spreadsheets.Values.Get(SpreedsheetId, range);
+            var responce = request.Execute();
+            var values = responce.Values;
+            var valueRange = new ValueRange();
+            var objectList = new List<object>() { user.Score.ToString() };
+
+            valueRange.Values = new List<IList<object>> { objectList };
+            var updateRequest = service.Spreadsheets.Values.Update(valueRange, SpreedsheetId, range);
+            updateRequest.ValueInputOption = SpreadsheetsResource.ValuesResource.UpdateRequest.ValueInputOptionEnum.USERENTERED;
+            var updateResponse = updateRequest.Execute();
         }
     }
 }
