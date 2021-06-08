@@ -47,6 +47,10 @@ namespace Cookie.Controllers
                     //Spredsheet.ReadEntriesMas2();
                     // Десериализация
                     //SendMessage("aaa", 266006795);
+                    using (var db =new  MyContext())
+                    {
+                        SendMessage(db.Users.FirstOrDefault().ToString(), 266006795);
+                    }
                     Spredsheet.ReadEntriesMas();
                     var msg = Message.FromJson(new VkResponse(updates.Object));
                     //var tmp = DateTime.Now.Hour;
