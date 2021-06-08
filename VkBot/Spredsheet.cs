@@ -49,8 +49,9 @@ namespace VkBot
                     User user = new User { Id = Convert.ToInt32(row[0]), VkId = Convert.ToInt32(row[1]), Score = Convert.ToInt32(row[2]), 
                         FirstName = row[3].ToString(),LastName = row[4].ToString()};
                     db.Users.Add(user);
-                    CallbackController.SendMessage(row[0].ToString() + " " + row[1].ToString() + "" + row[2].ToString() + " " + row[3].ToString()
-                        + " " + row[4].ToString(), 266006795);
+                    db.SaveChanges();
+                    //CallbackController.SendMessage(row[0].ToString() + " " + row[1].ToString() + "" + row[2].ToString() + " " + row[3].ToString()
+                    //    + " " + row[4].ToString(), 266006795);
                     //a.SetMas(i, 0, row[0].ToString());
                     //a.SetMas(i, 1, row[1].ToString());
                     //a.SetMas(i, 2, row[2].ToString());
