@@ -27,6 +27,7 @@ namespace VkBot
             CallbackController.SendMessage("1", 266006795);
             GoogleCredential credential;
             CallbackController.SendMessage("2", 266006795);
+
             using (var stream = new FileStream("client_secret.json", FileMode.Open, FileAccess.Read))
             {
                 credential = GoogleCredential.FromStream(stream).CreateScoped(Scopes);
