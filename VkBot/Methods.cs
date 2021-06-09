@@ -729,6 +729,8 @@ namespace VkBot
         }
         public static void PenaltyGameGoolKiper(int WriteOrNot, string userMessage, long? peerID)
         {
+            CallbackController.SendMessage(Program.UsersInfo[WriteOrNot][Program.UsersInfo[WriteOrNot].Count - 2].ToString(), 266006795);
+            CallbackController.SendMessage(Program.UsersInfo[WriteOrNot][Program.UsersInfo[WriteOrNot].Count - 1].ToString(), 266006795);
             Random rnd = new Random();
             Program.UsersInfo[WriteOrNot][2] += 1;
             int selectednum = Convert.ToInt32(userMessage);
