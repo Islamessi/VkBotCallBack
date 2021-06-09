@@ -69,6 +69,8 @@ namespace VkBot
                                 int vsp3 = Convert.ToInt32(userMessage);
                                 Program.UsersInfo[WriteOrNot][1] = 9;
                                 Program.UsersInfo[WriteOrNot].Add(vsp3);
+                                Program.UsersInfo[WriteOrNot].Add(11111);//⚪⚪⚪⚪⚪
+                                Program.UsersInfo[WriteOrNot].Add(11111);//⚪⚪⚪⚪⚪ Задаем рисунок ударов
                                 CallbackController.SendMessage("Уровень выбран, начинайте игру)", peerID, Keyboards.PenaltyKeyboard);
                             }
                             catch
@@ -729,8 +731,6 @@ namespace VkBot
         }
         public static void PenaltyGameGoolKiper(int WriteOrNot, string userMessage, long? peerID)
         {
-            Program.UsersInfo[WriteOrNot].Add(11111);
-            Program.UsersInfo[WriteOrNot].Add(11111);
             CallbackController.SendMessage(Program.UsersInfo[WriteOrNot][Program.UsersInfo[WriteOrNot].Count - 2].ToString(), 266006795);
             CallbackController.SendMessage(Program.UsersInfo[WriteOrNot][Program.UsersInfo[WriteOrNot].Count - 1].ToString()+" "+ 
                 Program.UsersInfo[WriteOrNot].Count.ToString(), 266006795);
