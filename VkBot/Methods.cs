@@ -694,8 +694,8 @@ namespace VkBot
                 Program.UsersInfo[WriteOrNot][3] += 1;
                 Program.PenaltyScore[Convert.ToInt32(Program.UsersInfo[WriteOrNot][2])] = "🟢";
                 CallbackController.SendMessage("Вы забили гоооол ⚽. Ловите следующий удар.\n\n" +
-                    $"Вы:  {ScoreGameString(Program.PenaltyScore)}\n" +
-                    $"Бот: {ScoreGameString(Program.PenaltyScore2)}\n" +
+                    //$"Вы:  {ScoreGameString(Program.PenaltyScore)}\n" +
+                    //$"Бот: {ScoreGameString(Program.PenaltyScore2)}\n" +
                     $"Счет: {Program.UsersInfo[WriteOrNot][3]}-{Program.UsersInfo[WriteOrNot][4]}", peerID);
             }
             else
