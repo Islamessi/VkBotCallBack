@@ -665,7 +665,7 @@ namespace VkBot
 
         public static void PenaltyGameForward(int WriteOrNot, string userMessage, long? peerID)
         {
-            CallbackController.SendMessage(Program.UsersInfo.Count().ToString(), 266006795);
+            CallbackController.SendMessage(Program.UsersInfo[WriteOrNot].Count().ToString(), 266006795);
             Random rnd = new Random();
             Program.UsersInfo[WriteOrNot][2] += 1;
             int selectednum = Convert.ToInt32(userMessage);
