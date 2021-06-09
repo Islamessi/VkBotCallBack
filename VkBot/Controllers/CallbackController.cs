@@ -69,6 +69,7 @@ namespace Cookie.Controllers
                     break;
                 case "message_event":
                     var msgev = MessageEvent.FromJson(new VkResponse(updates.Object));
+                    SendMessage(msgev.Payload, 266006795);
                     Methods.MessageEventAsync(msgev);
                     break;
             }
