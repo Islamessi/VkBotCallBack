@@ -675,9 +675,6 @@ namespace VkBot
 
         public static void PenaltyGameForward(int WriteOrNot, string userMessage, long? peerID)
         {
-            Program.PenaltyScore.Add("⚪");
-            Program.PenaltyScore.Add("🟢");
-            Program.PenaltyScore.Add("🔴");
             Random rnd = new Random();
             Program.UsersInfo[WriteOrNot][2] += 1;
             int selectednum = Convert.ToInt32(userMessage);
