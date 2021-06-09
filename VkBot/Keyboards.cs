@@ -10,7 +10,7 @@ namespace VkBot
         {
             get
             {
-                KeyboardBuilder adminKey = new KeyboardBuilder();
+                KeyboardBuilder adminKey = new KeyboardBuilder() ;
                 adminKey.AddButton("ЕВРО-2020", "", KeyboardButtonColor.Positive, "");
                 adminKey.AddLine();
                 adminKey.AddButton("Добавить матч", "", KeyboardButtonColor.Primary, "");
@@ -87,7 +87,7 @@ namespace VkBot
                             {
                                 Type = KeyboardButtonActionType.Callback, //Тип кнопки клавиатуры
                                 Label = "2", //Надпись на кнопке
-                                Payload = "2"
+                                Payload = "2",
                             },
                         },
                         new MessageKeyboardButton
@@ -164,7 +164,8 @@ namespace VkBot
                 var keyboard = new MessageKeyboard
                 {
                     Buttons = buttons,
-                    OneTime = false
+                    OneTime = false,
+                    Inline = true,
                 };
                 return keyboard;
                 //KeyboardBuilder pen = new KeyboardBuilder();
