@@ -23,6 +23,9 @@ namespace VkBot
 
         public static List<List<long?>> UsersInfo = new List<List<long?>>();//Лист с информацией о том хотят ли добавить или удалить матч 
         public static List<long?> admins = new List<long?> { 266006795, 265732033 };//Лист с информацией о админах, которым доступна расширенная клавиатура 
+        public static List<string> PenaltyScore = new List<string>();
+        public static List<string> PenaltyScore2 = new List<string>();
+
 
         public static void Main(string[] args)
         {

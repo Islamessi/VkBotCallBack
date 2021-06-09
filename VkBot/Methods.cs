@@ -69,8 +69,16 @@ namespace VkBot
                                 int vsp3 = Convert.ToInt32(userMessage);
                                 Program.UsersInfo[WriteOrNot][1] = 9;
                                 Program.UsersInfo[WriteOrNot].Add(vsp3);
-                                Program.UsersInfo[WriteOrNot].Add(11111);//⚪⚪⚪⚪⚪
-                                Program.UsersInfo[WriteOrNot].Add(11111);//⚪⚪⚪⚪⚪ Задаем рисунок ударов
+                                Program.PenaltyScore.Add("⚪");
+                                Program.PenaltyScore.Add("⚪");
+                                Program.PenaltyScore.Add("⚪");
+                                Program.PenaltyScore.Add("⚪");
+                                Program.PenaltyScore.Add("⚪");
+                                Program.PenaltyScore2.Add("⚪");
+                                Program.PenaltyScore2.Add("⚪");
+                                Program.PenaltyScore2.Add("⚪");
+                                Program.PenaltyScore2.Add("⚪");
+                                Program.PenaltyScore2.Add("⚪");
                                 CallbackController.SendMessage("Уровень выбран, начинайте игру)", peerID, Keyboards.PenaltyKeyboard);
                             }
                             catch
@@ -302,7 +310,7 @@ namespace VkBot
                                         Links = links
                                     };
                                     game.CreateGame(Info[0], Info[1], date, links);
-                                    CallbackController.SendMessage(game.DateGame+" "+game.Team1, peerID, Keyboards.AdminKeyboard);
+                                    CallbackController.SendMessage(game.DateGame + " " + game.Team1, peerID, Keyboards.AdminKeyboard);
                                     db.Games.Add(game);
                                     db.SaveChanges();
                                 }
@@ -558,7 +566,7 @@ namespace VkBot
                             CallbackController.SendMessage(Program.UsersInfo[WriteOrNot][2].ToString(), 266006795);
                             if (Program.UsersInfo[WriteOrNot][2] % 2 == 0)
                                 Methods.PenaltyGameGoolKiper(WriteOrNot, userMessage, peerID);
-                            else if ( Program.UsersInfo[WriteOrNot][2] % 2 == 1)
+                            else if (Program.UsersInfo[WriteOrNot][2] % 2 == 1)
                                 Methods.PenaltyGameForward(WriteOrNot, userMessage, peerID);
                         }
                         catch
@@ -572,8 +580,6 @@ namespace VkBot
                             int vsp3 = Convert.ToInt32(userMessage);
                             Program.UsersInfo[WriteOrNot][1] = 9;
                             Program.UsersInfo[WriteOrNot].Add(vsp3);
-                            Program.UsersInfo[WriteOrNot].Add(11111);//⚪⚪⚪⚪⚪
-                            Program.UsersInfo[WriteOrNot].Add(11111);//⚪⚪⚪⚪⚪ Задаем рисунок ударов
                             CallbackController.SendMessage("Уровень выбран, начинайте игру)", peerID, Keyboards.PenaltyKeyboard);
                         }
                         catch
@@ -625,7 +631,7 @@ namespace VkBot
                         }
                         game.Completed = true;
                         db.SaveChanges();
-                        
+
                     }
                     Program.UsersInfo.Add(new List<long?> { peerID });
                     Program.UsersInfo[Program.UsersInfo.Count - 1].Add(7);
@@ -669,8 +675,9 @@ namespace VkBot
 
         public static void PenaltyGameForward(int WriteOrNot, string userMessage, long? peerID)
         {
-            CallbackController.SendMessage(Program.UsersInfo[WriteOrNot][Program.UsersInfo[WriteOrNot].Count-2].ToString(), 266006795);
-            CallbackController.SendMessage(Program.UsersInfo[WriteOrNot][Program.UsersInfo[WriteOrNot].Count - 1].ToString(), 266006795);
+            Program.PenaltyScore.Add("⚪");
+            Program.PenaltyScore.Add("🟢");
+            Program.PenaltyScore.Add("🔴");
             Random rnd = new Random();
             Program.UsersInfo[WriteOrNot][2] += 1;
             int selectednum = Convert.ToInt32(userMessage);
@@ -688,13 +695,17 @@ namespace VkBot
             if (selectednum != rand)
             {
                 Program.UsersInfo[WriteOrNot][3] += 1;
-                    CallbackController.SendMessage("Вы забили гоооол ⚽. Ловите следующий удар.\n\n" +
-                        $"Счет: {Program.UsersInfo[WriteOrNot][3]}-{Program.UsersInfo[WriteOrNot][4]}", peerID);
+                Program.PenaltyScore[Convert.ToInt32(Program.UsersInfo[WriteOrNot][2])] = "🟢";
+                CallbackController.SendMessage("Вы забили гоооол ⚽. Ловите следующий удар.\n\n" +
+                    $"Вы:  {ScoreGameString(Program.PenaltyScore)}\n" +
+                    $"Бот: {ScoreGameString(Program.PenaltyScore2)}\n" +
+                    $"Счет: {Program.UsersInfo[WriteOrNot][3]}-{Program.UsersInfo[WriteOrNot][4]}", peerID);
             }
             else
             {
-                    CallbackController.SendMessage("Вратарь делает сейв 🧤. Ловите следующий удар.\n\n" +
-                        $"Счет: {Program.UsersInfo[WriteOrNot][3]}-{Program.UsersInfo[WriteOrNot][4]}", peerID);
+                Program.PenaltyScore[Convert.ToInt32(Program.UsersInfo[WriteOrNot][2])] = "🔴";
+                CallbackController.SendMessage("Вратарь делает сейв 🧤. Ловите следующий удар.\n\n" +
+                    $"Счет: {Program.UsersInfo[WriteOrNot][3]}-{Program.UsersInfo[WriteOrNot][4]}", peerID);
             }
             if (Program.UsersInfo[WriteOrNot][2] >= 10 && Program.UsersInfo[WriteOrNot][3] > Program.UsersInfo[WriteOrNot][4])
             {
@@ -721,7 +732,7 @@ namespace VkBot
             }
             else if (Program.UsersInfo[WriteOrNot][2] >= 10 && Program.UsersInfo[WriteOrNot][3] < Program.UsersInfo[WriteOrNot][4])
             {
-                
+
                 if (Program.admins.Contains(peerID))
                     CallbackController.SendMessage("Вы проиграли! Повезет в другой раз.", peerID, Keyboards.AdminKeyboard);
                 else
@@ -731,9 +742,6 @@ namespace VkBot
         }
         public static void PenaltyGameGoolKiper(int WriteOrNot, string userMessage, long? peerID)
         {
-            CallbackController.SendMessage(Program.UsersInfo[WriteOrNot][Program.UsersInfo[WriteOrNot].Count - 2].ToString(), 266006795);
-            CallbackController.SendMessage(Program.UsersInfo[WriteOrNot][Program.UsersInfo[WriteOrNot].Count - 1].ToString()+" "+ 
-                Program.UsersInfo[WriteOrNot].Count.ToString(), 266006795);
             Random rnd = new Random();
             Program.UsersInfo[WriteOrNot][2] += 1;
             int selectednum = Convert.ToInt32(userMessage);
@@ -755,8 +763,8 @@ namespace VkBot
                 //    CallbackController.SendMessage("Вам забили гоооол ⚽. Ловите следующий удар!\n\n" +
                 //        $"Счет: {Program.UsersInfo[WriteOrNot][3]}-{Program.UsersInfo[WriteOrNot][4]}", peerID);
                 //else
-                    CallbackController.SendMessage("Вам забили гоооол ⚽. Теперь вы бьете по воротам.\n\n" +
-                        $"Счет: {Program.UsersInfo[WriteOrNot][3]}-{Program.UsersInfo[WriteOrNot][4]}", peerID);
+                CallbackController.SendMessage("Вам забили гоооол ⚽. Теперь вы бьете по воротам.\n\n" +
+                    $"Счет: {Program.UsersInfo[WriteOrNot][3]}-{Program.UsersInfo[WriteOrNot][4]}", peerID);
             }
             else
             {
@@ -764,8 +772,8 @@ namespace VkBot
                 //    CallbackController.SendMessage("Вы делаете сейв 🧤. Ловите следующий удар!\n\n" +
                 //        $"Счет: {Program.UsersInfo[WriteOrNot][3]}-{Program.UsersInfo[WriteOrNot][4]}", peerID);
                 //else
-                    CallbackController.SendMessage("Вы делаете сейв 🧤. Теперь вы бьете по воротам.\n\n" +
-                        $"Счет: {Program.UsersInfo[WriteOrNot][3]}-{Program.UsersInfo[WriteOrNot][4]}", peerID);
+                CallbackController.SendMessage("Вы делаете сейв 🧤. Теперь вы бьете по воротам.\n\n" +
+                    $"Счет: {Program.UsersInfo[WriteOrNot][3]}-{Program.UsersInfo[WriteOrNot][4]}", peerID);
             }
         }
 
@@ -804,6 +812,16 @@ namespace VkBot
                 CallbackController.SendMessage(allMatch, peerID, Keyboards.AdminKeyboard);
             else
                 CallbackController.SendMessage(allMatch, peerID, Keyboards.UserKeyboard);
+        }
+
+        public static string ScoreGameString(List<string> Score)
+        {
+            string tmp = "";
+            for (int i = 0; i < Score.Count(); i++)
+            {
+                tmp += Score[i] + " ";
+            }
+            return tmp;
         }
     }
 }
