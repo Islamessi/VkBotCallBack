@@ -570,6 +570,8 @@ namespace VkBot
                             int vsp3 = Convert.ToInt32(userMessage);
                             Program.UsersInfo[WriteOrNot][1] = 9;
                             Program.UsersInfo[WriteOrNot].Add(vsp3);
+                            Program.UsersInfo[WriteOrNot].Add(11111);//⚪⚪⚪⚪⚪
+                            Program.UsersInfo[WriteOrNot].Add(11111);//⚪⚪⚪⚪⚪ Задаем рисунок ударов
                             CallbackController.SendMessage("Уровень выбран, начинайте игру)", peerID, Keyboards.PenaltyKeyboard);
                         }
                         catch
@@ -665,7 +667,8 @@ namespace VkBot
 
         public static void PenaltyGameForward(int WriteOrNot, string userMessage, long? peerID)
         {
-            CallbackController.SendMessage(Program.UsersInfo[WriteOrNot].Count().ToString(), 266006795);
+            CallbackController.SendMessage(Program.UsersInfo[WriteOrNot][6].ToString(), 266006795);
+            CallbackController.SendMessage(Program.UsersInfo[WriteOrNot][7].ToString(), 266006795);
             Random rnd = new Random();
             Program.UsersInfo[WriteOrNot][2] += 1;
             int selectednum = Convert.ToInt32(userMessage);
