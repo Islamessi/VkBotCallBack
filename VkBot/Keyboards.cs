@@ -165,7 +165,7 @@ namespace VkBot
                 {
                     Buttons = buttons,
                     OneTime = false,
-                    Inline = true,
+                    //Inline = true,
                 };
                 return keyboard;
                 //KeyboardBuilder pen = new KeyboardBuilder();

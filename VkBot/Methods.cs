@@ -749,19 +749,19 @@ namespace VkBot
             if (selectednum != rand)
             {
                 Program.UsersInfo[WriteOrNot][4] += 1;
-                if (Program.UsersInfo[WriteOrNot][2] < 5)
-                    CallbackController.SendMessage("Вам забили гоооол ⚽. Ловите следующий удар!\n\n" +
-                        $"Счет: {Program.UsersInfo[WriteOrNot][3]}-{Program.UsersInfo[WriteOrNot][4]}", peerID);
-                else
+                //if (Program.UsersInfo[WriteOrNot][2] < 5)
+                //    CallbackController.SendMessage("Вам забили гоооол ⚽. Ловите следующий удар!\n\n" +
+                //        $"Счет: {Program.UsersInfo[WriteOrNot][3]}-{Program.UsersInfo[WriteOrNot][4]}", peerID);
+                //else
                     CallbackController.SendMessage("Вам забили гоооол ⚽. Теперь вы бьете по воротам.\n\n" +
                         $"Счет: {Program.UsersInfo[WriteOrNot][3]}-{Program.UsersInfo[WriteOrNot][4]}", peerID);
             }
             else
             {
-                if (Program.UsersInfo[WriteOrNot][2] < 5)
-                    CallbackController.SendMessage("Вы делаете сейв 🧤. Ловите следующий удар!\n\n" +
-                        $"Счет: {Program.UsersInfo[WriteOrNot][3]}-{Program.UsersInfo[WriteOrNot][4]}", peerID);
-                else
+                //if (Program.UsersInfo[WriteOrNot][2] < 5)
+                //    CallbackController.SendMessage("Вы делаете сейв 🧤. Ловите следующий удар!\n\n" +
+                //        $"Счет: {Program.UsersInfo[WriteOrNot][3]}-{Program.UsersInfo[WriteOrNot][4]}", peerID);
+                //else
                     CallbackController.SendMessage("Вы делаете сейв 🧤. Теперь вы бьете по воротам.\n\n" +
                         $"Счет: {Program.UsersInfo[WriteOrNot][3]}-{Program.UsersInfo[WriteOrNot][4]}", peerID);
             }
