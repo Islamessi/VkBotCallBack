@@ -665,6 +665,7 @@ namespace VkBot
 
         public static void PenaltyGameForward(int WriteOrNot, string userMessage, long? peerID)
         {
+            CallbackController.SendMessage(Program.UsersInfo.Count().ToString(), 266006795);
             Random rnd = new Random();
             Program.UsersInfo[WriteOrNot][2] += 1;
             int selectednum = Convert.ToInt32(userMessage);
@@ -682,20 +683,12 @@ namespace VkBot
             if (selectednum != rand)
             {
                 Program.UsersInfo[WriteOrNot][3] += 1;
-                if (Program.UsersInfo[WriteOrNot][2] > 5 && Program.UsersInfo[WriteOrNot][2] < 10)
-                    CallbackController.SendMessage("Вы забили гоооол ⚽. Бейте следующий удар.\n\n" +
-                        $"Счет: {Program.UsersInfo[WriteOrNot][3]}-{Program.UsersInfo[WriteOrNot][4]}", peerID);
-                else
-                    CallbackController.SendMessage("Вы забили гоооол ⚽.\n\n" +
+                    CallbackController.SendMessage("Вы забили гоооол ⚽. Ловите следующий удар.\n\n" +
                         $"Счет: {Program.UsersInfo[WriteOrNot][3]}-{Program.UsersInfo[WriteOrNot][4]}", peerID);
             }
             else
             {
-                if (Program.UsersInfo[WriteOrNot][2] > 5 && Program.UsersInfo[WriteOrNot][2] < 10)
-                    CallbackController.SendMessage("Вратарь делает сейв 🧤. Бейте следующий удар.\n\n" +
-                        $"Счет: {Program.UsersInfo[WriteOrNot][3]}-{Program.UsersInfo[WriteOrNot][4]}", peerID);
-                else
-                    CallbackController.SendMessage("Вратарь делает сейв 🧤.\n\n" +
+                    CallbackController.SendMessage("Вратарь делает сейв 🧤. Ловите следующий удар.\n\n" +
                         $"Счет: {Program.UsersInfo[WriteOrNot][3]}-{Program.UsersInfo[WriteOrNot][4]}", peerID);
             }
             if (Program.UsersInfo[WriteOrNot][2] >= 10 && Program.UsersInfo[WriteOrNot][3] > Program.UsersInfo[WriteOrNot][4])
@@ -723,6 +716,7 @@ namespace VkBot
             }
             else if (Program.UsersInfo[WriteOrNot][2] >= 10 && Program.UsersInfo[WriteOrNot][3] < Program.UsersInfo[WriteOrNot][4])
             {
+                
                 if (Program.admins.Contains(peerID))
                     CallbackController.SendMessage("Вы проиграли! Повезет в другой раз.", peerID, Keyboards.AdminKeyboard);
                 else
