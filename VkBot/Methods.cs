@@ -708,6 +708,8 @@ namespace VkBot
                 }
                 //Program.PenaltyScore[Convert.ToInt32(Program.UsersInfo[WriteOrNot][2])] = "🔴";
                 CallbackController.SendMessage("Вратарь делает сейв 🧤. Ловите следующий удар.\n\n" +
+                    $"Вы:  {ScoreGameString(Program.PenaltyScore)}\n" +
+                    $"Бот: {ScoreGameString(Program.PenaltyScore2)}\n" +
                     $"Счет: {Program.UsersInfo[WriteOrNot][3]}-{Program.UsersInfo[WriteOrNot][4]}", peerID);
             }
             if (Program.UsersInfo[WriteOrNot][2] >= 10 && Program.UsersInfo[WriteOrNot][3] > Program.UsersInfo[WriteOrNot][4])
@@ -766,6 +768,14 @@ namespace VkBot
                 //    CallbackController.SendMessage("Вам забили гоооол ⚽. Ловите следующий удар!\n\n" +
                 //        $"Счет: {Program.UsersInfo[WriteOrNot][3]}-{Program.UsersInfo[WriteOrNot][4]}", peerID);
                 //else
+                if (Program.UsersInfo[WriteOrNot][2] - 1 >= Program.PenaltyScore2.Count())
+                {
+                    Program.PenaltyScore2.Add("🟢");
+                }
+                else
+                {
+                    Program.PenaltyScore2[Convert.ToInt32(Program.UsersInfo[WriteOrNot][2] - 1)] = "🟢";
+                }
                 CallbackController.SendMessage("Вам забили гоооол ⚽. Теперь вы бьете по воротам.\n\n" +
                     $"Счет: {Program.UsersInfo[WriteOrNot][3]}-{Program.UsersInfo[WriteOrNot][4]}", peerID);
             }
@@ -775,6 +785,14 @@ namespace VkBot
                 //    CallbackController.SendMessage("Вы делаете сейв 🧤. Ловите следующий удар!\n\n" +
                 //        $"Счет: {Program.UsersInfo[WriteOrNot][3]}-{Program.UsersInfo[WriteOrNot][4]}", peerID);
                 //else
+                if (Program.UsersInfo[WriteOrNot][2] - 1 >= Program.PenaltyScore2.Count())
+                {
+                    Program.PenaltyScore2.Add("🔴");
+                }
+                else
+                {
+                    Program.PenaltyScore2[Convert.ToInt32(Program.UsersInfo[WriteOrNot][2] - 1)] = "🔴";
+                }
                 CallbackController.SendMessage("Вы делаете сейв 🧤. Теперь вы бьете по воротам.\n\n" +
                     $"Счет: {Program.UsersInfo[WriteOrNot][3]}-{Program.UsersInfo[WriteOrNot][4]}", peerID);
             }
