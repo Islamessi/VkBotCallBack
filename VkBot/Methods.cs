@@ -721,6 +721,8 @@ namespace VkBot
                     Spredsheet.UpdateEntry(user);
                     db.SaveChanges();
                 }
+                Program.PenaltyScore.Clear();
+                Program.PenaltyScore2.Clear();
                 if (Program.admins.Contains(peerID))
                     CallbackController.SendMessage($"Поздравляю! Вы победили! Заработали голов: {Program.UsersInfo[WriteOrNot][3]}*{Program.UsersInfo[WriteOrNot][5]} = " +
                         $"{Program.UsersInfo[WriteOrNot][3] * Program.UsersInfo[WriteOrNot][5]}",
@@ -737,7 +739,8 @@ namespace VkBot
             }
             else if (Program.UsersInfo[WriteOrNot][2] >= 10 && Program.UsersInfo[WriteOrNot][3] < Program.UsersInfo[WriteOrNot][4])
             {
-
+                Program.PenaltyScore.Clear();
+                Program.PenaltyScore2.Clear();
                 if (Program.admins.Contains(peerID))
                     CallbackController.SendMessage("Вы проиграли! Повезет в другой раз.", peerID, Keyboards.AdminKeyboard);
                 else
