@@ -692,7 +692,7 @@ namespace VkBot
             if (selectednum != rand)
             {
                 Program.UsersInfo[WriteOrNot][3] += 1;
-                //CallbackController.SendMessage(Program.UsersInfo[WriteOrNot][2].ToString(), 266006795);
+                CallbackController.SendMessage((Program.UsersInfo[WriteOrNot][2]-1).ToString()+" " + Program.PenaltyScore.Count().ToString(), 266006795);
                 //if (Program.UsersInfo[WriteOrNot][2]-1 > Program.PenaltyScore.Count())
                 //{
                 //    Program.PenaltyScore.Add("🟢");
@@ -702,8 +702,8 @@ namespace VkBot
                 //    Program.PenaltyScore[Convert.ToInt32(Program.UsersInfo[WriteOrNot][2]-1)] = "🟢";
                 //}
                 CallbackController.SendMessage("Вы забили гоооол ⚽. Ловите следующий удар.\n\n" +
-                    //$"Вы:  {ScoreGameString(Program.PenaltyScore)}\n" +
-                    //$"Бот: {ScoreGameString(Program.PenaltyScore2)}\n" +
+                    $"Вы:  {ScoreGameString(Program.PenaltyScore)}\n" +
+                    $"Бот: {ScoreGameString(Program.PenaltyScore2)}\n" +
                     $"Счет: {Program.UsersInfo[WriteOrNot][3]}-{Program.UsersInfo[WriteOrNot][4]}", peerID);
             }
             else
