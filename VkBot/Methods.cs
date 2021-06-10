@@ -777,6 +777,8 @@ namespace VkBot
                     Program.PenaltyScore2[Convert.ToInt32(Program.UsersInfo[WriteOrNot][2] - 1)] = "🟢";
                 }
                 CallbackController.SendMessage("Вам забили гоооол ⚽. Теперь вы бьете по воротам.\n\n" +
+                    $"Вы:  {ScoreGameString(Program.PenaltyScore)}\n" +
+                    $"Бот: {ScoreGameString(Program.PenaltyScore2)}\n" +
                     $"Счет: {Program.UsersInfo[WriteOrNot][3]}-{Program.UsersInfo[WriteOrNot][4]}", peerID);
             }
             else
@@ -794,6 +796,8 @@ namespace VkBot
                     Program.PenaltyScore2[Convert.ToInt32(Program.UsersInfo[WriteOrNot][2] - 1)] = "🔴";
                 }
                 CallbackController.SendMessage("Вы делаете сейв 🧤. Теперь вы бьете по воротам.\n\n" +
+                    $"Вы:  {ScoreGameString(Program.PenaltyScore)}\n" +
+                    $"Бот: {ScoreGameString(Program.PenaltyScore2)}\n" +
                     $"Счет: {Program.UsersInfo[WriteOrNot][3]}-{Program.UsersInfo[WriteOrNot][4]}", peerID);
             }
         }
