@@ -69,16 +69,6 @@ namespace VkBot
                                 int vsp3 = Convert.ToInt32(userMessage);
                                 Program.UsersInfo[WriteOrNot][1] = 9;
                                 Program.UsersInfo[WriteOrNot].Add(vsp3);
-                                Program.PenaltyScore.Add("⚪");
-                                Program.PenaltyScore.Add("⚪");
-                                Program.PenaltyScore.Add("⚪");
-                                Program.PenaltyScore.Add("⚪");
-                                Program.PenaltyScore.Add("⚪");
-                                Program.PenaltyScore2.Add("⚪");
-                                Program.PenaltyScore2.Add("⚪");
-                                Program.PenaltyScore2.Add("⚪");
-                                Program.PenaltyScore2.Add("⚪");
-                                Program.PenaltyScore2.Add("⚪");
                                 CallbackController.SendMessage("Уровень выбран, начинайте игру)", peerID, Keyboards.PenaltyKeyboard);
                             }
                             catch
