@@ -74,7 +74,7 @@ namespace VkBot
                                     Program.PenaltyScore.Add(new List<string>());
                                     Program.PenaltyScore2.Add(new List<string>());
                                 }
-                                CallbackController.SendMessage("Уровень выбран, начинайте игру)", peerID, Keyboards.PenaltyKeyboard);
+                                CallbackController.SendMessage("Уровень выбран, начинайте игру)"+Program.PenaltyScore.Count.ToString(), peerID, Keyboards.PenaltyKeyboard);
                             }
                             catch
                             {
