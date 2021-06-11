@@ -685,31 +685,31 @@ namespace VkBot
                 //CallbackController.SendMessage((Program.UsersInfo[WriteOrNot][2]-1).ToString()+" " + Program.PenaltyScore.Count().ToString(), 266006795);
                 if (Program.UsersInfo[WriteOrNot][2] - 1 >= Program.PenaltyScore.Count())
                 {
-                    Program.PenaltyScore.Add("🟢");
+                    Program.PenaltyScore[WriteOrNot].Add("🟢");
                 }
                 else
                 {
-                    Program.PenaltyScore[Convert.ToInt32(Program.UsersInfo[WriteOrNot][2] - 1)] = "🟢";
+                    Program.PenaltyScore[WriteOrNot][Convert.ToInt32(Program.UsersInfo[WriteOrNot][2] - 1)] = "🟢";
                 }
                 CallbackController.SendMessage("Вы забили гоооол ⚽. Ловите следующий удар.\n\n" +
-                    $"Вы:  {ScoreGameString(Program.PenaltyScore)}\n" +
-                    $"Бот: {ScoreGameString(Program.PenaltyScore2)}\n" +
+                    $"Вы:  {ScoreGameString(Program.PenaltyScore[WriteOrNot])}\n" +
+                    $"Бот: {ScoreGameString(Program.PenaltyScore2[WriteOrNot])}\n" +
                     $"Счет: {Program.UsersInfo[WriteOrNot][3]}-{Program.UsersInfo[WriteOrNot][4]}", peerID);
             }
             else
             {
                 if (Program.UsersInfo[WriteOrNot][2] - 1 >= Program.PenaltyScore.Count())
                 {
-                    Program.PenaltyScore.Add("🔴");
+                    Program.PenaltyScore[WriteOrNot].Add("🔴");
                 }
                 else
                 {
-                    Program.PenaltyScore[Convert.ToInt32(Program.UsersInfo[WriteOrNot][2] - 1)] = "🔴";
+                    Program.PenaltyScore[WriteOrNot][Convert.ToInt32(Program.UsersInfo[WriteOrNot][2] - 1)] = "🔴";
                 }
                 //Program.PenaltyScore[Convert.ToInt32(Program.UsersInfo[WriteOrNot][2])] = "🔴";
                 CallbackController.SendMessage("Вратарь делает сейв 🧤. Ловите следующий удар.\n\n" +
-                    $"Вы:  {ScoreGameString(Program.PenaltyScore)}\n" +
-                    $"Бот: {ScoreGameString(Program.PenaltyScore2)}\n" +
+                    $"Вы:  {ScoreGameString(Program.PenaltyScore[WriteOrNot])}\n" +
+                    $"Бот: {ScoreGameString(Program.PenaltyScore2[WriteOrNot])}\n" +
                     $"Счет: {Program.UsersInfo[WriteOrNot][3]}-{Program.UsersInfo[WriteOrNot][4]}", peerID);
             }
             if (Program.UsersInfo[WriteOrNot][2] >= 10 && Program.UsersInfo[WriteOrNot][3] > Program.UsersInfo[WriteOrNot][4])
@@ -721,8 +721,8 @@ namespace VkBot
                     Spredsheet.UpdateEntry(user);
                     db.SaveChanges();
                 }
-                Program.PenaltyScore.Clear();
-                Program.PenaltyScore2.Clear();
+                Program.PenaltyScore[WriteOrNot].Clear();
+                Program.PenaltyScore2[WriteOrNot].Clear();
                 if (Program.admins.Contains(peerID))
                     CallbackController.SendMessage($"Поздравляю! Вы победили! Заработали голов: {Program.UsersInfo[WriteOrNot][3]}*{Program.UsersInfo[WriteOrNot][5]} = " +
                         $"{Program.UsersInfo[WriteOrNot][3] * Program.UsersInfo[WriteOrNot][5]}",
@@ -739,8 +739,8 @@ namespace VkBot
             }
             else if (Program.UsersInfo[WriteOrNot][2] >= 10 && Program.UsersInfo[WriteOrNot][3] < Program.UsersInfo[WriteOrNot][4])
             {
-                Program.PenaltyScore.Clear();
-                Program.PenaltyScore2.Clear();
+                Program.PenaltyScore[WriteOrNot].Clear();
+                Program.PenaltyScore2[WriteOrNot].Clear();
                 if (Program.admins.Contains(peerID))
                     CallbackController.SendMessage("Вы проиграли! Повезет в другой раз.", peerID, Keyboards.AdminKeyboard);
                 else
@@ -773,15 +773,15 @@ namespace VkBot
                 //else
                 if (Program.UsersInfo[WriteOrNot][2] - 1 >= Program.PenaltyScore2.Count())
                 {
-                    Program.PenaltyScore2.Add("🟢");
+                    Program.PenaltyScore2[WriteOrNot].Add("🟢");
                 }
                 else
                 {
-                    Program.PenaltyScore2[Convert.ToInt32(Program.UsersInfo[WriteOrNot][2] - 1)] = "🟢";
+                    Program.PenaltyScore2[WriteOrNot][Convert.ToInt32(Program.UsersInfo[WriteOrNot][2] - 1)] = "🟢";
                 }
                 CallbackController.SendMessage("Вам забили гоооол ⚽. Теперь вы бьете по воротам.\n\n" +
-                    $"Вы:  {ScoreGameString(Program.PenaltyScore)}\n" +
-                    $"Бот: {ScoreGameString(Program.PenaltyScore2)}\n" +
+                    $"Вы:  {ScoreGameString(Program.PenaltyScore[WriteOrNot])}\n" +
+                    $"Бот: {ScoreGameString(Program.PenaltyScore2[WriteOrNot])}\n" +
                     $"Счет: {Program.UsersInfo[WriteOrNot][3]}-{Program.UsersInfo[WriteOrNot][4]}", peerID);
             }
             else
@@ -792,15 +792,15 @@ namespace VkBot
                 //else
                 if (Program.UsersInfo[WriteOrNot][2] - 1 >= Program.PenaltyScore2.Count())
                 {
-                    Program.PenaltyScore2.Add("🔴");
+                    Program.PenaltyScore2[WriteOrNot].Add("🔴");
                 }
                 else
                 {
-                    Program.PenaltyScore2[Convert.ToInt32(Program.UsersInfo[WriteOrNot][2] - 1)] = "🔴";
+                    Program.PenaltyScore2[WriteOrNot][Convert.ToInt32(Program.UsersInfo[WriteOrNot][2] - 1)] = "🔴";
                 }
                 CallbackController.SendMessage("Вы делаете сейв 🧤. Теперь вы бьете по воротам.\n\n" +
-                    $"Вы:  {ScoreGameString(Program.PenaltyScore)}\n" +
-                    $"Бот: {ScoreGameString(Program.PenaltyScore2)}\n" +
+                    $"Вы:  {ScoreGameString(Program.PenaltyScore[WriteOrNot])}\n" +
+                    $"Бот: {ScoreGameString(Program.PenaltyScore2[WriteOrNot])}\n" +
                     $"Счет: {Program.UsersInfo[WriteOrNot][3]}-{Program.UsersInfo[WriteOrNot][4]}", peerID);
             }
         }
