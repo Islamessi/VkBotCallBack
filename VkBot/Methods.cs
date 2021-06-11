@@ -69,6 +69,11 @@ namespace VkBot
                                 int vsp3 = Convert.ToInt32(userMessage);
                                 Program.UsersInfo[WriteOrNot][1] = 9;
                                 Program.UsersInfo[WriteOrNot].Add(vsp3);
+                                while (Program.PenaltyScore.Count != WriteOrNot)
+                                {
+                                    Program.PenaltyScore.Add(new List<string>());
+                                    Program.PenaltyScore2.Add(new List<string>());
+                                }
                                 CallbackController.SendMessage("Уровень выбран, начинайте игру)", peerID, Keyboards.PenaltyKeyboard);
                             }
                             catch
@@ -739,6 +744,7 @@ namespace VkBot
             }
             else if (Program.UsersInfo[WriteOrNot][2] >= 10 && Program.UsersInfo[WriteOrNot][3] < Program.UsersInfo[WriteOrNot][4])
             {
+
                 Program.PenaltyScore[WriteOrNot].Clear();
                 Program.PenaltyScore2[WriteOrNot].Clear();
                 if (Program.admins.Contains(peerID))
