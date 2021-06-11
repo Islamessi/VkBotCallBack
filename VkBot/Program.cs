@@ -26,6 +26,8 @@ namespace VkBot
         public static List<List<string>> PenaltyScore = new List<List<string>>();
         public static List<List<string>> PenaltyScore2 = new List<List<string>>();
 
+        public static List<Penalty> PenaltyGames = new List<Penalty>();
+
 
         public static void Main(string[] args)
         {

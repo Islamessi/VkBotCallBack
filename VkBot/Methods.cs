@@ -69,11 +69,7 @@ namespace VkBot
                                 int vsp3 = Convert.ToInt32(userMessage);
                                 Program.UsersInfo[WriteOrNot][1] = 9;
                                 Program.UsersInfo[WriteOrNot].Add(vsp3);
-                                while (Program.PenaltyScore.Count != WriteOrNot)
-                                {
-                                    Program.PenaltyScore.Add(new List<string>());
-                                    Program.PenaltyScore2.Add(new List<string>());
-                                }
+                                //Program.PenaltyGames
                                 CallbackController.SendMessage("Уровень выбран, начинайте игру)"+Program.PenaltyScore.Count.ToString(), peerID, Keyboards.PenaltyKeyboard);
                             }
                             catch
@@ -219,30 +215,29 @@ namespace VkBot
                             Program.UsersInfo[Program.UsersInfo.Count - 1].Add(2);
                         }
                         break;
-                    case "игра \"пенальти\"":
-                        using (var db = new MyContext())
-                        {
-                            var user = db.Users.Where(p => p.VkId == peerID);
-                            if (user.Count() == 0)
-                            {
-                                var users = CallbackController._vkApi.Users.Get(new long[] { (long)peerID }).FirstOrDefault();
-                                User user1 = new User { VkId = peerID, FirstName = users.FirstName, LastName = users.LastName };
-                                db.Users.Add(user1);
-                                db.SaveChanges();
-                            }
-                        }
-                        Program.UsersInfo.Add(new List<long?> { peerID });
-                        Program.UsersInfo[Program.UsersInfo.Count - 1].Add(10);
-                        Program.UsersInfo[Program.UsersInfo.Count - 1].Add(0);
-                        Program.UsersInfo[Program.UsersInfo.Count - 1].Add(0);
-                        Program.UsersInfo[Program.UsersInfo.Count - 1].Add(0);
-                        CallbackController.SendMessage("Цель данной игры, забить больше по пенальти и победить)) " +
-                            "Вы первым стоите на воротах, перед вами 9 кнопок. Вы выбираете, ту, " +
-                            "куда прыгаете. Бот рандомно выбирает куда бить, если вы попали в ту же область, " +
-                            "вы ловите мяч. После 5 ударов вы бьете 5 раз, а бот становится на ворота. В случае победы вы получите " +
-                            "все голы, которые смогли забить) Удачи!)\n\n Выберите сложность игры. Если вы победите, то кол-во забитых " +
-                            "голов умножится на этот коэффициент!", peerID, Keyboards.LevelKeyboard);
-                        break;
+                    //case "игра \"пенальти\"":
+                    //    using (var db = new MyContext())
+                    //    {
+                    //        var user = db.Users.Where(p => p.VkId == peerID);
+                    //        if (user.Count() == 0)
+                    //        {
+                    //            var users = CallbackController._vkApi.Users.Get(new long[] { (long)peerID }).FirstOrDefault();
+                    //            User user1 = new User { VkId = peerID, FirstName = users.FirstName, LastName = users.LastName };
+                    //            db.Users.Add(user1);
+                    //            db.SaveChanges();
+                    //        }
+                    //    }
+                    //    Program.PenaltyGames.Add(new Penalty { PeerId = peerID });
+
+                    //    Program.UsersInfo.Add(new List<long?> { peerID });
+                    //    Program.UsersInfo[Program.UsersInfo.Count - 1].Add(10);
+                    //    CallbackController.SendMessage("Цель данной игры, забить больше по пенальти и победить)) " +
+                    //        "Вы первым стоите на воротах, перед вами 9 кнопок. Вы выбираете, ту, " +
+                    //        "куда прыгаете. Бот рандомно выбирает куда бить, если вы попали в ту же область, " +
+                    //        "вы ловите мяч. После 5 ударов вы бьете 5 раз, а бот становится на ворота. В случае победы вы получите " +
+                    //        "все голы, которые смогли забить) Удачи!)\n\n Выберите сложность игры. Если вы победите, то кол-во забитых " +
+                    //        "голов умножится на этот коэффициент!", peerID, Keyboards.LevelKeyboard);
+                    //    break;
                     case "пинг":
                         CallbackController.SendMessage("Понг", peerID);
                         break;
