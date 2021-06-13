@@ -758,7 +758,6 @@ namespace VkBot
         {
             Random rnd = new Random();
             Program.Penaltys[peerID].ImpactNumber += 1;
-            CallbackController.SendMessage("aa1", 266006795);
             //Program.UsersInfo[WriteOrNot][2] += 1;
             int selectednum = Convert.ToInt32(userMessage);
             int rand = 0;
@@ -775,7 +774,6 @@ namespace VkBot
             }
             if (selectednum != rand)
             {
-                CallbackController.SendMessage("aa1", 266006795);
                 Program.Penaltys[peerID].MissedGoals += 1;
                 //Program.UsersInfo[WriteOrNot][4] += 1;
                 //if (Program.UsersInfo[WriteOrNot][2] < 5)
@@ -783,6 +781,7 @@ namespace VkBot
                 //        $"Счет: {Program.UsersInfo[WriteOrNot][3]}-{Program.UsersInfo[WriteOrNot][4]}", peerID);
                 //else
                 Program.Penaltys[peerID].MissedGoalsIcons.Add("🟢");
+                CallbackController.SendMessage("aa1", 266006795);
                 //if (Program.UsersInfo[WriteOrNot][2] - 1 >= Program.PenaltyScore2.Count())
                 //{
                 //    Program.PenaltyScore2[WriteOrNot].Add("🟢");
@@ -791,6 +790,7 @@ namespace VkBot
                 //{
                 //    Program.PenaltyScore2[WriteOrNot][Convert.ToInt32(Program.UsersInfo[WriteOrNot][2] - 1)] = "🟢";
                 //}
+                CallbackController.SendMessage("aa1", 266006795);
                 CallbackController.SendMessage("Вам забили гоооол ⚽. Теперь вы бьете по воротам.\n\n" +
                     $"Вы:  {ScoreGameString(Program.Penaltys[peerID].ScoreGoalsIcons)}\n" +
                     $"Бот: {ScoreGameString(Program.Penaltys[peerID].MissedGoalsIcons)}\n" +
