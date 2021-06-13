@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cookie.Controllers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -58,7 +59,9 @@ namespace VkBot
         {
             if (penalty != null)
             {
+                CallbackController.SendMessage("aa1", 266006795);
                 penalties.Add(penalty);
+                CallbackController.SendMessage("aa1", 266006795);
                 return penalties.Count - 1;
             }
             else
