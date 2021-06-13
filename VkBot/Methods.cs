@@ -738,6 +738,7 @@ namespace VkBot
                         $"{Program.Penaltys[peerID].ScoredGoals * Program.Penaltys[peerID].Level}",
                         peerID, Keyboards.UserKeyboard);
                 Program.Penaltys.Remove(Program.Penaltys[peerID]);
+                CallbackController.SendMessage(Program.Penaltys.Count.ToString(), 266006795);
                 //Program.UsersInfo.RemoveAt(WriteOrNot);
             }
             else if (Program.Penaltys[peerID].ImpactNumber >= 10 && Program.Penaltys[peerID].ScoredGoals == Program.Penaltys[peerID].MissedGoals)
@@ -751,7 +752,8 @@ namespace VkBot
                 else
                     CallbackController.SendMessage("Вы проиграли! Повезет в другой раз.", peerID, Keyboards.UserKeyboard);
                 Program.Penaltys.Remove(Program.Penaltys[peerID]);
-               // Program.UsersInfo.RemoveAt(WriteOrNot);
+                CallbackController.SendMessage(Program.Penaltys.Count.ToString(), 266006795);
+                // Program.UsersInfo.RemoveAt(WriteOrNot);
             }
         }
         public static void PenaltyGameGoolKiper(int WriteOrNot, string userMessage, long? peerID)
