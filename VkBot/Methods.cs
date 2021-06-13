@@ -218,7 +218,7 @@ namespace VkBot
                         }
                         break;
                     case "игра \"пенальти\"":
-
+                        CallbackController.SendMessage("aa", 266006795);
                         using (var db = new MyContext())
                         {
                             var user = db.Users.Where(p => p.VkId == peerID);
