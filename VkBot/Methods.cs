@@ -218,7 +218,6 @@ namespace VkBot
                         }
                         break;
                     case "игра \"пенальти\"":
-                        CallbackController.SendMessage("aa", 266006795);
                         using (var db = new MyContext())
                         {
                             var user = db.Users.Where(p => p.VkId == peerID);
@@ -231,13 +230,9 @@ namespace VkBot
                             }
                         }
                         //Program.PenaltyGames.Add(new Penalty { PeerId = peerID });
-                        CallbackController.SendMessage("aa1", 266006795);
                         Penalty _penalty = new Penalty { PeerId = peerID };
-                        CallbackController.SendMessage("aa2", 266006795);
                         Program.Penaltys.Add(_penalty);
-                        CallbackController.SendMessage("aa2", 266006795);
                         Program.UsersInfo.Add(new List<long?> { peerID });
-                        CallbackController.SendMessage("aa3", 266006795);
                         Program.UsersInfo[Program.UsersInfo.Count - 1].Add(10);
                         CallbackController.SendMessage("Цель данной игры, забить больше по пенальти и победить)) " +
                             "Вы первым стоите на воротах, перед вами 9 кнопок. Вы выбираете, ту, " +
@@ -763,6 +758,7 @@ namespace VkBot
         {
             Random rnd = new Random();
             Program.Penaltys[peerID].ImpactNumber += 1;
+            CallbackController.SendMessage("aa1", 266006795);
             //Program.UsersInfo[WriteOrNot][2] += 1;
             int selectednum = Convert.ToInt32(userMessage);
             int rand = 0;
@@ -779,6 +775,7 @@ namespace VkBot
             }
             if (selectednum != rand)
             {
+                CallbackController.SendMessage("aa1", 266006795);
                 Program.Penaltys[peerID].MissedGoals += 1;
                 //Program.UsersInfo[WriteOrNot][4] += 1;
                 //if (Program.UsersInfo[WriteOrNot][2] < 5)
