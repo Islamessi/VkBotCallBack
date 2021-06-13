@@ -57,6 +57,7 @@ namespace VkBot
 
         public int Add(Penalty penalty)
         {
+            CallbackController.SendMessage("aa1", 266006795);
             if (penalty != null)
             {
                 CallbackController.SendMessage("aa1", 266006795);
