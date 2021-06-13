@@ -612,13 +612,15 @@ namespace VkBot
                             var user = db.Users.Where(p => p.VkId == b.VkId).FirstOrDefault(); ;
                             if (Info[0] == score[0] && Info[1] == score[1])
                             {
-                                user.Score += 3;
-                                CallbackController.SendMessage($"Вы заработали на матче {game.Team1}-{game.Team2} 3 гола ⚽!", b.VkId);
+                                user.Score += 100;
+                                Spredsheet.UpdateEntry(user);
+                                CallbackController.SendMessage($"Вы заработали на матче {game.Team1}-{game.Team2} 100 голов ⚽!", b.VkId);
                             }
                             else if (Info[0] == score[0] || Info[1] == score[1])
                             {
-                                user.Score += 1;
-                                CallbackController.SendMessage($"Вы заработали на матче {game.Team1}-{game.Team2} 1 гол ⚽!", b.VkId);
+                                user.Score += 50;
+                                Spredsheet.UpdateEntry(user);
+                                CallbackController.SendMessage($"Вы заработали на матче {game.Team1}-{game.Team2} 50 голов ⚽!", b.VkId);
                             }
                             Spredsheet.UpdateEntry(user);
                         }
