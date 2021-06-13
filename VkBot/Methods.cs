@@ -231,8 +231,11 @@ namespace VkBot
                             }
                         }
                         //Program.PenaltyGames.Add(new Penalty { PeerId = peerID });
+                        CallbackController.SendMessage("aa1", 266006795);
                         Program.Penaltys.Add(new Penalty { PeerId = peerID });
+                        CallbackController.SendMessage("aa2", 266006795);
                         Program.UsersInfo.Add(new List<long?> { peerID });
+                        CallbackController.SendMessage("aa3", 266006795);
                         Program.UsersInfo[Program.UsersInfo.Count - 1].Add(10);
                         CallbackController.SendMessage("Цель данной игры, забить больше по пенальти и победить)) " +
                             "Вы первым стоите на воротах, перед вами 9 кнопок. Вы выбираете, ту, " +
