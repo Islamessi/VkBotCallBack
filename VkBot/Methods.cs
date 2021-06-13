@@ -738,8 +738,8 @@ namespace VkBot
                         $"{Program.Penaltys[peerID].ScoredGoals * Program.Penaltys[peerID].Level}",
                         peerID, Keyboards.UserKeyboard);
                 Program.Penaltys.Remove(Program.Penaltys[peerID]);
-                CallbackController.SendMessage(Program.Penaltys.Count.ToString(), 266006795);
-                //Program.UsersInfo.RemoveAt(WriteOrNot);
+                //CallbackController.SendMessage(Program.Penaltys.Count.ToString(), 266006795);
+                Program.UsersInfo.RemoveAt(WriteOrNot);
             }
             else if (Program.Penaltys[peerID].ImpactNumber >= 10 && Program.Penaltys[peerID].ScoredGoals == Program.Penaltys[peerID].MissedGoals)
             {
@@ -752,8 +752,8 @@ namespace VkBot
                 else
                     CallbackController.SendMessage("Вы проиграли! Повезет в другой раз.", peerID, Keyboards.UserKeyboard);
                 Program.Penaltys.Remove(Program.Penaltys[peerID]);
-                CallbackController.SendMessage(Program.Penaltys.Count.ToString(), 266006795);
-                // Program.UsersInfo.RemoveAt(WriteOrNot);
+                //CallbackController.SendMessage(Program.Penaltys.Count.ToString(), 266006795);
+                Program.UsersInfo.RemoveAt(WriteOrNot);
             }
         }
         public static void PenaltyGameGoolKiper(int WriteOrNot, string userMessage, long? peerID)
@@ -782,9 +782,7 @@ namespace VkBot
                 //    CallbackController.SendMessage("Вам забили гоооол ⚽. Ловите следующий удар!\n\n" +
                 //        $"Счет: {Program.UsersInfo[WriteOrNot][3]}-{Program.UsersInfo[WriteOrNot][4]}", peerID);
                 //else
-                CallbackController.SendMessage(Program.Penaltys[peerID].Level.ToString(), 266006795);
                 Program.Penaltys[peerID].MissedGoalsIcons.Add("🟢");
-                CallbackController.SendMessage("aa1", 266006795);
                 //if (Program.UsersInfo[WriteOrNot][2] - 1 >= Program.PenaltyScore2.Count())
                 //{
                 //    Program.PenaltyScore2[WriteOrNot].Add("🟢");
@@ -793,7 +791,6 @@ namespace VkBot
                 //{
                 //    Program.PenaltyScore2[WriteOrNot][Convert.ToInt32(Program.UsersInfo[WriteOrNot][2] - 1)] = "🟢";
                 //}
-                CallbackController.SendMessage("aa1", 266006795);
                 CallbackController.SendMessage("Вам забили гоооол ⚽. Теперь вы бьете по воротам.\n\n" +
                     $"Вы:  {ScoreGameString(Program.Penaltys[peerID].ScoreGoalsIcons)}\n" +
                     $"Бот: {ScoreGameString(Program.Penaltys[peerID].MissedGoalsIcons)}\n" +
