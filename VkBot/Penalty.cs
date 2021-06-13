@@ -11,18 +11,7 @@ namespace VkBot
         /// <summary>
         /// Идентификатор пользователя в вк
         /// </summary>
-        public long? PeerId
-        {
-            get
-            {
-                return PeerId;
-            }
-            set
-            {
-                if (PeerId != null)
-                    PeerId = value;
-            }
-        }
+        public long? PeerId { get; set; }
         /// <summary>
         /// Номер удара
         /// </summary>
