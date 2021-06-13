@@ -31,11 +31,11 @@ namespace VkBot
         /// <summary>
         /// Значки забитых/незабитых ударов
         /// </summary>
-        public List<string> ScoreGoalsIcons { get; set; }
+        public List<string> ScoreGoalsIcons { get; set; } = new List<string>();
         /// <summary>
         /// Значки пропущенных/отбитых ударов
         /// </summary>
-        public List<string> MissedGoalsIcons { get; set; }
+        public List<string> MissedGoalsIcons { get; set; } = new List<string>();
     }
 
     public class Penaltys
