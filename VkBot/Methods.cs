@@ -218,6 +218,7 @@ namespace VkBot
                         }
                         break;
                     case "игра \"пенальти\"":
+
                         using (var db = new MyContext())
                         {
                             var user = db.Users.Where(p => p.VkId == peerID);
