@@ -10,7 +10,18 @@ namespace VkBot
         /// <summary>
         /// Идентификатор пользователя в вк
         /// </summary>
-        public long? PeerId { get; set; }
+        public long? PeerId
+        {
+            get
+            {
+                return PeerId;
+            }
+            set
+            {
+                if (PeerId != null)
+                    PeerId = value;
+            }
+        }
         /// <summary>
         /// Номер удара
         /// </summary>
@@ -36,6 +47,48 @@ namespace VkBot
         /// </summary>
         public List<string> MissedGoalsIcons { get; set; }
     }
-    public static Penalty operator [](Penalty pem)
+
+    public class Penaltys
+    {
+        private List<Penalty> penalties = new List<Penalty>();
+
+        public int Count => penalties.Count();
+
+        public int Add(Penalty penalty)
+        {
+            if (penalty != null)
+            {
+                penalties.Add(penalty);
+                return penalties.Count - 1;
+            }
+            else
+                return -1;
+        }
+
+        public int Remove(Penalty penalty)
+        {
+            if (penalty != null)
+            {
+                penalties.Remove(penalty);
+                return 1;
+            }
+            else
+            {
+                return -1;
+            }
+        }
+
+
+        public Penalty this[long? peerId]
+        {
+            get
+            {
+                Penalty penalty = penalties.FirstOrDefault(p => p.PeerId == peerId);
+                return penalty;
+            }
+            set { }
+        }
+    }
+
 }
 

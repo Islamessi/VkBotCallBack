@@ -13,6 +13,7 @@ using VkNet.Model.RequestParams;
 
 namespace VkBot
 {
+    
     public static class Helper
     {
         public static Game CreateGame(this Game game, string Team1, string Team2, DateTime DateGame, string Links)
@@ -69,8 +70,9 @@ namespace VkBot
                                 int vsp3 = Convert.ToInt32(userMessage);
                                 Program.UsersInfo[WriteOrNot][1] = 9;
                                 Program.UsersInfo[WriteOrNot].Add(vsp3);
+                                Program.Penaltys[peerID].Level = vsp3;
                                 //Program.PenaltyGames
-                                CallbackController.SendMessage("Уровень выбран, начинайте игру)"+Program.PenaltyScore.Count.ToString(), peerID, Keyboards.PenaltyKeyboard);
+                                CallbackController.SendMessage("Уровень выбран, начинайте игру)", peerID, Keyboards.PenaltyKeyboard);
                             }
                             catch
                             {
@@ -215,29 +217,29 @@ namespace VkBot
                             Program.UsersInfo[Program.UsersInfo.Count - 1].Add(2);
                         }
                         break;
-                    //case "игра \"пенальти\"":
-                    //    using (var db = new MyContext())
-                    //    {
-                    //        var user = db.Users.Where(p => p.VkId == peerID);
-                    //        if (user.Count() == 0)
-                    //        {
-                    //            var users = CallbackController._vkApi.Users.Get(new long[] { (long)peerID }).FirstOrDefault();
-                    //            User user1 = new User { VkId = peerID, FirstName = users.FirstName, LastName = users.LastName };
-                    //            db.Users.Add(user1);
-                    //            db.SaveChanges();
-                    //        }
-                    //    }
-                    //    Program.PenaltyGames.Add(new Penalty { PeerId = peerID });
-
-                    //    Program.UsersInfo.Add(new List<long?> { peerID });
-                    //    Program.UsersInfo[Program.UsersInfo.Count - 1].Add(10);
-                    //    CallbackController.SendMessage("Цель данной игры, забить больше по пенальти и победить)) " +
-                    //        "Вы первым стоите на воротах, перед вами 9 кнопок. Вы выбираете, ту, " +
-                    //        "куда прыгаете. Бот рандомно выбирает куда бить, если вы попали в ту же область, " +
-                    //        "вы ловите мяч. После 5 ударов вы бьете 5 раз, а бот становится на ворота. В случае победы вы получите " +
-                    //        "все голы, которые смогли забить) Удачи!)\n\n Выберите сложность игры. Если вы победите, то кол-во забитых " +
-                    //        "голов умножится на этот коэффициент!", peerID, Keyboards.LevelKeyboard);
-                    //    break;
+                    case "игра \"пенальти\"":
+                        using (var db = new MyContext())
+                        {
+                            var user = db.Users.Where(p => p.VkId == peerID);
+                            if (user.Count() == 0)
+                            {
+                                var users = CallbackController._vkApi.Users.Get(new long[] { (long)peerID }).FirstOrDefault();
+                                User user1 = new User { VkId = peerID, FirstName = users.FirstName, LastName = users.LastName };
+                                db.Users.Add(user1);
+                                db.SaveChanges();
+                            }
+                        }
+                        //Program.PenaltyGames.Add(new Penalty { PeerId = peerID });
+                        Program.Penaltys.Add(new Penalty { PeerId = peerID });
+                        Program.UsersInfo.Add(new List<long?> { peerID });
+                        Program.UsersInfo[Program.UsersInfo.Count - 1].Add(10);
+                        CallbackController.SendMessage("Цель данной игры, забить больше по пенальти и победить)) " +
+                            "Вы первым стоите на воротах, перед вами 9 кнопок. Вы выбираете, ту, " +
+                            "куда прыгаете. Бот рандомно выбирает куда бить, если вы попали в ту же область, " +
+                            "вы ловите мяч. После 5 ударов вы бьете 5 раз, а бот становится на ворота. В случае победы вы получите " +
+                            "все голы, которые смогли забить) Удачи!)\n\n Выберите сложность игры. Если вы победите, то кол-во забитых " +
+                            "голов умножится на этот коэффициент!", peerID, Keyboards.LevelKeyboard);
+                        break;
                     case "пинг":
                         CallbackController.SendMessage("Понг", peerID);
                         break;
@@ -548,35 +550,35 @@ namespace VkBot
                     case 8://Записывание результата матча и добавление очков угадавшим
                         Methods.ResultAsync(userMessage, userMessageUpp, Program.UsersInfo, WriteOrNot, peerID);
                         break;
-                    case 9://игра пенальти
-                        try
-                        {
+                    //case 9://игра пенальти
+                    //    try
+                    //    {
 
-                            var bbb = Convert.ToInt32(userMessage);
-                            CallbackController.SendMessage(Program.UsersInfo[WriteOrNot][2].ToString(), 266006795);
-                            if (Program.UsersInfo[WriteOrNot][2] % 2 == 0)
-                                Methods.PenaltyGameGoolKiper(WriteOrNot, userMessage, peerID);
-                            else if (Program.UsersInfo[WriteOrNot][2] % 2 == 1)
-                                Methods.PenaltyGameForward(WriteOrNot, userMessage, peerID);
-                        }
-                        catch
-                        {
-                            CallbackController.SendMessage("Выберите число от 1 до 9!", peerID);
-                        }
-                        break;
-                    case 10://игра пенальти
-                        try
-                        {
-                            int vsp3 = Convert.ToInt32(userMessage);
-                            Program.UsersInfo[WriteOrNot][1] = 9;
-                            Program.UsersInfo[WriteOrNot].Add(vsp3);
-                            CallbackController.SendMessage("Уровень выбран, начинайте игру)", peerID, Keyboards.PenaltyKeyboard);
-                        }
-                        catch
-                        {
-                            CallbackController.SendMessage("Выберите уровень от 1 до 5 на клавиатуре!", peerID);
-                        }
-                        break;
+                    //        var bbb = Convert.ToInt32(userMessage);
+                    //        CallbackController.SendMessage(Program.UsersInfo[WriteOrNot][2].ToString(), 266006795);
+                    //        if (Program.UsersInfo[WriteOrNot][2] % 2 == 0)
+                    //            Methods.PenaltyGameGoolKiper(WriteOrNot, userMessage, peerID);
+                    //        else if (Program.UsersInfo[WriteOrNot][2] % 2 == 1)
+                    //            Methods.PenaltyGameForward(WriteOrNot, userMessage, peerID);
+                    //    }
+                    //    catch
+                    //    {
+                    //        CallbackController.SendMessage("Выберите число от 1 до 9!", peerID);
+                    //    }
+                    //    break;
+                    //case 10://игра пенальти
+                    //    try
+                    //    {
+                    //        int vsp3 = Convert.ToInt32(userMessage);
+                    //        Program.UsersInfo[WriteOrNot][1] = 9;
+                    //        Program.UsersInfo[WriteOrNot].Add(vsp3);
+                    //        CallbackController.SendMessage("Уровень выбран, начинайте игру)", peerID, Keyboards.PenaltyKeyboard);
+                    //    }
+                    //    catch
+                    //    {
+                    //        CallbackController.SendMessage("Выберите уровень от 1 до 5 на клавиатуре!", peerID);
+                    //    }
+                    //    break;
                 }
             }
 
@@ -666,10 +668,12 @@ namespace VkBot
         public static void PenaltyGameForward(int WriteOrNot, string userMessage, long? peerID)
         {
             Random rnd = new Random();
-            Program.UsersInfo[WriteOrNot][2] += 1;
+            Program.Penaltys[peerID].ImpactNumber += 1;
+            //Program.UsersInfo[WriteOrNot][2] += 1;
             int selectednum = Convert.ToInt32(userMessage);
             int rand = 0;
-            int level = 6 - (int)Program.UsersInfo[WriteOrNot][5];
+            //int level = 6 - (int)Program.UsersInfo[WriteOrNot][5];
+            int level = 6 - (int)Program.Penaltys[peerID].Level;
             if (selectednum - 1 <= level)
             {
                 int remainingnum = level - (selectednum - 1);
@@ -681,81 +685,83 @@ namespace VkBot
             }
             if (selectednum != rand)
             {
-                Program.UsersInfo[WriteOrNot][3] += 1;
+                Program.Penaltys[peerID].ScoredGoals += 1;
+                //Program.UsersInfo[WriteOrNot][3] += 1;
                 //CallbackController.SendMessage((Program.UsersInfo[WriteOrNot][2]-1).ToString()+" " + Program.PenaltyScore.Count().ToString(), 266006795);
-                if (Program.UsersInfo[WriteOrNot][2] - 1 >= Program.PenaltyScore.Count())
-                {
-                    Program.PenaltyScore[WriteOrNot].Add("🟢");
-                }
-                else
-                {
-                    Program.PenaltyScore[WriteOrNot][Convert.ToInt32(Program.UsersInfo[WriteOrNot][2] - 1)] = "🟢";
-                }
+                Program.Penaltys[peerID].ScoreGoalsIcons.Add("🟢");
+                //if (Program.UsersInfo[WriteOrNot][2] - 1 >= Program.PenaltyScore.Count())
+                //{
+                //    Program.PenaltyScore[WriteOrNot].Add("🟢");
+                //}
+                //else
+                //{
+                //    Program.PenaltyScore[WriteOrNot][Convert.ToInt32(Program.UsersInfo[WriteOrNot][2] - 1)] = "🟢";
+                //}
                 CallbackController.SendMessage("Вы забили гоооол ⚽. Ловите следующий удар.\n\n" +
-                    $"Вы:  {ScoreGameString(Program.PenaltyScore[WriteOrNot])}\n" +
-                    $"Бот: {ScoreGameString(Program.PenaltyScore2[WriteOrNot])}\n" +
-                    $"Счет: {Program.UsersInfo[WriteOrNot][3]}-{Program.UsersInfo[WriteOrNot][4]}", peerID);
+                    $"Вы:  {ScoreGameString(Program.Penaltys[peerID].ScoreGoalsIcons)}\n" +
+                    $"Бот: {ScoreGameString(Program.Penaltys[peerID].MissedGoalsIcons)}\n" +
+                    $"Счет: {Program.Penaltys[peerID].ScoredGoals}-{Program.Penaltys[peerID].MissedGoals}", peerID);
             }
             else
             {
-                if (Program.UsersInfo[WriteOrNot][2] - 1 >= Program.PenaltyScore.Count())
-                {
-                    Program.PenaltyScore[WriteOrNot].Add("🔴");
-                }
-                else
-                {
-                    Program.PenaltyScore[WriteOrNot][Convert.ToInt32(Program.UsersInfo[WriteOrNot][2] - 1)] = "🔴";
-                }
+                Program.Penaltys[peerID].ScoreGoalsIcons.Add("🔴");
+                //if (Program.UsersInfo[WriteOrNot][2] - 1 >= Program.PenaltyScore.Count())
+                //{
+                //    Program.PenaltyScore[WriteOrNot].Add("🔴");
+                //}
+                //else
+                //{
+                //    Program.PenaltyScore[WriteOrNot][Convert.ToInt32(Program.UsersInfo[WriteOrNot][2] - 1)] = "🔴";
+                //}
                 //Program.PenaltyScore[Convert.ToInt32(Program.UsersInfo[WriteOrNot][2])] = "🔴";
                 CallbackController.SendMessage("Вратарь делает сейв 🧤. Ловите следующий удар.\n\n" +
-                    $"Вы:  {ScoreGameString(Program.PenaltyScore[WriteOrNot])}\n" +
-                    $"Бот: {ScoreGameString(Program.PenaltyScore2[WriteOrNot])}\n" +
-                    $"Счет: {Program.UsersInfo[WriteOrNot][3]}-{Program.UsersInfo[WriteOrNot][4]}", peerID);
+                    $"Вы:  {ScoreGameString(Program.Penaltys[peerID].ScoreGoalsIcons)}\n" +
+                    $"Бот: {ScoreGameString(Program.Penaltys[peerID].MissedGoalsIcons)}\n" +
+                    $"Счет: {Program.Penaltys[peerID].ScoredGoals}-{Program.Penaltys[peerID].MissedGoals}", peerID);
             }
-            if (Program.UsersInfo[WriteOrNot][2] >= 10 && Program.UsersInfo[WriteOrNot][3] > Program.UsersInfo[WriteOrNot][4])
+            if (Program.Penaltys[peerID].ImpactNumber >= 10 && Program.Penaltys[peerID].ScoredGoals > Program.Penaltys[peerID].MissedGoals)
             {
                 using (var db = new MyContext())
                 {
                     var user = db.Users.Where(p => p.VkId == peerID).FirstOrDefault();
-                    user.Score += Program.UsersInfo[WriteOrNot][3] * Program.UsersInfo[WriteOrNot][5];
+                    user.Score += Program.Penaltys[peerID].ScoredGoals * Program.Penaltys[peerID].Level;
                     Spredsheet.UpdateEntry(user);
                     db.SaveChanges();
                 }
-                Program.PenaltyScore[WriteOrNot].Clear();
-                Program.PenaltyScore2[WriteOrNot].Clear();
                 if (Program.admins.Contains(peerID))
-                    CallbackController.SendMessage($"Поздравляю! Вы победили! Заработали голов: {Program.UsersInfo[WriteOrNot][3]}*{Program.UsersInfo[WriteOrNot][5]} = " +
-                        $"{Program.UsersInfo[WriteOrNot][3] * Program.UsersInfo[WriteOrNot][5]}",
+                    CallbackController.SendMessage($"Поздравляю! Вы победили! Заработали голов: {Program.Penaltys[peerID].ScoredGoals}*{Program.Penaltys[peerID].Level} = " +
+                        $"{Program.Penaltys[peerID].ScoredGoals * Program.Penaltys[peerID].Level}",
                         peerID, Keyboards.AdminKeyboard);
                 else
-                    CallbackController.SendMessage($"Поздравляю! Вы победили! Заработали голов: {Program.UsersInfo[WriteOrNot][3]}*{Program.UsersInfo[WriteOrNot][5]} = " +
-                        $"{Program.UsersInfo[WriteOrNot][3] * Program.UsersInfo[WriteOrNot][5]}",
+                    CallbackController.SendMessage($"Поздравляю! Вы победили! Заработали голов: {Program.Penaltys[peerID].ScoredGoals}*{Program.Penaltys[peerID].Level} = " +
+                        $"{Program.Penaltys[peerID].ScoredGoals * Program.Penaltys[peerID].Level}",
                         peerID, Keyboards.UserKeyboard);
-                Program.UsersInfo.RemoveAt(WriteOrNot);
+                Program.Penaltys.Remove(Program.Penaltys[peerID]);
+                //Program.UsersInfo.RemoveAt(WriteOrNot);
             }
-            else if (Program.UsersInfo[WriteOrNot][2] >= 10 && Program.UsersInfo[WriteOrNot][3] == Program.UsersInfo[WriteOrNot][4])
+            else if (Program.Penaltys[peerID].ImpactNumber >= 10 && Program.Penaltys[peerID].ScoredGoals == Program.Penaltys[peerID].MissedGoals)
             {
                 CallbackController.SendMessage("Пока счет равный. Еще по одному удару! Ловите.", peerID);
             }
-            else if (Program.UsersInfo[WriteOrNot][2] >= 10 && Program.UsersInfo[WriteOrNot][3] < Program.UsersInfo[WriteOrNot][4])
+            else if (Program.Penaltys[peerID].ImpactNumber >= 10 && Program.Penaltys[peerID].ScoredGoals < Program.Penaltys[peerID].MissedGoals)
             {
-
-                Program.PenaltyScore[WriteOrNot].Clear();
-                Program.PenaltyScore2[WriteOrNot].Clear();
                 if (Program.admins.Contains(peerID))
                     CallbackController.SendMessage("Вы проиграли! Повезет в другой раз.", peerID, Keyboards.AdminKeyboard);
                 else
                     CallbackController.SendMessage("Вы проиграли! Повезет в другой раз.", peerID, Keyboards.UserKeyboard);
-                Program.UsersInfo.RemoveAt(WriteOrNot);
+                Program.Penaltys.Remove(Program.Penaltys[peerID]);
+               // Program.UsersInfo.RemoveAt(WriteOrNot);
             }
         }
         public static void PenaltyGameGoolKiper(int WriteOrNot, string userMessage, long? peerID)
         {
             Random rnd = new Random();
-            Program.UsersInfo[WriteOrNot][2] += 1;
+            Program.Penaltys[peerID].ImpactNumber += 1;
+            //Program.UsersInfo[WriteOrNot][2] += 1;
             int selectednum = Convert.ToInt32(userMessage);
             int rand = 0;
-            int level = (int)Program.UsersInfo[WriteOrNot][5];
+            //int level = (int)Program.UsersInfo[WriteOrNot][5];
+            int level = Program.Penaltys[peerID].Level;
             if (selectednum - 1 <= level)
             {
                 int remainingnum = level - (selectednum - 1);
@@ -767,23 +773,25 @@ namespace VkBot
             }
             if (selectednum != rand)
             {
-                Program.UsersInfo[WriteOrNot][4] += 1;
+                Program.Penaltys[peerID].MissedGoals += 1;
+                //Program.UsersInfo[WriteOrNot][4] += 1;
                 //if (Program.UsersInfo[WriteOrNot][2] < 5)
                 //    CallbackController.SendMessage("Вам забили гоооол ⚽. Ловите следующий удар!\n\n" +
                 //        $"Счет: {Program.UsersInfo[WriteOrNot][3]}-{Program.UsersInfo[WriteOrNot][4]}", peerID);
                 //else
-                if (Program.UsersInfo[WriteOrNot][2] - 1 >= Program.PenaltyScore2.Count())
-                {
-                    Program.PenaltyScore2[WriteOrNot].Add("🟢");
-                }
-                else
-                {
-                    Program.PenaltyScore2[WriteOrNot][Convert.ToInt32(Program.UsersInfo[WriteOrNot][2] - 1)] = "🟢";
-                }
+                Program.Penaltys[peerID].MissedGoalsIcons.Add("🟢");
+                //if (Program.UsersInfo[WriteOrNot][2] - 1 >= Program.PenaltyScore2.Count())
+                //{
+                //    Program.PenaltyScore2[WriteOrNot].Add("🟢");
+                //}
+                //else
+                //{
+                //    Program.PenaltyScore2[WriteOrNot][Convert.ToInt32(Program.UsersInfo[WriteOrNot][2] - 1)] = "🟢";
+                //}
                 CallbackController.SendMessage("Вам забили гоооол ⚽. Теперь вы бьете по воротам.\n\n" +
-                    $"Вы:  {ScoreGameString(Program.PenaltyScore[WriteOrNot])}\n" +
-                    $"Бот: {ScoreGameString(Program.PenaltyScore2[WriteOrNot])}\n" +
-                    $"Счет: {Program.UsersInfo[WriteOrNot][3]}-{Program.UsersInfo[WriteOrNot][4]}", peerID);
+                    $"Вы:  {ScoreGameString(Program.Penaltys[peerID].ScoreGoalsIcons)}\n" +
+                    $"Бот: {ScoreGameString(Program.Penaltys[peerID].MissedGoalsIcons)}\n" +
+                    $"Счет: {Program.Penaltys[peerID].ScoredGoals}-{Program.Penaltys[peerID].MissedGoals}", peerID);
             }
             else
             {
@@ -791,18 +799,19 @@ namespace VkBot
                 //    CallbackController.SendMessage("Вы делаете сейв 🧤. Ловите следующий удар!\n\n" +
                 //        $"Счет: {Program.UsersInfo[WriteOrNot][3]}-{Program.UsersInfo[WriteOrNot][4]}", peerID);
                 //else
-                if (Program.UsersInfo[WriteOrNot][2] - 1 >= Program.PenaltyScore2.Count())
-                {
-                    Program.PenaltyScore2[WriteOrNot].Add("🔴");
-                }
-                else
-                {
-                    Program.PenaltyScore2[WriteOrNot][Convert.ToInt32(Program.UsersInfo[WriteOrNot][2] - 1)] = "🔴";
-                }
+                Program.Penaltys[peerID].MissedGoalsIcons.Add("🔴");
+                //if (Program.UsersInfo[WriteOrNot][2] - 1 >= Program.PenaltyScore2.Count())
+                //{
+                //    Program.PenaltyScore2[WriteOrNot].Add("🔴");
+                //}
+                //else
+                //{
+                //    Program.PenaltyScore2[WriteOrNot][Convert.ToInt32(Program.UsersInfo[WriteOrNot][2] - 1)] = "🔴";
+                //}
                 CallbackController.SendMessage("Вы делаете сейв 🧤. Теперь вы бьете по воротам.\n\n" +
-                    $"Вы:  {ScoreGameString(Program.PenaltyScore[WriteOrNot])}\n" +
-                    $"Бот: {ScoreGameString(Program.PenaltyScore2[WriteOrNot])}\n" +
-                    $"Счет: {Program.UsersInfo[WriteOrNot][3]}-{Program.UsersInfo[WriteOrNot][4]}", peerID);
+                   $"Вы:  {ScoreGameString(Program.Penaltys[peerID].ScoreGoalsIcons)}\n" +
+                    $"Бот: {ScoreGameString(Program.Penaltys[peerID].MissedGoalsIcons)}\n" +
+                    $"Счет: {Program.Penaltys[peerID].ScoredGoals}-{Program.Penaltys[peerID].MissedGoals}", peerID);
             }
         }
 
