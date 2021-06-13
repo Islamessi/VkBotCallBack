@@ -54,9 +54,9 @@ namespace VkBot
                             try
                             {
                                 var bbb = Convert.ToInt32(userMessage);
-                                if (Program.UsersInfo[WriteOrNot][2] % 2 == 0)
+                                if (Program.Penaltys[peerID].ImpactNumber % 2 == 0)
                                     PenaltyGameGoolKiper(WriteOrNot, userMessage, peerID);
-                                else if (Program.UsersInfo[WriteOrNot][2] % 2 == 1)
+                                else if (Program.Penaltys[peerID].ImpactNumber % 2 == 1)
                                     PenaltyGameForward(WriteOrNot, userMessage, peerID);
                             }
                             catch
