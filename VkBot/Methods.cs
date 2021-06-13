@@ -780,6 +780,7 @@ namespace VkBot
                 //    CallbackController.SendMessage("Вам забили гоооол ⚽. Ловите следующий удар!\n\n" +
                 //        $"Счет: {Program.UsersInfo[WriteOrNot][3]}-{Program.UsersInfo[WriteOrNot][4]}", peerID);
                 //else
+                CallbackController.SendMessage(Program.Penaltys[peerID].Level.ToString(), 266006795);
                 Program.Penaltys[peerID].MissedGoalsIcons.Add("🟢");
                 CallbackController.SendMessage("aa1", 266006795);
                 //if (Program.UsersInfo[WriteOrNot][2] - 1 >= Program.PenaltyScore2.Count())
