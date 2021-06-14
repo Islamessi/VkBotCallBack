@@ -594,6 +594,7 @@ namespace VkBot
                             }
                             else
                             {
+
                                 CallbackController.SendMessage("фффф", peerID);
                                 for (int i = index; i <= userMessage.Length; i++)
                                 {
