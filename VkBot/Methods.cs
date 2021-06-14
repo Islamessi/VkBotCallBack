@@ -564,7 +564,44 @@ namespace VkBot
                         }
                         else
                         {
-
+                            string domain = "";
+                            long? peerid;
+                            int index = 0;
+                            for (int i = 0; i<= userMessage.Length - 1; i++)
+                            {
+                                if (userMessage[i] == '/' && userMessage[i + 1] != '/')
+                                    index = i + 1;
+                            }
+                            if (userMessage[index].ToString()+userMessage[index+1] == "id")
+                            {
+                                try
+                                { 
+                                    for(int i=index+2; i<= userMessage.Length; i++)
+                                    {
+                                        domain += userMessage[i];
+                                    }
+                                    peerid = Convert.ToInt32(domain);
+                                }
+                                catch
+                                {
+                                    domain = "id" + domain;
+                                }
+                            }
+                            else
+                            {
+                                for (int i = index; i <= userMessage.Length; i++)
+                                {
+                                    domain += userMessage[i];
+                                }
+                            }
+                            if (index == 0)
+                            {
+                                CallbackController.SendMessage(index.ToString(), peerID);
+                            }    
+                            else
+                            {
+                                CallbackController.SendMessage(domain, peerID);
+                            }
                         }
                         break;
                     //case 9://игра пенальти
