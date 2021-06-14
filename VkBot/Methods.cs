@@ -570,7 +570,10 @@ namespace VkBot
                             for (int i = 0; i<= userMessage.Length - 1; i++)
                             {
                                 if (userMessage[i] == '/' && userMessage[i + 1] != '/')
+                                {
                                     index = i + 1;
+                                    break;
+                                }
                             }
                             CallbackController.SendMessage(index.ToString(), peerID);
                             if (userMessage[index].ToString()+userMessage[index+1] == "id")
@@ -591,6 +594,7 @@ namespace VkBot
                             }
                             else
                             {
+                                CallbackController.SendMessage("фффф", peerID);
                                 for (int i = index; i <= userMessage.Length; i++)
                                 {
                                     domain += userMessage[i];
