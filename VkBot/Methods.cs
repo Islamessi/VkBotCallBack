@@ -248,7 +248,9 @@ namespace VkBot
                         CallbackController.SendMessage("Пошел нахуй...", peerID);
                         break;
                     case "пенальти с другом":
-
+                        Program.UsersInfo.Add(new List<long?> { peerID });
+                        Program.UsersInfo[Program.UsersInfo.Count - 1].Add(10);
+                        CallbackController.SendMessage("Отправьте ссылку на игрока, с которым вы хотите поиграть.", peerID, Keyboards.CanselKeyboard);
                         break;
                     default:
                         if (Program.admins.Contains(peerID))
@@ -553,6 +555,17 @@ namespace VkBot
                         break;
                     case 8://Записывание результата матча и добавление очков угадавшим
                         Methods.ResultAsync(userMessage, userMessageUpp, Program.UsersInfo, WriteOrNot, peerID);
+                        break;
+                    case 10:
+                        if (userMessage == "отмена")
+                        {
+                            Program.UsersInfo.RemoveAt(WriteOrNot);
+                            CallbackController.SendMessage("Меню:", peerID, Keyboards.AdminKeyboard);
+                        }
+                        else
+                        {
+
+                        }
                         break;
                     //case 9://игра пенальти
                     //    try
