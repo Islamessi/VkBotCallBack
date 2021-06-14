@@ -572,8 +572,10 @@ namespace VkBot
                                 if (userMessage[i] == '/' && userMessage[i + 1] != '/')
                                     index = i + 1;
                             }
+                            CallbackController.SendMessage(index.ToString(), peerID);
                             if (userMessage[index].ToString()+userMessage[index+1] == "id")
                             {
+                                CallbackController.SendMessage(index.ToString(), peerID);
                                 try
                                 { 
                                     for(int i=index+2; i<= userMessage.Length; i++)
