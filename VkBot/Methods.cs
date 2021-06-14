@@ -247,6 +247,9 @@ namespace VkBot
                     case "понг":
                         CallbackController.SendMessage("Пошел нахуй...", peerID);
                         break;
+                    case "пенальти с другом":
+
+                        break;
                     default:
                         if (Program.admins.Contains(peerID))
                             CallbackController.SendMessage("Меню:", peerID, Keyboards.AdminKeyboard);
