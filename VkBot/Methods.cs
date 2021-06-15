@@ -597,7 +597,6 @@ namespace VkBot
                                 for (int i = index; i <= userMessage.Length; i++)
                                 {
                                     domain += userMessage[i];
-                                    CallbackController.SendMessage(domain, peerID);
                                 }
                             }
                             CallbackController.SendMessage(index.ToString(), peerID);
