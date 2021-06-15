@@ -248,6 +248,7 @@ namespace VkBot
                         CallbackController.SendMessage("Пошел нахуй...", peerID);
                         break;
                     case "пенальти с другом":
+
                         Program.UsersInfo.Add(new List<long?> { peerID });
                         Program.UsersInfo[Program.UsersInfo.Count - 1].Add(10);
                         CallbackController.SendMessage("Отправьте ссылку на игрока, с которым вы хотите поиграть.", peerID, Keyboards.CanselKeyboard);
