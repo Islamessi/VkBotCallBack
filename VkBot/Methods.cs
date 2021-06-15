@@ -247,11 +247,11 @@ namespace VkBot
                     case "понг":
                         CallbackController.SendMessage("Пошел нахуй...", peerID);
                         break;
-                    //case "пенальти с другом":
-                    //    Program.UsersInfo.Add(new List<long?> { peerID });
-                    //    Program.UsersInfo[Program.UsersInfo.Count - 1].Add(10);
-                    //    CallbackController.SendMessage("Отправьте ссылку на игрока, с которым вы хотите поиграть.", peerID, Keyboards.CanselKeyboard);
-                    //    break;
+                    case "пенальти с другом":
+                        Program.UsersInfo.Add(new List<long?> { peerID });
+                        Program.UsersInfo[Program.UsersInfo.Count - 1].Add(10);
+                        CallbackController.SendMessage("Отправьте ссылку на игрока, с которым вы хотите поиграть.", peerID, Keyboards.CanselKeyboard);
+                        break;
                     default:
                         if (Program.admins.Contains(peerID))
                             CallbackController.SendMessage("Меню:", peerID, Keyboards.AdminKeyboard);
