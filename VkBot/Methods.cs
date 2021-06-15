@@ -576,41 +576,43 @@ namespace VkBot
                                     break;
                                 }
                             }
-                            if (userMessage[index].ToString()+userMessage[index+1] == "id")
+                            if (index != 0)
                             {
-                                try
-                                { 
-                                    for(int i=index+2; i<= userMessage.Length; i++)
+                                if (userMessage[index].ToString() + userMessage[index + 1] == "id")
+                                {
+                                    try
+                                    {
+                                        for (int i = index + 2; i <= userMessage.Length; i++)
+                                        {
+                                            domain += userMessage[i];
+                                        }
+                                        peerid = Convert.ToInt32(domain);
+                                    }
+                                    catch
+                                    {
+                                        domain = "id" + domain;
+                                    }
+                                }
+                                else
+                                {
+                                    CallbackController.SendMessage(index.ToString() + "aaa", peerID);
+                                    for (int i = index; i <= userMessage.Length - 1; i++)
                                     {
                                         domain += userMessage[i];
                                     }
-                                    peerid = Convert.ToInt32(domain);
+                                    CallbackController.SendMessage(index.ToString() + "aaa", peerID);
                                 }
-                                catch
-                                {
-                                    domain = "id" + domain;
-                                }
-                            }
-                            else
-                            {
-                                CallbackController.SendMessage(index.ToString() +"aaa", peerID);
-                                for (int i = index; i <= userMessage.Length-1; i++)
-                                {
-                                    domain += userMessage[i];
-                                }
-                                CallbackController.SendMessage(index.ToString() + "aaa", peerID);
-                            }
-                            CallbackController.SendMessage(index.ToString(), peerID);
-                            CallbackController.SendMessage(domain, peerID);
-                            if (index == 0)
-                            {
                                 CallbackController.SendMessage(index.ToString(), peerID);
-                            }    
+                                CallbackController.SendMessage(domain, peerID);
+                                Program.UsersInfo.RemoveAt(WriteOrNot);
+                            }
                             else
                             {
-                                CallbackController.SendMessage(domain, peerID);
+                                CallbackController.SendMessage("Отправьте, пожалуйста, ссылку на профильчеловека, ск оторым хотите поиграть.", peerID);
                             }
-                            Program.UsersInfo.RemoveAt(WriteOrNot);
+                            
+                            
+                            
                         }
                         break;
                     //case 9://игра пенальти
