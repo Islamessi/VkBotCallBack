@@ -600,7 +600,7 @@ namespace VkBot
                                         domain += userMessage[i];
                                     }
                                 }
-                                CallbackController.SendMessage(index.ToString(), peerID);
+                                CallbackController.SendMessage(peerid.ToString(), peerID);
                                 CallbackController.SendMessage(domain, peerID);
                                 Program.UsersInfo.RemoveAt(WriteOrNot);
                             }
