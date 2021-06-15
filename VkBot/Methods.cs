@@ -595,7 +595,7 @@ namespace VkBot
                             else
                             {
 
-                                CallbackController.SendMessage("фффф", peerID);
+                                CallbackController.SendMessage(index.ToString() +"aaa", peerID);
                                 for (int i = index; i <= userMessage.Length; i++)
                                 {
                                     domain += userMessage[i];
@@ -610,6 +610,7 @@ namespace VkBot
                             {
                                 CallbackController.SendMessage(domain, peerID);
                             }
+                            Program.UsersInfo.RemoveAt(WriteOrNot);
                         }
                         break;
                     //case 9://игра пенальти
