@@ -566,7 +566,7 @@ namespace VkBot
                         else
                         {
                             string domain = "";
-                            long? peerid;
+                            long? peerid= 0;
                             int index = 0;
                             for (int i = 0; i<= userMessage.Length - 1; i++)
                             {
