@@ -595,12 +595,10 @@ namespace VkBot
                                 }
                                 else
                                 {
-                                    CallbackController.SendMessage(index.ToString() + "aaa", peerID);
                                     for (int i = index; i <= userMessage.Length - 1; i++)
                                     {
                                         domain += userMessage[i];
                                     }
-                                    CallbackController.SendMessage(index.ToString() + "aaa", peerID);
                                 }
                                 CallbackController.SendMessage(index.ToString(), peerID);
                                 CallbackController.SendMessage(domain, peerID);
@@ -608,7 +606,7 @@ namespace VkBot
                             }
                             else
                             {
-                                CallbackController.SendMessage("Отправьте, пожалуйста, ссылку на профильчеловека, ск оторым хотите поиграть.", peerID);
+                                CallbackController.SendMessage("Отправьте, пожалуйста, ссылку на профиль человека, с которым хотите поиграть.", peerID);
                             }
                             
                             
