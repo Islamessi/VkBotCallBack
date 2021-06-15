@@ -570,16 +570,14 @@ namespace VkBot
                             int index = 0;
                             for (int i = 0; i<= userMessage.Length - 1; i++)
                             {
-                                if (userMessage[i] == '/' && userMessage[i + 1] != '/')
+                                if (userMessage[i] == '/' && userMessage[i + 1] != '/' && userMessage[i - 1] != '/')
                                 {
                                     index = i + 1;
                                     break;
                                 }
                             }
-                            CallbackController.SendMessage(index.ToString(), peerID);
                             if (userMessage[index].ToString()+userMessage[index+1] == "id")
                             {
-                                CallbackController.SendMessage(index.ToString(), peerID);
                                 try
                                 { 
                                     for(int i=index+2; i<= userMessage.Length; i++)
@@ -602,6 +600,8 @@ namespace VkBot
                                     CallbackController.SendMessage(domain, peerID);
                                 }
                             }
+                            CallbackController.SendMessage(index.ToString(), peerID);
+                            CallbackController.SendMessage(domain, peerID);
                             if (index == 0)
                             {
                                 CallbackController.SendMessage(index.ToString(), peerID);
