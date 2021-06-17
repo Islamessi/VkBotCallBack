@@ -55,6 +55,7 @@ namespace Cookie.Controllers
                     }
                     
                     var msg = Message.FromJson(new VkResponse(updates.Object));
+                    
                     //var tmp = DateTime.Now.Hour;
                     //if (tmp >= 0 && tmp <= 3)
                     //{
@@ -97,6 +98,12 @@ namespace Cookie.Controllers
                 Message = message,
                 Keyboard = keyboard
             });
+        }
+
+        public static bool IsSendMessage(long? peerID)
+        {
+            _vkApi.Messages.Ge
+            return _vkApi.Messages.IsMessagesFromGroupAllowed(197872639, (ulong)peerID);
         }
     }
 }
