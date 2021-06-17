@@ -597,7 +597,6 @@ namespace VkBot
                                 {
                                     for (int i = index; i <= userMessage.Length - 1; i++)
                                     {
-                                        CallbackController.SendMessage("aa", 266006795);
                                         domain += userMessage[i];
                                     }
                                 }
