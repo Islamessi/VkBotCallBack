@@ -6,6 +6,17 @@ namespace VkBot
 {
     public class Keyboards
     {
+        public static MessageKeyboard YesOrNo
+        {
+            get
+            {
+                KeyboardBuilder adminKey = new KeyboardBuilder();
+                adminKey.AddButton("Принять", "", KeyboardButtonColor.Positive, "");
+                adminKey.AddLine();
+                adminKey.AddButton("Отказаться", "", KeyboardButtonColor.Negative, "");
+                return adminKey.Build();
+            }
+        }
         public static MessageKeyboard AdminKeyboard //Клавиатура для админов, заданных в листе admins
         {
             get
