@@ -578,7 +578,7 @@ namespace VkBot
                             }
                             if (index != 0)
                             {
-                                if (userMessage[index].ToString() + userMessage[index + 1] == "id")
+                                if (userMessage[index]=='i' && userMessage[index + 1] == 'd')
                                 {
                                     try
                                     {
