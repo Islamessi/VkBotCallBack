@@ -13,7 +13,7 @@ using VkNet.Model.RequestParams;
 
 namespace VkBot
 {
-    
+
     public static class Helper
     {
         public static Game CreateGame(this Game game, string Team1, string Team2, DateTime DateGame, string Links)
@@ -565,86 +565,47 @@ namespace VkBot
                         }
                         else
                         {
-                            string domain = "";
-                            long? peerid= 0;
-                            int index = 0;
-                            //for (int i = 0; i <= userMessage.Length - 1; i++)
-                            //{
-                            //    if (userMessage[i] == '/' && userMessage[i + 1] != '/' && userMessage[i - 1] != '/')
-                            //    {
-                            //        index = i + 1;
-                            //        break;
-                            //    }
-                            //}
-                            if (index == 0)
+                            var tmp = msg.ForwardedMessages;
+                            if (tmp.Count == 1)
                             {
-                                //if (userMessage[index] == 'i' && userMessage[index + 1] == 'd')
-                                //{
-                                //    try
-                                //    {
-                                //        for (int i = index + 2; i <= userMessage.Length - 1; i++)
-                                //        {
-                                //            domain += userMessage[i];
-                                //        }
-                                //        peerid = Convert.ToInt32(domain);
-                                //    }
-                                //    catch
-                                //    {
-                                //        domain = "id" + domain;
-                                //    }
-                                //}
-                                //else
-                                //{
-                                //    for (int i = index; i <= userMessage.Length - 1; i++)
-                                //    {
-                                //        domain += userMessage[i];
-                                //    }
-                                //}
-                                var tmp = msg.ForwardedMessages;
-                                CallbackController.SendMessage(tmp.Count().ToString()+"aaa", 266006795);
                                 CallbackController.SendMessage(tmp[0].FromId.ToString(), 266006795);
-                                //CallbackController.SendMessage(peerid.ToString(), peerID);
-                                //CallbackController.SendMessage(domain, peerID);
                                 Program.UsersInfo.RemoveAt(WriteOrNot);
                             }
                             else
                             {
-                                CallbackController.SendMessage("Отправьте, пожалуйста, ссылку на профиль человека, с которым хотите поиграть.", peerID);
+                                CallbackController.SendMessage("Перешлите одно сообщение того человека, с которым вы хотите сыграть в пенальти.", peerID);
                             }
-                            
-                            
-                            
                         }
                         break;
-                    //case 9://игра пенальти
-                    //    try
-                    //    {
+                        //case 9://игра пенальти
+                        //    try
+                        //    {
 
-                    //        var bbb = Convert.ToInt32(userMessage);
-                    //        CallbackController.SendMessage(Program.UsersInfo[WriteOrNot][2].ToString(), 266006795);
-                    //        if (Program.UsersInfo[WriteOrNot][2] % 2 == 0)
-                    //            Methods.PenaltyGameGoolKiper(WriteOrNot, userMessage, peerID);
-                    //        else if (Program.UsersInfo[WriteOrNot][2] % 2 == 1)
-                    //            Methods.PenaltyGameForward(WriteOrNot, userMessage, peerID);
-                    //    }
-                    //    catch
-                    //    {
-                    //        CallbackController.SendMessage("Выберите число от 1 до 9!", peerID);
-                    //    }
-                    //    break;
-                    //case 10://игра пенальти
-                    //    try
-                    //    {
-                    //        int vsp3 = Convert.ToInt32(userMessage);
-                    //        Program.UsersInfo[WriteOrNot][1] = 9;
-                    //        Program.UsersInfo[WriteOrNot].Add(vsp3);
-                    //        CallbackController.SendMessage("Уровень выбран, начинайте игру)", peerID, Keyboards.PenaltyKeyboard);
-                    //    }
-                    //    catch
-                    //    {
-                    //        CallbackController.SendMessage("Выберите уровень от 1 до 5 на клавиатуре!", peerID);
-                    //    }
-                    //    break;
+                        //        var bbb = Convert.ToInt32(userMessage);
+                        //        CallbackController.SendMessage(Program.UsersInfo[WriteOrNot][2].ToString(), 266006795);
+                        //        if (Program.UsersInfo[WriteOrNot][2] % 2 == 0)
+                        //            Methods.PenaltyGameGoolKiper(WriteOrNot, userMessage, peerID);
+                        //        else if (Program.UsersInfo[WriteOrNot][2] % 2 == 1)
+                        //            Methods.PenaltyGameForward(WriteOrNot, userMessage, peerID);
+                        //    }
+                        //    catch
+                        //    {
+                        //        CallbackController.SendMessage("Выберите число от 1 до 9!", peerID);
+                        //    }
+                        //    break;
+                        //case 10://игра пенальти
+                        //    try
+                        //    {
+                        //        int vsp3 = Convert.ToInt32(userMessage);
+                        //        Program.UsersInfo[WriteOrNot][1] = 9;
+                        //        Program.UsersInfo[WriteOrNot].Add(vsp3);
+                        //        CallbackController.SendMessage("Уровень выбран, начинайте игру)", peerID, Keyboards.PenaltyKeyboard);
+                        //    }
+                        //    catch
+                        //    {
+                        //        CallbackController.SendMessage("Выберите уровень от 1 до 5 на клавиатуре!", peerID);
+                        //    }
+                        //    break;
                 }
             }
 
