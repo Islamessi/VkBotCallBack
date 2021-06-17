@@ -600,7 +600,6 @@ namespace VkBot
                                         CallbackController.SendMessage("aa", 266006795);
                                         domain += userMessage[i];
                                     }
-                                    peerid = Convert.ToInt32(domain);
                                 }
                                 CallbackController.SendMessage(peerid.ToString(), peerID);
                                 CallbackController.SendMessage(domain, peerID);
