@@ -102,7 +102,6 @@ namespace Cookie.Controllers
 
         public static bool IsSendMessage(long? peerID)
         {
-            _vkApi.Messages.Ge
             return _vkApi.Messages.IsMessagesFromGroupAllowed(197872639, (ulong)peerID);
         }
     }
