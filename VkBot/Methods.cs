@@ -582,7 +582,7 @@ namespace VkBot
                                 {
                                     try
                                     {
-                                        for (int i = index + 2; i <= userMessage.Length; i++)
+                                        for (int i = index + 2; i <= userMessage.Length-1; i++)
                                         {
                                             domain += userMessage[i];
                                         }
