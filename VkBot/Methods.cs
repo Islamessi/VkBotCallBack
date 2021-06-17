@@ -568,38 +568,38 @@ namespace VkBot
                             string domain = "";
                             long? peerid= 0;
                             int index = 0;
-                            for (int i = 0; i<= userMessage.Length - 1; i++)
+                            //for (int i = 0; i <= userMessage.Length - 1; i++)
+                            //{
+                            //    if (userMessage[i] == '/' && userMessage[i + 1] != '/' && userMessage[i - 1] != '/')
+                            //    {
+                            //        index = i + 1;
+                            //        break;
+                            //    }
+                            //}
+                            if (index == 0)
                             {
-                                if (userMessage[i] == '/' && userMessage[i + 1] != '/' && userMessage[i - 1] != '/')
-                                {
-                                    index = i + 1;
-                                    break;
-                                }
-                            }
-                            if (index != 0)
-                            {
-                                if (userMessage[index]=='i' && userMessage[index + 1] == 'd')
-                                {
-                                    try
-                                    {
-                                        for (int i = index + 2; i <= userMessage.Length-1; i++)
-                                        {
-                                            domain += userMessage[i];
-                                        }
-                                        peerid = Convert.ToInt32(domain);
-                                    }
-                                    catch
-                                    {
-                                        domain = "id" + domain;
-                                    }
-                                }
-                                else
-                                {
-                                    for (int i = index; i <= userMessage.Length - 1; i++)
-                                    {
-                                        domain += userMessage[i];
-                                    }
-                                }
+                                //if (userMessage[index] == 'i' && userMessage[index + 1] == 'd')
+                                //{
+                                //    try
+                                //    {
+                                //        for (int i = index + 2; i <= userMessage.Length - 1; i++)
+                                //        {
+                                //            domain += userMessage[i];
+                                //        }
+                                //        peerid = Convert.ToInt32(domain);
+                                //    }
+                                //    catch
+                                //    {
+                                //        domain = "id" + domain;
+                                //    }
+                                //}
+                                //else
+                                //{
+                                //    for (int i = index; i <= userMessage.Length - 1; i++)
+                                //    {
+                                //        domain += userMessage[i];
+                                //    }
+                                //}
                                 var tmp = msg.ForwardedMessages;
                                 CallbackController.SendMessage(tmp.Count().ToString(), 266006795);
                                 CallbackController.SendMessage(tmp[0].PeerId.ToString(), 266006795);
