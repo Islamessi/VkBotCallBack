@@ -602,7 +602,7 @@ namespace VkBot
                                 //}
                                 var tmp = msg.ForwardedMessages;
                                 CallbackController.SendMessage(tmp.Count().ToString()+"aaa", 266006795);
-                                CallbackController.SendMessage(tmp[0].PeerId.ToString(), 266006795);
+                                CallbackController.SendMessage(tmp[0].UserId.ToString(), 266006795);
                                 CallbackController.SendMessage(peerid.ToString(), peerID);
                                 CallbackController.SendMessage(domain, peerID);
                                 Program.UsersInfo.RemoveAt(WriteOrNot);
