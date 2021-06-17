@@ -591,7 +591,7 @@ namespace VkBot
                             else
                             {
                                 CallbackController.SendMessage("Перешлите одно сообщение того человека, с которым вы хотите сыграть в пенальти.", 
-                                    peerID, Keyboards.CanselKeyboard));
+                                    peerID, Keyboards.CanselKeyboard);
                             }
                         }
                         break;
