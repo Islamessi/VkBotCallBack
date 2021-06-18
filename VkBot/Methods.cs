@@ -102,16 +102,6 @@ namespace VkBot
                 }
                 vsp2++;
             }
-            CallbackController.SendMessage(Program.UsersInfo.Count.ToString(), 266006795);
-            CallbackController.SendMessage(WriteOrNot.ToString(), 266006795);
-            if (Program.UsersInfo.Count > 0)
-            {
-                if (Program.UsersInfo[WriteOrNot].Count > 1)
-                {
-                    CallbackController.SendMessage(Program.UsersInfo[WriteOrNot][0].ToString(), 266006795);
-                    CallbackController.SendMessage(Program.UsersInfo[WriteOrNot][1].ToString(), 266006795);
-                }
-            }
             if (WriteOrNot == -1)
             {
                 switch (userMessage)
@@ -575,7 +565,6 @@ namespace VkBot
                         }
                         else
                         {
-                            CallbackController.SendMessage(Program.UsersInfo.Count.ToString() +"ффф", 2660067950);
                             var tmp = msg.ForwardedMessages;
                             long? fromId = 0;
                             if (tmp.Count == 1)
@@ -640,7 +629,6 @@ namespace VkBot
                                 CallbackController.SendMessage("Ваш соперник отказался от игры.", Program.UsersInfo[WriteOrNot][2], Keyboards.UserKeyboard);
                             Program.UsersInfo.RemoveAt(WriteOrNot2);
                             Program.UsersInfo.RemoveAt(WriteOrNot);
-                            CallbackController.SendMessage(Program.UsersInfo.Count.ToString(), 266006795);
                         }
                         else if (userMessage == "принять")
                         {
