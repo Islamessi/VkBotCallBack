@@ -613,12 +613,17 @@ namespace VkBot
                                 }
                                 vsp2++;
                             }
-                            CallbackController.SendMessage(Program.UsersInfo[WriteOrNot][2].ToString() +" "+WriteOrNot2, 266006795);
+                            CallbackController.SendMessage(Program.UsersInfo[WriteOrNot][2].ToString() +" "+ WriteOrNot+" "+WriteOrNot2, 266006795);
                             if (Program.admins.Contains(peerID))
                                 CallbackController.SendMessage("Вы отказались от участия в игре.", peerID, Keyboards.AdminKeyboard);
                             else
                                 CallbackController.SendMessage("Вы отказались от участия в игре.", peerID, Keyboards.UserKeyboard);
-
+                            if (Program.admins.Contains(peerID))
+                                CallbackController.SendMessage("Ваш соперник отказался от игры.", Program.UsersInfo[WriteOrNot][2], Keyboards.AdminKeyboard);
+                            else
+                                CallbackController.SendMessage("Ваш соперник отказался от игры.", Program.UsersInfo[WriteOrNot][2], Keyboards.UserKeyboard);
+                            Program.UsersInfo.RemoveAt(WriteOrNot2);
+                            Program.UsersInfo.RemoveAt(WriteOrNot);
                         }
                         else if (userMessage == "принять")
                         {
