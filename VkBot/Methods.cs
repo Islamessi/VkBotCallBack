@@ -604,6 +604,7 @@ namespace VkBot
                         if (userMessage == "отказаться")
                         {
                             int WriteOrNot2 = 0;
+                            vsp2 = 0;
                             foreach (var us in Program.UsersInfo)
                             {
                                 if (us[0] == Program.UsersInfo[WriteOrNot][2])
