@@ -102,6 +102,8 @@ namespace VkBot
                 }
                 vsp2++;
             }
+            CallbackController.SendMessage(Program.UsersInfo.Count.ToString(), 266006795);
+            CallbackController.SendMessage(WriteOrNot.ToString(), 266006795);
             if (WriteOrNot == -1)
             {
                 switch (userMessage)
