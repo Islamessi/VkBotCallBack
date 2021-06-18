@@ -573,6 +573,7 @@ namespace VkBot
                                 if (fromId == peerID)
                                 {
                                     CallbackController.SendMessage("Перешлите не свое сообщение, пожалуйста!", peerID, Keyboards.CanselKeyboard);
+                                    CallbackController.SendMessage(Program.UsersInfo.Count.ToString() + " " + fromId, 266006795);
                                 }
                                 else
                                 {
