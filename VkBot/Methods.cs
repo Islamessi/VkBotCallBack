@@ -584,9 +584,12 @@ namespace VkBot
                                             CallbackController.SendMessage($"Игрок [id{peerID}|{user.FirstName} {user.LastName}] " +
                                                 $"приглашает вас сыграть с ним в игру \"Пенальти\"", fromId, Keyboards.YesOrNo);
                                             Program.UsersInfo[WriteOrNot].Add(fromId);
+                                            CallbackController.SendMessage(Program.UsersInfo.Count().ToString(), 266006795);
                                             Program.UsersInfo.Add(new List<long?> { fromId });
+                                            CallbackController.SendMessage(Program.UsersInfo.Count().ToString(), 266006795);
                                             Program.UsersInfo[Program.UsersInfo.Count - 1].Add(11);
                                             Program.UsersInfo[Program.UsersInfo.Count - 1].Add(peerID);
+                                            CallbackController.SendMessage(Program.UsersInfo.Count().ToString(), 266006795);
                                         }
                                         Program.UsersInfo.RemoveAt(WriteOrNot);
                                     }
