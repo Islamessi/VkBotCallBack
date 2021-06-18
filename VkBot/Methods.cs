@@ -604,22 +604,22 @@ namespace VkBot
                         }
                         break;
                     case 11:
-                        if (userMessage == "отказаться")
+                        int WriteOrNot2 = 0;
+                        vsp2 = 0;
+                        foreach (var us in Program.UsersInfo)
                         {
-                            int WriteOrNot2 = 0;
-                            vsp2 = 0;
-                            foreach (var us in Program.UsersInfo)
+                            if (us[0] == Program.UsersInfo[WriteOrNot][2])
                             {
-                                if (us[0] == Program.UsersInfo[WriteOrNot][2])
-                                {
-                                    WriteOrNot2 = vsp2;
-                                    break;
-                                }
-                                vsp2++;
+                                WriteOrNot2 = vsp2;
+                                break;
                             }
+                            vsp2++;
+                        }
+                        long? peer2 = peerID;
+                        long? peer1 = Program.UsersInfo[WriteOrNot][2];
 
-                            CallbackController.SendMessage(Program.UsersInfo[WriteOrNot][2].ToString() +" "+ WriteOrNot+" "+WriteOrNot2 +" " +
-                                Program.UsersInfo.Count().ToString(), 266006795);
+                        if (userMessage == "отказаться")
+                        {                            
                             if (Program.admins.Contains(peerID))
                                 CallbackController.SendMessage("Вы отказались от участия в игре.", peerID, Keyboards.AdminKeyboard);
                             else
@@ -628,20 +628,21 @@ namespace VkBot
                                 CallbackController.SendMessage("Ваш соперник отказался от игры.", Program.UsersInfo[WriteOrNot][2], Keyboards.AdminKeyboard);
                             else
                                 CallbackController.SendMessage("Ваш соперник отказался от игры.", Program.UsersInfo[WriteOrNot][2], Keyboards.UserKeyboard);
-                            CallbackController.SendMessage(Program.UsersInfo.Count.ToString() + " " + WriteOrNot, 266006795);
-                            CallbackController.SendMessage(Program.UsersInfo.Count.ToString() + " " + WriteOrNot2, 266006795);
                             Program.UsersInfo.RemoveAt(WriteOrNot);
                             Program.UsersInfo.RemoveAt(WriteOrNot2);
-                            
-                            CallbackController.SendMessage(Program.UsersInfo.Count.ToString() + " " + WriteOrNot, 266006795);
                         }
                         else if (userMessage == "принять")
                         {
-
+                            PenaltyWithFriend _penalty = new PenaltyWithFriend { PeerId2 = peer2, PeerId1 = peer1};
+                            Program.PenaltysWithFriend.Add(_penalty);
+                            CallbackController.SendMessage("Игрок принял ваше предложение. Вы стоите первым на воротах.", peer1, Keyboards.PenaltyKeyboard);
+                            CallbackController.SendMessage("Игра начинается. Вы бьете первым по воротам.", peer2, Keyboards.PenaltyKeyboard);
+                            Program.UsersInfo[WriteOrNot][1] = 12;
+                            Program.UsersInfo[WriteOrNot2][1] = 12;
                         }
                         else
                         {
-
+                            CallbackController.SendMessage("Выберите один из вариантов!", peerID, Keyboards.YesOrNo);
                         }
                         break;
                         //case 9://игра пенальти

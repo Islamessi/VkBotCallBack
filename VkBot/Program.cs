@@ -28,7 +28,8 @@ namespace VkBot
 
         //public static List<Penalty> PenaltyGames = new List<Penalty>();
         public static Penaltys Penaltys = new Penaltys();
-        
+        public static PenaltysWithFriend PenaltysWithFriend = new PenaltysWithFriend();
+
 
         public static void Main(string[] args)
         {
