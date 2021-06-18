@@ -613,7 +613,8 @@ namespace VkBot
                                 }
                                 vsp2++;
                             }
-                            CallbackController.SendMessage(Program.UsersInfo[WriteOrNot][2].ToString() +" "+ WriteOrNot+" "+WriteOrNot2, 266006795);
+                            CallbackController.SendMessage(Program.UsersInfo[WriteOrNot][2].ToString() +" "+ WriteOrNot+" "+WriteOrNot2 +" " +
+                                Program.UsersInfo.Count().ToString(), 266006795);
                             if (Program.admins.Contains(peerID))
                                 CallbackController.SendMessage("Вы отказались от участия в игре.", peerID, Keyboards.AdminKeyboard);
                             else
