@@ -580,7 +580,7 @@ namespace VkBot
                                     CallbackController.SendMessage(CallbackController.IsSendMessage(fromId).ToString(), 266006795);
                                     if (CallbackController.IsSendMessage(fromId))
                                     {
-                                        CallbackController.SendMessage(Program.UsersInfo.Count.ToString(), 2660067950);
+                                        CallbackController.SendMessage(Program.UsersInfo.Count.ToString(), 266006795);
                                         using (var db = new MyContext())
                                         {
                                             var user = db.Users.Where(p => p.VkId == peerID).FirstOrDefault();
