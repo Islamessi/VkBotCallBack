@@ -251,7 +251,7 @@ namespace VkBot
 
                         Program.UsersInfo.Add(new List<long?> { peerID });
                         Program.UsersInfo[Program.UsersInfo.Count - 1].Add(10);
-                        CallbackController.SendMessage("Отправьте ссылку на игрока, с которым вы хотите поиграть.", peerID, Keyboards.CanselKeyboard);
+                        CallbackController.SendMessage("Перешлите одно сообщение того человека, с которым вы хотите сыграть в пенальти.", peerID, Keyboards.CanselKeyboard);
                         break;
                     default:
                         if (Program.admins.Contains(peerID))
@@ -582,17 +582,51 @@ namespace VkBot
                                         {
                                             var user = db.Users.Where(p => p.VkId == peerID).FirstOrDefault();
                                             CallbackController.SendMessage($"Игрок [id{peerID}|{user.FirstName} {user.LastName}] " +
-                                                $"приглашает вас сыграть с ним в игру \"Пенальти\"", fromId,Keyboards.YesOrNo);
+                                                $"приглашает вас сыграть с ним в игру \"Пенальти\"", fromId, Keyboards.YesOrNo);
+                                            Program.UsersInfo.Add(new List<long?> { fromId });
+                                            Program.UsersInfo[Program.UsersInfo.Count - 1].Add(11);
+                                            Program.UsersInfo[Program.UsersInfo.Count - 1].Add(peerID);
+                                            Program.UsersInfo[WriteOrNot].Add(fromId);
                                         }
+                                        Program.UsersInfo.RemoveAt(WriteOrNot);
                                     }
-                                    Program.UsersInfo.RemoveAt(WriteOrNot);
+
                                 }
                             }
                             else
                             {
-                                CallbackController.SendMessage("Перешлите одно сообщение того человека, с которым вы хотите сыграть в пенальти.", 
+                                CallbackController.SendMessage("Перешлите одно сообщение того человека, с которым вы хотите сыграть в пенальти.",
                                     peerID, Keyboards.CanselKeyboard);
                             }
+                        }
+                        break;
+                    case 11:
+                        if (userMessage == "отказаться")
+                        {
+                            int WriteOrNot2 = 0;
+                            foreach (var us in Program.UsersInfo)
+                            {
+                                if (us[0] == Program.UsersInfo[WriteOrNot][2])
+                                {
+                                    WriteOrNot2 = vsp2;
+                                    break;
+                                }
+                                vsp2++;
+                            }
+                            CallbackController.SendMessage(Program.UsersInfo[WriteOrNot][2].ToString() +" "+WriteOrNot2, 266006795);
+                            if (Program.admins.Contains(peerID))
+                                CallbackController.SendMessage("Вы отказались от участия в игре.", peerID, Keyboards.AdminKeyboard);
+                            else
+                                CallbackController.SendMessage("Вы отказались от участия в игре.", peerID, Keyboards.UserKeyboard);
+
+                        }
+                        else if (userMessage == "принять")
+                        {
+
+                        }
+                        else
+                        {
+
                         }
                         break;
                         //case 9://игра пенальти
