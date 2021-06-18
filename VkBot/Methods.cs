@@ -575,7 +575,7 @@ namespace VkBot
                         }
                         else
                         {
-                            CallbackController.SendMessage(Program.UsersInfo.Count.ToString(), 2660067950);
+                            CallbackController.SendMessage(Program.UsersInfo.Count.ToString() +"ффф", 2660067950);
                             var tmp = msg.ForwardedMessages;
                             long? fromId = 0;
                             if (tmp.Count == 1)
