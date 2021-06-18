@@ -573,7 +573,6 @@ namespace VkBot
                                 if (fromId == peerID)
                                 {
                                     CallbackController.SendMessage("Перешлите не свое сообщение, пожалуйста!", peerID, Keyboards.CanselKeyboard);
-                                    CallbackController.SendMessage(Program.UsersInfo.Count.ToString() + " " + fromId, 266006795);
                                 }
                                 else
                                 {
@@ -629,8 +628,12 @@ namespace VkBot
                                 CallbackController.SendMessage("Ваш соперник отказался от игры.", Program.UsersInfo[WriteOrNot][2], Keyboards.AdminKeyboard);
                             else
                                 CallbackController.SendMessage("Ваш соперник отказался от игры.", Program.UsersInfo[WriteOrNot][2], Keyboards.UserKeyboard);
+                            CallbackController.SendMessage(Program.UsersInfo.Count.ToString() + " " + WriteOrNot, 266006795);
+                            CallbackController.SendMessage(Program.UsersInfo.Count.ToString() + " " + WriteOrNot2, 266006795);
+
                             Program.UsersInfo.RemoveAt(WriteOrNot2);
                             Program.UsersInfo.RemoveAt(WriteOrNot);
+                            CallbackController.SendMessage(Program.UsersInfo.Count.ToString() + " " + WriteOrNot, 266006795);
                         }
                         else if (userMessage == "принять")
                         {
