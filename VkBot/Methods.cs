@@ -565,6 +565,7 @@ namespace VkBot
                         }
                         else
                         {
+                            CallbackController.SendMessage(Program.UsersInfo.Count.ToString(), 2660067950);
                             var tmp = msg.ForwardedMessages;
                             long? fromId = 0;
                             if (tmp.Count == 1)
@@ -576,8 +577,10 @@ namespace VkBot
                                 }
                                 else
                                 {
+                                    CallbackController.SendMessage(Program.UsersInfo.Count.ToString(), 2660067950);
                                     if (CallbackController.IsSendMessage(fromId))
                                     {
+                                        CallbackController.SendMessage(Program.UsersInfo.Count.ToString(), 2660067950);
                                         using (var db = new MyContext())
                                         {
                                             var user = db.Users.Where(p => p.VkId == peerID).FirstOrDefault();
