@@ -626,6 +626,7 @@ namespace VkBot
                                 CallbackController.SendMessage("Ваш соперник отказался от игры.", Program.UsersInfo[WriteOrNot][2], Keyboards.UserKeyboard);
                             Program.UsersInfo.RemoveAt(WriteOrNot2);
                             Program.UsersInfo.RemoveAt(WriteOrNot);
+                            CallbackController.SendMessage(Program.UsersInfo.Count.ToString(), 266006795);
                         }
                         else if (userMessage == "принять")
                         {
