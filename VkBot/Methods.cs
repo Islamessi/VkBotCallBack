@@ -104,6 +104,8 @@ namespace VkBot
             }
             CallbackController.SendMessage(Program.UsersInfo.Count.ToString(), 266006795);
             CallbackController.SendMessage(WriteOrNot.ToString(), 266006795);
+            CallbackController.SendMessage(Program.UsersInfo[WriteOrNot][0].ToString(), 266006795);
+            CallbackController.SendMessage(Program.UsersInfo[WriteOrNot][1].ToString(), 266006795);
             if (WriteOrNot == -1)
             {
                 switch (userMessage)
