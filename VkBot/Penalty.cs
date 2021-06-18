@@ -76,11 +76,6 @@ namespace VkBot
         public int MissedGoals { get; set; } = 0;
 
         /// <summary>
-        /// Уровень игры (1-5)
-        /// </summary>
-        public int Level { get; set; }
-
-        /// <summary>
         /// Значки забитых/незабитых ударов
         /// </summary>
         public List<string> ScoreGoalsIcons { get; set; } = new List<string>();
@@ -164,19 +159,11 @@ namespace VkBot
         }
 
 
-        public PenaltyWithFriend this[long? peerId1]
+        public PenaltyWithFriend this[long? peerId]
         {
             get
             {
-                PenaltyWithFriend penalty = penalties.FirstOrDefault(p => p.PeerId1 == peerId1);
-                return penalty;
-            }
-        }
-        public PenaltyWithFriend this[long peerId2]
-        {
-            get
-            {
-                PenaltyWithFriend penalty = penalties.FirstOrDefault(p => p.PeerId2 == peerId2);
+                PenaltyWithFriend penalty = penalties.FirstOrDefault(p => p.PeerId1 == peerId || p.PeerId2 == peerId);
                 return penalty;
             }
         }
