@@ -606,7 +606,7 @@ namespace VkBot
                             int WriteOrNot2 = 0;
                             foreach (var us in Program.UsersInfo)
                             {
-                                if (us[0] == Program.UsersInfo[WriteOrNot2][2])
+                                if (us[0] == Program.UsersInfo[WriteOrNot][2])
                                 {
                                     WriteOrNot2 = vsp2;
                                     break;
