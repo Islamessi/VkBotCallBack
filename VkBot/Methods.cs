@@ -260,6 +260,7 @@ namespace VkBot
                             "все голы, которые смогли забить) Удачи!)\n\n Выберите сложность игры. Если вы победите, то кол-во забитых " +
                             "голов умножится на этот коэффициент!", peerID, Keyboards.LevelKeyboard);
                         break;
+
                     case "пинг":
                         CallbackController.SendMessage("Понг", peerID);
                         break;
