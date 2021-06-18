@@ -613,6 +613,7 @@ namespace VkBot
                                 }
                                 vsp2++;
                             }
+
                             CallbackController.SendMessage(Program.UsersInfo[WriteOrNot][2].ToString() +" "+ WriteOrNot+" "+WriteOrNot2 +" " +
                                 Program.UsersInfo.Count().ToString(), 266006795);
                             if (Program.admins.Contains(peerID))
