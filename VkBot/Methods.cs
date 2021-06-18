@@ -583,10 +583,10 @@ namespace VkBot
                                             var user = db.Users.Where(p => p.VkId == peerID).FirstOrDefault();
                                             CallbackController.SendMessage($"Игрок [id{peerID}|{user.FirstName} {user.LastName}] " +
                                                 $"приглашает вас сыграть с ним в игру \"Пенальти\"", fromId, Keyboards.YesOrNo);
+                                            Program.UsersInfo[WriteOrNot].Add(fromId);
                                             Program.UsersInfo.Add(new List<long?> { fromId });
                                             Program.UsersInfo[Program.UsersInfo.Count - 1].Add(11);
                                             Program.UsersInfo[Program.UsersInfo.Count - 1].Add(peerID);
-                                            Program.UsersInfo[WriteOrNot].Add(fromId);
                                         }
                                         Program.UsersInfo.RemoveAt(WriteOrNot);
                                     }
