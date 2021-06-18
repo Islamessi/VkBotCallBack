@@ -606,7 +606,7 @@ namespace VkBot
                             int WriteOrNot2 = 0;
                             foreach (var us in Program.UsersInfo)
                             {
-                                if (us[0] == Program.UsersInfo[WriteOrNot][2])
+                                if (us[0] == Program.UsersInfo[WriteOrNot2][2])
                                 {
                                     WriteOrNot2 = vsp2;
                                     break;
@@ -618,7 +618,7 @@ namespace VkBot
                                 CallbackController.SendMessage("Вы отказались от участия в игре.", peerID, Keyboards.AdminKeyboard);
                             else
                                 CallbackController.SendMessage("Вы отказались от участия в игре.", peerID, Keyboards.UserKeyboard);
-                            if (Program.admins.Contains(peerID))
+                            if (Program.admins.Contains(Program.UsersInfo[WriteOrNot][2]))
                                 CallbackController.SendMessage("Ваш соперник отказался от игры.", Program.UsersInfo[WriteOrNot][2], Keyboards.AdminKeyboard);
                             else
                                 CallbackController.SendMessage("Ваш соперник отказался от игры.", Program.UsersInfo[WriteOrNot][2], Keyboards.UserKeyboard);
