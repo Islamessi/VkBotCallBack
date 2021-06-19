@@ -54,6 +54,7 @@ namespace Cookie.Controllers
                         {
                             Spredsheet.ReadEntriesMas();
                             Spredsheet.ReadEntriesMasBettings();
+                            Spredsheet.ReadEntriesMasGames();
                         }
                     }
                     
