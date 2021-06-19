@@ -51,7 +51,10 @@ namespace Cookie.Controllers
                     {
                         var numuser = db.Users.Count();
                         if (numuser == 0)
+                        {
                             Spredsheet.ReadEntriesMas();
+                            Spredsheet.ReadEntriesMasBettings();
+                        }
                     }
                     
                     var msg = Message.FromJson(new VkResponse(updates.Object));

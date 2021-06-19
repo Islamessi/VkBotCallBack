@@ -524,6 +524,7 @@ namespace VkBot
                                             GameId = (int)Program.UsersInfo[WriteOrNot][2],
                                         };
                                         db.Bettings.Add(betting);
+                                        Spredsheet.CreateEntryBettings(db, betting);
                                         db.SaveChanges();
                                         Program.UsersInfo.RemoveAt(WriteOrNot);
                                         Program.UsersInfo.Add(new List<long?> { peerID });
