@@ -345,6 +345,7 @@ namespace VkBot
                                     db.Games.Add(game);
                                     Spredsheet.CreateEntryGames(db, game);
                                     db.SaveChanges();
+
                                 }
                                 Program.UsersInfo.RemoveAt(WriteOrNot);
                                 CallbackController.SendMessage("Этот матч успешно добавлен ✔", peerID, Keyboards.AdminKeyboard);
