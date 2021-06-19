@@ -181,7 +181,7 @@ namespace VkBot
                 ApplicationName = ApplicationName,
             });
             string strochka;
-            strochka = (user.Bettings.Count()).ToString();
+            strochka = (user.Bettings.Count()+1).ToString();
             var range = $"{sheet}!";
             range += (char)(65) + strochka + ":" + (char)(65 + 5) + strochka;
             var request = service.Spreadsheets.Values.Get(SpreedsheetId, range);
