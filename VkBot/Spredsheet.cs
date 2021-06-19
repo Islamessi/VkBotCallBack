@@ -97,5 +97,35 @@ namespace VkBot
             updateRequest.ValueInputOption = SpreadsheetsResource.ValuesResource.UpdateRequest.ValueInputOptionEnum.USERENTERED;
             var updateResponse = updateRequest.Execute();
         }
+
+        public static void CreateEntry(MyContext user, User user1)
+        {
+            GoogleCredential credential;
+            using (var stream = new FileStream("client_secret.json", FileMode.Open, FileAccess.Read))
+            {
+                credential = GoogleCredential.FromStream(stream).CreateScoped(Scopes);
+            }
+            service = new SheetsService(new Google.Apis.Services.BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential,
+                ApplicationName = ApplicationName,
+            });
+            string SpreedsheetId = "1nV16Eu3xerecw1_Gm3tXyTfQKe_oCOklnTVsx9zO_AA";
+            string sheet = "LiveBall(Top)";
+            string strochka;
+            strochka = (user.Users.Count()+1).ToString();
+            var range = $"{sheet}!";
+            range += (char)(65) + strochka + ":" + (char)(65 + 4) + strochka;
+            var request = service.Spreadsheets.Values.Get(SpreedsheetId, range);
+            var responce = request.Execute();
+            var values = responce.Values;
+            var valueRange = new ValueRange();
+            var objectList = new List<object>() { user1.VkId, user1.Score, user1.FirstName, user1.LastName };
+
+            valueRange.Values = new List<IList<object>> { objectList };
+            var updateRequest = service.Spreadsheets.Values.Update(valueRange, SpreedsheetId, range);
+            updateRequest.ValueInputOption = SpreadsheetsResource.ValuesResource.UpdateRequest.ValueInputOptionEnum.USERENTERED;
+            var updateResponse = updateRequest.Execute();
+        }
     }
 }

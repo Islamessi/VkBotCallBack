@@ -1151,21 +1151,25 @@ namespace VkBot
         public static void PenaltyWithFriendGameGoolKiper(int WriteOrNot, string userMessage, long? peerID)
         {
             int selectednum = Convert.ToInt32(userMessage);
-            CallbackController.SendMessage(Program.PenaltysWithFriend.Count.ToString() + "a", peerID);
 
             int Choosing1 = Program.PenaltysWithFriend[peerID].ChoosingFirstPlayer;
             int Choosing2 = Program.PenaltysWithFriend[peerID].ChoosingSecondPlayer;
             long? peer1 = Program.PenaltysWithFriend[peerID].PeerId1;
             long? peer2 = Program.PenaltysWithFriend[peerID].PeerId2;
-            if (Choosing1 == 0 && peerID == peer1) //если первый игрок не выбрал куда бить, и второй тоже
+            if (Choosing1 == 0 && peerID == peer2) //если первый игрок не выбрал куда бить, и второй тоже
             {
-                CallbackController.SendMessage(Program.PenaltysWithFriend.Count.ToString() + "a", peerID);
                 Program.PenaltysWithFriend[peerID].ChoosingSecondPlayer = selectednum;
                 CallbackController.SendMessage("Вы сделали выбор, ожидайте хода соперника.", peerID);
-                CallbackController.SendMessage(Program.PenaltysWithFriend[peerID].ChoosingSecondPlayer.ToString() + " " +
-                    Program.PenaltysWithFriend[peerID].ChoosingFirstPlayer.ToString(), 266006795);
             }
-            CallbackController.SendMessage("a", peerID);
+            else if (Choosing2 == 0 && peerID == peer1)//если 2 игрок не выбрал куда бить, и 1 тоже
+            {
+                Program.PenaltysWithFriend[peerID].ChoosingFirstPlayer = selectednum;
+                CallbackController.SendMessage("Вы сделали выбор, ожидайте хода соперника.", peerID);
+            }
+            //else if()
+            //{
+
+            //}
             //if (Program.PenaltysWithFriend[peerID].ChoosingFirstPlayer != 0 && Program.PenaltysWithFriend[peerID].PeerId2 == peerID)
             //{
             //    if (selectednum != Program.PenaltysWithFriend[peerID].ChoosingFirstPlayer)
