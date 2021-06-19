@@ -1157,7 +1157,7 @@ namespace VkBot
             int Choosing2 = Program.PenaltysWithFriend[peerID].ChoosingSecondPlayer;
             long? peer1 = Program.PenaltysWithFriend[peerID].PeerId1;
             long? peer2 = Program.PenaltysWithFriend[peerID].PeerId2;
-            if (Choosing1 == 0 && peerID == peer2) //если первый игрок не выбрал куда бить, и второй тоже
+            if (Choosing1 == 0 && peerID == peer1) //если первый игрок не выбрал куда бить, и второй тоже
             {
                 CallbackController.SendMessage(Program.PenaltysWithFriend.Count.ToString() + "a", peerID);
                 Program.PenaltysWithFriend[peerID].ChoosingSecondPlayer = selectednum;
