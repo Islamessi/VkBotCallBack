@@ -84,14 +84,25 @@ namespace VkBot
                             {
                                 var bbb = Convert.ToInt32(userMessage);
                                 if (Program.PenaltysWithFriend[peerID].PeerId1 == peerID && Program.PenaltysWithFriend[peerID].ImpactNumber % 2 == 0)
+                                {
+                                    CallbackController.SendMessage("1", 266006795);
                                     PenaltyGameGoolKiper(WriteOrNot, userMessage, peerID);
+                                }
                                 else if (Program.PenaltysWithFriend[peerID].PeerId1 == peerID && Program.PenaltysWithFriend[peerID].ImpactNumber % 2 == 1)
+                                {
+                                    CallbackController.SendMessage("2", 266006795);
                                     PenaltyGameForward(WriteOrNot, userMessage, peerID);
-
+                                }
                                 else if (Program.PenaltysWithFriend[peerID].PeerId2 == peerID && Program.PenaltysWithFriend[peerID].ImpactNumber % 2 == 0)
+                                {
+                                    CallbackController.SendMessage("3", 266006795);
                                     PenaltyGameForward(WriteOrNot, userMessage, peerID);
+                                }
                                 else if (Program.PenaltysWithFriend[peerID].PeerId2 == peerID && Program.PenaltysWithFriend[peerID].ImpactNumber % 2 == 1)
+                                {
+                                    CallbackController.SendMessage("4", 266006795);
                                     PenaltyGameGoolKiper(WriteOrNot, userMessage, peerID);
+                                }
                             }
                             catch
                             {
@@ -267,12 +278,11 @@ namespace VkBot
                     case "понг":
                         CallbackController.SendMessage("Пошел нахуй...", peerID);
                         break;
-                    //case "пенальти с другом":
-
-                    //    Program.UsersInfo.Add(new List<long?> { peerID });
-                    //    Program.UsersInfo[Program.UsersInfo.Count - 1].Add(10);
-                    //    CallbackController.SendMessage("Перешлите одно сообщение того человека, с которым вы хотите сыграть в пенальти.", peerID, Keyboards.CanselKeyboard);
-                    //    break;
+                    case "пенальти с другом":
+                        Program.UsersInfo.Add(new List<long?> { peerID });
+                        Program.UsersInfo[Program.UsersInfo.Count - 1].Add(10);
+                        CallbackController.SendMessage("Перешлите одно сообщение того человека, с которым вы хотите сыграть в пенальти.", peerID, Keyboards.CanselKeyboard);
+                        break;
                     default:
                         if (Program.admins.Contains(peerID))
                             CallbackController.SendMessage("Меню:", peerID, Keyboards.AdminKeyboard);
