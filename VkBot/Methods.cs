@@ -180,6 +180,7 @@ namespace VkBot
                                 User user1 = new User { VkId = peerID, FirstName = users.FirstName, LastName = users.LastName };
                                 db.Users.Add(user1);
                                 db.SaveChanges();
+                                Spredsheet.CreateEntry(db, user1);
                             }
                         }
                         Methods.AllGames(Program.admins, peerID, "", true, DateTime.Now.Date);
@@ -256,6 +257,7 @@ namespace VkBot
                                 var users = CallbackController._vkApi.Users.Get(new long[] { (long)peerID }).FirstOrDefault();
                                 User user1 = new User { VkId = peerID, FirstName = users.FirstName, LastName = users.LastName };
                                 db.Users.Add(user1);
+                                Spredsheet.CreateEntry(db, user1);
                                 db.SaveChanges();
                             }
                         }
