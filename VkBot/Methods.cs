@@ -1150,6 +1150,7 @@ namespace VkBot
         }
         public static void PenaltyWithFriendGameGoolKiper(int WriteOrNot, string userMessage, long? peerID)
         {
+            CallbackController.SendMessage(Program.PenaltysWithFriend.Count.ToString(), peerID);
             int selectednum = Convert.ToInt32(userMessage);
             int Choosing1 = Program.PenaltysWithFriend[peerID].ChoosingFirstPlayer;
             int Choosing2 = Program.PenaltysWithFriend[peerID].ChoosingSecondPlayer;
