@@ -115,7 +115,7 @@ namespace VkBot
             string strochka;
             strochka = (user.Users.Count()+1).ToString();
             var range = $"{sheet}!";
-            range += (char)(65) + strochka + ":" + (char)(65 + 4) + strochka;
+            range += (char)(65) + strochka + ":" + (char)(65 + 5 ) + strochka;
             var request = service.Spreadsheets.Values.Get(SpreedsheetId, range);
             var responce = request.Execute();
             var values = responce.Values;
