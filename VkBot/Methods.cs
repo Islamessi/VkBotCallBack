@@ -86,22 +86,22 @@ namespace VkBot
                                 if (Program.PenaltysWithFriend[peerID].PeerId1 == peerID && Program.PenaltysWithFriend[peerID].ImpactNumber % 2 == 0)
                                 {
                                     CallbackController.SendMessage("1", 266006795);
-                                    PenaltyGameGoolKiper(WriteOrNot, userMessage, peerID);
+                                    PenaltyWithFriendGameGoolKiper(WriteOrNot, userMessage, peerID);
                                 }
                                 else if (Program.PenaltysWithFriend[peerID].PeerId1 == peerID && Program.PenaltysWithFriend[peerID].ImpactNumber % 2 == 1)
                                 {
                                     CallbackController.SendMessage("2", 266006795);
-                                    PenaltyGameForward(WriteOrNot, userMessage, peerID);
+                                    PenaltyWithFriendGameForward(WriteOrNot, userMessage, peerID);
                                 }
                                 else if (Program.PenaltysWithFriend[peerID].PeerId2 == peerID && Program.PenaltysWithFriend[peerID].ImpactNumber % 2 == 0)
                                 {
                                     CallbackController.SendMessage("3", 266006795);
-                                    PenaltyGameForward(WriteOrNot, userMessage, peerID);
+                                    PenaltyWithFriendGameForward(WriteOrNot, userMessage, peerID);
                                 }
                                 else if (Program.PenaltysWithFriend[peerID].PeerId2 == peerID && Program.PenaltysWithFriend[peerID].ImpactNumber % 2 == 1)
                                 {
                                     CallbackController.SendMessage("4", 266006795);
-                                    PenaltyGameGoolKiper(WriteOrNot, userMessage, peerID);
+                                    PenaltyWithFriendGameGoolKiper(WriteOrNot, userMessage, peerID);
                                 }
                             }
                             catch
@@ -1150,8 +1150,9 @@ namespace VkBot
         }
         public static void PenaltyWithFriendGameGoolKiper(int WriteOrNot, string userMessage, long? peerID)
         {
-            CallbackController.SendMessage(Program.PenaltysWithFriend.Count.ToString(), peerID);
             int selectednum = Convert.ToInt32(userMessage);
+            CallbackController.SendMessage(Program.PenaltysWithFriend.Count.ToString(), peerID);
+
             int Choosing1 = Program.PenaltysWithFriend[peerID].ChoosingFirstPlayer;
             int Choosing2 = Program.PenaltysWithFriend[peerID].ChoosingSecondPlayer;
             long? peer1 = Program.PenaltysWithFriend[peerID].PeerId1;
