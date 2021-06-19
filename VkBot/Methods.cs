@@ -947,271 +947,282 @@ namespace VkBot
         public static void PenaltyWithFriendGameForward(int WriteOrNot, string userMessage, long? peerID)
         {
             int selectednum = Convert.ToInt32(userMessage);
-            if (Program.PenaltysWithFriend[peerID].ChoosingFirstPlayer != 0 && Program.PenaltysWithFriend[peerID].PeerId2 == peerID)
-            {
-                Program.PenaltysWithFriend[peerID].ImpactNumber += 1;
-                if (selectednum != Program.PenaltysWithFriend[peerID].ChoosingFirstPlayer)
-                {
-                    Program.PenaltysWithFriend[peerID].ScoredGoals += 1;
-                    Program.PenaltysWithFriend[peerID].ScoreGoalsIcons.Add("🟢");
-                    CallbackController.SendMessage("Вы забили гоооол ⚽. Ловите следующий удар.\n\n" +
-                        $"Вы:  {ScoreGameString(Program.PenaltysWithFriend[peerID].ScoreGoalsIcons)}\n" +
-                        $"Соперник: {ScoreGameString(Program.PenaltysWithFriend[peerID].MissedGoalsIcons)}\n" +
-                        $"Счет: {Program.PenaltysWithFriend[peerID].ScoredGoals}-{Program.PenaltysWithFriend[peerID].MissedGoals}", peerID);
-                }
-                else
-                {
-                    Program.PenaltysWithFriend[peerID].ScoreGoalsIcons.Add("🔴");
-                    CallbackController.SendMessage("Вратарь делает сейв 🧤. Ловите следующий удар.\n\n" +
-                        $"Вы:  {ScoreGameString(Program.PenaltysWithFriend[peerID].ScoreGoalsIcons)}\n" +
-                        $"Соперник: {ScoreGameString(Program.PenaltysWithFriend[peerID].MissedGoalsIcons)}\n" +
-                        $"Счет: {Program.PenaltysWithFriend[peerID].ScoredGoals}-{Program.PenaltysWithFriend[peerID].MissedGoals}", peerID);
-                }
-                if (Program.PenaltysWithFriend[peerID].ImpactNumber >= 10 && 
-                    Program.PenaltysWithFriend[peerID].ScoredGoals > Program.PenaltysWithFriend[peerID].MissedGoals)
-                {
-                    using (var db = new MyContext())
-                    {
-                        var user = db.Users.Where(p => p.VkId == peerID).FirstOrDefault();
-                        user.Score += Program.PenaltysWithFriend[peerID].ScoredGoals * 10;
-                        Spredsheet.UpdateEntry(user);
-                        db.SaveChanges();
-                    }
-                    if (Program.admins.Contains(peerID))
-                        CallbackController.SendMessage($"Поздравляю! Вы победили! Заработали голов: " +
-                            $"{Program.PenaltysWithFriend[peerID].ScoredGoals}*{10} = " +
-                            $"{Program.PenaltysWithFriend[peerID].ScoredGoals * 10}",
-                            peerID, Keyboards.AdminKeyboard);
-                    else
-                        CallbackController.SendMessage($"Поздравляю! Вы победили! Заработали голов: " +
-                            $"{Program.PenaltysWithFriend[peerID].ScoredGoals}*{10} = " +
-                            $"{Program.PenaltysWithFriend[peerID].ScoredGoals * 10}",
-                            peerID, Keyboards.UserKeyboard);
+            //if (Program.PenaltysWithFriend[peerID].ChoosingFirstPlayer != 0 && Program.PenaltysWithFriend[peerID].PeerId2 == peerID)
+            //{
+            //    Program.PenaltysWithFriend[peerID].ImpactNumber += 1;
+            //    if (selectednum != Program.PenaltysWithFriend[peerID].ChoosingFirstPlayer)
+            //    {
+            //        Program.PenaltysWithFriend[peerID].ScoredGoals += 1;
+            //        Program.PenaltysWithFriend[peerID].ScoreGoalsIcons.Add("🟢");
+            //        CallbackController.SendMessage("Вы забили гоооол ⚽. Ловите следующий удар.\n\n" +
+            //            $"Вы:  {ScoreGameString(Program.PenaltysWithFriend[peerID].ScoreGoalsIcons)}\n" +
+            //            $"Соперник: {ScoreGameString(Program.PenaltysWithFriend[peerID].MissedGoalsIcons)}\n" +
+            //            $"Счет: {Program.PenaltysWithFriend[peerID].ScoredGoals}-{Program.PenaltysWithFriend[peerID].MissedGoals}", peerID);
+            //    }
+            //    else
+            //    {
+            //        Program.PenaltysWithFriend[peerID].ScoreGoalsIcons.Add("🔴");
+            //        CallbackController.SendMessage("Вратарь делает сейв 🧤. Ловите следующий удар.\n\n" +
+            //            $"Вы:  {ScoreGameString(Program.PenaltysWithFriend[peerID].ScoreGoalsIcons)}\n" +
+            //            $"Соперник: {ScoreGameString(Program.PenaltysWithFriend[peerID].MissedGoalsIcons)}\n" +
+            //            $"Счет: {Program.PenaltysWithFriend[peerID].ScoredGoals}-{Program.PenaltysWithFriend[peerID].MissedGoals}", peerID);
+            //    }
+            //    if (Program.PenaltysWithFriend[peerID].ImpactNumber >= 10 && 
+            //        Program.PenaltysWithFriend[peerID].ScoredGoals > Program.PenaltysWithFriend[peerID].MissedGoals)
+            //    {
+            //        using (var db = new MyContext())
+            //        {
+            //            var user = db.Users.Where(p => p.VkId == peerID).FirstOrDefault();
+            //            user.Score += Program.PenaltysWithFriend[peerID].ScoredGoals * 10;
+            //            Spredsheet.UpdateEntry(user);
+            //            db.SaveChanges();
+            //        }
+            //        if (Program.admins.Contains(peerID))
+            //            CallbackController.SendMessage($"Поздравляю! Вы победили! Заработали голов: " +
+            //                $"{Program.PenaltysWithFriend[peerID].ScoredGoals}*{10} = " +
+            //                $"{Program.PenaltysWithFriend[peerID].ScoredGoals * 10}",
+            //                peerID, Keyboards.AdminKeyboard);
+            //        else
+            //            CallbackController.SendMessage($"Поздравляю! Вы победили! Заработали голов: " +
+            //                $"{Program.PenaltysWithFriend[peerID].ScoredGoals}*{10} = " +
+            //                $"{Program.PenaltysWithFriend[peerID].ScoredGoals * 10}",
+            //                peerID, Keyboards.UserKeyboard);
 
-                    Program.PenaltysWithFriend.Remove(Program.PenaltysWithFriend[peerID]);
-                    int WriteOrNot2 = 0;
-                    int vsp2 = 0;
-                    foreach (var us in Program.UsersInfo)
-                    {
-                        if (us[0] == Program.UsersInfo[WriteOrNot][2])
-                        {
-                            WriteOrNot2 = vsp2;
-                            break;
-                        }
-                        vsp2++;
-                    }
-                    if (WriteOrNot > WriteOrNot2)
-                    {
-                        Program.UsersInfo.RemoveAt(WriteOrNot);
-                        Program.UsersInfo.RemoveAt(WriteOrNot2);
-                    }
-                    else
-                    {
-                        Program.UsersInfo.RemoveAt(WriteOrNot2);
-                        Program.UsersInfo.RemoveAt(WriteOrNot);
-                    }
-                }
-                else if (Program.PenaltysWithFriend[peerID].ImpactNumber >= 10 && 
-                    Program.PenaltysWithFriend[peerID].ScoredGoals == Program.PenaltysWithFriend[peerID].MissedGoals)
-                {
-                    CallbackController.SendMessage("Пока счет равный. Еще по одному удару! Ловите.", peerID);
-                }
-                else if (Program.PenaltysWithFriend[peerID].ImpactNumber >= 10 
-                    && Program.PenaltysWithFriend[peerID].ScoredGoals < Program.PenaltysWithFriend[peerID].MissedGoals)
-                {
-                    if (Program.admins.Contains(peerID))
-                        CallbackController.SendMessage("Вы проиграли! Повезет в другой раз.", peerID, Keyboards.AdminKeyboard);
-                    else
-                        CallbackController.SendMessage("Вы проиграли! Повезет в другой раз.", peerID, Keyboards.UserKeyboard);
-                    Program.PenaltysWithFriend.Remove(Program.PenaltysWithFriend[peerID]);
-                    int WriteOrNot2 = 0;
-                    int vsp2 = 0;
-                    foreach (var us in Program.UsersInfo)
-                    {
-                        if (us[0] == Program.UsersInfo[WriteOrNot][2])
-                        {
-                            WriteOrNot2 = vsp2;
-                            break;
-                        }
-                        vsp2++;
-                    }
-                    if (WriteOrNot > WriteOrNot2)
-                    {
-                        Program.UsersInfo.RemoveAt(WriteOrNot);
-                        Program.UsersInfo.RemoveAt(WriteOrNot2);
-                    }
-                    else
-                    {
-                        Program.UsersInfo.RemoveAt(WriteOrNot2);
-                        Program.UsersInfo.RemoveAt(WriteOrNot);
-                    }
-                }
-            }
-            else if (Program.PenaltysWithFriend[peerID].ChoosingSecondPlayer != 0 && Program.PenaltysWithFriend[peerID].PeerId1 == peerID)
-            {
-                Program.PenaltysWithFriend[peerID].ImpactNumber += 1;
-                if (selectednum != Program.PenaltysWithFriend[peerID].ChoosingSecondPlayer)
-                {
-                    Program.PenaltysWithFriend[peerID].ScoredGoals += 1;
-                    Program.PenaltysWithFriend[peerID].ScoreGoalsIcons.Add("🟢");
-                    CallbackController.SendMessage("Вы забили гоооол ⚽. Ловите следующий удар.\n\n" +
-                        $"Вы:  {ScoreGameString(Program.PenaltysWithFriend[peerID].ScoreGoalsIcons)}\n" +
-                        $"Соперник: {ScoreGameString(Program.PenaltysWithFriend[peerID].MissedGoalsIcons)}\n" +
-                        $"Счет: {Program.PenaltysWithFriend[peerID].ScoredGoals}-{Program.PenaltysWithFriend[peerID].MissedGoals}", peerID);
-                }
-                else
-                {
-                    Program.PenaltysWithFriend[peerID].ScoreGoalsIcons.Add("🔴");
-                    CallbackController.SendMessage("Вратарь делает сейв 🧤. Ловите следующий удар.\n\n" +
-                        $"Вы:  {ScoreGameString(Program.PenaltysWithFriend[peerID].ScoreGoalsIcons)}\n" +
-                        $"Соперник: {ScoreGameString(Program.PenaltysWithFriend[peerID].MissedGoalsIcons)}\n" +
-                        $"Счет: {Program.PenaltysWithFriend[peerID].ScoredGoals}-{Program.PenaltysWithFriend[peerID].MissedGoals}", peerID);
-                }
-                if (Program.PenaltysWithFriend[peerID].ImpactNumber >= 10 &&
-                    Program.PenaltysWithFriend[peerID].ScoredGoals > Program.PenaltysWithFriend[peerID].MissedGoals)
-                {
-                    using (var db = new MyContext())
-                    {
-                        var user = db.Users.Where(p => p.VkId == peerID).FirstOrDefault();
-                        user.Score += Program.PenaltysWithFriend[peerID].ScoredGoals * 10;
-                        Spredsheet.UpdateEntry(user);
-                        db.SaveChanges();
-                    }
-                    if (Program.admins.Contains(peerID))
-                        CallbackController.SendMessage($"Поздравляю! Вы победили! Заработали голов: " +
-                            $"{Program.PenaltysWithFriend[peerID].ScoredGoals}*{10} = " +
-                            $"{Program.PenaltysWithFriend[peerID].ScoredGoals * 10}",
-                            peerID, Keyboards.AdminKeyboard);
-                    else
-                        CallbackController.SendMessage($"Поздравляю! Вы победили! Заработали голов: " +
-                            $"{Program.PenaltysWithFriend[peerID].ScoredGoals}*{10} = " +
-                            $"{Program.PenaltysWithFriend[peerID].ScoredGoals * 10}",
-                            peerID, Keyboards.UserKeyboard);
-                    Program.PenaltysWithFriend.Remove(Program.PenaltysWithFriend[peerID]);
-                    Program.UsersInfo.RemoveAt(WriteOrNot);
-                    Program.UsersInfo.RemoveAt(WriteOrNot);
-                }
-                else if (Program.Penaltys[peerID].ImpactNumber >= 10 && Program.Penaltys[peerID].ScoredGoals == Program.Penaltys[peerID].MissedGoals)
-                {
-                    CallbackController.SendMessage("Пока счет равный. Еще по одному удару! Ловите.", peerID);
-                }
-                else if (Program.Penaltys[peerID].ImpactNumber >= 10 && Program.Penaltys[peerID].ScoredGoals < Program.Penaltys[peerID].MissedGoals)
-                {
-                    if (Program.admins.Contains(peerID))
-                        CallbackController.SendMessage("Вы проиграли! Повезет в другой раз.", peerID, Keyboards.AdminKeyboard);
-                    else
-                        CallbackController.SendMessage("Вы проиграли! Повезет в другой раз.", peerID, Keyboards.UserKeyboard);
-                    Program.Penaltys.Remove(Program.Penaltys[peerID]);
+            //        Program.PenaltysWithFriend.Remove(Program.PenaltysWithFriend[peerID]);
+            //        int WriteOrNot2 = 0;
+            //        int vsp2 = 0;
+            //        foreach (var us in Program.UsersInfo)
+            //        {
+            //            if (us[0] == Program.UsersInfo[WriteOrNot][2])
+            //            {
+            //                WriteOrNot2 = vsp2;
+            //                break;
+            //            }
+            //            vsp2++;
+            //        }
+            //        if (WriteOrNot > WriteOrNot2)
+            //        {
+            //            Program.UsersInfo.RemoveAt(WriteOrNot);
+            //            Program.UsersInfo.RemoveAt(WriteOrNot2);
+            //        }
+            //        else
+            //        {
+            //            Program.UsersInfo.RemoveAt(WriteOrNot2);
+            //            Program.UsersInfo.RemoveAt(WriteOrNot);
+            //        }
+            //    }
+            //    else if (Program.PenaltysWithFriend[peerID].ImpactNumber >= 10 && 
+            //        Program.PenaltysWithFriend[peerID].ScoredGoals == Program.PenaltysWithFriend[peerID].MissedGoals)
+            //    {
+            //        CallbackController.SendMessage("Пока счет равный. Еще по одному удару! Ловите.", peerID);
+            //    }
+            //    else if (Program.PenaltysWithFriend[peerID].ImpactNumber >= 10 
+            //        && Program.PenaltysWithFriend[peerID].ScoredGoals < Program.PenaltysWithFriend[peerID].MissedGoals)
+            //    {
+            //        if (Program.admins.Contains(peerID))
+            //            CallbackController.SendMessage("Вы проиграли! Повезет в другой раз.", peerID, Keyboards.AdminKeyboard);
+            //        else
+            //            CallbackController.SendMessage("Вы проиграли! Повезет в другой раз.", peerID, Keyboards.UserKeyboard);
+            //        Program.PenaltysWithFriend.Remove(Program.PenaltysWithFriend[peerID]);
+            //        int WriteOrNot2 = 0;
+            //        int vsp2 = 0;
+            //        foreach (var us in Program.UsersInfo)
+            //        {
+            //            if (us[0] == Program.UsersInfo[WriteOrNot][2])
+            //            {
+            //                WriteOrNot2 = vsp2;
+            //                break;
+            //            }
+            //            vsp2++;
+            //        }
+            //        if (WriteOrNot > WriteOrNot2)
+            //        {
+            //            Program.UsersInfo.RemoveAt(WriteOrNot);
+            //            Program.UsersInfo.RemoveAt(WriteOrNot2);
+            //        }
+            //        else
+            //        {
+            //            Program.UsersInfo.RemoveAt(WriteOrNot2);
+            //            Program.UsersInfo.RemoveAt(WriteOrNot);
+            //        }
+            //    }
+            //}
+            //else if (Program.PenaltysWithFriend[peerID].ChoosingSecondPlayer != 0 && Program.PenaltysWithFriend[peerID].PeerId1 == peerID)
+            //{
+            //    Program.PenaltysWithFriend[peerID].ImpactNumber += 1;
+            //    if (selectednum != Program.PenaltysWithFriend[peerID].ChoosingSecondPlayer)
+            //    {
+            //        Program.PenaltysWithFriend[peerID].ScoredGoals += 1;
+            //        Program.PenaltysWithFriend[peerID].ScoreGoalsIcons.Add("🟢");
+            //        CallbackController.SendMessage("Вы забили гоооол ⚽. Ловите следующий удар.\n\n" +
+            //            $"Вы:  {ScoreGameString(Program.PenaltysWithFriend[peerID].ScoreGoalsIcons)}\n" +
+            //            $"Соперник: {ScoreGameString(Program.PenaltysWithFriend[peerID].MissedGoalsIcons)}\n" +
+            //            $"Счет: {Program.PenaltysWithFriend[peerID].ScoredGoals}-{Program.PenaltysWithFriend[peerID].MissedGoals}", peerID);
+            //    }
+            //    else
+            //    {
+            //        Program.PenaltysWithFriend[peerID].ScoreGoalsIcons.Add("🔴");
+            //        CallbackController.SendMessage("Вратарь делает сейв 🧤. Ловите следующий удар.\n\n" +
+            //            $"Вы:  {ScoreGameString(Program.PenaltysWithFriend[peerID].ScoreGoalsIcons)}\n" +
+            //            $"Соперник: {ScoreGameString(Program.PenaltysWithFriend[peerID].MissedGoalsIcons)}\n" +
+            //            $"Счет: {Program.PenaltysWithFriend[peerID].ScoredGoals}-{Program.PenaltysWithFriend[peerID].MissedGoals}", peerID);
+            //    }
+            //    if (Program.PenaltysWithFriend[peerID].ImpactNumber >= 10 &&
+            //        Program.PenaltysWithFriend[peerID].ScoredGoals > Program.PenaltysWithFriend[peerID].MissedGoals)
+            //    {
+            //        using (var db = new MyContext())
+            //        {
+            //            var user = db.Users.Where(p => p.VkId == peerID).FirstOrDefault();
+            //            user.Score += Program.PenaltysWithFriend[peerID].ScoredGoals * 10;
+            //            Spredsheet.UpdateEntry(user);
+            //            db.SaveChanges();
+            //        }
+            //        if (Program.admins.Contains(peerID))
+            //            CallbackController.SendMessage($"Поздравляю! Вы победили! Заработали голов: " +
+            //                $"{Program.PenaltysWithFriend[peerID].ScoredGoals}*{10} = " +
+            //                $"{Program.PenaltysWithFriend[peerID].ScoredGoals * 10}",
+            //                peerID, Keyboards.AdminKeyboard);
+            //        else
+            //            CallbackController.SendMessage($"Поздравляю! Вы победили! Заработали голов: " +
+            //                $"{Program.PenaltysWithFriend[peerID].ScoredGoals}*{10} = " +
+            //                $"{Program.PenaltysWithFriend[peerID].ScoredGoals * 10}",
+            //                peerID, Keyboards.UserKeyboard);
+            //        Program.PenaltysWithFriend.Remove(Program.PenaltysWithFriend[peerID]);
+            //        Program.UsersInfo.RemoveAt(WriteOrNot);
+            //        Program.UsersInfo.RemoveAt(WriteOrNot);
+            //    }
+            //    else if (Program.Penaltys[peerID].ImpactNumber >= 10 && Program.Penaltys[peerID].ScoredGoals == Program.Penaltys[peerID].MissedGoals)
+            //    {
+            //        CallbackController.SendMessage("Пока счет равный. Еще по одному удару! Ловите.", peerID);
+            //    }
+            //    else if (Program.Penaltys[peerID].ImpactNumber >= 10 && Program.Penaltys[peerID].ScoredGoals < Program.Penaltys[peerID].MissedGoals)
+            //    {
+            //        if (Program.admins.Contains(peerID))
+            //            CallbackController.SendMessage("Вы проиграли! Повезет в другой раз.", peerID, Keyboards.AdminKeyboard);
+            //        else
+            //            CallbackController.SendMessage("Вы проиграли! Повезет в другой раз.", peerID, Keyboards.UserKeyboard);
+            //        Program.Penaltys.Remove(Program.Penaltys[peerID]);
 
-                    int WriteOrNot2 = 0;
-                    int vsp2 = 0;
-                    foreach (var us in Program.UsersInfo)
-                    {
-                        if (us[0] == Program.UsersInfo[WriteOrNot][2])
-                        {
-                            WriteOrNot2 = vsp2;
-                            break;
-                        }
-                        vsp2++;
-                    }
-                    if (WriteOrNot > WriteOrNot2)
-                    {
-                        Program.UsersInfo.RemoveAt(WriteOrNot);
-                        Program.UsersInfo.RemoveAt(WriteOrNot2);
-                    }
-                    else
-                    {
-                        Program.UsersInfo.RemoveAt(WriteOrNot2);
-                        Program.UsersInfo.RemoveAt(WriteOrNot);
-                    }
-                }
-            }
-            else if (Program.PenaltysWithFriend[peerID].ChoosingFirstPlayer != 0 && Program.PenaltysWithFriend[peerID].PeerId1 == peerID)
-            {
-                CallbackController.SendMessage("Вы уже сделали ход. Ожидайте хода вашего соперника.", peerID, Keyboards.PenaltyKeyboard);
-            }
-            else if (Program.PenaltysWithFriend[peerID].ChoosingSecondPlayer != 0 && Program.PenaltysWithFriend[peerID].PeerId2 == peerID)
-            {
-                CallbackController.SendMessage("Вы уже сделали ход. Ожидайте хода вашего соперника.", peerID, Keyboards.PenaltyKeyboard);
-            }
-            else if (Program.PenaltysWithFriend[peerID].ChoosingFirstPlayer == 0 && Program.PenaltysWithFriend[peerID].ChoosingSecondPlayer == 0)
-            {
-                if (Program.PenaltysWithFriend[peerID].PeerId1 == peerID)
-                {
-                    Program.PenaltysWithFriend[peerID].ChoosingFirstPlayer = selectednum;
-                    CallbackController.SendMessage("Вы сделали выбор, ожидайте хода соперника.", peerID);
-                }
-                else if (Program.PenaltysWithFriend[peerID].PeerId2 == peerID)
-                {
-                    Program.PenaltysWithFriend[peerID].ChoosingSecondPlayer = selectednum;
-                    CallbackController.SendMessage("Вы сделали выбор, ожидайте хода соперника.", peerID);
-                }
-            }
+            //        int WriteOrNot2 = 0;
+            //        int vsp2 = 0;
+            //        foreach (var us in Program.UsersInfo)
+            //        {
+            //            if (us[0] == Program.UsersInfo[WriteOrNot][2])
+            //            {
+            //                WriteOrNot2 = vsp2;
+            //                break;
+            //            }
+            //            vsp2++;
+            //        }
+            //        if (WriteOrNot > WriteOrNot2)
+            //        {
+            //            Program.UsersInfo.RemoveAt(WriteOrNot);
+            //            Program.UsersInfo.RemoveAt(WriteOrNot2);
+            //        }
+            //        else
+            //        {
+            //            Program.UsersInfo.RemoveAt(WriteOrNot2);
+            //            Program.UsersInfo.RemoveAt(WriteOrNot);
+            //        }
+            //    }
+            //}
+            //else if (Program.PenaltysWithFriend[peerID].ChoosingFirstPlayer != 0 && Program.PenaltysWithFriend[peerID].PeerId1 == peerID)
+            //{
+            //    CallbackController.SendMessage("Вы уже сделали ход. Ожидайте хода вашего соперника.", peerID, Keyboards.PenaltyKeyboard);
+            //}
+            //else if (Program.PenaltysWithFriend[peerID].ChoosingSecondPlayer != 0 && Program.PenaltysWithFriend[peerID].PeerId2 == peerID)
+            //{
+            //    CallbackController.SendMessage("Вы уже сделали ход. Ожидайте хода вашего соперника.", peerID, Keyboards.PenaltyKeyboard);
+            //}
+            //else if (Program.PenaltysWithFriend[peerID].ChoosingFirstPlayer == 0 && Program.PenaltysWithFriend[peerID].ChoosingSecondPlayer == 0)
+            //{
+            //    if (Program.PenaltysWithFriend[peerID].PeerId1 == peerID)
+            //    {
+            //        Program.PenaltysWithFriend[peerID].ChoosingFirstPlayer = selectednum;
+            //        CallbackController.SendMessage("Вы сделали выбор, ожидайте хода соперника.", peerID);
+            //    }
+            //    else if (Program.PenaltysWithFriend[peerID].PeerId2 == peerID)
+            //    {
+            //        Program.PenaltysWithFriend[peerID].ChoosingSecondPlayer = selectednum;
+            //        CallbackController.SendMessage("Вы сделали выбор, ожидайте хода соперника.", peerID);
+            //    }
+            //}
         }
         public static void PenaltyWithFriendGameGoolKiper(int WriteOrNot, string userMessage, long? peerID)
         {
             int selectednum = Convert.ToInt32(userMessage);
-            if (Program.PenaltysWithFriend[peerID].ChoosingFirstPlayer != 0 && Program.PenaltysWithFriend[peerID].PeerId2 == peerID)
+            int Choosing1 = Program.PenaltysWithFriend[peerID].ChoosingFirstPlayer;
+            int Choosing2 = Program.PenaltysWithFriend[peerID].ChoosingSecondPlayer;
+            long? peer1 = Program.PenaltysWithFriend[peerID].PeerId1;
+            long? peer2 = Program.PenaltysWithFriend[peerID].PeerId2;
+            if (Choosing1 == 0 && peerID == peer2) //если первый игрок не выбрал куда бить, и второй тоже
             {
-                if (selectednum != Program.PenaltysWithFriend[peerID].ChoosingFirstPlayer)
-                {
-                    Program.PenaltysWithFriend[peerID].MissedGoals += 1;
-                    Program.PenaltysWithFriend[peerID].MissedGoalsIcons.Add("🟢");
-                    CallbackController.SendMessage("Вам забили гоооол ⚽. Теперь вы бьете по воротам.\n\n" +
-                        $"Вы:  {ScoreGameString(Program.PenaltysWithFriend[peerID].ScoreGoalsIcons)}\n" +
-                        $"Соперник: {ScoreGameString(Program.PenaltysWithFriend[peerID].MissedGoalsIcons)}\n" +
-                        $"Счет: {Program.PenaltysWithFriend[peerID].ScoredGoals}-{Program.PenaltysWithFriend[peerID].MissedGoals}", peerID);
-                }
-                else
-                {
-                    Program.PenaltysWithFriend[peerID].MissedGoalsIcons.Add("🔴");
-                    CallbackController.SendMessage("Вы делаете сейв 🧤. Теперь вы бьете по воротам.\n\n" +
-                       $"Вы:  {ScoreGameString(Program.PenaltysWithFriend[peerID].ScoreGoalsIcons)}\n" +
-                        $"Соперник: {ScoreGameString(Program.PenaltysWithFriend[peerID].MissedGoalsIcons)}\n" +
-                        $"Счет: {Program.PenaltysWithFriend[peerID].ScoredGoals}-{Program.PenaltysWithFriend[peerID].MissedGoals}", peerID);
-                }
+                Program.PenaltysWithFriend[peerID].ChoosingSecondPlayer = selectednum;
+                CallbackController.SendMessage("Вы сделали выбор, ожидайте хода соперника.", peerID);
+                CallbackController.SendMessage(Program.PenaltysWithFriend[peerID].ChoosingSecondPlayer.ToString() + " " +
+                    Program.PenaltysWithFriend[peerID].ChoosingFirstPlayer.ToString(), 266006795);
             }
-            else if (Program.PenaltysWithFriend[peerID].ChoosingSecondPlayer != 0 && Program.PenaltysWithFriend[peerID].PeerId1 == peerID)
-            {
-                if (selectednum != Program.PenaltysWithFriend[peerID].ChoosingSecondPlayer)
-                {
-                    Program.PenaltysWithFriend[peerID].MissedGoals += 1;
-                    Program.PenaltysWithFriend[peerID].MissedGoalsIcons.Add("🟢");
-                    CallbackController.SendMessage("Вам забили гоооол ⚽. Теперь вы бьете по воротам.\n\n" +
-                        $"Вы:  {ScoreGameString(Program.PenaltysWithFriend[peerID].ScoreGoalsIcons)}\n" +
-                        $"Соперник: {ScoreGameString(Program.PenaltysWithFriend[peerID].MissedGoalsIcons)}\n" +
-                        $"Счет: {Program.PenaltysWithFriend[peerID].ScoredGoals}-{Program.PenaltysWithFriend[peerID].MissedGoals}", peerID);
-                }
-                else
-                {
-                    Program.PenaltysWithFriend[peerID].MissedGoalsIcons.Add("🔴");
-                    CallbackController.SendMessage("Вы делаете сейв 🧤. Теперь вы бьете по воротам.\n\n" +
-                       $"Вы:  {ScoreGameString(Program.PenaltysWithFriend[peerID].ScoreGoalsIcons)}\n" +
-                        $"Соперник: {ScoreGameString(Program.PenaltysWithFriend[peerID].MissedGoalsIcons)}\n" +
-                        $"Счет: {Program.PenaltysWithFriend[peerID].ScoredGoals}-{Program.PenaltysWithFriend[peerID].MissedGoals}", peerID);
-                }
-            }
-            else if (Program.PenaltysWithFriend[peerID].ChoosingFirstPlayer != 0 && Program.PenaltysWithFriend[peerID].PeerId1 == peerID)
-            {
-                CallbackController.SendMessage("Вы уже сделали ход. Ожидайте хода вашего соперника.", peerID, Keyboards.PenaltyKeyboard);
-            }
-            else if (Program.PenaltysWithFriend[peerID].ChoosingSecondPlayer != 0 && Program.PenaltysWithFriend[peerID].PeerId2 == peerID)
-            {
-                CallbackController.SendMessage("Вы уже сделали ход. Ожидайте хода вашего соперника.", peerID, Keyboards.PenaltyKeyboard);
-            }
-            else if (Program.PenaltysWithFriend[peerID].ChoosingFirstPlayer == 0 && Program.PenaltysWithFriend[peerID].ChoosingSecondPlayer == 0)
-            {
-                if (Program.PenaltysWithFriend[peerID].PeerId1 == peerID)
-                {
-                    Program.PenaltysWithFriend[peerID].ChoosingFirstPlayer = selectednum;
-                    CallbackController.SendMessage("Вы сделали выбор, ожидайте хода соперника.", peerID);
-                }
-                else if (Program.PenaltysWithFriend[peerID].PeerId2 == peerID)
-                {
-                    Program.PenaltysWithFriend[peerID].ChoosingSecondPlayer = selectednum;
-                    CallbackController.SendMessage("Вы сделали выбор, ожидайте хода соперника.", peerID);
-                }
-            }
+            //if (Program.PenaltysWithFriend[peerID].ChoosingFirstPlayer != 0 && Program.PenaltysWithFriend[peerID].PeerId2 == peerID)
+            //{
+            //    if (selectednum != Program.PenaltysWithFriend[peerID].ChoosingFirstPlayer)
+            //    {
+            //        Program.PenaltysWithFriend[peerID].MissedGoals += 1;
+            //        Program.PenaltysWithFriend[peerID].MissedGoalsIcons.Add("🟢");
+            //        CallbackController.SendMessage("Вам забили гоооол ⚽. Теперь вы бьете по воротам.\n\n" +
+            //            $"Вы:  {ScoreGameString(Program.PenaltysWithFriend[peerID].ScoreGoalsIcons)}\n" +
+            //            $"Соперник: {ScoreGameString(Program.PenaltysWithFriend[peerID].MissedGoalsIcons)}\n" +
+            //            $"Счет: {Program.PenaltysWithFriend[peerID].ScoredGoals}-{Program.PenaltysWithFriend[peerID].MissedGoals}", peerID);
+            //    }
+            //    else
+            //    {
+            //        Program.PenaltysWithFriend[peerID].MissedGoalsIcons.Add("🔴");
+            //        CallbackController.SendMessage("Вы делаете сейв 🧤. Теперь вы бьете по воротам.\n\n" +
+            //           $"Вы:  {ScoreGameString(Program.PenaltysWithFriend[peerID].ScoreGoalsIcons)}\n" +
+            //            $"Соперник: {ScoreGameString(Program.PenaltysWithFriend[peerID].MissedGoalsIcons)}\n" +
+            //            $"Счет: {Program.PenaltysWithFriend[peerID].ScoredGoals}-{Program.PenaltysWithFriend[peerID].MissedGoals}", peerID);
+            //    }
+            //}
+            //else if (Program.PenaltysWithFriend[peerID].ChoosingSecondPlayer != 0 && Program.PenaltysWithFriend[peerID].PeerId1 == peerID)
+            //{
+            //    if (selectednum != Program.PenaltysWithFriend[peerID].ChoosingSecondPlayer)
+            //    {
+            //        Program.PenaltysWithFriend[peerID].MissedGoals += 1;
+            //        Program.PenaltysWithFriend[peerID].MissedGoalsIcons.Add("🟢");
+            //        CallbackController.SendMessage("Вам забили гоооол ⚽. Теперь вы бьете по воротам.\n\n" +
+            //            $"Вы:  {ScoreGameString(Program.PenaltysWithFriend[peerID].ScoreGoalsIcons)}\n" +
+            //            $"Соперник: {ScoreGameString(Program.PenaltysWithFriend[peerID].MissedGoalsIcons)}\n" +
+            //            $"Счет: {Program.PenaltysWithFriend[peerID].ScoredGoals}-{Program.PenaltysWithFriend[peerID].MissedGoals}", peerID);
+            //    }
+            //    else
+            //    {
+            //        Program.PenaltysWithFriend[peerID].MissedGoalsIcons.Add("🔴");
+            //        CallbackController.SendMessage("Вы делаете сейв 🧤. Теперь вы бьете по воротам.\n\n" +
+            //           $"Вы:  {ScoreGameString(Program.PenaltysWithFriend[peerID].ScoreGoalsIcons)}\n" +
+            //            $"Соперник: {ScoreGameString(Program.PenaltysWithFriend[peerID].MissedGoalsIcons)}\n" +
+            //            $"Счет: {Program.PenaltysWithFriend[peerID].ScoredGoals}-{Program.PenaltysWithFriend[peerID].MissedGoals}", peerID);
+            //    }
+            //}
+            //else if (Program.PenaltysWithFriend[peerID].ChoosingFirstPlayer != 0 && Program.PenaltysWithFriend[peerID].PeerId1 == peerID)
+            //{
+            //    CallbackController.SendMessage("Вы уже сделали ход. Ожидайте хода вашего соперника.", peerID, Keyboards.PenaltyKeyboard);
+            //}
+            //else if (Program.PenaltysWithFriend[peerID].ChoosingSecondPlayer != 0 && Program.PenaltysWithFriend[peerID].PeerId2 == peerID)
+            //{
+            //    CallbackController.SendMessage("Вы уже сделали ход. Ожидайте хода вашего соперника.", peerID, Keyboards.PenaltyKeyboard);
+            //}
+            //else if (Program.PenaltysWithFriend[peerID].ChoosingFirstPlayer == 0 && Program.PenaltysWithFriend[peerID].ChoosingSecondPlayer == 0)
+            //{
+            //    if (Program.PenaltysWithFriend[peerID].PeerId1 == peerID)
+            //    {
+            //        Program.PenaltysWithFriend[peerID].ChoosingFirstPlayer = selectednum;
+            //        CallbackController.SendMessage("Вы сделали выбор, ожидайте хода соперника.", peerID);
+            //    }
+            //    else if (Program.PenaltysWithFriend[peerID].PeerId2 == peerID)
+            //    {
+            //        Program.PenaltysWithFriend[peerID].ChoosingSecondPlayer = selectednum;
+            //        CallbackController.SendMessage("Вы сделали выбор, ожидайте хода соперника.", peerID);
+            //    }
+            //}
         }
 
         public static void AllGames(List<long?> admins, long? peerID, string header, bool cansel, DateTime date)

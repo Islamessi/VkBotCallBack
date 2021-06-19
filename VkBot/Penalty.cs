@@ -66,14 +66,24 @@ namespace VkBot
         public int ImpactNumber { get; set; } = 0;
 
         /// <summary>
-        /// Количество забитых голов
+        /// Количество забитых голов перым игроком
         /// </summary>
-        public int ScoredGoals { get; set; } = 0;
+        public int ScoredGoals1 { get; set; } = 0;
 
         /// <summary>
-        /// Пропущено голов
+        /// Пропущено голов перым игроком
         /// </summary>
-        public int MissedGoals { get; set; } = 0;
+        public int MissedGoals1 { get; set; } = 0;
+
+        /// <summary>
+        /// Количество забитых голов вторым игроком
+        /// </summary>
+        public int ScoredGoals2 { get; set; } = 0;
+
+        /// <summary>
+        /// Пропущено голов вторым игроком
+        /// </summary>
+        public int MissedGoals2 { get; set; } = 0;
 
         /// <summary>
         /// Значки забитых/незабитых ударов
