@@ -512,6 +512,7 @@ namespace VkBot
                             {
                                 try
                                 {
+
                                     using (var db = new MyContext())
                                     {
                                         Game game = db.Games.Where(p => p.Id == Program.UsersInfo[WriteOrNot][2]).FirstOrDefault();
