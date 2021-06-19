@@ -120,7 +120,7 @@ namespace VkBot
             var responce = request.Execute();
             var values = responce.Values;
             var valueRange = new ValueRange();
-            var objectList = new List<object>() { user1.VkId, user1.Score, user1.FirstName, user1.LastName };
+            var objectList = new List<object>() {user1.Id ,user1.VkId, user1.Score, user1.FirstName, user1.LastName };
 
             valueRange.Values = new List<IList<object>> { objectList };
             var updateRequest = service.Spreadsheets.Values.Update(valueRange, SpreedsheetId, range);
