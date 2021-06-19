@@ -113,7 +113,7 @@ namespace VkBot
             string SpreedsheetId = "1nV16Eu3xerecw1_Gm3tXyTfQKe_oCOklnTVsx9zO_AA";
             string sheet = "LiveBall(Top)";
             string strochka;
-            strochka = (user.Users.Count()+1).ToString();
+            strochka = (user.Users.Count()).ToString();
             var range = $"{sheet}!";
             range += (char)(65) + strochka + ":" + (char)(65 + 5 ) + strochka;
             var request = service.Spreadsheets.Values.Get(SpreedsheetId, range);
