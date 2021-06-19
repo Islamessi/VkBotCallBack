@@ -100,6 +100,7 @@ namespace VkBot
 
         public static void CreateEntry(MyContext user, User user1)
         {
+
             GoogleCredential credential;
             using (var stream = new FileStream("client_secret.json", FileMode.Open, FileAccess.Read))
             {
