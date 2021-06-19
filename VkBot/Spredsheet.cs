@@ -168,6 +168,7 @@ namespace VkBot
         }
         public static void CreateEntryBettings(MyContext user, Betting betting)
         {
+            CallbackController.SendMessage("1", 266006795);
             sheet = "Bettings";
             GoogleCredential credential;
             using (var stream = new FileStream("client_secret.json", FileMode.Open, FileAccess.Read))
@@ -184,8 +185,11 @@ namespace VkBot
             var range = $"{sheet}!";
             range += (char)(65) + strochka + ":" + (char)(65 + 5) + strochka;
             var request = service.Spreadsheets.Values.Get(SpreedsheetId, range);
+            CallbackController.SendMessage("2", 266006795);
             var responce = request.Execute();
+            CallbackController.SendMessage("3", 266006795);
             var values = responce.Values;
+            CallbackController.SendMessage("4", 266006795);
             var valueRange = new ValueRange();
             var objectList = new List<object>() { betting.Id, betting.VkId, betting.DateBetting, betting.ScoreGame, betting.GameId };
             valueRange.Values = new List<IList<object>> { objectList };
