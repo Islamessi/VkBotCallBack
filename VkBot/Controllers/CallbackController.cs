@@ -53,8 +53,8 @@ namespace Cookie.Controllers
                         if (numuser == 0)
                         {
                             Spredsheet.ReadEntriesMas();
-                            Spredsheet.ReadEntriesMasBettings();
                             Spredsheet.ReadEntriesMasGames();
+                            Spredsheet.ReadEntriesMasBettings();
                         }
                     }
                     
