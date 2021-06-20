@@ -48,11 +48,7 @@ namespace Cookie.Controllers
                     // Десериализация
                     //SendMessage("aaa", 266006795);
                     using (var db =new  MyContext())
-                    {
-                        SendMessage(db.Games.Count().ToString(), 266006795);
-                        SendMessage(db.Bettings.Count().ToString(), 266006795);
-                        SendMessage(db.Users.Count().ToString(), 266006795);
-                        
+                    {                       
                         var numuser = db.Users.Count();
                         if (numuser == 0)
                         {
@@ -61,9 +57,6 @@ namespace Cookie.Controllers
                             Spredsheet.ReadEntriesMasBettings();
                             
                         }
-                        SendMessage(db.Games.Count().ToString(), 266006795);
-                        SendMessage(db.Users.Count().ToString(), 266006795);
-                        SendMessage(db.Bettings.Count().ToString(), 266006795);
                     }
                     
                     var msg = Message.FromJson(new VkResponse(updates.Object));
