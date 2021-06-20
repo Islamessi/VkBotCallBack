@@ -279,17 +279,16 @@ namespace VkBot
             string strochka;
             strochka = (game.Id).ToString();
             var range = $"{sheet}!";
-            range += (char)(65+5) + strochka + ":" + (char)(65 + 5) + strochka;
+            range += (char)(65+5) + strochka + ":" + (char)(65 + 6) + strochka;
             var request = service.Spreadsheets.Values.Get(SpreedsheetId, range);
             var responce = request.Execute();
             var values = responce.Values;
             var valueRange = new ValueRange();
             CallbackController.SendMessage(game.Completed.ToString(), 266006795);
-            var objectList = new List<object>() {game.Completed };
+            var objectList = new List<object>() {game.Completed.ToString() };
             var updateRequest = service.Spreadsheets.Values.Update(valueRange, SpreedsheetId, range);
             updateRequest.ValueInputOption = SpreadsheetsResource.ValuesResource.UpdateRequest.ValueInputOptionEnum.USERENTERED;
             var updateResponse = updateRequest.Execute();
-
         }
     }
 }
