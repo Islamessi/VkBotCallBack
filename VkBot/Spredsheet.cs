@@ -227,6 +227,7 @@ namespace VkBot
                         DateGame = Convert.ToDateTime(row[4]),
                         Completed = Convert.ToBoolean(row[5])
                     };
+                    CallbackController.SendMessage(game.Id.ToString(), 266006795);
                     db.Games.Add(game);
                     db.SaveChanges();
                     i++;
