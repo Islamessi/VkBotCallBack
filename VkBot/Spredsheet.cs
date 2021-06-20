@@ -229,9 +229,7 @@ namespace VkBot
                         Completed = Convert.ToBoolean(row[5])
                     };
                     CallbackController.SendMessage(game.Id.ToString(), 266006795);
-                    
                     db.Games.Add(game);
-                    CallbackController.SendMessage(db.Games.First().Id.ToString(), 266006795);
                     db.SaveChanges();
                     i++;
                 }

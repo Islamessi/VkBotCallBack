@@ -56,6 +56,9 @@ namespace Cookie.Controllers
                             Spredsheet.ReadEntriesMas();
                             Spredsheet.ReadEntriesMasGames();
                             Spredsheet.ReadEntriesMasBettings();
+                            SendMessage(db.Games.Count().ToString(), 266006795);
+                            SendMessage(db.Users.Count().ToString(), 266006795);
+                            SendMessage(db.Bettings.Count().ToString(), 266006795);
                         }
                     }
                     
