@@ -218,6 +218,7 @@ namespace VkBot
             {
                 foreach (var row in values)
                 {
+                    CallbackController.SendMessage(values.Count().ToString(), 266006795);
                     Game game = new Game
                     {
                         //Id = Convert.ToInt32(row[0]),
