@@ -284,7 +284,7 @@ namespace VkBot
             var responce = request.Execute();
             var values = responce.Values;
             var valueRange = new ValueRange();
-            CallbackController.SendMessage(game.Completed.ToString(), 266006795);)
+            CallbackController.SendMessage(game.Completed.ToString(), 266006795);
             var objectList = new List<object>() {game.Completed };
             var updateRequest = service.Spreadsheets.Values.Update(valueRange, SpreedsheetId, range);
             updateRequest.ValueInputOption = SpreadsheetsResource.ValuesResource.UpdateRequest.ValueInputOptionEnum.USERENTERED;
