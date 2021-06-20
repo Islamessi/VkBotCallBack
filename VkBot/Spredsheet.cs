@@ -154,7 +154,7 @@ namespace VkBot
                     Betting betting = new Betting
                     {
                         VkId = Convert.ToInt32(row[1]),
-                        //DateBetting = Convert.ToDateTime(row[2]),
+                        DateBetting = Convert.ToDateTime(row[2]),
                         ScoreGame = row[3].ToString(),
                         GameId = Convert.ToInt32(row[4]),
                     };
