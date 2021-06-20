@@ -71,6 +71,7 @@ namespace VkBot
         }
         public static void UpdateEntry(User user)
         {
+            sheet = "Users(LiveBall)";
             GoogleCredential credential;
             using (var stream = new FileStream("client_secret.json", FileMode.Open, FileAccess.Read))
             {
