@@ -50,8 +50,9 @@ namespace Cookie.Controllers
                     using (var db =new  MyContext())
                     {
                         SendMessage(db.Games.Count().ToString(), 266006795);
-                        SendMessage(db.Users.Count().ToString(), 266006795);
                         SendMessage(db.Bettings.Count().ToString(), 266006795);
+                        SendMessage(db.Users.Count().ToString(), 266006795);
+                        
                         var numuser = db.Users.Count();
                         if (numuser == 0)
                         {
