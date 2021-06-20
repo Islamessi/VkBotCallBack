@@ -159,9 +159,11 @@ namespace VkBot
                         ScoreGame = row[3].ToString(),
                         GameId = Convert.ToInt32(row[4]),
                     };
-                    CallbackController.SendMessage(betting.Id.ToString(), 266006795);
+                    CallbackController.SendMessage(betting.Id.ToString()+ "aaaa", 266006795);
                     db.Bettings.Add(betting);
+                    
                     db.SaveChanges();
+                    CallbackController.SendMessage(db.Bettings.First().ScoreGame + " aaaa" , 266006795);
                     i++;
                 }
             }
