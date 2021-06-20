@@ -148,7 +148,6 @@ namespace VkBot
             var values = responce.Values;
             using (var db = new MyContext())
             {
-                CallbackController.SendMessage(values.Count().ToString(), 266006795);
                 foreach (var row in values)
                 {
                     Betting betting = new Betting
@@ -158,10 +157,7 @@ namespace VkBot
                         ScoreGame = row[3].ToString(),
                         GameId = Convert.ToInt32(row[4]),
                     };
-                    CallbackController.SendMessage(betting.GameId.ToString()+ "aaaa1", 266006795);
                     db.Bettings.Add(betting);
-                    CallbackController.SendMessage(betting.Id.ToString() + "aaaa", 266006795);
-                    CallbackController.SendMessage(db.Bettings.Count().ToString(), 266006795);
                     db.SaveChanges();
                     i++;
                 }
@@ -267,7 +263,7 @@ namespace VkBot
             var updateResponse = updateRequest.Execute();
         }
 
-        public static void UpdateEntryGames(MyContext user)
+        public static void UpdateEntryGames(MyContext user, Game game)
         {
             sheet = "Games";
             GoogleCredential credential;
@@ -288,7 +284,8 @@ namespace VkBot
             var responce = request.Execute();
             var values = responce.Values;
             var valueRange = new ValueRange();
-            var objectList = new List<object>() { true };
+            CallbackController.SendMessage(game.Completed.ToString(), 266006795);)
+            var objectList = new List<object>() {game.Completed };
             var updateRequest = service.Spreadsheets.Values.Update(valueRange, SpreedsheetId, range);
             updateRequest.ValueInputOption = SpreadsheetsResource.ValuesResource.UpdateRequest.ValueInputOptionEnum.USERENTERED;
             var updateResponse = updateRequest.Execute();
