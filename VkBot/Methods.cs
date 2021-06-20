@@ -152,7 +152,7 @@ namespace VkBot
                         }
                         break;
                     case "все матчи сегодня":
-                        Methods.AllGames(Program.admins, peerID, "Вот все матчи на сегодня:\n\n", false, DateTime.Now.Date);
+                        Methods.AllGames(Program.admins, peerID, "Вот все матчи на сегодня:\n\n", false, DateTime.Now.Date.AddHours(3));
                         break;
                     case "удалить матч":
                         if (Program.admins.Contains(peerID))
