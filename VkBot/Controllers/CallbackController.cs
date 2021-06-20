@@ -49,6 +49,7 @@ namespace Cookie.Controllers
                     //SendMessage("aaa", 266006795);
                     using (var db =new  MyContext())
                     {
+
                         var numuser = db.Users.Count();
                         if (numuser == 0)
                         {
