@@ -153,12 +153,11 @@ namespace VkBot
                         break;
                     case "все матчи сегодня":
                         Methods.AllGames(Program.admins, peerID, "Вот все матчи на сегодня:\n\n", false, DateTime.Now.AddHours(3).Date);
-                        CallbackController.SendMessage(DateTime.Now.AddHours(3).Date.ToString(), 266006795);
                         break;
                     case "удалить матч":
                         if (Program.admins.Contains(peerID))
                         {
-                            Methods.AllGames(Program.admins, peerID, "Выберите матч, который хотите удалить", true, DateTime.Now.Date);
+                            Methods.AllGames(Program.admins, peerID, "Выберите матч, который хотите удалить", true, DateTime.Now.AddHours(3).Date);
                             Program.UsersInfo.Add(new List<long?> { peerID });
                             Program.UsersInfo[Program.UsersInfo.Count - 1].Add(2);
                         }
@@ -166,7 +165,7 @@ namespace VkBot
                     case "добавить ссылки":
                         if (Program.admins.Contains(peerID))
                         {
-                            Methods.AllGames(Program.admins, peerID, "", true, DateTime.Now.Date);
+                            Methods.AllGames(Program.admins, peerID, "", true, DateTime.Now.AddHours(3).Date);
                             Program.UsersInfo.Add(new List<long?> { peerID });
                             Program.UsersInfo[Program.UsersInfo.Count - 1].Add(3);
                         }
@@ -184,7 +183,7 @@ namespace VkBot
                                 Spredsheet.CreateEntry(db, user1);
                             }
                         }
-                        Methods.AllGames(Program.admins, peerID, "", true, DateTime.Now.Date);
+                        Methods.AllGames(Program.admins, peerID, "", true, DateTime.Now.AddHours(3).Date);
                         Program.UsersInfo.Add(new List<long?> { peerID });
                         Program.UsersInfo[Program.UsersInfo.Count - 1].Add(5);
                         break;
@@ -192,7 +191,7 @@ namespace VkBot
                         string allMatch = "Вот ваши ставки на сегодня:\n\n";
                         using (var db = new MyContext())
                         {
-                            var dat = DateTime.Now.Date;
+                            var dat = DateTime.Now.AddHours(3).Date;
                             var bettings = db.Bettings.Where(p => p.DateBetting >= dat)
                                 .Intersect(db.Bettings.Where(p => p.DateBetting <= dat.AddDays(1)))
                                 .Intersect(db.Bettings.Where(p => p.VkId == peerID));
@@ -233,7 +232,7 @@ namespace VkBot
                     case "ввести результат матча":
                         if (Program.admins.Contains(peerID))
                         {
-                            Methods.AllGames(Program.admins, peerID, "Выберите матч, к которому хотите ввести результат.", true, DateTime.Now.Date);
+                            Methods.AllGames(Program.admins, peerID, "Выберите матч, к которому хотите ввести результат.", true, DateTime.Now.AddHours(3).Date);
                             Program.UsersInfo.Add(new List<long?> { peerID });
                             Program.UsersInfo[Program.UsersInfo.Count - 1].Add(7);
                             Program.UsersInfo[Program.UsersInfo.Count - 1].Add(1);
@@ -243,7 +242,7 @@ namespace VkBot
                         if (Program.admins.Contains(peerID))
                         {
                             Methods.AllGames(Program.admins, peerID, "Выберите матч, к которому хотите ввести результат.", true,
-                                DateTime.Now.AddDays(-1).Date);
+                                DateTime.Now.AddHours(3).AddDays(-1).Date);
                             Program.UsersInfo.Add(new List<long?> { peerID });
                             Program.UsersInfo[Program.UsersInfo.Count - 1].Add(7);
                             Program.UsersInfo[Program.UsersInfo.Count - 1].Add(2);
@@ -367,7 +366,7 @@ namespace VkBot
                         else
                         {
                             var Info = userMessageUpp.Split('-');
-                            var vsp3 = DateTime.Now.Date;
+                            var vsp3 = DateTime.Now.AddHours(3).Date;
                             try
                             {
                                 using (var db = new MyContext())
@@ -397,7 +396,7 @@ namespace VkBot
                         else
                         {
                             var Info = userMessageUpp.Split('-');
-                            var vsp3 = DateTime.Now.Date;
+                            var vsp3 = DateTime.Now.AddHours(3).Date;
                             try
                             {
                                 using (var db = new MyContext())
@@ -463,7 +462,7 @@ namespace VkBot
                         else
                         {
                             var Info = userMessageUpp.Split('-');
-                            var vsp3 = DateTime.Now.Date;
+                            var vsp3 = DateTime.Now.AddHours(3).Date;
                             try
                             {
                                 using (var db = new MyContext())
@@ -555,8 +554,8 @@ namespace VkBot
                         {
                             var Info = userMessageUpp.Split('-');
 
-                            var vsp3 = DateTime.Now.Date;
-                            var vsp4 = DateTime.Now.AddDays(-1).Date;
+                            var vsp3 = DateTime.Now.AddHours(3).Date;
+                            var vsp4 = DateTime.Now.AddHours(3).AddDays(-1).Date;
                             try
                             {
                                 using (var db = new MyContext())
