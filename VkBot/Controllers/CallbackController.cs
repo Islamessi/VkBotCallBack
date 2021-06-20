@@ -82,26 +82,38 @@ namespace Cookie.Controllers
             // Возвращаем "ok" серверу Callback API
             return Ok("ok");
         }
-        public static void SendMessage(string message, long? peerId)
+        public static long? SendMessage(string message, long? peerId)
         {
             Random rnd = new Random();
-            _vkApi.Messages.Send(new MessagesSendParams
+            return _vkApi.Messages.Send(new MessagesSendParams
             {
                 RandomId = rnd.Next(),
                 PeerId = peerId,
                 Message = message
             });
         }
-        public static void SendMessage(string message, long? peerId, MessageKeyboard keyboard)
+        public static long? SendMessage(string message, long? peerId, MessageKeyboard keyboard)
         {
 
             Random rnd = new Random();
-            _vkApi.Messages.Send(new MessagesSendParams
+             return _vkApi.Messages.Send(new MessagesSendParams
             {
                 RandomId = rnd.Next(),
                 PeerId = peerId,
                 Message = message,
                 Keyboard = keyboard
+            });
+        }
+
+        public static void EditMessage(string message, long? peerId, long? MessageId)
+        {
+
+            Random rnd = new Random();
+            _vkApi.Messages.Edit(new MessageEditParams
+            {
+                MessageId = MessageId,
+                PeerId = (long)peerId,
+                Message = message
             });
         }
 

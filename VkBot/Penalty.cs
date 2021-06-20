@@ -31,6 +31,8 @@ namespace VkBot
         /// <summary>
         /// Значки забитых/незабитых ударов
         /// </summary>
+        
+        public long? MessageId { get; set; }
         public List<string> ScoreGoalsIcons { get; set; } = new List<string>();
         /// <summary>
         /// Значки пропущенных/отбитых ударов

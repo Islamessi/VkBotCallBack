@@ -72,7 +72,7 @@ namespace VkBot
                                 Program.UsersInfo[WriteOrNot].Add(vsp3);
                                 Program.Penaltys[peerID].Level = vsp3;
                                 //Program.PenaltyGames
-                                CallbackController.SendMessage("Уровень выбран, начинайте игру)", peerID, Keyboards.PenaltyKeyboard);
+                                Program.Penaltys[peerID].MessageId = CallbackController.SendMessage("Уровень выбран, начинайте игру)", peerID, Keyboards.PenaltyKeyboard);
                             }
                             catch
                             {
@@ -924,10 +924,10 @@ namespace VkBot
                 //{
                 //    Program.PenaltyScore2[WriteOrNot][Convert.ToInt32(Program.UsersInfo[WriteOrNot][2] - 1)] = "🟢";
                 //}
-                CallbackController.SendMessage("Вам забили гоооол ⚽. Теперь вы бьете по воротам.\n\n" +
+                CallbackController.EditMessage("Вам забили гоооол ⚽. Теперь вы бьете по воротам.\n\n" +
                     $"Вы:  {ScoreGameString(Program.Penaltys[peerID].ScoreGoalsIcons)}\n" +
                     $"Бот: {ScoreGameString(Program.Penaltys[peerID].MissedGoalsIcons)}\n" +
-                    $"Счет: {Program.Penaltys[peerID].ScoredGoals}-{Program.Penaltys[peerID].MissedGoals}", peerID);
+                    $"Счет: {Program.Penaltys[peerID].ScoredGoals}-{Program.Penaltys[peerID].MissedGoals}", peerID, Program.Penaltys[peerID].MessageId);
             }
             else
             {
