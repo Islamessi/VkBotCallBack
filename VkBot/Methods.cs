@@ -152,8 +152,8 @@ namespace VkBot
                         }
                         break;
                     case "все матчи сегодня":
-                        Methods.AllGames(Program.admins, peerID, "Вот все матчи на сегодня:\n\n", false, DateTime.Now.Date.AddHours(3));
-                        CallbackController.SendMessage(DateTime.Now.Date.ToString(), 266006795);
+                        Methods.AllGames(Program.admins, peerID, "Вот все матчи на сегодня:\n\n", false, DateTime.Now.AddHours(3).Date);
+                        CallbackController.SendMessage(DateTime.Now.AddHours(3).Date.ToString(), 266006795);
                         break;
                     case "удалить матч":
                         if (Program.admins.Contains(peerID))
