@@ -1250,6 +1250,7 @@ namespace VkBot
                     .Intersect(db.Games.Where(p => p.DateGame <= date.AddDays(1)));
                 foreach (var g in game)
                 {
+                    CallbackController.SendMessage(g.Id.ToString() + " " + g.Team1, 266006795);
                     string vsp3 = g.Links.Replace(" ", "\n");
                     allMatch += $"{jj}) {g.Team1} - {g.Team2} {g.DateGame:HH:mm}\n {vsp3} \n";
                     key.AddButton($"{g.Team1}-{g.Team2}", "", KeyboardButtonColor.Default, "");
