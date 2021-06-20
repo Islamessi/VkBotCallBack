@@ -473,7 +473,7 @@ namespace VkBot
                                         Intersect(db.Games.Where(p => p.DateGame < vsp3.AddDays(1))).FirstOrDefault();
                                     var betting = db.Bettings.Where(p => p.GameId == game.Id)
                                         .Intersect(db.Bettings.Where(p => p.VkId == peerID));
-                                    if (betting.Count() < 1 && DateTime.Now <= game.DateGame.AddMinutes(5))
+                                    if (betting.Count() < 1 && DateTime.Now.AddHours(3) <= game.DateGame.AddMinutes(5))
                                     {
                                         Program.UsersInfo.Add(new List<long?> { peerID });
                                         Program.UsersInfo[Program.UsersInfo.Count - 1].Add(6);
@@ -482,7 +482,7 @@ namespace VkBot
                                         CallbackController.SendMessage("Матч выбран. Теперь введите счет по формату:\n" +
                                             "<счет первой команды>-<счет второй команды>.", peerID);
                                     }
-                                    else if (DateTime.Now > game.DateGame.AddMinutes(5))
+                                    else if (DateTime.Now.AddHours(3) > game.DateGame.AddMinutes(5))
                                     {
                                         CallbackController.SendMessage("После начала матча прогнозы не принимаются. Выберите другой матч.", peerID);
                                     }
@@ -525,7 +525,7 @@ namespace VkBot
                                             ScoreGame = userMessageUpp,
                                             VkId = peerID,
                                             GameId = (int)Program.UsersInfo[WriteOrNot][2],
-                                            DateBetting = DateTime.Now
+                                            DateBetting = DateTime.Now.AddHours(3)
                                         };
                                         db.Bettings.Add(betting);
                                         db.SaveChanges();
@@ -782,7 +782,7 @@ namespace VkBot
             {
                 using (var db = new MyContext())
                 {
-                    var date = DateTime.Now;
+                    var date = DateTime.Now.AddHours(3);
                     var games = db.Games.Where(p => p.DateGame.Date == date.Date);
                     foreach (var g in games)
                     {
