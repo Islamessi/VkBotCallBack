@@ -119,7 +119,12 @@ namespace VkBot
         {
             if (penalty != null)
             {
-                penalties.Remove(penalty);
+                try
+                {
+                    penalties.Remove(penalty);
+                }
+                catch
+                { }
                 return 1;
             }
             else
