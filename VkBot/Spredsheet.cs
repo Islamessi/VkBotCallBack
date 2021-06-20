@@ -221,7 +221,6 @@ namespace VkBot
             {
                 foreach (var row in values)
                 {
-                    CallbackController.SendMessage(values.Count().ToString(), 266006795);
                     Game game = new Game
                     {
                         //Id = Convert.ToInt32(row[0]),
@@ -231,7 +230,6 @@ namespace VkBot
                         DateGame = Convert.ToDateTime(row[4]),
                         Completed = Convert.ToBoolean(row[5])
                     };
-                    CallbackController.SendMessage(game.Id.ToString(), 266006795);
                     db.Games.Add(game);
                     db.SaveChanges();
                     i++;

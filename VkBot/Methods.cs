@@ -257,8 +257,8 @@ namespace VkBot
                                 var users = CallbackController._vkApi.Users.Get(new long[] { (long)peerID }).FirstOrDefault();
                                 User user1 = new User { VkId = peerID, FirstName = users.FirstName, LastName = users.LastName };
                                 db.Users.Add(user1);
-                                Spredsheet.CreateEntry(db, user1);
                                 db.SaveChanges();
+                                Spredsheet.CreateEntry(db, user1);
                             }
                         }
                         //Program.PenaltyGames.Add(new Penalty { PeerId = peerID });
@@ -343,8 +343,8 @@ namespace VkBot
                                     game.CreateGame(Info[0], Info[1], date, links);
                                     CallbackController.SendMessage(game.DateGame + " " + game.Team1, peerID, Keyboards.AdminKeyboard);
                                     db.Games.Add(game);
-                                    Spredsheet.CreateEntryGames(db, game);
                                     db.SaveChanges();
+                                    Spredsheet.CreateEntryGames(db, game);
 
                                 }
                                 Program.UsersInfo.RemoveAt(WriteOrNot);
@@ -527,8 +527,8 @@ namespace VkBot
                                             GameId = (int)Program.UsersInfo[WriteOrNot][2],
                                         };
                                         db.Bettings.Add(betting);
-                                        Spredsheet.CreateEntryBettings(db, betting);
                                         db.SaveChanges();
+                                        Spredsheet.CreateEntryBettings(db, betting);
                                         Program.UsersInfo.RemoveAt(WriteOrNot);
                                         Program.UsersInfo.Add(new List<long?> { peerID });
                                         Program.UsersInfo[Program.UsersInfo.Count - 1].Add(5);
@@ -1250,7 +1250,6 @@ namespace VkBot
                     .Intersect(db.Games.Where(p => p.DateGame <= date.AddDays(1)));
                 foreach (var g in game)
                 {
-                    CallbackController.SendMessage(g.Id.ToString() + " " + g.Team1, 266006795);
                     string vsp3 = g.Links.Replace(" ", "\n");
                     allMatch += $"{jj}) {g.Team1} - {g.Team2} {g.DateGame:HH:mm}\n {vsp3} \n";
                     key.AddButton($"{g.Team1}-{g.Team2}", "", KeyboardButtonColor.Default, "");
