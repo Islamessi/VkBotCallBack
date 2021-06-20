@@ -876,7 +876,10 @@ namespace VkBot
             }
             else if (Program.Penaltys[peerID].ImpactNumber >= 10 && Program.Penaltys[peerID].ScoredGoals == Program.Penaltys[peerID].MissedGoals)
             {
-                CallbackController.EditMessage("Пока счет равный. Еще по одному удару! Ловите.", peerID, Program.Penaltys[peerID].MessageId);
+                CallbackController.EditMessage("Пока счет равный. Еще по одному удару! Ловите.\n\n" +
+                    $"Вы:  {ScoreGameString(Program.Penaltys[peerID].ScoreGoalsIcons)}\n" +
+                    $"Бот: {ScoreGameString(Program.Penaltys[peerID].MissedGoalsIcons)}\n" +
+                    $"Счет: {Program.Penaltys[peerID].ScoredGoals}-{Program.Penaltys[peerID].MissedGoals}", peerID, Program.Penaltys[peerID].MessageId);
             }
             else if (Program.Penaltys[peerID].ImpactNumber >= 10 && Program.Penaltys[peerID].ScoredGoals < Program.Penaltys[peerID].MissedGoals)
             {
