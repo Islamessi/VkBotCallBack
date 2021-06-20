@@ -220,7 +220,7 @@ namespace VkBot
                 {
                     Game game = new Game
                     {
-                        Id = Convert.ToInt32(row[0]),
+                        //Id = Convert.ToInt32(row[0]),
                         Team1 = row[1].ToString(),
                         Team2 = row[2].ToString(),
                         Links = row[3].ToString(),
@@ -228,7 +228,9 @@ namespace VkBot
                         Completed = Convert.ToBoolean(row[5])
                     };
                     CallbackController.SendMessage(game.Id.ToString(), 266006795);
+                    
                     db.Games.Add(game);
+                    CallbackController.SendMessage(db.Games.First().Id.ToString(), 266006795);
                     db.SaveChanges();
                     i++;
                 }
