@@ -148,6 +148,7 @@ namespace VkBot
             var values = responce.Values;
             using (var db = new MyContext())
             {
+                CallbackController.SendMessage(values.Count().ToString(), 266006795);
                 foreach (var row in values)
                 {
                     Betting betting = new Betting
@@ -158,6 +159,7 @@ namespace VkBot
                         ScoreGame = row[3].ToString(),
                         GameId = Convert.ToInt32(row[4]),
                     };
+                    CallbackController.SendMessage(betting.Id.ToString(), 266006795);
                     db.Bettings.Add(betting);
                     db.SaveChanges();
                     i++;
