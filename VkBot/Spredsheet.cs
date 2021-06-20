@@ -27,6 +27,7 @@ namespace VkBot
         //Сохранение, считывание и обновление данных в таблице Users(LiveBall)
         public static void ReadEntriesMas()//Ввод данных пользователей из таблицы с данными
         {
+            sheet = "Users(LiveBall)";
             GoogleCredential credential;
             using (var stream = new FileStream("client_secret.json", FileMode.Open, FileAccess.Read))
             {
@@ -100,7 +101,7 @@ namespace VkBot
         }
         public static void CreateEntry(MyContext user, User user1)
         {
-
+            sheet = "Users(LiveBall)";
             GoogleCredential credential;
             using (var stream = new FileStream("client_secret.json", FileMode.Open, FileAccess.Read))
             {
