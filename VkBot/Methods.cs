@@ -756,8 +756,8 @@ namespace VkBot
                             Spredsheet.UpdateEntry(user);
                         }
                         game.Completed = true;
+                        Spredsheet.UpdateEntryGames(db, game);
                         db.SaveChanges();
-                        Spredsheet.UpdateEntryGames(db , game);
                     }
                     Program.UsersInfo.Add(new List<long?> { peerID });
                     Program.UsersInfo[Program.UsersInfo.Count - 1].Add(7);
