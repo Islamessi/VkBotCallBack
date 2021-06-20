@@ -163,6 +163,7 @@ namespace VkBot
                     CallbackController.SendMessage(betting.Id.ToString()+ "aaaa", 266006795);
                     db.Bettings.Add(betting);
                     CallbackController.SendMessage(betting.Id.ToString() + "aaaa", 266006795);
+                    CallbackController.SendMessage(db.Bettings.Count().ToString(), 266006795);
                     db.SaveChanges();
                     CallbackController.SendMessage(db.Bettings.First().ScoreGame + " aaaa" , 266006795);
                     i++;
