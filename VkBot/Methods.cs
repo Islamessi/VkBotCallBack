@@ -525,6 +525,7 @@ namespace VkBot
                                             ScoreGame = userMessageUpp,
                                             VkId = peerID,
                                             GameId = (int)Program.UsersInfo[WriteOrNot][2],
+                                            DateBetting = DateTime.Now
                                         };
                                         db.Bettings.Add(betting);
                                         db.SaveChanges();
