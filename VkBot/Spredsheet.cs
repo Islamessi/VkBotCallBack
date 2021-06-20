@@ -158,7 +158,7 @@ namespace VkBot
                         ScoreGame = row[3].ToString(),
                         GameId = Convert.ToInt32(row[4]),
                     };
-                    CallbackController.SendMessage(betting.Id.ToString()+ "aaaa1", 266006795);
+                    CallbackController.SendMessage(betting.GameId.ToString()+ "aaaa1", 266006795);
                     db.Bettings.Add(betting);
                     CallbackController.SendMessage(betting.Id.ToString() + "aaaa", 266006795);
                     CallbackController.SendMessage(db.Bettings.Count().ToString(), 266006795);
@@ -224,7 +224,7 @@ namespace VkBot
                     CallbackController.SendMessage(values.Count().ToString(), 266006795);
                     Game game = new Game
                     {
-                        Id = Convert.ToInt32(row[0]),
+                        //Id = Convert.ToInt32(row[0]),
                         Team1 = row[1].ToString(),
                         Team2 = row[2].ToString(),
                         Links = row[3].ToString(),
