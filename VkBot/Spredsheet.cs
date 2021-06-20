@@ -289,6 +289,7 @@ namespace VkBot
             var updateRequest = service.Spreadsheets.Values.Update(valueRange, SpreedsheetId, range);
             updateRequest.ValueInputOption = SpreadsheetsResource.ValuesResource.UpdateRequest.ValueInputOptionEnum.USERENTERED;
             var updateResponse = updateRequest.Execute();
+
         }
     }
 }
