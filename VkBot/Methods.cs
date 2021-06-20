@@ -192,8 +192,8 @@ namespace VkBot
                         using (var db = new MyContext())
                         {
                             var dat = DateTime.Now.Date;
-                            var bettings = db.Bettings.Where(p => p.DateBetting > dat)
-                                .Intersect(db.Bettings.Where(p => p.DateBetting < dat.AddDays(1)))
+                            var bettings = db.Bettings.Where(p => p.DateBetting >= dat)
+                                .Intersect(db.Bettings.Where(p => p.DateBetting <= dat.AddDays(1)))
                                 .Intersect(db.Bettings.Where(p => p.VkId == peerID));
                             foreach (var b in bettings)
                             {

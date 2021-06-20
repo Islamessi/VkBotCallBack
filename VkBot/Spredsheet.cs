@@ -153,12 +153,10 @@ namespace VkBot
                 {
                     Betting betting = new Betting
                     {
-                        Id = Convert.ToInt32(row[0]),
                         VkId = Convert.ToInt32(row[1]),
-                        DateBetting = Convert.ToDateTime(row[2]),
+                        //DateBetting = Convert.ToDateTime(row[2]),
                         ScoreGame = row[3].ToString(),
                         GameId = Convert.ToInt32(row[4]),
-                        ScoreUser = 0,
                     };
                     CallbackController.SendMessage(betting.Id.ToString()+ "aaaa", 266006795);
                     db.Bettings.Add(betting);
