@@ -198,6 +198,7 @@ namespace VkBot
 
         //Сохранение, считывание и обновление данных в таблице Games
 
+
         public static void ReadEntriesMasGames()//Ввод данных пользователей из таблицы с данными
         {
             sheet = "Games";
