@@ -732,7 +732,6 @@ namespace VkBot
                 var Info = userMessageUpp.Split('-');
                 try
                 {
-
                     using (var db = new MyContext())
                     {
                         var bettings = db.Bettings.Where(p => p.GameId == Program.UsersInfo[WriteOrNot][2]);
