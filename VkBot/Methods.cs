@@ -117,6 +117,7 @@ namespace VkBot
 
         public static void MainMenu(Message msg)
         {
+
             char[] vsp = ":();'!, .?".ToCharArray();
             string userMessage = msg.Text.ToLower().Trim(vsp);
             string userMessageUpp = msg.Text;
