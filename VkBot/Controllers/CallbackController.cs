@@ -113,7 +113,8 @@ namespace Cookie.Controllers
             {
                 MessageId = MessageId,
                 PeerId = (long)peerId,
-                Message = message
+                Message = message,
+                GroupId = 197872639
             });
         }
 
