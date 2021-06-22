@@ -105,11 +105,11 @@ namespace Cookie.Controllers
             });
         }
 
-        public static void EditMessage(string message, long? peerId, long? MessageId)
+        public static bool EditMessage(string message, long? peerId, long? MessageId)
         {
 
             Random rnd = new Random();
-            _vkApi.Messages.Edit(new MessageEditParams
+            return _vkApi.Messages.Edit(new MessageEditParams
             {
                 MessageId = MessageId,
                 PeerId = (long)peerId,
