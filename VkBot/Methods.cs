@@ -85,22 +85,18 @@ namespace VkBot
                                 var bbb = Convert.ToInt32(userMessage);
                                 if (Program.PenaltysWithFriend[peerID].PeerId1 == peerID && Program.PenaltysWithFriend[peerID].ImpactNumber % 2 == 0)
                                 {
-                                    CallbackController.SendMessage("1", 266006795);
                                     PenaltyWithFriendGameGoolKiper(WriteOrNot, userMessage, peerID);
                                 }
                                 else if (Program.PenaltysWithFriend[peerID].PeerId1 == peerID && Program.PenaltysWithFriend[peerID].ImpactNumber % 2 == 1)
                                 {
-                                    CallbackController.SendMessage("2", 266006795);
                                     PenaltyWithFriendGameForward(WriteOrNot, userMessage, peerID);
                                 }
                                 else if (Program.PenaltysWithFriend[peerID].PeerId2 == peerID && Program.PenaltysWithFriend[peerID].ImpactNumber % 2 == 0)
                                 {
-                                    CallbackController.SendMessage("3", 266006795);
                                     PenaltyWithFriendGameForward(WriteOrNot, userMessage, peerID);
                                 }
                                 else if (Program.PenaltysWithFriend[peerID].PeerId2 == peerID && Program.PenaltysWithFriend[peerID].ImpactNumber % 2 == 1)
                                 {
-                                    CallbackController.SendMessage("4", 266006795);
                                     PenaltyWithFriendGameGoolKiper(WriteOrNot, userMessage, peerID);
                                 }
                             }
@@ -844,10 +840,11 @@ namespace VkBot
                 //{
                 //    Program.PenaltyScore[WriteOrNot][Convert.ToInt32(Program.UsersInfo[WriteOrNot][2] - 1)] = "🟢";
                 //}
-                CallbackController.SendMessage("Вы забили гоооол ⚽. Ловите следующий удар.\n\n" +
+                CallbackController.SendMessage("11", 266006795);
+                CallbackController.EditMessage("Вы забили гоооол ⚽. Ловите следующий удар.\n\n" +
                     $"Вы:  {ScoreGameString(Program.Penaltys[peerID].ScoreGoalsIcons)}\n" +
                     $"Бот: {ScoreGameString(Program.Penaltys[peerID].MissedGoalsIcons)}\n" +
-                    $"Счет: {Program.Penaltys[peerID].ScoredGoals}-{Program.Penaltys[peerID].MissedGoals}", peerID);
+                    $"Счет: {Program.Penaltys[peerID].ScoredGoals}-{Program.Penaltys[peerID].MissedGoals}", peerID, Program.Penaltys[peerID].MessageId);
             }
             else
             {
@@ -861,10 +858,11 @@ namespace VkBot
                 //    Program.PenaltyScore[WriteOrNot][Convert.ToInt32(Program.UsersInfo[WriteOrNot][2] - 1)] = "🔴";
                 //}
                 //Program.PenaltyScore[Convert.ToInt32(Program.UsersInfo[WriteOrNot][2])] = "🔴";
-                CallbackController.SendMessage("Вратарь делает сейв 🧤. Ловите следующий удар.\n\n" +
+                CallbackController.SendMessage("11", 266006795);
+                CallbackController.EditMessage("Вратарь делает сейв 🧤. Ловите следующий удар.\n\n" +
                     $"Вы:  {ScoreGameString(Program.Penaltys[peerID].ScoreGoalsIcons)}\n" +
                     $"Бот: {ScoreGameString(Program.Penaltys[peerID].MissedGoalsIcons)}\n" +
-                    $"Счет: {Program.Penaltys[peerID].ScoredGoals}-{Program.Penaltys[peerID].MissedGoals}", peerID);
+                    $"Счет: {Program.Penaltys[peerID].ScoredGoals}-{Program.Penaltys[peerID].MissedGoals}", peerID, Program.Penaltys[peerID].MessageId);
             }
             if (Program.Penaltys[peerID].ImpactNumber >= 10 && Program.Penaltys[peerID].ScoredGoals > Program.Penaltys[peerID].MissedGoals)
             {
@@ -889,10 +887,11 @@ namespace VkBot
             }
             else if (Program.Penaltys[peerID].ImpactNumber >= 10 && Program.Penaltys[peerID].ScoredGoals == Program.Penaltys[peerID].MissedGoals)
             {
-                CallbackController.SendMessage("Пока счет равный. Еще по одному удару! Ловите.\n\n" +
+                CallbackController.SendMessage("11", 266006795);
+                CallbackController.EditMessage("Пока счет равный. Еще по одному удару! Ловите.\n\n" +
                     $"Вы:  {ScoreGameString(Program.Penaltys[peerID].ScoreGoalsIcons)}\n" +
                     $"Бот: {ScoreGameString(Program.Penaltys[peerID].MissedGoalsIcons)}\n" +
-                    $"Счет: {Program.Penaltys[peerID].ScoredGoals}-{Program.Penaltys[peerID].MissedGoals}", peerID);
+                    $"Счет: {Program.Penaltys[peerID].ScoredGoals}-{Program.Penaltys[peerID].MissedGoals}", peerID, Program.Penaltys[peerID].MessageId);
             }
             else if (Program.Penaltys[peerID].ImpactNumber >= 10 && Program.Penaltys[peerID].ScoredGoals < Program.Penaltys[peerID].MissedGoals)
             {
@@ -940,10 +939,11 @@ namespace VkBot
                 //{
                 //    Program.PenaltyScore2[WriteOrNot][Convert.ToInt32(Program.UsersInfo[WriteOrNot][2] - 1)] = "🟢";
                 //}
-                CallbackController.SendMessage("Вам забили гоооол ⚽. Теперь вы бьете по воротам.\n\n" +
+                CallbackController.SendMessage("11", 266006795);
+                CallbackController.EditMessage("Вам забили гоооол ⚽. Теперь вы бьете по воротам.\n\n" +
                     $"Вы:  {ScoreGameString(Program.Penaltys[peerID].ScoreGoalsIcons)}\n" +
                     $"Бот: {ScoreGameString(Program.Penaltys[peerID].MissedGoalsIcons)}\n" +
-                    $"Счет: {Program.Penaltys[peerID].ScoredGoals}-{Program.Penaltys[peerID].MissedGoals}", peerID);
+                    $"Счет: {Program.Penaltys[peerID].ScoredGoals}-{Program.Penaltys[peerID].MissedGoals}", peerID, Program.Penaltys[peerID].MessageId);
             }
             else
             {
@@ -960,10 +960,11 @@ namespace VkBot
                 //{
                 //    Program.PenaltyScore2[WriteOrNot][Convert.ToInt32(Program.UsersInfo[WriteOrNot][2] - 1)] = "🔴";
                 //}
-                CallbackController.SendMessage("Вы делаете сейв 🧤. Теперь вы бьете по воротам.\n\n" +
+                CallbackController.SendMessage("11", 266006795);
+                CallbackController.EditMessage("Вы делаете сейв 🧤. Теперь вы бьете по воротам.\n\n" +
                    $"Вы:  {ScoreGameString(Program.Penaltys[peerID].ScoreGoalsIcons)}\n" +
                     $"Бот: {ScoreGameString(Program.Penaltys[peerID].MissedGoalsIcons)}\n" +
-                    $"Счет: {Program.Penaltys[peerID].ScoredGoals}-{Program.Penaltys[peerID].MissedGoals}", peerID);
+                    $"Счет: {Program.Penaltys[peerID].ScoredGoals}-{Program.Penaltys[peerID].MissedGoals}", peerID, Program.Penaltys[peerID].MessageId);
             }
         }
 
