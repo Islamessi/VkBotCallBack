@@ -768,6 +768,7 @@ namespace VkBot
                             }
                             else
                             {
+                                
                                 CallbackController.SendMessage($" Матч {b.Game.Team1} {b.Game.Team2} окончен со счетом: {score[0]}-{score[1]}.\n" +
                                     $"Ваша ставка: {Info[0]}-{Info[1]}.\n" +
                                     $"Вы заработали на этом матче 0 голов ⚽!", b.VkId);
