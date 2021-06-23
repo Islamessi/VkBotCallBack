@@ -755,7 +755,7 @@ namespace VkBot
                                 user.Score += 100;
                                 Spredsheet.UpdateEntry(user);
                                 CallbackController.SendMessage($" Матч {b.Game.Team1} {b.Game.Team2} окончен со счетом: {score[0]}-{score[1]}.\n" +
-                                    $"Ваша ставка: {Info[0]}-{Info[1]}" +
+                                    $"Ваша ставка: {Info[0]}-{Info[1]}.\n" +
                                     $"Вы заработали на этом матче 100 голов ⚽!", b.VkId);
                             }
                             else if (Info[0] == score[0] || Info[1] == score[1])
@@ -763,13 +763,13 @@ namespace VkBot
                                 user.Score += 50;
                                 Spredsheet.UpdateEntry(user);
                                 CallbackController.SendMessage($" Матч {b.Game.Team1} {b.Game.Team2} окончен со счетом: {score[0]}-{score[1]}.\n" +
-                                    $"Ваша ставка: {Info[0]}-{Info[1]}" +
+                                    $"Ваша ставка: {Info[0]}-{Info[1]}.\n" +
                                     $"Вы заработали на этом матче 50 голов ⚽!", b.VkId);
                             }
                             else
                             {
                                 CallbackController.SendMessage($" Матч {b.Game.Team1} {b.Game.Team2} окончен со счетом: {score[0]}-{score[1]}.\n" +
-                                    $"Ваша ставка: {Info[0]}-{Info[1]}" +
+                                    $"Ваша ставка: {Info[0]}-{Info[1]}.\n" +
                                     $"Вы заработали на этом матче 0 голов ⚽!", b.VkId);
                             }
                             Spredsheet.UpdateEntry(user);
