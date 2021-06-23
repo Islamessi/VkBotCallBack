@@ -797,24 +797,20 @@ namespace VkBot
         }
         public static void MessageAboutEndGame(List<long?> admins)
         {
-            while (true)
+            using (var db = new MyContext())
             {
-                using (var db = new MyContext())
+                var date = DateTime.Now.AddHours(3);
+                var games = db.Games.Where(p => p.DateGame.Date == date.Date);
+                foreach (var g in games)
                 {
-                    var date = DateTime.Now.AddHours(3);
-                    var games = db.Games.Where(p => p.DateGame.Date == date.Date);
-                    foreach (var g in games)
+                    if (g.DateGame.AddMinutes(105).TimeOfDay < date.TimeOfDay && g.Completed == false)
                     {
-                        if (g.DateGame.AddMinutes(105).TimeOfDay < date.TimeOfDay && g.Completed == false)
+                        for (int i = 0; i < admins.Count; i++)
                         {
-                            for (int i = 0; i < admins.Count; i++)
-                            {
-                                CallbackController.SendMessage($"Матч {g.Team1}-{g.Team2} скорее всего окончен. Нужно ввести результат.", admins[i]);
-                            }
+                            CallbackController.SendMessage($"Матч {g.Team1}-{g.Team2} скорее всего окончен. Нужно ввести результат.", admins[i]);
                         }
                     }
                 }
-                Thread.Sleep(15 * 60 * 1000);
             }
         }
 
@@ -858,11 +854,12 @@ namespace VkBot
             else
             {
                 Program.Penaltys[peerID].ScoreGoalsIcons.Add("🔴");
-                try { 
-                var tm = CallbackController.EditMessage("Вратарь делает сейв 🧤. Ловите следующий удар.\n\n" +
-                    $"Вы:  {ScoreGameString(Program.Penaltys[peerID].ScoreGoalsIcons)}\n" +
-                    $"Бот: {ScoreGameString(Program.Penaltys[peerID].MissedGoalsIcons)}\n" +
-                    $"Счет: {Program.Penaltys[peerID].ScoredGoals}-{Program.Penaltys[peerID].MissedGoals}", peerID, Program.Penaltys[peerID].MessageId);
+                try
+                {
+                    var tm = CallbackController.EditMessage("Вратарь делает сейв 🧤. Ловите следующий удар.\n\n" +
+                        $"Вы:  {ScoreGameString(Program.Penaltys[peerID].ScoreGoalsIcons)}\n" +
+                        $"Бот: {ScoreGameString(Program.Penaltys[peerID].MissedGoalsIcons)}\n" +
+                        $"Счет: {Program.Penaltys[peerID].ScoredGoals}-{Program.Penaltys[peerID].MissedGoals}", peerID, Program.Penaltys[peerID].MessageId);
                 }
                 catch
                 {
@@ -894,11 +891,12 @@ namespace VkBot
             }
             else if (Program.Penaltys[peerID].ImpactNumber >= 10 && Program.Penaltys[peerID].ScoredGoals == Program.Penaltys[peerID].MissedGoals)
             {
-                try { 
-                var tm = CallbackController.EditMessage("Пока счет равный. Еще по одному удару! Ловите.\n\n" +
-                    $"Вы:  {ScoreGameString(Program.Penaltys[peerID].ScoreGoalsIcons)}\n" +
-                    $"Бот: {ScoreGameString(Program.Penaltys[peerID].MissedGoalsIcons)}\n" +
-                    $"Счет: {Program.Penaltys[peerID].ScoredGoals}-{Program.Penaltys[peerID].MissedGoals}", peerID, Program.Penaltys[peerID].MessageId);
+                try
+                {
+                    var tm = CallbackController.EditMessage("Пока счет равный. Еще по одному удару! Ловите.\n\n" +
+                        $"Вы:  {ScoreGameString(Program.Penaltys[peerID].ScoreGoalsIcons)}\n" +
+                        $"Бот: {ScoreGameString(Program.Penaltys[peerID].MissedGoalsIcons)}\n" +
+                        $"Счет: {Program.Penaltys[peerID].ScoredGoals}-{Program.Penaltys[peerID].MissedGoals}", peerID, Program.Penaltys[peerID].MessageId);
                 }
                 catch
                 {
@@ -938,11 +936,12 @@ namespace VkBot
             {
                 Program.Penaltys[peerID].MissedGoals += 1;
                 Program.Penaltys[peerID].MissedGoalsIcons.Add("🟢");
-                try { 
-                var tm = CallbackController.EditMessage("Вам забили гоооол ⚽. Теперь вы бьете по воротам.\n\n" +
-                    $"Вы:  {ScoreGameString(Program.Penaltys[peerID].ScoreGoalsIcons)}\n" +
-                    $"Бот: {ScoreGameString(Program.Penaltys[peerID].MissedGoalsIcons)}\n" +
-                    $"Счет: {Program.Penaltys[peerID].ScoredGoals}-{Program.Penaltys[peerID].MissedGoals}", peerID, Program.Penaltys[peerID].MessageId);
+                try
+                {
+                    var tm = CallbackController.EditMessage("Вам забили гоооол ⚽. Теперь вы бьете по воротам.\n\n" +
+                        $"Вы:  {ScoreGameString(Program.Penaltys[peerID].ScoreGoalsIcons)}\n" +
+                        $"Бот: {ScoreGameString(Program.Penaltys[peerID].MissedGoalsIcons)}\n" +
+                        $"Счет: {Program.Penaltys[peerID].ScoredGoals}-{Program.Penaltys[peerID].MissedGoals}", peerID, Program.Penaltys[peerID].MessageId);
                 }
                 catch
                 {
@@ -955,8 +954,8 @@ namespace VkBot
             else
             {
                 Program.Penaltys[peerID].MissedGoalsIcons.Add("🔴");
-                try 
-                { 
+                try
+                {
                     var tm = CallbackController.EditMessage("Вы делаете сейв 🧤. Теперь вы бьете по воротам.\n\n" +
                    $"Вы:  {ScoreGameString(Program.Penaltys[peerID].ScoreGoalsIcons)}\n" +
                     $"Бот: {ScoreGameString(Program.Penaltys[peerID].MissedGoalsIcons)}\n" +
