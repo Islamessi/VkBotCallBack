@@ -749,18 +749,28 @@ namespace VkBot
                         foreach (var b in bettings)
                         {
                             var score = b.ScoreGame.Split('-');
-                            var user = db.Users.Where(p => p.VkId == b.VkId).FirstOrDefault(); ;
+                            var user = db.Users.Where(p => p.VkId == b.VkId).FirstOrDefault();
                             if (Info[0] == score[0] && Info[1] == score[1])
                             {
                                 user.Score += 100;
                                 Spredsheet.UpdateEntry(user);
-                                CallbackController.SendMessage($"Вы заработали на матче {game.Team1}-{game.Team2} 100 голов ⚽!", b.VkId);
+                                CallbackController.SendMessage($" Матч {b.Game.Team1} {b.Game.Team2} окончен со счетом: {score[0]}-{score[1]}.\n" +
+                                    $"Ваша ставка: {Info[0]}-{Info[1]}" +
+                                    $"Вы заработали на этом матче 100 голов ⚽!", b.VkId);
                             }
                             else if (Info[0] == score[0] || Info[1] == score[1])
                             {
                                 user.Score += 50;
                                 Spredsheet.UpdateEntry(user);
-                                CallbackController.SendMessage($"Вы заработали на матче {game.Team1}-{game.Team2} 50 голов ⚽!", b.VkId);
+                                CallbackController.SendMessage($" Матч {b.Game.Team1} {b.Game.Team2} окончен со счетом: {score[0]}-{score[1]}.\n" +
+                                    $"Ваша ставка: {Info[0]}-{Info[1]}" +
+                                    $"Вы заработали на этом матче 50 голов ⚽!", b.VkId);
+                            }
+                            else
+                            {
+                                CallbackController.SendMessage($" Матч {b.Game.Team1} {b.Game.Team2} окончен со счетом: {score[0]}-{score[1]}.\n" +
+                                    $"Ваша ставка: {Info[0]}-{Info[1]}" +
+                                    $"Вы заработали на этом матче 0 голов ⚽!", b.VkId);
                             }
                             Spredsheet.UpdateEntry(user);
                         }
@@ -785,7 +795,7 @@ namespace VkBot
         {
             await System.Threading.Tasks.Task.Run(() => MessageAboutEndGame(admins));
         }
-        private static void MessageAboutEndGame(List<long?> admins)
+        public static void MessageAboutEndGame(List<long?> admins)
         {
             while (true)
             {
@@ -829,17 +839,7 @@ namespace VkBot
             if (selectednum != rand)
             {
                 Program.Penaltys[peerID].ScoredGoals += 1;
-                //Program.UsersInfo[WriteOrNot][3] += 1;
-                //CallbackController.SendMessage((Program.UsersInfo[WriteOrNot][2]-1).ToString()+" " + Program.PenaltyScore.Count().ToString(), 266006795);
                 Program.Penaltys[peerID].ScoreGoalsIcons.Add("🟢");
-                //if (Program.UsersInfo[WriteOrNot][2] - 1 >= Program.PenaltyScore.Count())
-                //{
-                //    Program.PenaltyScore[WriteOrNot].Add("🟢");
-                //}
-                //else
-                //{
-                //    Program.PenaltyScore[WriteOrNot][Convert.ToInt32(Program.UsersInfo[WriteOrNot][2] - 1)] = "🟢";
-                //}
                 try
                 {
                     var tm = CallbackController.EditMessage("Вы забили гоооол ⚽. Ловите следующий удар.\n\n" +
@@ -858,15 +858,6 @@ namespace VkBot
             else
             {
                 Program.Penaltys[peerID].ScoreGoalsIcons.Add("🔴");
-                //if (Program.UsersInfo[WriteOrNot][2] - 1 >= Program.PenaltyScore.Count())
-                //{
-                //    Program.PenaltyScore[WriteOrNot].Add("🔴");
-                //}
-                //else
-                //{
-                //    Program.PenaltyScore[WriteOrNot][Convert.ToInt32(Program.UsersInfo[WriteOrNot][2] - 1)] = "🔴";
-                //}
-                //Program.PenaltyScore[Convert.ToInt32(Program.UsersInfo[WriteOrNot][2])] = "🔴";
                 try { 
                 var tm = CallbackController.EditMessage("Вратарь делает сейв 🧤. Ловите следующий удар.\n\n" +
                     $"Вы:  {ScoreGameString(Program.Penaltys[peerID].ScoreGoalsIcons)}\n" +
@@ -899,7 +890,6 @@ namespace VkBot
                         $"{Program.Penaltys[peerID].ScoredGoals * Program.Penaltys[peerID].Level}",
                         peerID, Keyboards.UserKeyboard);
                 Program.Penaltys.Remove(Program.Penaltys[peerID]);
-                //CallbackController.SendMessage(Program.Penaltys.Count.ToString(), 266006795);
                 Program.UsersInfo.RemoveAt(WriteOrNot);
             }
             else if (Program.Penaltys[peerID].ImpactNumber >= 10 && Program.Penaltys[peerID].ScoredGoals == Program.Penaltys[peerID].MissedGoals)
@@ -925,7 +915,6 @@ namespace VkBot
                 else
                     CallbackController.SendMessage("Вы проиграли! Повезет в другой раз.", peerID, Keyboards.UserKeyboard);
                 Program.Penaltys.Remove(Program.Penaltys[peerID]);
-                //CallbackController.SendMessage(Program.Penaltys.Count.ToString(), 266006795);
                 Program.UsersInfo.RemoveAt(WriteOrNot);
             }
         }
@@ -933,10 +922,8 @@ namespace VkBot
         {
             Random rnd = new Random();
             Program.Penaltys[peerID].ImpactNumber += 1;
-            //Program.UsersInfo[WriteOrNot][2] += 1;
             int selectednum = Convert.ToInt32(userMessage);
             int rand = 0;
-            //int level = (int)Program.UsersInfo[WriteOrNot][5];
             int level = Program.Penaltys[peerID].Level;
             if (selectednum - 1 <= level)
             {
@@ -950,20 +937,7 @@ namespace VkBot
             if (selectednum != rand)
             {
                 Program.Penaltys[peerID].MissedGoals += 1;
-                //Program.UsersInfo[WriteOrNot][4] += 1;
-                //if (Program.UsersInfo[WriteOrNot][2] < 5)
-                //    CallbackController.SendMessage("Вам забили гоооол ⚽. Ловите следующий удар!\n\n" +
-                //        $"Счет: {Program.UsersInfo[WriteOrNot][3]}-{Program.UsersInfo[WriteOrNot][4]}", peerID);
-                //else
                 Program.Penaltys[peerID].MissedGoalsIcons.Add("🟢");
-                //if (Program.UsersInfo[WriteOrNot][2] - 1 >= Program.PenaltyScore2.Count())
-                //{
-                //    Program.PenaltyScore2[WriteOrNot].Add("🟢");
-                //}
-                //else
-                //{
-                //    Program.PenaltyScore2[WriteOrNot][Convert.ToInt32(Program.UsersInfo[WriteOrNot][2] - 1)] = "🟢";
-                //}
                 try { 
                 var tm = CallbackController.EditMessage("Вам забили гоооол ⚽. Теперь вы бьете по воротам.\n\n" +
                     $"Вы:  {ScoreGameString(Program.Penaltys[peerID].ScoreGoalsIcons)}\n" +
@@ -980,19 +954,7 @@ namespace VkBot
             }
             else
             {
-                //if (Program.UsersInfo[WriteOrNot][2] < 5)
-                //    CallbackController.SendMessage("Вы делаете сейв 🧤. Ловите следующий удар!\n\n" +
-                //        $"Счет: {Program.UsersInfo[WriteOrNot][3]}-{Program.UsersInfo[WriteOrNot][4]}", peerID);
-                //else
                 Program.Penaltys[peerID].MissedGoalsIcons.Add("🔴");
-                //if (Program.UsersInfo[WriteOrNot][2] - 1 >= Program.PenaltyScore2.Count())
-                //{
-                //    Program.PenaltyScore2[WriteOrNot].Add("🔴");
-                //}
-                //else
-                //{
-                //    Program.PenaltyScore2[WriteOrNot][Convert.ToInt32(Program.UsersInfo[WriteOrNot][2] - 1)] = "🔴";
-                //}
                 try 
                 { 
                     var tm = CallbackController.EditMessage("Вы делаете сейв 🧤. Теперь вы бьете по воротам.\n\n" +
