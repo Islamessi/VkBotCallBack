@@ -58,7 +58,7 @@ namespace Cookie.Controllers
                             
                         }
                     }
-                    Methods.MessageAboutEndGame(Program.admins);
+                    //Methods.MessageAboutEndGame(Program.admins);
                     var msg = Message.FromJson(new VkResponse(updates.Object));
                     
                     //var tmp = DateTime.Now.Hour;

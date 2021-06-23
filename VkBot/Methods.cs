@@ -526,8 +526,8 @@ namespace VkBot
                                         using (var db = new MyContext())
                                         {
                                             Game game = db.Games.Where(p => p.Id == Program.UsersInfo[WriteOrNot][2]).FirstOrDefault();
-
-
+                                            int tm1 = Convert.ToInt32(Info[0]);
+                                            int tm2 = Convert.ToInt32(Info[1]);
                                             Betting betting = new Betting
                                             {
                                                 ScoreGame = userMessageUpp,
@@ -546,7 +546,7 @@ namespace VkBot
                                     }
                                     catch
                                     {
-                                        CallbackController.SendMessage("Произошла ошибка.", peerID);
+                                        CallbackController.SendMessage("Произошла ошибка. Введите счет по правилам еще раз.", peerID);
                                     }
                                 }
                                 else CallbackController.SendMessage("Введите счет, через тире(-)!!!", peerID);
