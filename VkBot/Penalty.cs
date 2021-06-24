@@ -12,28 +12,36 @@ namespace VkBot
         /// Идентификатор пользователя в вк
         /// </summary>
         public long? PeerId { get; set; }
+
         /// <summary>
         /// Номер удара
         /// </summary>
         public int ImpactNumber { get; set; } = 0;
+
         /// <summary>
         /// Количество забитых голов
         /// </summary>
         public int ScoredGoals { get; set; } = 0;
+
         /// <summary>
         /// Пропущено голов
         /// </summary>
         public int MissedGoals { get; set; } = 0;
+
         /// <summary>
         /// Уровень игры (1-5)
         /// </summary>
         public int Level { get; set; }
+
+        
+        
+        public long? MessageId { get; set; }
+
         /// <summary>
         /// Значки забитых/незабитых ударов
         /// </summary>
-        
-        public long? MessageId { get; set; }
         public List<string> ScoreGoalsIcons { get; set; } = new List<string>();
+
         /// <summary>
         /// Значки пропущенных/отбитых ударов
         /// </summary>
@@ -90,12 +98,12 @@ namespace VkBot
         /// <summary>
         /// Значки забитых/незабитых ударов
         /// </summary>
-        public List<string> ScoreGoalsIcons { get; set; } = new List<string>();
+        public List<string> FirstPlayerGoalsIcons { get; set; } = new List<string>();
 
         /// <summary>
         /// Значки пропущенных/отбитых ударов
         /// </summary>
-        public List<string> MissedGoalsIcons { get; set; } = new List<string>();
+        public List<string> SecondPlayerGoalsIcons { get; set; } = new List<string>();
     }
 
     public class Penaltys

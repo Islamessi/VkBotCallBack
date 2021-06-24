@@ -1183,15 +1183,34 @@ namespace VkBot
             int Choosing2 = Program.PenaltysWithFriend[peerID].ChoosingSecondPlayer;
             long? peer1 = Program.PenaltysWithFriend[peerID].PeerId1;
             long? peer2 = Program.PenaltysWithFriend[peerID].PeerId2;
-            if (Choosing1 == 0 && peerID == peer2) //если первый игрок не выбрал куда бить, и второй тоже
+            if (Choosing1 == 0 && peerID == peer2 && Choosing2 != 0) //если первый игрок не выбрал куда бить, и второй тоже
             {
                 Program.PenaltysWithFriend[peerID].ChoosingSecondPlayer = selectednum;
                 CallbackController.SendMessage("Вы сделали выбор, ожидайте хода соперника.", peerID);
             }
-            else if (Choosing2 == 0 && peerID == peer1)//если 2 игрок не выбрал куда бить, и 1 тоже
+            else if (Choosing2 == 0 && peerID == peer1 && Choosing1 != 0)//если 2 игрок не выбрал куда бить, и 1 тоже
             {
                 Program.PenaltysWithFriend[peerID].ChoosingFirstPlayer = selectednum;
                 CallbackController.SendMessage("Вы сделали выбор, ожидайте хода соперника.", peerID);
+            }
+            else if (peer1 == peerID && Choosing2 != 0 && Choosing1 != 0)//если второй игрок сделал уже ход
+            {
+                if (Choosing1 == Choosing2)
+                {
+                    Program.PenaltysWithFriend[peerID].ImpactNumber += 1;
+                    Program.PenaltysWithFriend[peerID].FirstPlayerGoalsIcons.Add("🔴");
+                    CallbackController.SendMessage("Вы делаете сейв 🧤. Теперь вы бьете по воротам.\n\n" +
+                   $"Вы:  {ScoreGameString(Program.PenaltysWithFriend[peerID].FirstPlayerGoalsIcons)}\n" +
+                    $"Соперник: {ScoreGameString(Program.PenaltysWithFriend[peerID].SecondPlayerGoalsIcons)}\n" +
+                    $"Счет: {Program.PenaltysWithFriend[peerID].ScoredGoals1}-{Program.PenaltysWithFriend[peerID].ScoredGoals2}", peer1);
+                    CallbackController.SendMessage("Соперник делает сейв 🧤. Ловите следующий удар.\n\n" +
+                   $"Вы:  {ScoreGameString(Program.PenaltysWithFriend[peerID].SecondPlayerGoalsIcons)}\n" +
+                    $"Соперник: {ScoreGameString(Program.PenaltysWithFriend[peerID].FirstPlayerGoalsIcons)}\n" +
+                    $"Счет: {Program.PenaltysWithFriend[peerID].ScoredGoals2}-{Program.PenaltysWithFriend[peerID].ScoredGoals1}", peer1);
+                    CallbackController.SendMessage("", peer2);
+                    Program.PenaltysWithFriend[peerID].ChoosingFirstPlayer = 0;
+                    Program.PenaltysWithFriend[peerID].ChoosingSecondPlayer = 0;
+                }
             }
             //else if()
             //{
