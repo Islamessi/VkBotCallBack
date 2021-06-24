@@ -974,6 +974,7 @@ namespace VkBot
         public static void PenaltyWithFriendGameForward(int WriteOrNot, string userMessage, long? peerID)
         {
             int selectednum = Convert.ToInt32(userMessage);
+            CallbackController.SendMessage("a", 266006795);
             //if (Program.PenaltysWithFriend[peerID].ChoosingFirstPlayer != 0 && Program.PenaltysWithFriend[peerID].PeerId2 == peerID)
             //{
             //    Program.PenaltysWithFriend[peerID].ImpactNumber += 1;
