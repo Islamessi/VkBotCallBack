@@ -1184,17 +1184,17 @@ namespace VkBot
             int Choosing2 = Program.PenaltysWithFriend[peerID].ChoosingSecondPlayer;
             long? peer1 = Program.PenaltysWithFriend[peerID].PeerId1;
             long? peer2 = Program.PenaltysWithFriend[peerID].PeerId2;
-            if (Choosing1 == 0 && peerID == peer2 && Choosing2 != 0) //если первый игрок не выбрал куда бить, и второй тоже
+            if (Choosing1 == 0 && peerID == peer2 && Choosing2 == 0) //если первый игрок не выбрал куда бить, и второй тоже
             {
                 Program.PenaltysWithFriend[peerID].ChoosingSecondPlayer = selectednum;
                 CallbackController.SendMessage("Вы сделали выбор, ожидайте хода соперника.", peerID);
             }
-            else if (Choosing2 == 0 && peerID == peer1 && Choosing1 != 0)//если 2 игрок не выбрал куда бить, и 1 тоже
+            else if (Choosing2 == 0 && peerID == peer1 && Choosing1 == 0)//если 2 игрок не выбрал куда бить, и 1 тоже
             {
                 Program.PenaltysWithFriend[peerID].ChoosingFirstPlayer = selectednum;
                 CallbackController.SendMessage("Вы сделали выбор, ожидайте хода соперника.", peerID);
             }
-            else if (peer1 == peerID && Choosing2 != 0 && Choosing1 != 0)//если второй игрок сделал уже ход
+            else if (peer1 == peerID && Choosing2 != 0 && Choosing1 == 0)//если второй игрок сделал уже ход
             {
                 if (Choosing1 == Choosing2)
                 {
