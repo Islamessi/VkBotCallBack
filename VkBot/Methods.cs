@@ -996,12 +996,12 @@ namespace VkBot
                 {
                     Program.PenaltysWithFriend[peerID].FirstPlayerGoalsIcons.Add("🔴");
                     CallbackController.SendMessage("Вы делаете сейв 🧤. Теперь вы бьете по воротам.\n\n" +
-                   $"Вы:  {ScoreGameString(Program.PenaltysWithFriend[peerID].FirstPlayerGoalsIcons)}\n" +
-                    $"Соперник: {ScoreGameString(Program.PenaltysWithFriend[peerID].SecondPlayerGoalsIcons)}\n" +
-                    $"Счет: {Program.PenaltysWithFriend[peerID].ScoredGoals1}-{Program.PenaltysWithFriend[peerID].ScoredGoals2}", peer2);
-                    CallbackController.SendMessage("Соперник делает сейв 🧤. Ловите следующий удар.\n\n" +
                    $"Вы:  {ScoreGameString(Program.PenaltysWithFriend[peerID].SecondPlayerGoalsIcons)}\n" +
                     $"Соперник: {ScoreGameString(Program.PenaltysWithFriend[peerID].FirstPlayerGoalsIcons)}\n" +
+                    $"Счет: {Program.PenaltysWithFriend[peerID].ScoredGoals1}-{Program.PenaltysWithFriend[peerID].ScoredGoals2}", peer2);
+                    CallbackController.SendMessage("Соперник делает сейв 🧤. Ловите следующий удар.\n\n" +
+                   $"Вы:  {ScoreGameString(Program.PenaltysWithFriend[peerID].FirstPlayerGoalsIcons)}\n" +
+                    $"Соперник: {ScoreGameString(Program.PenaltysWithFriend[peerID].SecondPlayerGoalsIcons)}\n" +
                     $"Счет: {Program.PenaltysWithFriend[peerID].ScoredGoals2}-{Program.PenaltysWithFriend[peerID].ScoredGoals1}", peer1);
                 }
                 else
@@ -1013,8 +1013,8 @@ namespace VkBot
                     $"Соперник: {ScoreGameString(Program.PenaltysWithFriend[peerID].SecondPlayerGoalsIcons)}\n" +
                     $"Счет: {Program.PenaltysWithFriend[peerID].ScoredGoals1}-{Program.PenaltysWithFriend[peerID].ScoredGoals2}", peer2);
                     CallbackController.SendMessage("Вы забили гоооол ⚽. Ловите следующий удар.\n\n" +
-                   $"Вы:  {ScoreGameString(Program.PenaltysWithFriend[peerID].SecondPlayerGoalsIcons)}\n" +
-                    $"Соперник: {ScoreGameString(Program.PenaltysWithFriend[peerID].FirstPlayerGoalsIcons)}\n" +
+                   $"Вы:  {ScoreGameString(Program.PenaltysWithFriend[peerID].FirstPlayerGoalsIcons)}\n" +
+                    $"Соперник: {ScoreGameString(Program.PenaltysWithFriend[peerID].SecondPlayerGoalsIcons)}\n" +
                     $"Счет: {Program.PenaltysWithFriend[peerID].ScoredGoals2}-{Program.PenaltysWithFriend[peerID].ScoredGoals1}", peer1);
                 }
 
