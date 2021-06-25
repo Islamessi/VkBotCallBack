@@ -974,7 +974,21 @@ namespace VkBot
         public static void PenaltyWithFriendGameForward(int WriteOrNot, string userMessage, long? peerID)
         {
             int selectednum = Convert.ToInt32(userMessage);
-            CallbackController.SendMessage("a", 266006795);
+
+            int Choosing1 = Program.PenaltysWithFriend[peerID].ChoosingFirstPlayer;
+            int Choosing2 = Program.PenaltysWithFriend[peerID].ChoosingSecondPlayer;
+            long? peer1 = Program.PenaltysWithFriend[peerID].PeerId1;
+            long? peer2 = Program.PenaltysWithFriend[peerID].PeerId2;
+            if (Choosing1 == 0 && peerID == peer2 && Choosing2 == 0) //если первый игрок не выбрал куда бить, и второй тоже
+            {
+                Program.PenaltysWithFriend[peerID].ChoosingSecondPlayer = selectednum;
+                CallbackController.SendMessage("Вы сделали выбор, ожидайте хода соперника.", peerID);
+            }
+            else if (Choosing2 == 0 && peerID == peer1 && Choosing1 == 0)//если 2 игрок не выбрал куда бить, и 1 тоже
+            {
+                Program.PenaltysWithFriend[peerID].ChoosingFirstPlayer = selectednum;
+                CallbackController.SendMessage("Вы сделали выбор, ожидайте хода соперника.", peerID);
+            }
             //if (Program.PenaltysWithFriend[peerID].ChoosingFirstPlayer != 0 && Program.PenaltysWithFriend[peerID].PeerId2 == peerID)
             //{
             //    Program.PenaltysWithFriend[peerID].ImpactNumber += 1;
