@@ -1017,6 +1017,7 @@ namespace VkBot
                     $"Соперник: {ScoreGameString(Program.PenaltysWithFriend[peerID].FirstPlayerGoalsIcons)}\n" +
                     $"Счет: {Program.PenaltysWithFriend[peerID].ScoredGoals2}-{Program.PenaltysWithFriend[peerID].ScoredGoals1}", peer1);
                 }
+
                 Program.PenaltysWithFriend[peerID].ChoosingFirstPlayer = 0;
                 Program.PenaltysWithFriend[peerID].ChoosingSecondPlayer = 0;
             }
