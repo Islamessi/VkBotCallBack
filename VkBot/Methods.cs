@@ -1210,7 +1210,7 @@ namespace VkBot
             }
             else if (peer1 == peerID && Choosing2 != 0 && Choosing1 == 0)//если второй игрок сделал уже ход
             {
-                if (Choosing1 == Choosing2)
+                if (selectednum == Choosing2)
                 {
                     Program.PenaltysWithFriend[peerID].ImpactNumber += 1;
                     Program.PenaltysWithFriend[peerID].FirstPlayerGoalsIcons.Add("🔴");
