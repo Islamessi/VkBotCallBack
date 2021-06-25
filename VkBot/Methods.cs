@@ -1006,6 +1006,7 @@ namespace VkBot
                 }
                 else
                 {
+
                     Program.PenaltysWithFriend[peerID].FirstPlayerGoalsIcons.Add("🟢");
                     Program.PenaltysWithFriend[peerID].ScoredGoals1 += 1;
                     CallbackController.SendMessage("Вам забили гоооол ⚽. Теперь вы бьете по воротам.\n\n" +
