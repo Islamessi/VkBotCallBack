@@ -85,22 +85,18 @@ namespace VkBot
                                 var bbb = Convert.ToInt32(userMessage);
                                 if (Program.PenaltysWithFriend[peerID].PeerId1 == peerID && Program.PenaltysWithFriend[peerID].ImpactNumber % 2 == 0)
                                 {
-                                    CallbackController.SendMessage("11", 266006795);
                                     PenaltyWithFriendGameGoolKiper(WriteOrNot, userMessage, peerID);
                                 }
                                 else if (Program.PenaltysWithFriend[peerID].PeerId1 == peerID && Program.PenaltysWithFriend[peerID].ImpactNumber % 2 == 1)
                                 {
-                                    CallbackController.SendMessage("12", 266006795);
                                     PenaltyWithFriendGameForward(WriteOrNot, userMessage, peerID);
                                 }
                                 else if (Program.PenaltysWithFriend[peerID].PeerId2 == peerID && Program.PenaltysWithFriend[peerID].ImpactNumber % 2 == 0)
                                 {
-                                    CallbackController.SendMessage("13", 266006795);
                                     PenaltyWithFriendGameForward(WriteOrNot, userMessage, peerID);
                                 }
                                 else if (Program.PenaltysWithFriend[peerID].PeerId2 == peerID && Program.PenaltysWithFriend[peerID].ImpactNumber % 2 == 1)
                                 {
-                                    CallbackController.SendMessage("14", 266006795);
                                     PenaltyWithFriendGameGoolKiper(WriteOrNot, userMessage, peerID);
                                 }
                             }
@@ -625,11 +621,8 @@ namespace VkBot
                                     }
                                     else
                                     {
-                                        CallbackController.SendMessage(Program.UsersInfo.Count.ToString() + " " + fromId, 266006795);
-                                        CallbackController.SendMessage(CallbackController.IsSendMessage(fromId).ToString(), 266006795);
                                         if (CallbackController.IsSendMessage(fromId))
                                         {
-                                            CallbackController.SendMessage(Program.UsersInfo.Count.ToString(), 266006795);
                                             using (var db = new MyContext())
                                             {
                                                 var user = db.Users.Where(p => p.VkId == peerID).FirstOrDefault();
@@ -995,7 +988,6 @@ namespace VkBot
             }
             else if (peer1 == peerID && Choosing2 != 0 && Choosing1 == 0)//если второй игрок сделал уже ход
             {
-                CallbackController.SendMessage("3", 266006795);
                 Program.PenaltysWithFriend[peerID].ImpactNumber += 1;
                 if (selectednum == Choosing2)
                 {
@@ -1034,7 +1026,6 @@ namespace VkBot
             }
             else if (peer2 == peerID && Choosing1 != 0 && Choosing2 == 0)//если второй игрок сделал уже ход
             {
-                CallbackController.SendMessage("4", 266006795);
                 Program.PenaltysWithFriend[peerID].ImpactNumber += 1;
                 if (selectednum == Choosing1)
                 {
@@ -1191,7 +1182,6 @@ namespace VkBot
             }
             else if (peer1 == peerID && Choosing2 != 0 && Choosing1 == 0)//если второй игрок сделал уже ход
             {
-                CallbackController.SendMessage("1", 266006795);
                 Program.PenaltysWithFriend[peerID].ImpactNumber += 1;
                 if (selectednum == Choosing2)
                 {
@@ -1227,7 +1217,6 @@ namespace VkBot
             }
             else if (peer2 == peerID && Choosing1 != 0 && Choosing2 == 0)//если второй игрок сделал уже ход
             {
-                CallbackController.SendMessage("2", 266006795);
                 Program.PenaltysWithFriend[peerID].ImpactNumber += 1;
                 if (selectednum == Choosing1)
                 {
