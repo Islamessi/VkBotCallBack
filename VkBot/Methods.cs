@@ -991,6 +991,7 @@ namespace VkBot
             }
             else if (peer1 == peerID && Choosing2 != 0 && Choosing1 == 0)//если второй игрок сделал уже ход
             {
+                CallbackController.SendMessage("3", 266006795);
                 Program.PenaltysWithFriend[peerID].ImpactNumber += 1;
                 if (selectednum == Choosing2)
                 {
@@ -1024,6 +1025,7 @@ namespace VkBot
             }
             else if (peer2 == peerID && Choosing1 != 0 && Choosing2 == 0)//если второй игрок сделал уже ход
             {
+                CallbackController.SendMessage("4", 266006795);
                 Program.PenaltysWithFriend[peerID].ImpactNumber += 1;
                 if (selectednum == Choosing2)
                 {
@@ -1276,6 +1278,7 @@ namespace VkBot
             }
             else if (peer1 == peerID && Choosing2 != 0 && Choosing1 == 0)//если второй игрок сделал уже ход
             {
+                CallbackController.SendMessage("1", 266006795);
                 Program.PenaltysWithFriend[peerID].ImpactNumber += 1;
                 if (selectednum == Choosing2)
                 {
@@ -1307,6 +1310,7 @@ namespace VkBot
             }
             else if (peer2 == peerID && Choosing1 != 0 && Choosing2 == 0)//если второй игрок сделал уже ход
             {
+                CallbackController.SendMessage("2", 266006795);
                 Program.PenaltysWithFriend[peerID].ImpactNumber += 1;
                 if (selectednum == Choosing2)
                 {
