@@ -85,18 +85,22 @@ namespace VkBot
                                 var bbb = Convert.ToInt32(userMessage);
                                 if (Program.PenaltysWithFriend[peerID].PeerId1 == peerID && Program.PenaltysWithFriend[peerID].ImpactNumber % 2 == 0)
                                 {
+                                    CallbackController.SendMessage("11", 266006795);
                                     PenaltyWithFriendGameGoolKiper(WriteOrNot, userMessage, peerID);
                                 }
                                 else if (Program.PenaltysWithFriend[peerID].PeerId1 == peerID && Program.PenaltysWithFriend[peerID].ImpactNumber % 2 == 1)
                                 {
+                                    CallbackController.SendMessage("12", 266006795);
                                     PenaltyWithFriendGameForward(WriteOrNot, userMessage, peerID);
                                 }
                                 else if (Program.PenaltysWithFriend[peerID].PeerId2 == peerID && Program.PenaltysWithFriend[peerID].ImpactNumber % 2 == 0)
                                 {
+                                    CallbackController.SendMessage("13", 266006795);
                                     PenaltyWithFriendGameForward(WriteOrNot, userMessage, peerID);
                                 }
                                 else if (Program.PenaltysWithFriend[peerID].PeerId2 == peerID && Program.PenaltysWithFriend[peerID].ImpactNumber % 2 == 1)
                                 {
+                                    CallbackController.SendMessage("14", 266006795);
                                     PenaltyWithFriendGameGoolKiper(WriteOrNot, userMessage, peerID);
                                 }
                             }
