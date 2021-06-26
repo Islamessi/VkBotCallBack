@@ -1000,28 +1000,33 @@ namespace VkBot
                 if (selectednum == Choosing2)
                 {
                     Program.PenaltysWithFriend[peerID].FirstPlayerGoalsIcons.Add("🔴");
-                    CallbackController.SendMessage("Вы делаете сейв 🧤. Теперь вы бьете по воротам.\n\n" +
-                   $"Вы:  {ScoreGameString(Program.PenaltysWithFriend[peerID].SecondPlayerGoalsIcons)}\n" +
-                    $"Соперник: {ScoreGameString(Program.PenaltysWithFriend[peerID].FirstPlayerGoalsIcons)}\n" +
-                    $"Счет: {Program.PenaltysWithFriend[peerID].ScoredGoals1}-{Program.PenaltysWithFriend[peerID].ScoredGoals2}", peer2);
-                    CallbackController.SendMessage("Соперник делает сейв 🧤. Ловите следующий удар.\n\n" +
-                   $"Вы:  {ScoreGameString(Program.PenaltysWithFriend[peerID].FirstPlayerGoalsIcons)}\n" +
-                    $"Соперник: {ScoreGameString(Program.PenaltysWithFriend[peerID].SecondPlayerGoalsIcons)}\n" +
-                    $"Счет: {Program.PenaltysWithFriend[peerID].ScoredGoals2}-{Program.PenaltysWithFriend[peerID].ScoredGoals1}", peer1);
+                    SendMessageInPenaltyWithFriend("Вы делаете сейв 🧤. Теперь вы бьете по воротам.", peer2);
+                    SendMessageInPenaltyWithFriend("Соперник делает сейв 🧤. Ловите следующий удар.", peer1);
+                    // CallbackController.SendMessage("Вы делаете сейв 🧤. Теперь вы бьете по воротам.\n\n" +
+                    //$"Вы:  {ScoreGameString(Program.PenaltysWithFriend[peerID].SecondPlayerGoalsIcons)}\n" +
+                    // $"Соперник: {ScoreGameString(Program.PenaltysWithFriend[peerID].FirstPlayerGoalsIcons)}\n" +
+                    // $"Счет: {Program.PenaltysWithFriend[peerID].ScoredGoals2}-{Program.PenaltysWithFriend[peerID].ScoredGoals1}", peer2);
+
+                   // CallbackController.SendMessage("Соперник делает сейв 🧤. Ловите следующий удар.\n\n" +
+                   //$"Вы:  {ScoreGameString(Program.PenaltysWithFriend[peerID].FirstPlayerGoalsIcons)}\n" +
+                   // $"Соперник: {ScoreGameString(Program.PenaltysWithFriend[peerID].SecondPlayerGoalsIcons)}\n" +
+                   // $"Счет: {Program.PenaltysWithFriend[peerID].ScoredGoals2}-{Program.PenaltysWithFriend[peerID].ScoredGoals1}", peer1);
                 }
                 else
                 {
 
                     Program.PenaltysWithFriend[peerID].FirstPlayerGoalsIcons.Add("🟢");
                     Program.PenaltysWithFriend[peerID].ScoredGoals1 += 1;
-                    CallbackController.SendMessage("Вам забили гоооол ⚽. Теперь вы бьете по воротам.\n\n" +
-                   $"Вы:  {ScoreGameString(Program.PenaltysWithFriend[peerID].SecondPlayerGoalsIcons)}\n" +
-                    $"Соперник: {ScoreGameString(Program.PenaltysWithFriend[peerID].FirstPlayerGoalsIcons)}\n" +
-                    $"Счет: {Program.PenaltysWithFriend[peerID].ScoredGoals1}-{Program.PenaltysWithFriend[peerID].ScoredGoals2}", peer2);
-                    CallbackController.SendMessage("Вы забили гоооол ⚽. Ловите следующий удар.\n\n" +
-                   $"Вы:  {ScoreGameString(Program.PenaltysWithFriend[peerID].FirstPlayerGoalsIcons)}\n" +
-                    $"Соперник: {ScoreGameString(Program.PenaltysWithFriend[peerID].SecondPlayerGoalsIcons)}\n" +
-                    $"Счет: {Program.PenaltysWithFriend[peerID].ScoredGoals2}-{Program.PenaltysWithFriend[peerID].ScoredGoals1}", peer1);
+                    SendMessageInPenaltyWithFriend("Вам забили гоооол ⚽. Теперь вы бьете по воротам.", peer2);
+                    SendMessageInPenaltyWithFriend("Вы забили гоооол ⚽. Ловите следующий удар.", peer1);
+                   // CallbackController.SendMessage("Вам забили гоооол ⚽. Теперь вы бьете по воротам.\n\n" +
+                   //$"Вы:  {ScoreGameString(Program.PenaltysWithFriend[peerID].SecondPlayerGoalsIcons)}\n" +
+                   // $"Соперник: {ScoreGameString(Program.PenaltysWithFriend[peerID].FirstPlayerGoalsIcons)}\n" +
+                   // $"Счет: {Program.PenaltysWithFriend[peerID].ScoredGoals2}-{Program.PenaltysWithFriend[peerID].ScoredGoals1}", peer2);
+                   // CallbackController.SendMessage("Вы забили гоооол ⚽. Ловите следующий удар.\n\n" +
+                   //$"Вы:  {ScoreGameString(Program.PenaltysWithFriend[peerID].FirstPlayerGoalsIcons)}\n" +
+                   // $"Соперник: {ScoreGameString(Program.PenaltysWithFriend[peerID].SecondPlayerGoalsIcons)}\n" +
+                   // $"Счет: {Program.PenaltysWithFriend[peerID].ScoredGoals1}-{Program.PenaltysWithFriend[peerID].ScoredGoals2}", peer1);
                 }
 
                 Program.PenaltysWithFriend[peerID].ChoosingFirstPlayer = 0;
@@ -1034,28 +1039,31 @@ namespace VkBot
                 if (selectednum == Choosing2)
                 {
                     Program.PenaltysWithFriend[peerID].SecondPlayerGoalsIcons.Add("🔴");
-                    CallbackController.SendMessage("Вы делаете сейв 🧤. Теперь вы бьете по воротам.\n\n" +
-                   $"Вы:  {ScoreGameString(Program.PenaltysWithFriend[peerID].FirstPlayerGoalsIcons)}\n" +
-                    $"Соперник: {ScoreGameString(Program.PenaltysWithFriend[peerID].SecondPlayerGoalsIcons)}\n" +
-                    $"Счет: {Program.PenaltysWithFriend[peerID].ScoredGoals1}-{Program.PenaltysWithFriend[peerID].ScoredGoals2}", peer1);
-                    CallbackController.SendMessage("Соперник делает сейв 🧤. Ловите следующий удар.\n\n" +
-                   $"Вы:  {ScoreGameString(Program.PenaltysWithFriend[peerID].SecondPlayerGoalsIcons)}\n" +
-                    $"Соперник: {ScoreGameString(Program.PenaltysWithFriend[peerID].FirstPlayerGoalsIcons)}\n" +
-                    $"Счет: {Program.PenaltysWithFriend[peerID].ScoredGoals2}-{Program.PenaltysWithFriend[peerID].ScoredGoals1}", peer2);
+                    SendMessageInPenaltyWithFriend("Вы делаете сейв 🧤. Теперь вы бьете по воротам.", peer1);
+                    // CallbackController.SendMessage("Вы делаете сейв 🧤. Теперь вы бьете по воротам.\n\n" +
+                    //$"Вы:  {ScoreGameString(Program.PenaltysWithFriend[peerID].FirstPlayerGoalsIcons)}\n" +
+                    // $"Соперник: {ScoreGameString(Program.PenaltysWithFriend[peerID].SecondPlayerGoalsIcons)}\n" +
+                    // $"Счет: {Program.PenaltysWithFriend[peerID].ScoredGoals1}-{Program.PenaltysWithFriend[peerID].ScoredGoals2}", peer1);
+                    SendMessageInPenaltyWithFriend("Соперник делает сейв 🧤. Ловите следующий удар.", peer1);
+                   // CallbackController.SendMessage("\n\n" +
+                   //$"Вы:  {ScoreGameString(Program.PenaltysWithFriend[peerID].SecondPlayerGoalsIcons)}\n" +
+                   // $"Соперник: {ScoreGameString(Program.PenaltysWithFriend[peerID].FirstPlayerGoalsIcons)}\n" +
+                   // $"Счет: {Program.PenaltysWithFriend[peerID].ScoredGoals2}-{Program.PenaltysWithFriend[peerID].ScoredGoals1}", peer2);
                 }
                 else
                 {
-
                     Program.PenaltysWithFriend[peerID].SecondPlayerGoalsIcons.Add("🟢");
                     Program.PenaltysWithFriend[peerID].ScoredGoals1 += 1;
-                    CallbackController.SendMessage("Вам забили гоооол ⚽. Теперь вы бьете по воротам.\n\n" +
-                   $"Вы:  {ScoreGameString(Program.PenaltysWithFriend[peerID].SecondPlayerGoalsIcons)}\n" +
-                    $"Соперник: {ScoreGameString(Program.PenaltysWithFriend[peerID].FirstPlayerGoalsIcons)}\n" +
-                    $"Счет: {Program.PenaltysWithFriend[peerID].ScoredGoals1}-{Program.PenaltysWithFriend[peerID].ScoredGoals2}", peer1);
-                    CallbackController.SendMessage("Вы забили гоооол ⚽. Ловите следующий удар.\n\n" +
-                   $"Вы:  {ScoreGameString(Program.PenaltysWithFriend[peerID].SecondPlayerGoalsIcons)}\n" +
-                    $"Соперник: {ScoreGameString(Program.PenaltysWithFriend[peerID].FirstPlayerGoalsIcons)}\n" +
-                    $"Счет: {Program.PenaltysWithFriend[peerID].ScoredGoals2}-{Program.PenaltysWithFriend[peerID].ScoredGoals1}", peer2);
+                    SendMessageInPenaltyWithFriend("Вам забили гоооол ⚽. Теперь вы бьете по воротам.", peer1);
+                    SendMessageInPenaltyWithFriend("Вы забили гоооол ⚽. Ловите следующий удар.", peer2);
+                   // CallbackController.SendMessage("Вам забили гоооол ⚽. Теперь вы бьете по воротам.\n\n" +
+                   //$"Вы:  {ScoreGameString(Program.PenaltysWithFriend[peerID].SecondPlayerGoalsIcons)}\n" +
+                   // $"Соперник: {ScoreGameString(Program.PenaltysWithFriend[peerID].FirstPlayerGoalsIcons)}\n" +
+                   // $"Счет: {Program.PenaltysWithFriend[peerID].ScoredGoals1}-{Program.PenaltysWithFriend[peerID].ScoredGoals2}", peer1);
+                   // CallbackController.SendMessage("Вы забили гоооол ⚽. Ловите следующий удар.\n\n" +
+                   //$"Вы:  {ScoreGameString(Program.PenaltysWithFriend[peerID].SecondPlayerGoalsIcons)}\n" +
+                   // $"Соперник: {ScoreGameString(Program.PenaltysWithFriend[peerID].FirstPlayerGoalsIcons)}\n" +
+                   // $"Счет: {Program.PenaltysWithFriend[peerID].ScoredGoals2}-{Program.PenaltysWithFriend[peerID].ScoredGoals1}", peer2);
                 }
 
                 Program.PenaltysWithFriend[peerID].ChoosingFirstPlayer = 0;
@@ -1287,27 +1295,31 @@ namespace VkBot
                 if (selectednum == Choosing2)
                 {
                     Program.PenaltysWithFriend[peerID].SecondPlayerGoalsIcons.Add("🔴");
-                    CallbackController.SendMessage("Вы делаете сейв 🧤. Теперь вы бьете по воротам.\n\n" +
-                   $"Вы:  {ScoreGameString(Program.PenaltysWithFriend[peerID].FirstPlayerGoalsIcons)}\n" +
-                    $"Соперник: {ScoreGameString(Program.PenaltysWithFriend[peerID].SecondPlayerGoalsIcons)}\n" +
-                    $"Счет: {Program.PenaltysWithFriend[peerID].ScoredGoals1}-{Program.PenaltysWithFriend[peerID].ScoredGoals2}", peer1);
-                    CallbackController.SendMessage("Соперник делает сейв 🧤. Ловите следующий удар.\n\n" +
-                   $"Вы:  {ScoreGameString(Program.PenaltysWithFriend[peerID].SecondPlayerGoalsIcons)}\n" +
-                    $"Соперник: {ScoreGameString(Program.PenaltysWithFriend[peerID].FirstPlayerGoalsIcons)}\n" +
-                    $"Счет: {Program.PenaltysWithFriend[peerID].ScoredGoals2}-{Program.PenaltysWithFriend[peerID].ScoredGoals1}", peer2);
+                    SendMessageInPenaltyWithFriend("Вы делаете сейв 🧤. Теперь вы бьете по воротам.", peer1);
+                    SendMessageInPenaltyWithFriend("Соперник делает сейв 🧤. Ловите следующий удар.", peer2);
+                   // CallbackController.SendMessage("Вы делаете сейв 🧤. Теперь вы бьете по воротам.\n\n" +
+                   //$"Вы:  {ScoreGameString(Program.PenaltysWithFriend[peerID].FirstPlayerGoalsIcons)}\n" +
+                   // $"Соперник: {ScoreGameString(Program.PenaltysWithFriend[peerID].SecondPlayerGoalsIcons)}\n" +
+                   // $"Счет: {Program.PenaltysWithFriend[peerID].ScoredGoals1}-{Program.PenaltysWithFriend[peerID].ScoredGoals2}", peer1);
+                   // CallbackController.SendMessage("Соперник делает сейв 🧤. Ловите следующий удар.\n\n" +
+                   //$"Вы:  {ScoreGameString(Program.PenaltysWithFriend[peerID].SecondPlayerGoalsIcons)}\n" +
+                   // $"Соперник: {ScoreGameString(Program.PenaltysWithFriend[peerID].FirstPlayerGoalsIcons)}\n" +
+                   // $"Счет: {Program.PenaltysWithFriend[peerID].ScoredGoals2}-{Program.PenaltysWithFriend[peerID].ScoredGoals1}", peer2);
                 }
                 else
                 {
                     Program.PenaltysWithFriend[peerID].SecondPlayerGoalsIcons.Add("🟢");
                     Program.PenaltysWithFriend[peerID].ScoredGoals2 += 1;
-                    CallbackController.SendMessage("Вам забили гоооол ⚽. Теперь вы бьете по воротам.\n\n" +
-                   $"Вы:  {ScoreGameString(Program.PenaltysWithFriend[peerID].FirstPlayerGoalsIcons)}\n" +
-                    $"Соперник: {ScoreGameString(Program.PenaltysWithFriend[peerID].SecondPlayerGoalsIcons)}\n" +
-                    $"Счет: {Program.PenaltysWithFriend[peerID].ScoredGoals1}-{Program.PenaltysWithFriend[peerID].ScoredGoals2}", peer1);
-                    CallbackController.SendMessage("Вы забили гоооол ⚽. Ловите следующий удар.\n\n" +
-                   $"Вы:  {ScoreGameString(Program.PenaltysWithFriend[peerID].SecondPlayerGoalsIcons)}\n" +
-                    $"Соперник: {ScoreGameString(Program.PenaltysWithFriend[peerID].FirstPlayerGoalsIcons)}\n" +
-                    $"Счет: {Program.PenaltysWithFriend[peerID].ScoredGoals2}-{Program.PenaltysWithFriend[peerID].ScoredGoals1}", peer2);
+                    SendMessageInPenaltyWithFriend("Вам забили гоооол ⚽. Теперь вы бьете по воротам.", peer1);
+                    SendMessageInPenaltyWithFriend("Вы забили гоооол ⚽. Ловите следующий удар.", peer2);
+                   // CallbackController.SendMessage("Вам забили гоооол ⚽. Теперь вы бьете по воротам.\n\n" +
+                   //$"Вы:  {ScoreGameString(Program.PenaltysWithFriend[peerID].FirstPlayerGoalsIcons)}\n" +
+                   // $"Соперник: {ScoreGameString(Program.PenaltysWithFriend[peerID].SecondPlayerGoalsIcons)}\n" +
+                   // $"Счет: {Program.PenaltysWithFriend[peerID].ScoredGoals1}-{Program.PenaltysWithFriend[peerID].ScoredGoals2}", peer1);
+                   // CallbackController.SendMessage("Вы забили гоооол ⚽. Ловите следующий удар.\n\n" +
+                   //$"Вы:  {ScoreGameString(Program.PenaltysWithFriend[peerID].SecondPlayerGoalsIcons)}\n" +
+                   // $"Соперник: {ScoreGameString(Program.PenaltysWithFriend[peerID].FirstPlayerGoalsIcons)}\n" +
+                   // $"Счет: {Program.PenaltysWithFriend[peerID].ScoredGoals2}-{Program.PenaltysWithFriend[peerID].ScoredGoals1}", peer2);
                 }
                 Program.PenaltysWithFriend[peerID].ChoosingFirstPlayer = 0;
                 Program.PenaltysWithFriend[peerID].ChoosingSecondPlayer = 0;
@@ -1319,27 +1331,31 @@ namespace VkBot
                 if (selectednum == Choosing2)
                 {
                     Program.PenaltysWithFriend[peerID].FirstPlayerGoalsIcons.Add("🔴");
-                    CallbackController.SendMessage("Вы делаете сейв 🧤. Теперь вы бьете по воротам.\n\n" +
-                   $"Вы:  {ScoreGameString(Program.PenaltysWithFriend[peerID].SecondPlayerGoalsIcons)}\n" +
-                    $"Соперник: {ScoreGameString(Program.PenaltysWithFriend[peerID].FirstPlayerGoalsIcons)}\n" +
-                    $"Счет: {Program.PenaltysWithFriend[peerID].ScoredGoals1}-{Program.PenaltysWithFriend[peerID].ScoredGoals2}", peer2);
-                    CallbackController.SendMessage("Соперник делает сейв 🧤. Ловите следующий удар.\n\n" +
-                   $"Вы:  {ScoreGameString(Program.PenaltysWithFriend[peerID].FirstPlayerGoalsIcons)}\n" +
-                    $"Соперник: {ScoreGameString(Program.PenaltysWithFriend[peerID].SecondPlayerGoalsIcons)}\n" +
-                    $"Счет: {Program.PenaltysWithFriend[peerID].ScoredGoals2}-{Program.PenaltysWithFriend[peerID].ScoredGoals1}", peer1);
+                    SendMessageInPenaltyWithFriend("Вы делаете сейв 🧤. Теперь вы бьете по воротам.", peer2);
+                    SendMessageInPenaltyWithFriend("Вы делаете сейв 🧤. Теперь вы бьете по воротам.", peer1);
+                   // CallbackController.SendMessage("Вы делаете сейв 🧤. Теперь вы бьете по воротам.\n\n" +
+                   //$"Вы:  {ScoreGameString(Program.PenaltysWithFriend[peerID].SecondPlayerGoalsIcons)}\n" +
+                   // $"Соперник: {ScoreGameString(Program.PenaltysWithFriend[peerID].FirstPlayerGoalsIcons)}\n" +
+                   // $"Счет: {Program.PenaltysWithFriend[peerID].ScoredGoals1}-{Program.PenaltysWithFriend[peerID].ScoredGoals2}", peer2);
+                   // CallbackController.SendMessage("Соперник делает сейв 🧤. Ловите следующий удар.\n\n" +
+                   //$"Вы:  {ScoreGameString(Program.PenaltysWithFriend[peerID].FirstPlayerGoalsIcons)}\n" +
+                   // $"Соперник: {ScoreGameString(Program.PenaltysWithFriend[peerID].SecondPlayerGoalsIcons)}\n" +
+                   // $"Счет: {Program.PenaltysWithFriend[peerID].ScoredGoals2}-{Program.PenaltysWithFriend[peerID].ScoredGoals1}", peer1);
                 }
                 else
                 {
                     Program.PenaltysWithFriend[peerID].FirstPlayerGoalsIcons.Add("🟢");
                     Program.PenaltysWithFriend[peerID].ScoredGoals1 += 1;
-                    CallbackController.SendMessage("Вам забили гоооол ⚽. Теперь вы бьете по воротам.\n\n" +
-                   $"Вы:  {ScoreGameString(Program.PenaltysWithFriend[peerID].SecondPlayerGoalsIcons)}\n" +
-                    $"Соперник: {ScoreGameString(Program.PenaltysWithFriend[peerID].FirstPlayerGoalsIcons)}\n" +
-                    $"Счет: {Program.PenaltysWithFriend[peerID].ScoredGoals1}-{Program.PenaltysWithFriend[peerID].ScoredGoals2}", peer2);
-                    CallbackController.SendMessage("Вы забили гоооол ⚽. Ловите следующий удар.\n\n" +
-                   $"Вы:  {ScoreGameString(Program.PenaltysWithFriend[peerID].FirstPlayerGoalsIcons)}\n" +
-                    $"Соперник: {ScoreGameString(Program.PenaltysWithFriend[peerID].SecondPlayerGoalsIcons)}\n" +
-                    $"Счет: {Program.PenaltysWithFriend[peerID].ScoredGoals2}-{Program.PenaltysWithFriend[peerID].ScoredGoals1}", peer1);
+                    SendMessageInPenaltyWithFriend("Вам забили гоооол ⚽. Теперь вы бьете по воротам.", peer2);
+                    SendMessageInPenaltyWithFriend("Вы забили гоооол ⚽. Ловите следующий удар.", peer1);
+                   // CallbackController.SendMessage("Вам забили гоооол ⚽. Теперь вы бьете по воротам.\n\n" +
+                   //$"Вы:  {ScoreGameString(Program.PenaltysWithFriend[peerID].SecondPlayerGoalsIcons)}\n" +
+                   // $"Соперник: {ScoreGameString(Program.PenaltysWithFriend[peerID].FirstPlayerGoalsIcons)}\n" +
+                   // $"Счет: {Program.PenaltysWithFriend[peerID].ScoredGoals1}-{Program.PenaltysWithFriend[peerID].ScoredGoals2}", peer2);
+                   // CallbackController.SendMessage("Вы забили гоооол ⚽. Ловите следующий удар.\n\n" +
+                   //$"Вы:  {ScoreGameString(Program.PenaltysWithFriend[peerID].FirstPlayerGoalsIcons)}\n" +
+                   // $"Соперник: {ScoreGameString(Program.PenaltysWithFriend[peerID].SecondPlayerGoalsIcons)}\n" +
+                   // $"Счет: {Program.PenaltysWithFriend[peerID].ScoredGoals2}-{Program.PenaltysWithFriend[peerID].ScoredGoals1}", peer1);
                 }
 
                 Program.PenaltysWithFriend[peerID].ChoosingFirstPlayer = 0;
@@ -1457,6 +1473,26 @@ namespace VkBot
                 tmp += Score[i] + " ";
             }
             return tmp;
+        }
+
+        public static void SendMessageInPenaltyWithFriend(string str, long? peerID)
+        {
+            long? peer1 = Program.PenaltysWithFriend[peerID].PeerId1;
+            long? peer2 = Program.PenaltysWithFriend[peerID].PeerId2;
+            if (peerID == peer2)
+            {
+                CallbackController.SendMessage(str + "\n\n" +
+                       $"Вы:  {ScoreGameString(Program.PenaltysWithFriend[peerID].SecondPlayerGoalsIcons)}\n" +
+                        $"Соперник: {ScoreGameString(Program.PenaltysWithFriend[peerID].FirstPlayerGoalsIcons)}\n" +
+                        $"Счет: {Program.PenaltysWithFriend[peerID].ScoredGoals2}-{Program.PenaltysWithFriend[peerID].ScoredGoals1}", peer2);
+            }
+            else if (peerID == peer1)
+            {
+                CallbackController.SendMessage(str + "\n\n" +
+                       $"Вы:  {ScoreGameString(Program.PenaltysWithFriend[peerID].FirstPlayerGoalsIcons)}\n" +
+                        $"Соперник: {ScoreGameString(Program.PenaltysWithFriend[peerID].SecondPlayerGoalsIcons)}\n" +
+                        $"Счет: {Program.PenaltysWithFriend[peerID].ScoredGoals1}-{Program.PenaltysWithFriend[peerID].ScoredGoals2}", peer1);
+            }
         }
     }
 }
