@@ -1036,7 +1036,7 @@ namespace VkBot
             {
                 CallbackController.SendMessage("4", 266006795);
                 Program.PenaltysWithFriend[peerID].ImpactNumber += 1;
-                if (selectednum == Choosing2)
+                if (selectednum == Choosing1)
                 {
                     Program.PenaltysWithFriend[peerID].SecondPlayerGoalsIcons.Add("🔴");
                     SendMessageInPenaltyWithFriend("Вы делаете сейв 🧤. Теперь вы бьете по воротам.", peer1);
@@ -1328,7 +1328,7 @@ namespace VkBot
             {
                 CallbackController.SendMessage("2", 266006795);
                 Program.PenaltysWithFriend[peerID].ImpactNumber += 1;
-                if (selectednum == Choosing2)
+                if (selectednum == Choosing1)
                 {
                     Program.PenaltysWithFriend[peerID].FirstPlayerGoalsIcons.Add("🔴");
                     SendMessageInPenaltyWithFriend("Вы делаете сейв 🧤. Теперь вы бьете по воротам.", peer2);
