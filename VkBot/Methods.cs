@@ -131,7 +131,8 @@ namespace VkBot
             }
             if (userMessage == "отмена")
             {
-                Program.UsersInfo.RemoveAt(WriteOrNot);
+                if (WriteOrNot != -1)
+                    Program.UsersInfo.RemoveAt(WriteOrNot);
                 Program.Penaltys.Remove(Program.Penaltys[peerID]);
                 if (Program.admins.Contains(peerID))
                     CallbackController.SendMessage("Меню.", peerID, Keyboards.AdminKeyboard);
