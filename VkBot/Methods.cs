@@ -745,30 +745,22 @@ namespace VkBot
                         var game = db.Games.Where(p => p.Id == Program.UsersInfo[WriteOrNot][2]).FirstOrDefault();
                         foreach (var b in bettings)
                         {
+                            int numscore = 0;
                             var score = b.ScoreGame.Split('-');
                             var user = db.Users.Where(p => p.VkId == b.VkId).FirstOrDefault();
                             if (Info[0] == score[0] && Info[1] == score[1])
                             {
                                 user.Score += 100;
-                                Spredsheet.UpdateEntry(user);
-                                CallbackController.SendMessage($" Матч {b.Game.Team1} {b.Game.Team2} окончен со счетом: {score[0]}-{score[1]}.\n" +
-                                    $"Ваша ставка: {Info[0]}-{Info[1]}.\n" +
-                                    $"Вы заработали на этом матче 100 голов ⚽!", b.VkId);
+                                numscore = 100;
                             }
                             else if (Info[0] == score[0] || Info[1] == score[1])
                             {
                                 user.Score += 50;
-                                Spredsheet.UpdateEntry(user);
-                                CallbackController.SendMessage($" Матч {b.Game.Team1} {b.Game.Team2} окончен со счетом: {score[0]}-{score[1]}.\n" +
-                                    $"Ваша ставка: {Info[0]}-{Info[1]}.\n" +
-                                    $"Вы заработали на этом матче 50 голов ⚽!", b.VkId);
+                                numscore = 50;
                             }
-                            else
-                            {
-                                CallbackController.SendMessage($" Матч {b.Game.Team1} {b.Game.Team2} окончен со счетом: {score[0]}-{score[1]}.\n" +
-                                    $"Ваша ставка: {Info[0]}-{Info[1]}.\n" +
-                                    $"Вы заработали на этом матче 0 голов ⚽!", b.VkId);
-                            }
+                            CallbackController.SendMessage($" Матч {b.Game.Team1} {b.Game.Team2} окончен со счетом: {Info[0]}-{Info[1]}.\n" +
+                                    $"Ваша ставка: {score[0]}-{score[1]}.\n" +
+                                    $"Вы заработали на этом матче {numscore} голов ⚽!", b.VkId);
                             Spredsheet.UpdateEntry(user);
                         }
                         game.Completed = true;
