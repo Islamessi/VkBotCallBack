@@ -12,6 +12,7 @@ using VkNet;
 using VkNet.Model.Keyboard;
 using System.Threading.Tasks;
 using System.Threading;
+using System.Collections.Generic;
 
 namespace Cookie.Controllers
 {
@@ -19,6 +20,7 @@ namespace Cookie.Controllers
     [ApiController]
     public class CallbackController : ControllerBase
     {
+
         /// <summary>
         /// Конфигурация приложения
         /// </summary>
@@ -36,6 +38,8 @@ namespace Cookie.Controllers
         public IActionResult Callback([FromBody] Updates updates)
         {
 
+            
+
             // Проверяем, что находится в поле "type" 
             switch (updates.Type)
             {
@@ -47,6 +51,7 @@ namespace Cookie.Controllers
                     //Spredsheet.ReadEntriesMas2();
                     // Десериализация
                     //SendMessage("aaa", 266006795);
+                    SendMessage("aaa", 266006795);
                     using (var db =new  MyContext())
                     {                       
                         var numuser = db.Users.Count();
@@ -82,14 +87,23 @@ namespace Cookie.Controllers
             // Возвращаем "ok" серверу Callback API
             return Ok("ok");
         }
+
         public static long? SendMessage(string message, long? peerId)
         {
+            var carouselElements = new List<VkNet.Model.Template.Carousel.CarouselElement> {
+                new VkNet.Model.Template.Carousel.CarouselElement {Description = "rere", Title = "aaaa" } };
+            VkNet.Model.Template.MessageTemplate a = new VkNet.Model.Template.MessageTemplate
+            {
+                Elements = carouselElements,
+                Type = VkNet.Enums.SafetyEnums.TemplateType.Carousel
+            };
             Random rnd = new Random();
             return _vkApi.Messages.Send(new MessagesSendParams
             {
                 RandomId = rnd.Next(),
                 PeerId = peerId,
-                Message = message
+                Message = message,
+                Template = a,
             });
         }
         public static long? SendMessage(string message, long? peerId, MessageKeyboard keyboard)
@@ -107,6 +121,8 @@ namespace Cookie.Controllers
 
         public static bool EditMessage(string message, long? peerId, long? MessageId)
         {
+            
+            
 
             Random rnd = new Random();
             return _vkApi.Messages.Edit(new MessageEditParams
@@ -114,7 +130,7 @@ namespace Cookie.Controllers
                 MessageId = MessageId,
                 PeerId = (long)peerId,
                 Message = message,
-                GroupId = 197872639
+                GroupId = 197872639,
             });
         }
 
