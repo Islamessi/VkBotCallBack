@@ -51,7 +51,7 @@ namespace Cookie.Controllers
                     //Spredsheet.ReadEntriesMas2();
                     // Десериализация
                     //SendMessage("aaa", 266006795);
-                    SendMessage("aaa", 266006795);
+                    //SendMessage("aaa", 266006795);
                     using (var db =new  MyContext())
                     {                       
                         var numuser = db.Users.Count();
