@@ -13,6 +13,7 @@ using VkNet.Model.Keyboard;
 using System.Threading.Tasks;
 using System.Threading;
 using System.Collections.Generic;
+using VkNet.Enums.SafetyEnums;
 
 namespace Cookie.Controllers
 {
@@ -38,7 +39,7 @@ namespace Cookie.Controllers
         public IActionResult Callback([FromBody] Updates updates)
         {
 
-            
+
 
             // Проверяем, что находится в поле "type" 
             switch (updates.Type)
@@ -53,20 +54,20 @@ namespace Cookie.Controllers
                     VkNet.Model.Template.MessageTemplate a = new VkNet.Model.Template.MessageTemplate();
                     SendMessage("aaa", 266006795, a);
                     //SendMessage("aaa", 266006795);
-                    using (var db =new  MyContext())
-                    {                       
+                    using (var db = new MyContext())
+                    {
                         var numuser = db.Users.Count();
                         if (numuser == 0)
                         {
                             Spredsheet.ReadEntriesMas();
                             Spredsheet.ReadEntriesMasGames();
                             Spredsheet.ReadEntriesMasBettings();
-                            
+
                         }
                     }
                     Methods.MessageAboutEndGame(Program.admins);
                     var msg = Message.FromJson(new VkResponse(updates.Object));
-                    
+
                     //var tmp = DateTime.Now.Hour;
                     //if (tmp >= 0 && tmp <= 3)
                     //{
@@ -91,20 +92,32 @@ namespace Cookie.Controllers
 
         public static long? SendMessage(string message, long? peerId, VkNet.Model.Template.MessageTemplate template)
         {
-
-            var carouselElements = new List<VkNet.Model.Template.Carousel.CarouselElement> 
+            IEnumerable<MessageKeyboardButton> buttons = new List<MessageKeyboardButton>
             {
-                new VkNet.Model.Template.Carousel.CarouselElement 
+                new MessageKeyboardButton
+                {
+                    Color = KeyboardButtonColor.Positive,
+                    Action = new MessageKeyboardButtonAction
+                    {
+                        Type = KeyboardButtonActionType.Callback, //Тип кнопки клавиатуры
+                        Label = "1", //Надпись на кнопке
+                        Payload = "1"
+                    },
+                }
+            };
+            var carouselElements = new List<VkNet.Model.Template.Carousel.CarouselElement>
+            {
+                new VkNet.Model.Template.Carousel.CarouselElement
                 {
                    Title  = "Барса-Реал",
                    Description = "16:00",
-                    Buttons = (IEnumerable<MessageKeyboardButton>)Keyboards.YesOrNo2,
+                   Buttons = buttons
                 },
                 new VkNet.Model.Template.Carousel.CarouselElement
                 {
-                    Title = "ЦСКА-Зенит", 
+                    Title = "ЦСКА-Зенит",
                     Description = "19:00",
-                    Buttons = (IEnumerable<MessageKeyboardButton>)Keyboards.YesOrNo2,
+                    Buttons = buttons,
                 }
             };
             VkNet.Model.Template.MessageTemplate a = new VkNet.Model.Template.MessageTemplate
@@ -135,7 +148,7 @@ namespace Cookie.Controllers
         {
 
             Random rnd = new Random();
-             return _vkApi.Messages.Send(new MessagesSendParams
+            return _vkApi.Messages.Send(new MessagesSendParams
             {
                 RandomId = rnd.Next(),
                 PeerId = peerId,
@@ -146,8 +159,8 @@ namespace Cookie.Controllers
 
         public static bool EditMessage(string message, long? peerId, long? MessageId)
         {
-            
-            
+
+
 
             Random rnd = new Random();
             return _vkApi.Messages.Edit(new MessageEditParams
