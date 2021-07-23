@@ -17,6 +17,40 @@ namespace VkBot
                 return adminKey.Build();
             }
         }
+
+        public static List<List<MessageKeyboardButton>> YesOrNo2
+        {
+            get
+            {
+                var buttons = new List<List<MessageKeyboardButton>>
+                {
+                    new List<MessageKeyboardButton>
+                    {
+                        new MessageKeyboardButton
+                        {
+                            Color = KeyboardButtonColor.Positive,
+                            Action = new MessageKeyboardButtonAction
+                            {
+                                Type = KeyboardButtonActionType.Callback, //Тип кнопки клавиатуры
+                                Label = "1", //Надпись на кнопке
+                                Payload = "1"
+                            },
+                        },
+                        new MessageKeyboardButton
+                        {
+                            Action = new MessageKeyboardButtonAction
+                            {
+                                Type = KeyboardButtonActionType.Callback, //Тип кнопки клавиатуры
+                                Label = "2", //Надпись на кнопке
+                                Payload = "2"
+                            },
+                        },
+                    },
+                };
+                return buttons;
+            }
+        }
+
         public static MessageKeyboard AdminKeyboard //Клавиатура для админов, заданных в листе admins
         {
             get

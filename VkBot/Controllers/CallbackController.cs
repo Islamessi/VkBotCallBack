@@ -91,19 +91,20 @@ namespace Cookie.Controllers
 
         public static long? SendMessage(string message, long? peerId, VkNet.Model.Template.MessageTemplate template)
         {
+
             var carouselElements = new List<VkNet.Model.Template.Carousel.CarouselElement> 
             {
                 new VkNet.Model.Template.Carousel.CarouselElement 
                 {
-                    Description = "Барса-Реал", 
-                    Title = "16:00",
-                    //Buttons = (IEnumerable<MessageKeyboardButton>)Keyboards.YesOrNo,
+                   Title  = "Барса-Реал",
+                   Description = "16:00",
+                    Buttons = (IEnumerable<MessageKeyboardButton>)Keyboards.YesOrNo2,
                 },
                 new VkNet.Model.Template.Carousel.CarouselElement
                 {
-                    Description = "ЦСКА-Зенит", 
-                    Title = "19:00",
-                    //Buttons = (IEnumerable<MessageKeyboardButton>)Keyboards.YesOrNo,
+                    Title = "ЦСКА-Зенит", 
+                    Description = "19:00",
+                    Buttons = (IEnumerable<MessageKeyboardButton>)Keyboards.YesOrNo2,
                 }
             };
             VkNet.Model.Template.MessageTemplate a = new VkNet.Model.Template.MessageTemplate
