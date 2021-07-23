@@ -106,6 +106,50 @@ namespace VkBot
                                 CallbackController.SendMessage("Выберите число от 1 до 9!", peerID);
                             }
                             break;
+                        case 5://Игра Прогнозы
+                            if (userMessage == "отмена")
+                            {
+                                Program.UsersInfo.RemoveAt(WriteOrNot);
+                                if (Program.admins.Contains(peerID))
+                                    CallbackController.SendMessage("Меню:", peerID, Keyboards.AdminKeyboard);
+                                else
+                                    CallbackController.SendMessage("Меню:", peerID, Keyboards.UserKeyboard);
+                                break;
+                            }
+                            else
+                            {
+                                try
+                                {
+                                    using (var db = new MyContext())
+                                    {
+                                        Game game = db.Games.Where(p => p.Id.ToString() == userMessage).FirstOrDefault();
+                                        var betting = db.Bettings.Where(p => p.GameId == game.Id)
+                                            .Intersect(db.Bettings.Where(p => p.VkId == peerID));
+                                        if (betting.Count() < 1 && DateTime.Now.AddHours(3) <= game.DateGame.AddMinutes(5))
+                                        {
+                                            Program.UsersInfo.Add(new List<long?> { peerID });
+                                            Program.UsersInfo[Program.UsersInfo.Count - 1].Add(6);
+                                            Program.UsersInfo[Program.UsersInfo.Count - 1].Add(game.Id);
+                                            Program.UsersInfo.RemoveAt(WriteOrNot);
+                                            CallbackController.SendMessage("Матч выбран. Теперь введите счет по формату:\n" +
+                                                "<счет первой команды>-<счет второй команды>.", peerID);
+                                        }
+                                        else if (DateTime.Now.AddHours(3) > game.DateGame.AddMinutes(5))
+                                        {
+                                            CallbackController.SendMessage("После начала матча прогнозы не принимаются. Выберите другой матч.", peerID);
+                                        }
+                                        else
+                                            CallbackController.SendMessage("Выберите матч, на который не сделана ставка.", peerID);
+                                    }
+
+                                }
+                                catch
+                                {
+                                    CallbackController.SendMessage("Выберите, пожалуйста, существующий матч.", peerID);
+                                }
+                            }
+                            break;
+                        
                     }
                 }
                 CallbackController._vkApi.Messages.SendMessageEventAnswer($"{msgev.EventId}", (long)msgev.UserId, (long)msgev.PeerId);
