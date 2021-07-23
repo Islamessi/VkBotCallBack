@@ -92,46 +92,14 @@ namespace Cookie.Controllers
 
         public static long? SendMessage(string message, long? peerId, VkNet.Model.Template.MessageTemplate template)
         {
-            IEnumerable<MessageKeyboardButton> buttons = new List<MessageKeyboardButton>
-            {
-                new MessageKeyboardButton
-                {
-                    Color = KeyboardButtonColor.Positive,
-                    Action = new MessageKeyboardButtonAction
-                    {
-                        Type = KeyboardButtonActionType.Callback, //Тип кнопки клавиатуры
-                        Label = "Поставить", //Надпись на кнопке
-                        Payload = "1"
-                    },
-                }
-            };
-            var carouselElements = new List<VkNet.Model.Template.Carousel.CarouselElement>
-            {
-                new VkNet.Model.Template.Carousel.CarouselElement
-                {
-                   Title  = "Барса-Реал",
-                   Description = "16:00",
-                   Buttons = buttons
-                },
-                new VkNet.Model.Template.Carousel.CarouselElement
-                {
-                    Title = "ЦСКА-Зенит",
-                    Description = "19:00",
-                    Buttons = buttons,
-                }
-            };
-            VkNet.Model.Template.MessageTemplate a = new VkNet.Model.Template.MessageTemplate
-            {
-                Elements = carouselElements,
-                Type = VkNet.Enums.SafetyEnums.TemplateType.Carousel
-            };
+            
             Random rnd = new Random();
             return _vkApi.Messages.Send(new MessagesSendParams
             {
                 RandomId = rnd.Next(),
                 PeerId = peerId,
                 Message = message,
-                Template = a,
+                Template = template,
             });
         }
         public static long? SendMessage(string message, long? peerId)

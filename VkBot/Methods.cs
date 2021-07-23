@@ -192,7 +192,7 @@ namespace VkBot
                                     Spredsheet.CreateEntry(db, user1);
                                 }
                             }
-                            Methods.AllGames(Program.admins, peerID, "", true, DateTime.Now.AddHours(3).Date);
+                            AllGames(Program.admins, peerID, "", true, DateTime.Now.AddHours(3).Date);
                             Program.UsersInfo.Add(new List<long?> { peerID });
                             Program.UsersInfo[Program.UsersInfo.Count - 1].Add(5);
                             break;
@@ -1347,6 +1347,27 @@ namespace VkBot
                 CallbackController.SendMessage(allMatch, peerID, Keyboards.AdminKeyboard);
             else
                 CallbackController.SendMessage(allMatch, peerID, Keyboards.UserKeyboard);
+        }
+
+        public static void AllGames2(List<long?> admins, long? peerID, string header, bool cansel, DateTime date)
+        {
+            string allMatch = header;
+            int jj = 1;
+            using (var db = new MyContext())
+            {
+                var game = db.Games.Where(p => p.DateGame >= date)
+                    .Intersect(db.Games.Where(p => p.DateGame <= date.AddDays(1)));
+                foreach (var g in game)
+                {
+                    Carousel.AddEllement(g.Team1 + " - " + g.Team2, g.DateGame.TimeOfDay.ToString(), g.Id.ToString());
+                }
+            }
+            VkNet.Model.Template.MessageTemplate template = new VkNet.Model.Template.MessageTemplate
+            {
+                Elements = Carousel.ReturnCarouselElements(),
+                Type = TemplateType.Carousel
+            };
+            CallbackController.SendMessage("Вот все матчи на сегодня:", peerID, template);
         }
 
         public static string ScoreGameString(List<string> Score)

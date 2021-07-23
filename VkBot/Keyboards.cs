@@ -18,37 +18,22 @@ namespace VkBot
             }
         }
 
-        public static List<List<MessageKeyboardButton>> YesOrNo2
+        public static IEnumerable<MessageKeyboardButton> ButtonsInCarousel(string payload)
         {
-            get
+            IEnumerable<MessageKeyboardButton> buttons = new List<MessageKeyboardButton>
             {
-                var buttons = new List<List<MessageKeyboardButton>>
+                new MessageKeyboardButton
                 {
-                    new List<MessageKeyboardButton>
+                    Color = KeyboardButtonColor.Positive,
+                    Action = new MessageKeyboardButtonAction
                     {
-                        new MessageKeyboardButton
-                        {
-                            Color = KeyboardButtonColor.Positive,
-                            Action = new MessageKeyboardButtonAction
-                            {
-                                Type = KeyboardButtonActionType.Callback, //Тип кнопки клавиатуры
-                                Label = "1", //Надпись на кнопке
-                                Payload = "1"
-                            },
-                        },
-                        new MessageKeyboardButton
-                        {
-                            Action = new MessageKeyboardButtonAction
-                            {
-                                Type = KeyboardButtonActionType.Callback, //Тип кнопки клавиатуры
-                                Label = "2", //Надпись на кнопке
-                                Payload = "2"
-                            },
-                        },
+                        Type = KeyboardButtonActionType.Callback, //Тип кнопки клавиатуры
+                        Label = "Поставить", //Надпись на кнопке
+                        Payload = payload
                     },
-                };
-                return buttons;
-            }
+                }
+            };
+            return buttons;
         }
 
         public static MessageKeyboard AdminKeyboard //Клавиатура для админов, заданных в листе admins
