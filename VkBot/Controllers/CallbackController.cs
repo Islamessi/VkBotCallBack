@@ -100,7 +100,7 @@ namespace Cookie.Controllers
                     Action = new MessageKeyboardButtonAction
                     {
                         Type = KeyboardButtonActionType.Callback, //Тип кнопки клавиатуры
-                        Label = "1", //Надпись на кнопке
+                        Label = "Поставить", //Надпись на кнопке
                         Payload = "1"
                     },
                 }
