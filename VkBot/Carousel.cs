@@ -39,6 +39,13 @@ namespace VkBot
             return carouselElements;
         }
 
+        public static void RemoveCarouselElements()
+        {
+            for (int i = 0; i < carouselElements.Count; i++)
+            {
+                carouselElements.RemoveAt(i);
+            }
+        }
         //var carouselElements = new List<VkNet.Model.Template.Carousel.CarouselElement>
         //    {
         //        new VkNet.Model.Template.Carousel.CarouselElement
@@ -54,6 +61,6 @@ namespace VkBot
         //            Buttons = buttons,
         //        }
         //    };
-        
+
     }
 }

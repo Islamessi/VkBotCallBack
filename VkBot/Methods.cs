@@ -1368,6 +1368,7 @@ namespace VkBot
                 Elements = Carousel.ReturnCarouselElements(),
                 Type = TemplateType.Carousel
             };
+
             CallbackController.SendMessage("Вот все матчи на сегодня:", peerID, template);
 
         }
