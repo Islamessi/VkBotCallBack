@@ -125,9 +125,6 @@ namespace Cookie.Controllers
 
         public static bool EditMessage(string message, long? peerId, long? MessageId)
         {
-
-
-
             Random rnd = new Random();
             return _vkApi.Messages.Edit(new MessageEditParams
             {
