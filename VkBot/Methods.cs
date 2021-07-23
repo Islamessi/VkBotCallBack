@@ -1369,6 +1369,7 @@ namespace VkBot
                 Type = TemplateType.Carousel
             };
             CallbackController.SendMessage("Вот все матчи на сегодня:", peerID, template);
+
         }
 
         public static string ScoreGameString(List<string> Score)
