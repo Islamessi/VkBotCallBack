@@ -587,15 +587,15 @@ namespace VkBot
                                             Program.UsersInfo.RemoveAt(WriteOrNot);
                                             Program.UsersInfo.Add(new List<long?> { peerID });
                                             Program.UsersInfo[Program.UsersInfo.Count - 1].Add(5);
-                                            CallbackController.SendMessage("Счет записан. Вы можете поставить на другие матчи или вернуться в меню.", peerID);
+                                            CallbackController.SendMessage("Счет записан. Вы можете поставить на другие матчи или вернуться в меню.", peerID, Keyboards.CanselKeyboard);
                                         }
                                     }
                                     catch
                                     {
-                                        CallbackController.SendMessage("Произошла ошибка. Введите счет по правилам еще раз.", peerID);
+                                        CallbackController.SendMessage("Произошла ошибка. Введите счет по правилам еще раз.", peerID, Keyboards.CanselKeyboard);
                                     }
                                 }
-                                else CallbackController.SendMessage("Введите счет, через тире(-)!!!", peerID);
+                                else CallbackController.SendMessage("Введите счет, через тире(-)!!!", peerID, Keyboards.CanselKeyboard);
                             }
                             break;
                         case 7://Выбор матча для записывания результата матча
