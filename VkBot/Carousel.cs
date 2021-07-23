@@ -42,15 +42,17 @@ namespace VkBot
 
         public static void RemoveCarouselElements()
         {
-            CallbackController.SendMessage(carouselElements.Count.ToString(), 266006795);
-            int count = carouselElements.Count;
-            for (int i = 0; i < count; i++)
-            {
+            carouselElements.Clear();
 
-                carouselElements.RemoveAt(i);
-                CallbackController.SendMessage(i.ToString(), 266006795);
-            }
-            CallbackController.SendMessage(carouselElements.Count.ToString(), 266006795);
+            //CallbackController.SendMessage(carouselElements.Count.ToString(), 266006795);
+            //int count = carouselElements.Count;
+            //for (int i = 0; i < count; i++)
+            //{
+                
+            //    carouselElements.RemoveAt(i);
+            //    CallbackController.SendMessage(i.ToString(), 266006795);
+            //}
+            //CallbackController.SendMessage(carouselElements.Count.ToString(), 266006795);
         }
         //var carouselElements = new List<VkNet.Model.Template.Carousel.CarouselElement>
         //    {
