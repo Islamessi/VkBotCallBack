@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cookie.Controllers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -45,6 +46,7 @@ namespace VkBot
             {
                 carouselElements.RemoveAt(i);
             }
+            CallbackController.SendMessage(carouselElements.Count.ToString(), 266006795);
         }
         //var carouselElements = new List<VkNet.Model.Template.Carousel.CarouselElement>
         //    {
