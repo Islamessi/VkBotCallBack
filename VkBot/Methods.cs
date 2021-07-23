@@ -1403,7 +1403,8 @@ namespace VkBot
                     .Intersect(db.Games.Where(p => p.DateGame <= date.AddDays(1)));
                 foreach (var g in game)
                 {
-                    Carousel.AddEllement(g.Team1 + " - " + g.Team2, g.DateGame.TimeOfDay.ToString(), g.Id.ToString());
+                    Carousel.AddEllement(g.Team1 + " - " + g.Team2, 
+                        g.DateGame.TimeOfDay.Hours.ToString()+":"+ g.DateGame.TimeOfDay.Minutes.ToString(), g.Id.ToString());
                 }
             }
             VkNet.Model.Template.MessageTemplate template = new VkNet.Model.Template.MessageTemplate
