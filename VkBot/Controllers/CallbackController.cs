@@ -97,13 +97,13 @@ namespace Cookie.Controllers
                 {
                     Description = "Барса-Реал", 
                     Title = "16:00",
-                    Buttons = (IEnumerable<MessageKeyboardButton>)Keyboards.YesOrNo,
+                    //Buttons = (IEnumerable<MessageKeyboardButton>)Keyboards.YesOrNo,
                 },
                 new VkNet.Model.Template.Carousel.CarouselElement
                 {
                     Description = "ЦСКА-Зенит", 
                     Title = "19:00",
-                    Buttons = (IEnumerable<MessageKeyboardButton>)Keyboards.YesOrNo,
+                    //Buttons = (IEnumerable<MessageKeyboardButton>)Keyboards.YesOrNo,
                 }
             };
             VkNet.Model.Template.MessageTemplate a = new VkNet.Model.Template.MessageTemplate
