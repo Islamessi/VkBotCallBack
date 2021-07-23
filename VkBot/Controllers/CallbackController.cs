@@ -51,8 +51,6 @@ namespace Cookie.Controllers
                 case "message_new":
                     //Spredsheet.ReadEntriesMas2();
                     // Десериализация
-                    VkNet.Model.Template.MessageTemplate a = new VkNet.Model.Template.MessageTemplate();
-                    SendMessage("aaa", 266006795, a);
                     //SendMessage("aaa", 266006795);
                     using (var db = new MyContext())
                     {
