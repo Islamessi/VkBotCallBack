@@ -35,7 +35,6 @@ namespace VkBot
                 char[] vsp = ":();'!, .?".ToCharArray();
                 string userMessage = msgev.Payload;
                 long? peerID = msgev.PeerId;
-                CallbackController.SendMessage(userMessage, peerID);
                 int WriteOrNot = -1;
                 int vsp2 = 0;
                 foreach (var us in Program.UsersInfo)
