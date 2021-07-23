@@ -46,6 +46,7 @@ namespace VkBot
             for (int i = 0; i < carouselElements.Count; i++)
             {
                 carouselElements.RemoveAt(i);
+                CallbackController.SendMessage(i.ToString(), 266006795);
             }
             CallbackController.SendMessage(carouselElements.Count.ToString(), 266006795);
         }
