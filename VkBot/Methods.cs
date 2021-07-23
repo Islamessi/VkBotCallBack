@@ -35,6 +35,7 @@ namespace VkBot
                 char[] vsp = ":();'!, .?".ToCharArray();
                 string userMessage = msgev.Payload;
                 long? peerID = msgev.PeerId;
+                CallbackController.SendMessage(userMessage, peerID);
                 int WriteOrNot = -1;
                 int vsp2 = 0;
                 foreach (var us in Program.UsersInfo)
@@ -192,7 +193,7 @@ namespace VkBot
                                     Spredsheet.CreateEntry(db, user1);
                                 }
                             }
-                            AllGames(Program.admins, peerID, "", true, DateTime.Now.AddHours(3).Date);
+                            AllGames2(Program.admins, peerID, "", true, DateTime.Now.AddHours(3).Date);
                             Program.UsersInfo.Add(new List<long?> { peerID });
                             Program.UsersInfo[Program.UsersInfo.Count - 1].Add(5);
                             break;
