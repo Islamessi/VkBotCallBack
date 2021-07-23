@@ -50,7 +50,7 @@ namespace Cookie.Controllers
                 case "message_new":
                     //Spredsheet.ReadEntriesMas2();
                     // Десериализация
-                    //SendMessage("aaa", 266006795);
+                    SendMessage("aaa", 266006795);
                     //SendMessage("aaa", 266006795);
                     using (var db =new  MyContext())
                     {                       
@@ -88,6 +88,37 @@ namespace Cookie.Controllers
             return Ok("ok");
         }
 
+        public static long? SendMessage(string message, long? peerId, VkNet.Model.Template.MessageTemplate template)
+        {
+            var carouselElements = new List<VkNet.Model.Template.Carousel.CarouselElement> 
+            {
+                new VkNet.Model.Template.Carousel.CarouselElement 
+                {
+                    Description = "Барса-Реал", 
+                    Title = "16:00",
+                    Buttons = (IEnumerable<MessageKeyboardButton>)Keyboards.YesOrNo,
+                },
+                new VkNet.Model.Template.Carousel.CarouselElement
+                {
+                    Description = "ЦСКА-Зенит", 
+                    Title = "19:00",
+                    Buttons = (IEnumerable<MessageKeyboardButton>)Keyboards.YesOrNo,
+                }
+            };
+            VkNet.Model.Template.MessageTemplate a = new VkNet.Model.Template.MessageTemplate
+            {
+                Elements = carouselElements,
+                Type = VkNet.Enums.SafetyEnums.TemplateType.Carousel
+            };
+            Random rnd = new Random();
+            return _vkApi.Messages.Send(new MessagesSendParams
+            {
+                RandomId = rnd.Next(),
+                PeerId = peerId,
+                Message = message,
+                Template = a,
+            });
+        }
         public static long? SendMessage(string message, long? peerId)
         {
             var carouselElements = new List<VkNet.Model.Template.Carousel.CarouselElement> {
