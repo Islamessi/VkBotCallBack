@@ -50,7 +50,8 @@ namespace Cookie.Controllers
                 case "message_new":
                     //Spredsheet.ReadEntriesMas2();
                     // Десериализация
-                    SendMessage("aaa", 266006795);
+                    VkNet.Model.Template.MessageTemplate a = new VkNet.Model.Template.MessageTemplate();
+                    SendMessage("aaa", 266006795, a);
                     //SendMessage("aaa", 266006795);
                     using (var db =new  MyContext())
                     {                       
@@ -121,20 +122,12 @@ namespace Cookie.Controllers
         }
         public static long? SendMessage(string message, long? peerId)
         {
-            var carouselElements = new List<VkNet.Model.Template.Carousel.CarouselElement> {
-                new VkNet.Model.Template.Carousel.CarouselElement {Description = "rere", Title = "aaaa" } };
-            VkNet.Model.Template.MessageTemplate a = new VkNet.Model.Template.MessageTemplate
-            {
-                Elements = carouselElements,
-                Type = VkNet.Enums.SafetyEnums.TemplateType.Carousel
-            };
             Random rnd = new Random();
             return _vkApi.Messages.Send(new MessagesSendParams
             {
                 RandomId = rnd.Next(),
                 PeerId = peerId,
                 Message = message,
-                Template = a,
             });
         }
         public static long? SendMessage(string message, long? peerId, MessageKeyboard keyboard)
