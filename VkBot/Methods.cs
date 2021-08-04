@@ -207,10 +207,10 @@ namespace VkBot
                         case "все матчи сегодня":
                             using (var db = new MyContext())
                             {
-                                var games = db.Games.Where(p => p.DateGame == DateTime.Now);
-                                if (games.Count() <= 10) //если матчей меньше 10, отправляем карусель
-                                    AllGames2(Program.admins, peerID, "Вот все матчи на сегодня:", DateTime.Now.AddHours(3).Date);
-                                else
+                                //var games = db.Games.Where(p => p.DateGame == DateTime.Now);
+                                //if (games.Count() <= 10) //если матчей меньше 10, отправляем карусель
+                                //    AllGames2(Program.admins, peerID, "Вот все матчи на сегодня:", DateTime.Now.AddHours(3).Date);
+                                //else
                                     Methods.AllGames(Program.admins, peerID, "Вот все матчи на сегодня:\n\n", false, DateTime.Now.AddHours(3).Date);
                             }
                             
@@ -243,10 +243,10 @@ namespace VkBot
                                     db.SaveChanges();
                                     Spredsheet.CreateEntry(db, user1);
                                 }
-                                var games = db.Games.Where(p => p.DateGame == DateTime.Now);
-                                if (games.Count() <= 10) //если матчей меньше 10, отправляем карусель
-                                    AllGames2(Program.admins, peerID, "Выберите нужный матч", DateTime.Now.AddHours(3).Date);
-                                else
+                                //var games = db.Games.Where(p => p.DateGame == DateTime.Now);
+                                //if (games.Count() <= 10) //если матчей меньше 10, отправляем карусель
+                                //    AllGames2(Program.admins, peerID, "Выберите нужный матч", DateTime.Now.AddHours(3).Date);
+                                //else
                                     AllGames(Program.admins, peerID, "", true, DateTime.Now.AddHours(3).Date);
                                 Program.UsersInfo.Add(new List<long?> { peerID });
                                 Program.UsersInfo[Program.UsersInfo.Count - 1].Add(5);
