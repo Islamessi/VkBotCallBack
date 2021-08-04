@@ -793,7 +793,6 @@ namespace VkBot
             }
             else
             {
-                var Info = userMessageUpp.Split('-');
                 try
                 {
                     using (var db = new MyContext())
@@ -805,16 +804,24 @@ namespace VkBot
                         {
                             int numscore = 0;
                             var score = b.ScoreGame.Split('-');
+                            var Info = userMessageUpp.Split('-');
                             var user = db.Users.Where(p => p.VkId == b.VkId).FirstOrDefault();
                             if (Info[0] == score[0] && Info[1] == score[1])
                             {
-                                user.Score += 100;
-                                numscore = 100;
+                                numscore = 1000;
+                                user.Score += numscore;
+                                
                             }
                             else if (Info[0] == score[0] || Info[1] == score[1])
                             {
-                                user.Score += 50;
-                                numscore = 50;
+                                numscore = 500;
+                                user.Score += numscore;
+                            }
+                            else if ((Convert.ToInt32(Info[0]) >= Convert.ToInt32(Info[1]) && Convert.ToInt32(score[0]) >= Convert.ToInt32(score[1])) ||
+                                     (Convert.ToInt32(Info[0]) <= Convert.ToInt32(Info[1]) && Convert.ToInt32(score[0]) <= Convert.ToInt32(score[1])))
+                            {
+                                numscore = 250;
+                                user.Score += numscore;
                             }
                             CallbackController.SendMessage($" Матч {b.Game.Team1} {b.Game.Team2} окончен со счетом: {Info[0]}-{Info[1]}.\n" +
                                     $"Ваша ставка: {score[0]}-{score[1]}.\n" +
