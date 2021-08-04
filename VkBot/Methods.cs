@@ -205,7 +205,15 @@ namespace VkBot
                             }
                             break;
                         case "все матчи сегодня":
-                            Methods.AllGames(Program.admins, peerID, "Вот все матчи на сегодня:\n\n", false, DateTime.Now.AddHours(3).Date);
+                            using (var db = new MyContext())
+                            {
+                                var games = db.Games.Where(p => p.DateGame == DateTime.Now);
+                                if (games.Count() <= 10) //если матчей меньше 10, отправляем карусель
+                                    AllGames2(Program.admins, peerID, "Вот все матчи на сегодня:", DateTime.Now.AddHours(3).Date);
+                                else
+                                    Methods.AllGames(Program.admins, peerID, "Вот все матчи на сегодня:\n\n", false, DateTime.Now.AddHours(3).Date);
+                            }
+                            
                             break;
                         case "удалить матч":
                             if (Program.admins.Contains(peerID))
@@ -235,10 +243,14 @@ namespace VkBot
                                     db.SaveChanges();
                                     Spredsheet.CreateEntry(db, user1);
                                 }
+                                var games = db.Games.Where(p => p.DateGame == DateTime.Now);
+                                if (games.Count() <= 10) //если матчей меньше 10, отправляем карусель
+                                    AllGames2(Program.admins, peerID, "Выберите нужный матч", DateTime.Now.AddHours(3).Date);
+                                else
+                                    AllGames(Program.admins, peerID, "", true, DateTime.Now.AddHours(3).Date);
+                                Program.UsersInfo.Add(new List<long?> { peerID });
+                                Program.UsersInfo[Program.UsersInfo.Count - 1].Add(5);
                             }
-                            AllGames2(Program.admins, peerID, "", true, DateTime.Now.AddHours(3).Date);
-                            Program.UsersInfo.Add(new List<long?> { peerID });
-                            Program.UsersInfo[Program.UsersInfo.Count - 1].Add(5);
                             break;
                         case "все ставки сегодня":
                             string allMatch = "Вот ваши ставки на сегодня:\n\n";
@@ -1393,10 +1405,8 @@ namespace VkBot
                 CallbackController.SendMessage(allMatch, peerID, Keyboards.UserKeyboard);
         }
 
-        public static void AllGames2(List<long?> admins, long? peerID, string header, bool cansel, DateTime date)
+        public static void AllGames2(List<long?> admins, long? peerID, string header, DateTime date)
         {
-            string allMatch = header;
-            int jj = 1;
             using (var db = new MyContext())
             {
                 var game = db.Games.Where(p => p.DateGame >= date)
@@ -1413,7 +1423,7 @@ namespace VkBot
                 Type = TemplateType.Carousel
             };
             CallbackController.SendMessage("Вот все матчи на сегодня:", peerID, Keyboards.CanselKeyboard);
-            CallbackController.SendMessage("Вот все матчи на сегодня:", peerID, template);
+            CallbackController.SendMessage(header, peerID, template);
             Carousel.RemoveCarouselElements();
 
         }
