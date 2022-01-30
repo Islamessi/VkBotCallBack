@@ -13,6 +13,31 @@ using VkNet.Model.RequestParams;
 
 namespace VkBot
 {
+    public static class Kompliment
+    {
+        private static List<string> Kompliments = new List<string> 
+        {"Женщине яркой,\n " +
+            "Женщине стильной,\n " +
+            "Женщине жаркой\n " +
+            "И сексапильной\n " +
+            " —В светлый, прекрасный\n " +
+            "День и момент\n " +
+            "Ты мой атласный\n " +
+            "Прими комплимент!\n " };
+
+
+
+        public static void AddKomp(string komp)
+        {
+            Kompliments.Add(komp);
+        }
+
+        public static string RerurnKomp()
+        {
+            Random rnd = new Random();
+            return Kompliments[rnd.Next(0,  Kompliments.Count())];
+        }
+    }
 
     public static class Helper
     {
@@ -344,6 +369,9 @@ namespace VkBot
                             break;
                         case "понг":
                             CallbackController.SendMessage("Пошел нахуй...", peerID);
+                            break;
+                        case "комплимент":
+                            CallbackController.SendMessage(Kompliment.RerurnKomp(), peerID);
                             break;
                         case "пенальти с другом":
                             Program.UsersInfo.Add(new List<long?> { peerID });
