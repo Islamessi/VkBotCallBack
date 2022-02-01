@@ -199,6 +199,52 @@ namespace VkBot
         //Сохранение, считывание и обновление данных в таблице Games
 
 
+        public static void ReadEntriesDatePredskazania()//Ввод данных даты предсказания
+        {
+            sheet = "Users(LiveBall)";
+            GoogleCredential credential;
+            using (var stream = new FileStream("client_secret.json", FileMode.Open, FileAccess.Read))
+            {
+                credential = GoogleCredential.FromStream(stream).CreateScoped(Scopes);
+            }
+            service = new SheetsService(new Google.Apis.Services.BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential,
+                ApplicationName = ApplicationName,
+            });
+            int i = 0;
+            var range = $"{sheet}!A:B";
+            var request = service.Spreadsheets.Values.Get(SpreedsheetId, range);
+            var responce = request.Execute();
+            var values = responce.Values;
+            using (var db = new MyContext())
+            {
+                foreach (var row in values)
+                {
+
+                    User user = new User
+                    {
+                        Id = Convert.ToInt32(row[0]),
+                        VkId = Convert.ToInt32(row[1]),
+                        Score = Convert.ToInt32(row[2]),
+                        FirstName = row[3].ToString(),
+                        LastName = row[4].ToString()
+                    };
+                    db.Users.Add(user);
+                    db.SaveChanges();
+                    //CallbackController.SendMessage(row[0].ToString() + " " + row[1].ToString() + "" + row[2].ToString() + " " + row[3].ToString()
+                    //    + " " + row[4].ToString(), 266006795);
+                    //a.SetMas(i, 0, row[0].ToString());
+                    //a.SetMas(i, 1, row[1].ToString());
+                    //a.SetMas(i, 2, row[2].ToString());
+                    //a.SetMas(i, 6, row[3].ToString());
+                    i++;
+                }
+            }
+            //a.SetNumUsers(i);
+
+        }
+
 
         public static void ReadEntriesMasGames()//Ввод данных пользователей из таблицы с данными
         {
