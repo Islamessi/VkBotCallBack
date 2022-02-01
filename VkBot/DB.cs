@@ -38,7 +38,7 @@ namespace VkBot
         public long? Score { get; set; } = 0;
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public DateTime DatePredskazanie { get; set }
+        public DateTime DatePredskazanie { get; set; }
     }
 
 
