@@ -38,6 +38,7 @@ namespace VkBot
         public long? Score { get; set; } = 0;
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string Last2Name { get; set; }
         public DateTime DatePredskazanie { get; set; }
     }
 
@@ -57,7 +58,7 @@ namespace VkBot
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder
-            .UseSqlite(@"Data Source=GameDB.db;");
+            .UseSqlite(@"Data Source=GameDB2.db;");
         }
     }
 }
