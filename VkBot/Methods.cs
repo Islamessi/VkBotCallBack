@@ -231,6 +231,9 @@ namespace VkBot
                         case "пинок":
                             CallbackController.SendMessage(Motivation.RerurnMotivation(), peerID);
                             break;
+                        case "кто гений":
+                            CallbackController.SendMessage("Мой создатель - Ислам. Да! Он гений!", peerID);
+                            break;
                     }
                 }
                 else
