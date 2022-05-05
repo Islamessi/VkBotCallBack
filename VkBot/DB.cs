@@ -59,7 +59,6 @@ namespace VkBot
         {
             optionsBuilder
             .UseSqlite(@"Data Source=GameDB2.db;");
-
         }
     }
 }
