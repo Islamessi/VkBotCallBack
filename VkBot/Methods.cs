@@ -217,7 +217,9 @@ namespace VkBot
                         case "11":
                             CallbackController.SendMessage("aaaa", peerID);
                             break;
-                        
+                        case "убрать клаву":
+                            CallbackController.SendMessage("Нажмите любую кнопку на новой клавиатуре и она уйдет.", peerID, Keyboards.UserKeyboard);
+                            break;
 
                         case "пинг":
                             CallbackController.SendMessage("Понг", peerID);

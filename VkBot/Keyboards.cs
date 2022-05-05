@@ -79,7 +79,9 @@ namespace VkBot
                 userKey.AddButton("Все ставки сегодня", "", KeyboardButtonColor.Default, "");
                 userKey.AddLine();
                 userKey.AddButton("Топ игроков", "", KeyboardButtonColor.Primary, "");
+                userKey.SetOneTime();
                 return userKey.Build();
+                
             }
         }
 
