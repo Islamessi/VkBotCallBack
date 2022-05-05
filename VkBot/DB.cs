@@ -29,7 +29,6 @@ namespace VkBot
         public DateTime DateBetting { get; set; }
         public int? GameId { get; set; }
         public Game Game { get; set; }
-
     }
     public class User
     {
