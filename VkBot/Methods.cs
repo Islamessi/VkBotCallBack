@@ -179,108 +179,10 @@ namespace VkBot
                 {
                     switch (Program.UsersInfo[WriteOrNot][1])
                     {
-                        case 9://игра пенальти
-                            try
-                            {
-                                var bbb = Convert.ToInt32(userMessage);
-                                if (Program.Penaltys[peerID].ImpactNumber % 2 == 0)
-                                    PenaltyGameGoolKiper(WriteOrNot, userMessage, peerID);
-                                else if (Program.Penaltys[peerID].ImpactNumber % 2 == 1)
-                                    PenaltyGameForward(WriteOrNot, userMessage, peerID);
-                            }
-                            catch
-                            {
-                                CallbackController.SendMessage("Выберите число от 1 до 9!", peerID);
-                            }
-                            break;
-                        case 10://игра пенальти
-                            try
-                            {
-                                int vsp3 = Convert.ToInt32(userMessage);
-                                Program.UsersInfo[WriteOrNot][1] = 9;
-                                Program.UsersInfo[WriteOrNot].Add(vsp3);
-                                Program.Penaltys[peerID].Level = vsp3;
-                                //Program.PenaltyGames
-                                Program.Penaltys[peerID].MessageId = CallbackController.SendMessage("Уровень выбран, начинайте игру)", peerID, Keyboards.PenaltyKeyboard);
-                            }
-                            catch
-                            {
-                                CallbackController.SendMessage("Выберите уровень от 1 до 5 на клавиатуре!", peerID);
-                            }
-                            break;
-                        case 12:
-                            try
-                            {
-                                var bbb = Convert.ToInt32(userMessage);
-                                if (Program.PenaltysWithFriend[peerID].PeerId1 == peerID && Program.PenaltysWithFriend[peerID].ImpactNumber % 2 == 0)
-                                {
-                                    PenaltyWithFriendGameGoolKiper(WriteOrNot, userMessage, peerID);
-                                }
-                                else if (Program.PenaltysWithFriend[peerID].PeerId1 == peerID && Program.PenaltysWithFriend[peerID].ImpactNumber % 2 == 1)
-                                {
-                                    PenaltyWithFriendGameForward(WriteOrNot, userMessage, peerID);
-                                }
-                                else if (Program.PenaltysWithFriend[peerID].PeerId2 == peerID && Program.PenaltysWithFriend[peerID].ImpactNumber % 2 == 0)
-                                {
-                                    PenaltyWithFriendGameForward(WriteOrNot, userMessage, peerID);
-                                }
-                                else if (Program.PenaltysWithFriend[peerID].PeerId2 == peerID && Program.PenaltysWithFriend[peerID].ImpactNumber % 2 == 1)
-                                {
-                                    PenaltyWithFriendGameGoolKiper(WriteOrNot, userMessage, peerID);
-                                }
-                            }
-                            catch
-                            {
-                                CallbackController.SendMessage("Выберите число от 1 до 9!", peerID);
-                            }
-                            break;
-                        case 5://Игра Прогнозы
-                            if (userMessage == "отмена")
-                            {
-                                Program.UsersInfo.RemoveAt(WriteOrNot);
-                                if (Program.admins.Contains(peerID))
-                                    CallbackController.SendMessage("Меню:", peerID, Keyboards.AdminKeyboard);
-                                else
-                                    CallbackController.SendMessage("Меню:", peerID, Keyboards.UserKeyboard);
-                                break;
-                            }
-                            else
-                            {
-                                try
-                                {
-                                    using (var db = new MyContext())
-                                    {
-                                        Game game = db.Games.Where(p => p.Id.ToString() == userMessage).FirstOrDefault();
-                                        var betting = db.Bettings.Where(p => p.GameId == game.Id)
-                                            .Intersect(db.Bettings.Where(p => p.VkId == peerID));
-                                        if (betting.Count() < 1 && DateTime.Now.AddHours(3) <= game.DateGame.AddMinutes(5))
-                                        {
-                                            Program.UsersInfo.Add(new List<long?> { peerID });
-                                            Program.UsersInfo[Program.UsersInfo.Count - 1].Add(6);
-                                            Program.UsersInfo[Program.UsersInfo.Count - 1].Add(game.Id);
-                                            Program.UsersInfo.RemoveAt(WriteOrNot);
-                                            CallbackController.SendMessage("Матч выбран. Теперь введите счет по формату:\n" +
-                                                "<счет первой команды>-<счет второй команды>.", peerID);
-                                        }
-                                        else if (DateTime.Now.AddHours(3) > game.DateGame.AddMinutes(5))
-                                        {
-                                            CallbackController.SendMessage("После начала матча прогнозы не принимаются. Выберите другой матч.", peerID);
-                                        }
-                                        else
-                                            CallbackController.SendMessage("Выберите матч, на который не сделана ставка.", peerID);
-                                    }
-
-                                }
-                                catch
-                                {
-                                    CallbackController.SendMessage("Выберите, пожалуйста, существующий матч.", peerID);
-                                }
-                            }
-                            break;
-                        
+                         
                     }
                 }
-                CallbackController._vkApi.Messages.SendMessageEventAnswer($"{msgev.EventId}", (long)msgev.UserId, (long)msgev.PeerId);
+                //CallbackController._vkApi.Messages.SendMessageEventAnswer($"{msgev.EventId}", (long)msgev.UserId, (long)msgev.PeerId);
             });
         }
 
@@ -304,13 +206,7 @@ namespace VkBot
             }
             if (userMessage == "отмена")
             {
-                if (WriteOrNot != -1)
-                    Program.UsersInfo.RemoveAt(WriteOrNot);
-                Program.Penaltys.Remove(Program.Penaltys[peerID]);
-                if (Program.admins.Contains(peerID))
-                    CallbackController.SendMessage("Меню.", peerID, Keyboards.AdminKeyboard);
-                else
-                    CallbackController.SendMessage("Меню.", peerID, Keyboards.UserKeyboard);
+                
             }
             else
             {
@@ -321,155 +217,7 @@ namespace VkBot
                         case "11":
                             CallbackController.SendMessage("aaaa", peerID);
                             break;
-                        case "начать":
-                            if (Program.admins.Contains(peerID))
-                                CallbackController.SendMessage("Мы то сообщество, которое поможет тебе найти ссылки на матчи и поделать ставки без реальных денег.", peerID, Keyboards.AdminKeyboard);
-                            else
-                                CallbackController.SendMessage("Мы то сообщество, которое поможет тебе найти ссылки на матчи и поделать ставки без реальных денег.", peerID, Keyboards.UserKeyboard);
-                            break;
-                        case "добавить матч":
-                            if (Program.admins.Contains(peerID))
-                            {
-                                Program.UsersInfo.Add(new List<long?> { peerID });
-                                Program.UsersInfo[Program.UsersInfo.Count - 1].Add(1);
-                                CallbackController.SendMessage("Теперь введите, пожалуйста, данные о матче по формату:\n" +
-                                    "\"Команда1 Команда2 Дата_игры Ссылки(через пробел)\"", peerID, Keyboards.CanselKeyboard);
-                            }
-                            break;
-                        case "все матчи сегодня":
-                            using (var db = new MyContext())
-                            {
-                                //var games = db.Games.Where(p => p.DateGame == DateTime.Now);
-                                //if (games.Count() <= 10) //если матчей меньше 10, отправляем карусель
-                                //    AllGames2(Program.admins, peerID, "Вот все матчи на сегодня:", DateTime.Now.AddHours(3).Date);
-                                //else
-                                    Methods.AllGames(Program.admins, peerID, "Вот все матчи на сегодня:\n\n", false, DateTime.Now.AddHours(3).Date);
-                            }
-                            
-                            break;
-                        case "удалить матч":
-                            if (Program.admins.Contains(peerID))
-                            {
-                                Methods.AllGames(Program.admins, peerID, "Выберите матч, который хотите удалить", true, DateTime.Now.AddHours(3).Date);
-                                Program.UsersInfo.Add(new List<long?> { peerID });
-                                Program.UsersInfo[Program.UsersInfo.Count - 1].Add(2);
-                            }
-                            break;
-                        case "добавить ссылки":
-                            if (Program.admins.Contains(peerID))
-                            {
-                                Methods.AllGames(Program.admins, peerID, "", true, DateTime.Now.AddHours(3).Date);
-                                Program.UsersInfo.Add(new List<long?> { peerID });
-                                Program.UsersInfo[Program.UsersInfo.Count - 1].Add(3);
-                            }
-                            break;
-                        case "игра \"прогнозы\"":
-                            using (var db = new MyContext())
-                            {
-                                var user = db.Users.Where(p => p.VkId == peerID);
-                                if (user.Count() == 0)
-                                {
-                                    var users = CallbackController._vkApi.Users.Get(new long[] { (long)peerID }).FirstOrDefault();
-                                    User user1 = new User { VkId = peerID, FirstName = users.FirstName, LastName = users.LastName };
-                                    db.Users.Add(user1);
-                                    db.SaveChanges();
-                                    Spredsheet.CreateEntry(db, user1);
-                                }
-                                //var games = db.Games.Where(p => p.DateGame == DateTime.Now);
-                                //if (games.Count() <= 10) //если матчей меньше 10, отправляем карусель
-                                //    AllGames2(Program.admins, peerID, "Выберите нужный матч", DateTime.Now.AddHours(3).Date);
-                                //else
-                                    AllGames(Program.admins, peerID, "", true, DateTime.Now.AddHours(3).Date);
-                                Program.UsersInfo.Add(new List<long?> { peerID });
-                                Program.UsersInfo[Program.UsersInfo.Count - 1].Add(5);
-                            }
-                            break;
-                        case "все ставки сегодня":
-                            string allMatch = "Вот ваши ставки на сегодня:\n\n";
-                            using (var db = new MyContext())
-                            {
-                                var dat = DateTime.Now.AddHours(3).Date;
-                                var bettings = db.Bettings.Where(p => p.DateBetting >= dat)
-                                    .Intersect(db.Bettings.Where(p => p.DateBetting <= dat.AddDays(1)))
-                                    .Intersect(db.Bettings.Where(p => p.VkId == peerID));
-                                foreach (var b in bettings)
-                                {
-                                    var game = db.Games.Where(p => p.Id == b.GameId).FirstOrDefault();
-                                    allMatch += $"{game.Team1}-{game.Team2} {b.ScoreGame}\n";
-                                }
-                            }
-                            CallbackController.SendMessage(allMatch, peerID);
-                            break;
-                        case "топ игроков":
-                            string vsp3 = "Вот топ 10 игроков 🏆\n";
-                            int mesto = 0;
-                            using (var db = new MyContext())
-                            {
-                                var users = db.Users.OrderByDescending(p => p.Score);
-                                int jj = 1;
-                                foreach (var b in users)
-                                {
-                                    if (b.VkId == peerID) mesto = jj;
-                                    if (jj >= 11 && mesto != 0) break;
-                                    if (jj < 11)
-                                    {
-                                        vsp3 += $"{jj}) [id{b.VkId}|{b.FirstName} {b.LastName}] - {b.Score} ⚽\n";
-                                    }
-                                    jj++;
-                                }
-                                if (mesto > 10)
-                                {
-                                    var user = users.Where(p => p.VkId == peerID).FirstOrDefault();
-                                    vsp3 += $"\nВаш рейтинг:\n" +
-                                        $"{mesto}) [id{user.VkId}|{user.FirstName} {user.LastName}] - {user.Score} ⚽";
-                                }
-                                CallbackController.SendMessage(vsp3, peerID);
-                            }
-                            break;
-                        case "ввести результат матча":
-                            if (Program.admins.Contains(peerID))
-                            {
-                                Methods.AllGames(Program.admins, peerID, "Выберите матч, к которому хотите ввести результат.", true, DateTime.Now.AddHours(3).Date);
-                                Program.UsersInfo.Add(new List<long?> { peerID });
-                                Program.UsersInfo[Program.UsersInfo.Count - 1].Add(7);
-                                Program.UsersInfo[Program.UsersInfo.Count - 1].Add(1);
-                            }
-                            break;
-                        case "ввести результат матча вчера":
-                            if (Program.admins.Contains(peerID))
-                            {
-                                Methods.AllGames(Program.admins, peerID, "Выберите матч, к которому хотите ввести результат.", true,
-                                    DateTime.Now.AddHours(3).AddDays(-1).Date);
-                                Program.UsersInfo.Add(new List<long?> { peerID });
-                                Program.UsersInfo[Program.UsersInfo.Count - 1].Add(7);
-                                Program.UsersInfo[Program.UsersInfo.Count - 1].Add(2);
-                            }
-                            break;
-                        case "игра \"пенальти\"":
-                            using (var db = new MyContext())
-                            {
-                                var user = db.Users.Where(p => p.VkId == peerID);
-                                if (user.Count() == 0)
-                                {
-                                    var users = CallbackController._vkApi.Users.Get(new long[] { (long)peerID }).FirstOrDefault();
-                                    User user1 = new User { VkId = peerID, FirstName = users.FirstName, LastName = users.LastName };
-                                    db.Users.Add(user1);
-                                    db.SaveChanges();
-                                    Spredsheet.CreateEntry(db, user1);
-                                }
-                            }
-                            //Program.PenaltyGames.Add(new Penalty { PeerId = peerID });
-                            Penalty _penalty = new Penalty { PeerId = peerID };
-                            Program.Penaltys.Add(_penalty);
-                            Program.UsersInfo.Add(new List<long?> { peerID });
-                            Program.UsersInfo[Program.UsersInfo.Count - 1].Add(10);
-                            CallbackController.SendMessage("Цель данной игры, забить больше по пенальти и победить)) " +
-                                "Вы первым стоите на воротах, перед вами 9 кнопок. Вы выбираете, ту, " +
-                                "куда прыгаете. Бот рандомно выбирает куда бить, если вы попали в ту же область, " +
-                                "вы ловите мяч. После 5 ударов вы бьете 5 раз, а бот становится на ворота. В случае победы вы получите " +
-                                "все голы, которые смогли забить) Удачи!)\n\n Выберите сложность игры. Если вы победите, то кол-во забитых " +
-                                "голов умножится на этот коэффициент!", peerID, Keyboards.LevelKeyboard);
-                            break;
+                        
 
                         case "пинг":
                             CallbackController.SendMessage("Понг", peerID);
@@ -482,17 +230,6 @@ namespace VkBot
                             break;
                         case "пинок":
                             CallbackController.SendMessage(Motivation.RerurnMotivation(), peerID);
-                            break;
-                        case "пенальти с другом":
-                            Program.UsersInfo.Add(new List<long?> { peerID });
-                            Program.UsersInfo[Program.UsersInfo.Count - 1].Add(10);
-                            CallbackController.SendMessage("Перешлите одно сообщение того человека, с которым вы хотите сыграть в пенальти.", peerID, Keyboards.CanselKeyboard);
-                            break;
-                        default:
-                            if (Program.admins.Contains(peerID))
-                                CallbackController.SendMessage("Меню:", peerID, Keyboards.AdminKeyboard);
-                            else
-                                CallbackController.SendMessage("Меню:", peerID, Keyboards.UserKeyboard);
                             break;
                     }
                 }
