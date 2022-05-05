@@ -318,6 +318,9 @@ namespace VkBot
                 {
                     switch (userMessage)
                     {
+                        case "11":
+                            CallbackController.SendMessage("aaaa", peerID);
+                            break;
                         case "начать":
                             if (Program.admins.Contains(peerID))
                                 CallbackController.SendMessage("Мы то сообщество, которое поможет тебе найти ссылки на матчи и поделать ставки без реальных денег.", peerID, Keyboards.AdminKeyboard);
