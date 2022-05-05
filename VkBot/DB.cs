@@ -27,7 +27,6 @@ namespace VkBot
         public string ScoreGame { get; set; }
         public long ScoreUser { get; set; }
         public DateTime DateBetting { get; set; }
-
         public int? GameId { get; set; }
         public Game Game { get; set; }
 
