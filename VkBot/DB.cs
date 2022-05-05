@@ -30,7 +30,6 @@ namespace VkBot
         public int? GameId { get; set; }
         public Game Game { get; set; }
 
-
     }
     public class User
     {
