@@ -14,6 +14,8 @@ using System.Threading.Tasks;
 using System.Threading;
 using System.Collections.Generic;
 using VkNet.Enums.SafetyEnums;
+using System.Net;
+using System.Text;
 
 namespace Cookie.Controllers
 {
@@ -90,7 +92,6 @@ namespace Cookie.Controllers
 
         public static long? SendMessage(string message, long? peerId, VkNet.Model.Template.MessageTemplate template)
         {
-            
             Random rnd = new Random();
             return _vkApi.Messages.Send(new MessagesSendParams
             {
@@ -98,7 +99,7 @@ namespace Cookie.Controllers
                 PeerId = peerId,
                 Message = message,
                 Template = template,
-            });
+            }) ;
         }
         public static long? SendMessage(string message, long? peerId)
         {
@@ -108,6 +109,29 @@ namespace Cookie.Controllers
                 RandomId = rnd.Next(),
                 PeerId = peerId,
                 Message = message,
+            });
+        }
+        public static long? SendMessage(string message, long? peerId, string adressphotos)
+        {
+            // Получить адрес сервера для загрузки.
+            var uploadServer = _vkApi.Photo.GetUploadServer(123);
+            // Загрузить файл.
+            var wc = new WebClient();
+            var responseFile = Encoding.ASCII.GetString(wc.UploadFile(uploadServer.UploadUrl, adressphotos));
+            // Сохранить загруженный файл
+            var photos = _vkApi.Photo.Save(new PhotoSaveParams
+            {
+                SaveFileResponse = responseFile,
+                AlbumId = 123,
+                GroupId = 213110775,
+            });
+            Random rnd = new Random();
+            return _vkApi.Messages.Send(new MessagesSendParams
+            {
+                RandomId = rnd.Next(),
+                PeerId = peerId,
+                Message = message,
+                Attachments = photos,
             });
         }
         public static long? SendMessage(string message, long? peerId, MessageKeyboard keyboard)
