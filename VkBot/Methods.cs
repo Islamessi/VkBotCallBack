@@ -215,7 +215,7 @@ namespace VkBot
                     switch (userMessage)
                     {
                         case "11":
-                            CallbackController.SendMessage("aaaa", peerID, "TsennostiMak.jpg");
+                            CallbackController.SendMessage("aaaa", peerID, @"C:\Users\islam\source\repos\VkBotCallBack\TsennostiMak.jpg");
                             break;
                         case "5 принципов Макдоналдс":
                             CallbackController.SendMessage("", peerID);
