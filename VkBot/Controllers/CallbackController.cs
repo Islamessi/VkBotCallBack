@@ -114,7 +114,7 @@ namespace Cookie.Controllers
         public static long? SendMessage(string message, long? peerId, string adressphotos)
         {
             // Получить адрес сервера для загрузки.
-            var uploadServer = _vkApi.Photo.GetUploadServer(283904202);
+            var uploadServer = _vkApi.Photo.GetUploadServer(283887796);
             // Загрузить файл.
             var wc = new WebClient();
             var responseFile = Encoding.ASCII.GetString(wc.UploadFile(uploadServer.UploadUrl, adressphotos));
@@ -122,7 +122,7 @@ namespace Cookie.Controllers
             var photos = _vkApi.Photo.Save(new PhotoSaveParams
             {
                 SaveFileResponse = responseFile,
-                AlbumId = 283904202,
+                AlbumId = 283887796,
                 GroupId = 213110775,
             });
             Random rnd = new Random();
