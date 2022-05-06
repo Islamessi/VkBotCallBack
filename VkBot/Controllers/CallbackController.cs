@@ -116,7 +116,8 @@ namespace Cookie.Controllers
             SendMessage("0", peerId);
             // Получить адрес сервера для загрузки.
             var uploadServer1 = _vkApi.Photo.GetAlbums(new PhotoGetAlbumsParams
-                 { OwnerId = -213110775
+                 { OwnerId = -213110775,
+                 Count = 1
             });  //GetUploadServer(283887796);
             SendMessage("01", peerId);
             SendMessage(uploadServer1.TotalCount.ToString(), peerId);
