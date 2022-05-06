@@ -115,17 +115,17 @@ namespace Cookie.Controllers
         {
             SendMessage("0", peerId);
             // Получить адрес сервера для загрузки.
-            var uploadServer = _vkApi.Photo.GetUploadServer(283887796);
-            SendMessage("1", peerId);
+            var uploadServer1 = _vkApi.Photo.GetAlbumsCount(null, 213110775);  //GetUploadServer(283887796);
+            SendMessage(uploadServer1.ToString(), peerId);
             // Загрузить файл.
             var wc = new WebClient();
             SendMessage("2", peerId);
-            var responseFile = Encoding.ASCII.GetString(wc.UploadFile(uploadServer.UploadUrl, adressphotos));
+            //var responseFile = Encoding.ASCII.GetString(wc.UploadFile(uploadServer.UploadUrl, adressphotos));
             SendMessage("3", peerId);
             // Сохранить загруженный файл
             var photos = _vkApi.Photo.Save(new PhotoSaveParams
             {
-                SaveFileResponse = responseFile,
+                //SaveFileResponse = responseFile,
                 AlbumId = 283887796,
                 GroupId = 213110775,
             });
