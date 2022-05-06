@@ -217,9 +217,6 @@ namespace VkBot
                         case "11":
                             CallbackController.SendMessage("aaaa", peerID);
                             break;
-                        case "5 принципов Макдоналдс":
-                            CallbackController.SendMessage("", peerID);
-                            break;
 
                         case "пинг":
                             CallbackController.SendMessage("Понг", peerID);
