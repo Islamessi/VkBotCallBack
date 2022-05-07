@@ -54,17 +54,6 @@ namespace Cookie.Controllers
                     //Spredsheet.ReadEntriesMas2();
                     // Десериализация
                     //SendMessage("aaa", 266006795);
-                    using (var db = new MyContext())
-                    {
-                        var numuser = db.Users.Count();
-                        if (numuser == 0)
-                        {
-                            Spredsheet.ReadEntriesMas();
-                            Spredsheet.ReadEntriesMasGames();
-                            Spredsheet.ReadEntriesMasBettings();
-
-                        }
-                    }
                     //Methods.MessageAboutEndGame(Program.admins);
                     var msg = Message.FromJson(new VkResponse(updates.Object));
 

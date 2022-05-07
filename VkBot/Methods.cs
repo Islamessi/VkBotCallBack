@@ -210,33 +210,7 @@ namespace VkBot
                                 "(и дальше красивые слова)... Если хотите принять участие жмите кнопочку ниже.", 
                                 peerID, Keyboards.AgreeGame);
                             break;
-                        case "принять участие":
-                            using (var db = new MyContext())
-                            {
-                                var users = db.Users.Where(a => a.VkId == peerID);
-                                if (users.Count() == 0)
-                                {
-                                    db.Users.Add(new User
-                                    {
-                                        Name = CallbackController._vkApi.Users.Get(new long[] { 1 }).FirstOrDefault().FirstName +
-                                        " " + CallbackController._vkApi.Users.Get(new long[] { 1 }).FirstOrDefault().LastName,
-                                        VkId = peerID,
-                                    });
-                                    db.SaveChanges();
-                                    CallbackController.SendMessage($"Поздравляем," +
-                                        $" {CallbackController._vkApi.Users.Get(new long[] { 1 }).FirstOrDefault().FirstName}, вы зарегестрировались!", peerID);
-                                    CallbackController.SendMessage(db.Users.First().Name + " " + db.Users.First().VkId, 266006795);
-                                    if (db.Users.Count() > 1)
-                                    {
-                                        CallbackController.SendMessage(db.Users.Last().Name + " " + db.Users.Last().VkId, 266006795);
-                                    }
-                                }
-                                else
-                                {
-                                    CallbackController.SendMessage("Здравствуйте! Вы уже есть в базе данных.", peerID);
-                                }
-                            }
-                            break;
+                        
                         case "пинг":
                             CallbackController.SendMessage("Понг", peerID);
                             break;
