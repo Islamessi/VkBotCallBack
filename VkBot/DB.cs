@@ -37,7 +37,7 @@ namespace VkBot
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder
-            .UseSqlite(@"Data Source=GameDB4.db;");
+            .UseSqlite(@"Data Source=GameDB50.db;");
         }
     }
 }
