@@ -165,10 +165,10 @@ namespace VkBot
                 }
                 if (WriteOrNot != -1)
                 {
-                    switch (Program.UsersInfo[WriteOrNot][1])
-                    {
+                    //switch (Program.UsersInfo[WriteOrNot][1])
+                    //{
                          
-                    }
+                    //}
                 }
                 //CallbackController._vkApi.Messages.SendMessageEventAnswer($"{msgev.EventId}", (long)msgev.UserId, (long)msgev.PeerId);
             });
@@ -256,10 +256,10 @@ namespace VkBot
                 }
                 else
                 {
-                    switch (Program.UsersInfo[WriteOrNot][1])
-                    {
+                    //switch (Program.UsersInfo[WriteOrNot][1])
+                    //{
                         
-                    }
+                    //}
                 }
             }
             
