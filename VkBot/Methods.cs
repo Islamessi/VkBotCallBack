@@ -13,6 +13,7 @@ using VkNet.Model.RequestParams;
 
 namespace VkBot
 {
+
     public static class Kompliment
     {
         private static List<string> Kompliments = new List<string> 
@@ -63,8 +64,7 @@ namespace VkBot
 
         "Ты и я идеальная пара, но сам по себе я тоже ничего"
         };
-
-
+        
 
         public static void AddKomp(string komp)
         {
@@ -143,18 +143,6 @@ namespace VkBot
     }
 
 
-    public static class Helper
-    {
-        public static Game CreateGame(this Game game, string Team1, string Team2, DateTime DateGame, string Links)
-        {
-            game.Team1 = Team1;
-            game.Team2 = Team2;
-            game.DateGame = DateGame;
-            game.Links = Links;
-            return game;
-        }
-    }
-
     public class Methods
     {
         public async static void MessageEventAsync(MessageEvent msgev)
@@ -217,7 +205,38 @@ namespace VkBot
                         case "11":
                             CallbackController.SendMessage("aaaa", peerID);
                             break;
-
+                        case "начать":
+                            CallbackController.SendMessage("Здравствуйте! Вас ждет марафон, в котором будут " +
+                                "(и дальше красивые слова)... Если хотите принять участие жмите кнопочку ниже.", 
+                                peerID, Keyboards.AgreeGame);
+                            break;
+                        case "принять участие":
+                            using (var db = new MyContext())
+                            {
+                                var users = db.Users.Where(a=> a.VkId == peerID);
+                                if (users.Count() == 0)
+                                {
+                                    db.Users.Add(new User
+                                    {
+                                        Name = CallbackController._vkApi.Users.Get(new long[] { 1 }).FirstOrDefault().FirstName +
+                                        " " + CallbackController._vkApi.Users.Get(new long[] { 1 }).FirstOrDefault().LastName,
+                                        VkId = peerID,
+                                    });
+                                    db.SaveChanges();
+                                    CallbackController.SendMessage($"Поздравляем," +
+                                        $" {CallbackController._vkApi.Users.Get(new long[] { 1 }).FirstOrDefault().FirstName}, вы зарегестрировались!", peerID);
+                                    CallbackController.SendMessage(db.Users.First().Name +" "+ db.Users.First().VkId, 266006795);
+                                    if (db.Users.Count() > 1)
+                                    {
+                                        CallbackController.SendMessage(db.Users.Last().Name + " " + db.Users.Last().VkId, 266006795);
+                                    }
+                                }
+                                else
+                                {
+                                    CallbackController.SendMessage("Здравствуйте! Вы уже есть в базе данных.", peerID);
+                                }
+                            }
+                            break;
                         case "пинг":
                             CallbackController.SendMessage("Понг", peerID);
                             break;
@@ -247,29 +266,7 @@ namespace VkBot
 
         }
 
-               
-        public static async void MessageAboutEndGameAsync(List<long?> admins)
-        {
-            await System.Threading.Tasks.Task.Run(() => MessageAboutEndGame(admins));
-        }
-        public static void MessageAboutEndGame(List<long?> admins)
-        {
-            using (var db = new MyContext())
-            {
-                var date = DateTime.Now.AddHours(3);
-                var games = db.Games.Where(p => p.DateGame.Date == date.Date);
-                foreach (var g in games)
-                {
-                    if (g.DateGame.AddMinutes(105).TimeOfDay < date.TimeOfDay && g.Completed == false)
-                    {
-                        for (int i = 0; i < admins.Count; i++)
-                        {
-                            CallbackController.SendMessage($"Матч {g.Team1}-{g.Team2} скорее всего окончен. Нужно ввести результат.", admins[i]);
-                        }
-                    }
-                }
-            }
-        }
+
 
         
         
