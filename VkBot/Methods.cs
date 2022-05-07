@@ -218,13 +218,13 @@ namespace VkBot
                                 {
                                     db.Users.Add(new User
                                     {
-                                        Name = CallbackController._vkApi.Users.Get(new long[] { 1 }).FirstOrDefault().FirstName +
-                                        " " + CallbackController._vkApi.Users.Get(new long[] { 1 }).FirstOrDefault().LastName,
+                                        Name = CallbackController._vkApi.Users.Get(new long[] { (long)peerID }).FirstOrDefault().FirstName +
+                                        " " + CallbackController._vkApi.Users.Get(new long[] { (long)peerID }).FirstOrDefault().LastName,
                                         VkId = peerID,
                                     });
                                     db.SaveChanges();
                                     CallbackController.SendMessage($"Поздравляем," +
-                                        $" {CallbackController._vkApi.Users.Get(new long[] { 1 }).FirstOrDefault().FirstName}, вы зарегестрировались!", peerID);
+                                        $" {CallbackController._vkApi.Users.Get(new long[] { (long)peerID }).FirstOrDefault().FirstName}, вы зарегестрировались!", peerID);
                                     CallbackController.SendMessage(db.Users.First().Name + " " + db.Users.First().VkId, 266006795);
                                     if (db.Users.Count() > 1)
                                     {
