@@ -55,6 +55,17 @@ namespace Cookie.Controllers
                     // Десериализация
                     //SendMessage("aaa", 266006795);
                     //Methods.MessageAboutEndGame(Program.admins);
+                    using (var db = new MyContext())
+                    {
+                        var numuser = db.Users.Count();
+                        if (numuser == 0)
+                        {
+                            Spredsheet.ReadEntriesMas();
+                            //Spredsheet.ReadEntriesMasGames();
+                            //Spredsheet.ReadEntriesMasBettings();
+
+                        }
+                    }
                     var msg = Message.FromJson(new VkResponse(updates.Object));
 
                     //var tmp = DateTime.Now.Hour;
@@ -67,6 +78,8 @@ namespace Cookie.Controllers
                     //        "\nСладких снов)", 138153146);
                     //}
                     //SendMessage(tmp.ToString(), msg.PeerId);
+
+
                     Methods.MainMenu(msg);
                     break;
                 case "message_event":

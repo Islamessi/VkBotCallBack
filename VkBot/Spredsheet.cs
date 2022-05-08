@@ -25,6 +25,51 @@ namespace VkBot
         //static string sheet = "Malikat";
         static SheetsService service;
         //Сохранение, считывание и обновление данных в таблице Users(LiveBall)
+        public static void ReadEntriesMas()//Ввод данных пользователей из таблицы с данными
+        {
+            sheet = "Users(Mcd)";
+            GoogleCredential credential;
+            using (var stream = new FileStream("client_secret.json", FileMode.Open, FileAccess.Read))
+            {
+                credential = GoogleCredential.FromStream(stream).CreateScoped(Scopes);
+            }
+            service = new SheetsService(new Google.Apis.Services.BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential,
+                ApplicationName = ApplicationName,
+            });
+            int i = 0;
+            var range = $"{sheet}!A:E";
+            var request = service.Spreadsheets.Values.Get(SpreedsheetId, range);
+            var responce = request.Execute();
+            var values = responce.Values;
+            using (var db = new MyContext())
+            {
+                foreach (var row in values)
+                {
+
+                    User user = new User
+                    {
+                        Id = Convert.ToInt32(row[0]),
+                        VkId = Convert.ToInt32(row[1]),
+                        Name = row[2].ToString(),
+                        Score = Convert.ToInt32(row[3]),
+                        NumSurv = Convert.ToInt32(row[4]),
+                    };
+                    db.Users.Add(user);
+                    db.SaveChanges();
+                    //CallbackController.SendMessage(row[0].ToString() + " " + row[1].ToString() + "" + row[2].ToString() + " " + row[3].ToString()
+                    //    + " " + row[4].ToString(), 266006795);
+                    //a.SetMas(i, 0, row[0].ToString());
+                    //a.SetMas(i, 1, row[1].ToString());
+                    //a.SetMas(i, 2, row[2].ToString());
+                    //a.SetMas(i, 6, row[3].ToString());
+                    i++;
+                }
+            }
+            //a.SetNumUsers(i);
+
+        }
         public static void CreateEntry(MyContext user, User user1)
         {
             sheet = "Users(Mcd)";
@@ -46,7 +91,7 @@ namespace VkBot
             var responce = request.Execute();
             var values = responce.Values;
             var valueRange = new ValueRange();
-            var objectList = new List<object>() { user1.Id, user1.VkId, user1.Score, user1.Name,user1.NumSurv };
+            var objectList = new List<object>() { user1.Id, user1.VkId, user1.Name, user1.Score, user1.NumSurv };
 
             valueRange.Values = new List<IList<object>> { objectList };
             var updateRequest = service.Spreadsheets.Values.Update(valueRange, SpreedsheetId, range);
