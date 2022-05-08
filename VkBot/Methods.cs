@@ -266,7 +266,7 @@ namespace VkBot
                                     vsp3 += $"\nВаш рейтинг:\n" +
                                         $"{mesto}) [id{user.VkId}|{user.Name}] - {user.Score} 🍔";
                                 }
-                                CallbackController.SendMessage(vsp3, peerID);
+                                CallbackController.SendMessage(vsp3, peerID, Keyboards.TopGame);
                             }
                             break;
                         case "пинг":
