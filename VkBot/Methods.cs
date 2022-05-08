@@ -284,6 +284,9 @@ namespace VkBot
                         case "кто гений":
                             CallbackController.SendMessage("Мой создатель - Ислам. Да! Он гений!", peerID);
                             break;
+                            default:
+                            CallbackController.SendMessage("Меню", peerID, Keyboards.TopGame);
+                            break;
                     }
                 }
                 else

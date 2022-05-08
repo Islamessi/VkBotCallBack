@@ -47,7 +47,6 @@ namespace VkBot
             {
                 foreach (var row in values)
                 {
-                    CallbackController.SendMessage("aaaa "+values.ToString(), 266006795);
                     User user = new User
                     {
                         Id = Convert.ToInt32(row[0]),
