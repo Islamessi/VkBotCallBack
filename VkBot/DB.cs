@@ -11,8 +11,22 @@ namespace VkBot
         public DateTime DateStart { get; set; }
         public DateTime DateEnd { get; set; }
         public byte RightAnswer { get; set; }
+        public ICollection<Betting> Bettings { get; set; }
+        public Game()
+        {
+            Bettings = new List<Betting>();
+        }
     }
+    public class Betting
+    {
+        public int Id { get; set; }
+        public long? VkId { get; set; }
+        public long AnswerUser { get; set; }
+        public DateTime DateBetting { get; set; }
+        public int? GameId { get; set; }
+        public Game Game { get; set; }
 
+    }
     public class User
     {
         public int Id { get; set; }
