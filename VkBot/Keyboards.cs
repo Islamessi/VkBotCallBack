@@ -6,6 +6,16 @@ namespace VkBot
 {
     public class Keyboards
     {
+        public static MessageKeyboard TopGame // Клавиатура для обычных пользователей
+        {
+            get
+            {
+                KeyboardBuilder userKey = new KeyboardBuilder();
+                userKey.AddButton("Топ игроков", "", KeyboardButtonColor.Primary, "");
+                userKey.SetOneTime();
+                return userKey.Build();
+            }
+        }
         public static MessageKeyboard AgreeGame // Клавиатура для обычных пользователей
         {
             get
