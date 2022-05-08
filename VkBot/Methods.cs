@@ -174,6 +174,36 @@ namespace VkBot
             });
         }
 
+        public static void SaveUser(long? peerID)
+        {
+            using (var db = new MyContext())
+            {
+                var users = db.Users.Where(a => a.VkId == peerID);
+                if (users.Count() == 0)
+                {
+                    User user = new User
+                    {
+                        Name = CallbackController._vkApi.Users.Get(new long[]
+                        { (long)peerID }).FirstOrDefault().FirstName +
+                        " " + CallbackController._vkApi.Users.Get(new long[]
+                        { (long)peerID }).FirstOrDefault().LastName,
+                        VkId = peerID,
+                    };
+                    db.Users.Add(user);
+                    db.SaveChanges();
+                    Spredsheet.CreateEntry(db, user);
+                    CallbackController.SendMessage($"Поздравляем," +
+                        $" {CallbackController._vkApi.Users.Get(new long[] { (long)peerID }).FirstOrDefault().FirstName}, вы зарегестрировались!",
+                        peerID, Keyboards.TopGame);
+                }
+                else
+                {
+                    CallbackController.SendMessage("Здравствуйте! Вы уже есть в базе данных.",
+                        peerID, Keyboards.TopGame);
+                }
+            }
+        }
+
         public static void MainMenu(Message msg)
         {
 
@@ -211,32 +241,7 @@ namespace VkBot
                                 peerID, Keyboards.AgreeGame);
                             break;
                         case "принять участие":
-                            using (var db = new MyContext())
-                            {
-                                var users = db.Users.Where(a => a.VkId == peerID);
-                                if (users.Count() == 0)
-                                {
-                                    db.Users.Add(new User
-                                    {
-                                        Name = CallbackController._vkApi.Users.Get(new long[] { (long)peerID }).FirstOrDefault().FirstName +
-                                        " " + CallbackController._vkApi.Users.Get(new long[] { (long)peerID }).FirstOrDefault().LastName,
-                                        VkId = peerID,
-                                    });
-                                    db.SaveChanges();
-                                    CallbackController.SendMessage($"Поздравляем," +
-                                        $" {CallbackController._vkApi.Users.Get(new long[] { (long)peerID }).FirstOrDefault().FirstName}, вы зарегестрировались!", 
-                                        peerID, Keyboards.TopGame);
-                                    CallbackController.SendMessage(db.Users.First().Name + " " + db.Users.First().VkId, 266006795);
-                                    if (db.Users.Count() > 1)
-                                    {
-                                        CallbackController.SendMessage(db.Users.Last().Name + " " + db.Users.Last().VkId, 266006795);
-                                    }
-                                }
-                                else
-                                {
-                                    CallbackController.SendMessage("Здравствуйте! Вы уже есть в базе данных.", peerID,Keyboards.TopGame);
-                                }
-                            }
+                            SaveUser(peerID);
                             break;
                         case "топ игроков":
                             string vsp3 = "Вот топ 10 🏆\n";
