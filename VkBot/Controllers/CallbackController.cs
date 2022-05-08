@@ -60,6 +60,7 @@ namespace Cookie.Controllers
                         var numuser = db.Users.Count();
                         if (numuser == 0)
                         {
+                            CallbackController.SendMessage("aaaa ", 266006795);
                             Spredsheet.ReadEntriesMas();
                             //Spredsheet.ReadEntriesMasGames();
                             //Spredsheet.ReadEntriesMasBettings();
