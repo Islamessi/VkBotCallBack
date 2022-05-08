@@ -224,7 +224,8 @@ namespace VkBot
                                     });
                                     db.SaveChanges();
                                     CallbackController.SendMessage($"Поздравляем," +
-                                        $" {CallbackController._vkApi.Users.Get(new long[] { (long)peerID }).FirstOrDefault().FirstName}, вы зарегестрировались!", peerID);
+                                        $" {CallbackController._vkApi.Users.Get(new long[] { (long)peerID }).FirstOrDefault().FirstName}, вы зарегестрировались!", 
+                                        peerID, Keyboards.TopGame);
                                     CallbackController.SendMessage(db.Users.First().Name + " " + db.Users.First().VkId, 266006795);
                                     if (db.Users.Count() > 1)
                                     {
@@ -233,12 +234,12 @@ namespace VkBot
                                 }
                                 else
                                 {
-                                    CallbackController.SendMessage("Здравствуйте! Вы уже есть в базе данных.", peerID);
+                                    CallbackController.SendMessage("Здравствуйте! Вы уже есть в базе данных.", peerID,Keyboards.TopGame);
                                 }
                             }
                             break;
                         case "топ игроков":
-                            string vsp3 = "Вот топ 10 игроков 🏆\n";
+                            string vsp3 = "Вот топ 10 🏆\n";
                             int mesto = 0;
                             using (var db = new MyContext())
                             {
@@ -250,7 +251,7 @@ namespace VkBot
                                     if (jj >= 11 && mesto != 0) break;
                                     if (jj < 11)
                                     {
-                                        vsp3 += $"{jj}) [id{b.VkId}|{b.Name}] - {b.Score} ⚽\n";
+                                        vsp3 += $"{jj}) [id{b.VkId}|{b.Name}] - {b.Score} 🍔\n";
                                     }
                                     jj++;
                                 }
@@ -258,7 +259,7 @@ namespace VkBot
                                 {
                                     var user = users.Where(p => p.VkId == peerID).FirstOrDefault();
                                     vsp3 += $"\nВаш рейтинг:\n" +
-                                        $"{mesto}) [id{user.VkId}|{user.Name}] - {user.Score} ⚽";
+                                        $"{mesto}) [id{user.VkId}|{user.Name}] - {user.Score} 🍔";
                                 }
                                 CallbackController.SendMessage(vsp3, peerID);
                             }
