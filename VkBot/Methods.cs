@@ -213,7 +213,7 @@ namespace VkBot
                 var users = db.Users;
                 foreach (var game in games)
                 {
-                    if (game.DateStart > DateTime.Now && game.DateEnd < DateTime.Now && game.IsPublish == false)
+                    if (game.DateStart > DateTime.Now.AddHours(3) && game.DateEnd < DateTime.Now.AddHours(3) && game.IsPublish == false)
                     {
                         foreach (var user in users)
                         {
