@@ -313,10 +313,25 @@ namespace VkBot
                                 CallbackController.SendMessage(qst + "\n" + dateStart + "\n" + dateEnd + "\n" + answer,
                                 //CallbackController.SendMessage(vsp3[0]+"\n"+vsp3[1]+"\n"+vsp3[2]+"\n"+vsp3[3], 
                                    peerID, Keyboards.AdminKeyboard);
+                                
+                                using (var db = new MyContext())
+                                {
+                                    Game game = new Game
+                                    {
+                                        Question = qst,
+                                        DateStart = dateStart,
+                                        DateEnd = dateEnd,
+                                        RightAnswer = answer
+                                    };
+                                    db.Add(game);
+                                    db.SaveChanges();
+                                    Spredsheet.CreateEntryGames(db, game);
+                                }
+                                CallbackController.SendMessage("Вопрос добавлен.", peerID);
                             }
                             catch
                             {
-                                CallbackController.SendMessage("aaa", peerID, Keyboards.AdminKeyboard);
+                                CallbackController.SendMessage("Не по формату", peerID, Keyboards.AdminKeyboard);
                             }
                             Program.UsersInfo.RemoveAt(WriteOrNot);
                             break;
