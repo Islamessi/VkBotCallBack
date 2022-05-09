@@ -208,6 +208,7 @@ namespace VkBot
         {
             using (var db = new MyContext())
             {
+                CallbackController.SendMessage("111", 266006795);
                 var games = db.Games;
                 var users = db.Users;
                 foreach (var game in games)
