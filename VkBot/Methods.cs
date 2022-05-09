@@ -204,6 +204,32 @@ namespace VkBot
             }
         }
 
+        public static void SendAboutQst()
+        {
+            using (var db = new MyContext())
+            {
+                var games = db.Games;
+                var users = db.Users;
+                foreach (var game in games)
+                {
+                    if (game.DateStart > DateTime.Now && game.DateEnd < DateTime.Now && game.IsPublish == false)
+                    {
+                        foreach (var user in users)
+                        {
+                            if (CallbackController._vkApi.Messages.IsMessagesFromGroupAllowed(213110775, (ulong)user.VkId))
+                            {
+                                CallbackController.SendMessage("", user.VkId);
+                                game.IsPublish = true;
+                                db.Update(game);
+                                db.SaveChanges();
+                                Spredsheet.UpdateEntryGames(db, game);
+                            }
+                        }    
+                    }
+                }
+            }
+        }
+
         public static void MainMenu(Message msg)
         {
 

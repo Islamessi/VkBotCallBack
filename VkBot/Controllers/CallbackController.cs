@@ -66,6 +66,7 @@ namespace Cookie.Controllers
 
                         }
                     }
+                    Methods.SendAboutQst();
                     var msg = Message.FromJson(new VkResponse(updates.Object));
 
                     //var tmp = DateTime.Now.Hour;

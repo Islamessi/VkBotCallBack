@@ -264,5 +264,34 @@ namespace VkBot
             updateRequest.ValueInputOption = SpreadsheetsResource.ValuesResource.UpdateRequest.ValueInputOptionEnum.USERENTERED;
             var updateResponse = updateRequest.Execute();
         }
+        public static void UpdateEntryGames(MyContext user, Game game)
+        {
+            sheet = "Games(mcd)";
+            GoogleCredential credential;
+            using (var stream = new FileStream("client_secret.json", FileMode.Open, FileAccess.Read))
+            {
+                credential = GoogleCredential.FromStream(stream).CreateScoped(Scopes);
+            }
+            service = new SheetsService(new Google.Apis.Services.BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential,
+                ApplicationName = ApplicationName,
+            });
+
+            string strochka;
+            strochka = (game.Id).ToString();
+            var range = $"{sheet}!";
+            range += (char)(65 + 5) + strochka + ":" + (char)(65 + 5) + strochka;
+            var request = service.Spreadsheets.Values.Get(SpreedsheetId, range);
+            var responce = request.Execute();
+            var values = responce.Values;
+            var valueRange = new ValueRange();
+            var objectList = new List<object>() { game.IsPublish };
+
+            valueRange.Values = new List<IList<object>> { objectList };
+            var updateRequest = service.Spreadsheets.Values.Update(valueRange, SpreedsheetId, range);
+            updateRequest.ValueInputOption = SpreadsheetsResource.ValuesResource.UpdateRequest.ValueInputOptionEnum.USERENTERED;
+            var updateResponse = updateRequest.Execute();
+        }
     }
 }
