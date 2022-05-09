@@ -269,8 +269,8 @@ namespace VkBot
                                 CallbackController.SendMessage(vsp3, peerID, Keyboards.UserKeyboard);
                             }
                             break;
-                        case "добавить матч":
-                            CallbackController.SendMessage("Добавьте матч по формату", peerID);
+                        case "добавить вопрос":
+                            CallbackController.SendMessage("Добавьте вопрос по формату", peerID);
                             Program.UsersInfo.Add(new List<long?> { peerID });
                             Program.UsersInfo[Program.UsersInfo.Count - 1].Add(1);
                             break;
