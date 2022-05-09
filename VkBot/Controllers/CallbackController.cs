@@ -62,7 +62,7 @@ namespace Cookie.Controllers
                         {
                             Spredsheet.ReadEntriesMas();
                             Spredsheet.ReadEntriesMasGames();
-                            //Spredsheet.ReadEntriesMasBettings();
+                            Spredsheet.ReadEntriesMasBettings();
 
                         }
                     }
