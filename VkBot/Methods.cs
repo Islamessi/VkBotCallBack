@@ -213,6 +213,7 @@ namespace VkBot
                 var users = db.Users;
                 foreach (var game in games)
                 {
+                    CallbackController.SendMessage(game.DateStart.ToString() + "\n"+ game.DateEnd.ToString(), 266006795);
                     if (game.DateStart > DateTime.Now.AddHours(3) && game.DateEnd < DateTime.Now.AddHours(3) && game.IsPublish == false)
                     {
 
