@@ -214,7 +214,7 @@ namespace VkBot
                 foreach (var game in games)
                 {
                     CallbackController.SendMessage(game.DateStart.ToString() + "\n"+ game.DateEnd.ToString(), 266006795);
-                    if (game.DateStart > DateTime.Now.AddHours(3) && game.DateEnd < DateTime.Now.AddHours(3) && game.IsPublish == false)
+                    if (game.DateStart < DateTime.Now.AddHours(3) && game.DateEnd > DateTime.Now.AddHours(3) && game.IsPublish == false)
                     {
                         foreach (var user in users)
                         {
