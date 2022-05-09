@@ -225,6 +225,10 @@ namespace VkBot
                                 db.SaveChanges();
                                 Spredsheet.UpdateEntryGames(db, game);
                             }
+                            else
+                            {
+                                CallbackController.SendMessage($"[id{user.VkId}|{user.Name}]", 266006795);
+                            }
                         }    
                     }
                 }
