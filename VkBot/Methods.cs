@@ -374,6 +374,7 @@ namespace VkBot
                                         CallbackController.SendMessage("В данный момент нет действующего опроса.\n" +
                                                 "Ждите следующего вопроса!", peerID, Keyboards.UserKeyboard);
                                     }
+
                                 }
 
                             }
