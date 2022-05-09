@@ -208,7 +208,7 @@ namespace VkBot
         {
             using (var db = new MyContext())
             {
-                CallbackController.SendMessage(DateTime.Now.ToString(), 266006795) ;
+                CallbackController.SendMessage(DateTime.Now.AddHours(3).ToString(), 266006795) ;
                 var games = db.Games;
                 var users = db.Users;
                 foreach (var game in games)
