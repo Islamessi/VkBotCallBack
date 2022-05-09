@@ -323,8 +323,7 @@ namespace VkBot
                         default:
                             try
                             {
-                                int vsp4 = Convert.ToInt32(userMessage);
-
+                                int vsp4 = Convert.ToInt32(userMessageUpp);
                                 using (var db = new MyContext())
                                 {
                                     var game1 = db.Games.Where(p => p.IsPublish == true)
