@@ -321,10 +321,47 @@ namespace VkBot
                             CallbackController.SendMessage("Мой создатель - Ислам. Да! Он гений!", peerID);
                             break;
                             default:
-                            if (Program.admins.Contains(peerID))
-                                CallbackController.SendMessage("Меню:", peerID, Keyboards.AdminKeyboard);
-                            else
-                                CallbackController.SendMessage("Меню:", peerID, Keyboards.UserKeyboard);
+                            try
+                            {
+                                int vsp4 = Convert.ToInt32(userMessage);
+                                CallbackController.SendMessage("Ответ принят.", peerID);
+                                using (var db = new MyContext())
+                                {
+                                    var game = db.Games.Last();
+                                    Betting betting = new Betting
+                                    {
+                                        Game = game,
+                                        VkId = peerID,
+                                        AnswerUser = vsp4,
+                                        DateBetting = DateTime.Now,
+                                    };
+                                    db.Add(betting);
+                                    Spredsheet.CreateEntryBettings(db, betting);
+                                    var user = db.Users.Where(p => p.VkId == peerID).FirstOrDefault();
+                                    if (vsp4 == game.RightAnswer)
+                                    {
+                                        user.Score += 1;
+                                        CallbackController.SendMessage("Вы ответили правильно! И заработали 1 🍔.\n" +
+                                            "Ждите следующего вопроса!", peerID, Keyboards.UserKeyboard);
+                                    }
+                                    else
+                                    {
+                                        CallbackController.SendMessage("Вы ответили неправильно. \n" +
+                                            "Ждите следующего вопроса!", peerID, Keyboards.UserKeyboard);
+                                    }
+                                    user.NumSurv += 1;
+                                    db.Update(user);
+                                    Spredsheet.UpdateEntry(user);
+                                    db.SaveChanges();
+                                }
+                            }
+                            catch
+                            {
+                                if (Program.admins.Contains(peerID))
+                                    CallbackController.SendMessage("Меню:", peerID, Keyboards.AdminKeyboard);
+                                else
+                                    CallbackController.SendMessage("Меню:", peerID, Keyboards.UserKeyboard);
+                            }
                             break;
                     }
                 }
