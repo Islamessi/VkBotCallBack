@@ -336,7 +336,9 @@ namespace VkBot
                                         DateBetting = DateTime.Now,
                                     };
                                     db.Add(betting);
+                                    CallbackController.SendMessage("Ответ принят.2", peerID);
                                     Spredsheet.CreateEntryBettings(db, betting);
+                                    CallbackController.SendMessage("Ответ принят.3", peerID);
                                     var user = db.Users.Where(p => p.VkId == peerID).FirstOrDefault();
                                     if (vsp4 == game.RightAnswer)
                                     {
