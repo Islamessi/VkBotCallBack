@@ -305,10 +305,12 @@ namespace VkBot
                             //var msg2 = userMessageUpp.Split(' ');
                             try
                             {
-                                var vsp3 = userMessageUpp.Split(' ');
-                                var vsp4 = vsp3[0] + ' ' + vsp3[1];
-                                var vsp5 = Convert.ToDateTime(vsp4);
-                                CallbackController.SendMessage(vsp3.Length.ToString()+' '+vsp5.ToString(), 
+                                var vsp3 = userMessageUpp.Split('_');
+                                var qst = vsp3[0];
+                                DateTime dateStart = Convert.ToDateTime(vsp3[1]);
+                                DateTime dateEnd = Convert.ToDateTime(vsp3[2]);
+                                byte answer = Convert.ToByte(vsp3[3]);
+                                CallbackController.SendMessage(qst+"\n"+dateStart+"\n"+dateEnd+"\n"+answer, 
                                     peerID, Keyboards.AdminKeyboard);
                             }
                             catch
