@@ -208,17 +208,14 @@ namespace VkBot
         {
             using (var db = new MyContext())
             {
-                CallbackController.SendMessage(DateTime.Now.AddHours(3).ToString(), 266006795) ;
                 var games = db.Games;
                 var users = db.Users;
                 foreach (var game in games)
                 {
-                    CallbackController.SendMessage(game.DateStart.ToString() + "\n"+ game.DateEnd.ToString(), 266006795);
-                    if (game.DateStart < DateTime.Now.AddHours(3) && game.DateEnd > DateTime.Now.AddHours(3) && game.IsPublish == false)
+                   if (game.DateStart < DateTime.Now.AddHours(3) && game.DateEnd > DateTime.Now.AddHours(3) && game.IsPublish == false)
                     {
                         foreach (var user in users)
                         {
-                            CallbackController.SendMessage("aaa", 266006795);
                             if (CallbackController._vkApi.Messages.IsMessagesFromGroupAllowed(213110775, (ulong)user.VkId))
                             {
                                 CallbackController.SendMessage("Появился новый вопрос! Вот он:\n"+
