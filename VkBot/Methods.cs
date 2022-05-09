@@ -320,71 +320,7 @@ namespace VkBot
                         case "кто гений":
                             CallbackController.SendMessage("Мой создатель - Ислам. Да! Он гений!", peerID);
                             break;
-                        default:
-                            try
-                            {
-                                int vsp4 = Convert.ToInt32(userMessageUpp);
-                                using (var db = new MyContext())
-                                {
-                                    var game1 = db.Games.Where(p => p.IsPublish == true)
-                                        .Where(p => p.DateEnd > DateTime.Now.AddHours(3))
-                                        .Where(p => p.DateStart < DateTime.Now.AddHours(3));
-                                    if (game1.Count() > 0)
-                                    {
-                                        var game = game1.First();
-                                        var betts = db.Bettings.Where(p => p.Game == game)
-                                            .Where(p => p.VkId == peerID);
-                                        if (betts.Count() < 1)
-                                        {
-                                            Betting betting = new Betting
-                                            {
-                                                Game = game,
-                                                VkId = peerID,
-                                                AnswerUser = vsp4,
-                                                DateBetting = DateTime.Now,
-                                            };
-                                            db.Add(betting);
-                                            CallbackController.SendMessage("Ответ принят.", peerID);
-                                            Spredsheet.CreateEntryBettings(db, betting);
-                                            var user = db.Users.Where(p => p.VkId == peerID).FirstOrDefault();
-                                            if (vsp4 == game.RightAnswer)
-                                            {
-                                                user.Score += 1;
-                                                CallbackController.SendMessage("Вы ответили правильно! И заработали 1 🍔.\n" +
-                                                    "Ждите следующего вопроса!", peerID, Keyboards.UserKeyboard);
-                                            }
-                                            else
-                                            {
-                                                CallbackController.SendMessage("Вы ответили неправильно. \n" +
-                                                    "Ждите следующего вопроса!", peerID, Keyboards.UserKeyboard);
-                                            }
-                                            user.NumSurv += 1;
-                                            db.Update(user);
-                                            Spredsheet.UpdateEntry(user);
-                                            db.SaveChanges();
-                                        }
-                                        else
-                                        {
-                                            CallbackController.SendMessage("Вы уже проголосовали в этом опросе. \n" +
-                                                "Ждите следующего вопроса!", peerID, Keyboards.UserKeyboard);
-                                        }
-                                    }
-                                    else
-                                    {
-                                        CallbackController.SendMessage("В данный момент нет действующего опроса.\n" +
-                                                "Ждите следующего вопроса!", peerID, Keyboards.UserKeyboard);
-                                    }
-                                }
-                            
-                            }
-                            catch
-                            {
-                                if (Program.admins.Contains(peerID))
-                                    CallbackController.SendMessage("Меню:", peerID, Keyboards.AdminKeyboard);
-                                else
-                                    CallbackController.SendMessage("Меню:", peerID, Keyboards.UserKeyboard);
-                            }
-                            break;
+                        
                     }
                 }
                 else
