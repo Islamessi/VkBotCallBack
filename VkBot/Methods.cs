@@ -306,12 +306,12 @@ namespace VkBot
                             try
                             {
                                 var vsp3 = userMessageUpp.Split('_');
-                                //var qst = vsp3[0];
-                                //DateTime dateStart = Convert.ToDateTime(vsp3[1]);
-                                //DateTime dateEnd = Convert.ToDateTime(vsp3[2]);
-                                //byte answer = Convert.ToByte(vsp3[3]);
-                                //CallbackController.SendMessage(qst + "\n" + dateStart + "\n" + dateEnd + "\n" + answer,
-                                CallbackController.SendMessage(vsp3[0]+"\n"+vsp3[1]+"\n"+vsp3[2]+"\n"+vsp3[3], 
+                                var qst = vsp3[0];
+                                DateTime dateStart = Convert.ToDateTime(vsp3[1]);
+                                DateTime dateEnd = Convert.ToDateTime(vsp3[2]);
+                                byte answer = Convert.ToByte(vsp3[3]);
+                                CallbackController.SendMessage(qst + "\n" + dateStart + "\n" + dateEnd + "\n" + answer,
+                                //CallbackController.SendMessage(vsp3[0]+"\n"+vsp3[1]+"\n"+vsp3[2]+"\n"+vsp3[3], 
                                    peerID, Keyboards.AdminKeyboard);
                             }
                             catch
