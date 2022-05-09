@@ -23,7 +23,7 @@ namespace VkBot
         public long? VkId { get; set; }
         public long AnswerUser { get; set; }
         public DateTime DateBetting { get; set; }
-        public int? GameId { get; set; }
+        public int? GameId { get; set;  }
         public Game Game { get; set; }
 
     }
@@ -42,6 +42,7 @@ namespace VkBot
     {
         public DbSet<Game> Games { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Betting> Bettings { get; set; }
 
         public MyContext()
         {

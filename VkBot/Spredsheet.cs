@@ -97,5 +97,171 @@ namespace VkBot
             updateRequest.ValueInputOption = SpreadsheetsResource.ValuesResource.UpdateRequest.ValueInputOptionEnum.USERENTERED;
             var updateResponse = updateRequest.Execute();
         }
+        public static void UpdateEntry(User user)
+        {
+            sheet = "Users(Mcd)";
+            GoogleCredential credential;
+            using (var stream = new FileStream("client_secret.json", FileMode.Open, FileAccess.Read))
+            {
+                credential = GoogleCredential.FromStream(stream).CreateScoped(Scopes);
+            }
+            service = new SheetsService(new Google.Apis.Services.BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential,
+                ApplicationName = ApplicationName,
+            });
+
+            string strochka;
+            strochka = (user.Id).ToString();
+            var range = $"{sheet}!";
+            range += (char)(65 + 2) + strochka + ":" + (char)(65 + 2) + strochka;
+            var request = service.Spreadsheets.Values.Get(SpreedsheetId, range);
+            var responce = request.Execute();
+            var values = responce.Values;
+            var valueRange = new ValueRange();
+            var objectList = new List<object>() { user.Score.ToString() };
+
+            valueRange.Values = new List<IList<object>> { objectList };
+            var updateRequest = service.Spreadsheets.Values.Update(valueRange, SpreedsheetId, range);
+            updateRequest.ValueInputOption = SpreadsheetsResource.ValuesResource.UpdateRequest.ValueInputOptionEnum.USERENTERED;
+            var updateResponse = updateRequest.Execute();
+        }
+
+        //Сохранение, считывание и обновление данных в таблице Bettings
+
+        public static void ReadEntriesMasBettings()//Ввод данных пользователей из таблицы с данными
+        {
+            sheet = "Bettings(mcd)";
+            GoogleCredential credential;
+            using (var stream = new FileStream("client_secret.json", FileMode.Open, FileAccess.Read))
+            {
+                credential = GoogleCredential.FromStream(stream).CreateScoped(Scopes);
+            }
+            service = new SheetsService(new Google.Apis.Services.BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential,
+                ApplicationName = ApplicationName,
+            });
+            int i = 0;
+            var range = $"{sheet}!A:E";
+            var request = service.Spreadsheets.Values.Get(SpreedsheetId, range);
+            var responce = request.Execute();
+            var values = responce.Values;
+            using (var db = new MyContext())
+            {
+                foreach (var row in values)
+                {
+                    Betting betting = new Betting
+                    {
+                        VkId = Convert.ToInt32(row[1]),
+                        DateBetting = Convert.ToDateTime(row[2]),
+                        GameId = Convert.ToInt32(row[3]),
+                        AnswerUser = Convert.ToInt32(row[4]),
+                    };
+                    db.Bettings.Add(betting);
+                    db.SaveChanges();
+                    i++;
+                }
+            }
+            //a.SetNumUsers(i);
+
+        }
+        public static void CreateEntryBettings(MyContext user, Betting betting)
+        {
+            sheet = "Bettings(mcd)";
+            GoogleCredential credential;
+            using (var stream = new FileStream("client_secret.json", FileMode.Open, FileAccess.Read))
+            {
+                credential = GoogleCredential.FromStream(stream).CreateScoped(Scopes);
+            }
+            service = new SheetsService(new Google.Apis.Services.BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential,
+                ApplicationName = ApplicationName,
+            });
+            string strochka;
+            strochka = (user.Bettings.Count()).ToString();
+            var range = $"{sheet}!";
+            range += (char)(65) + strochka + ":" + (char)(65 + 5) + strochka;
+            var request = service.Spreadsheets.Values.Get(SpreedsheetId, range);
+            var responce = request.Execute();
+            var values = responce.Values;
+            var valueRange = new ValueRange();
+            var objectList = new List<object>() { betting.Id, betting.VkId, betting.DateBetting, betting.GameId, betting.AnswerUser };
+            valueRange.Values = new List<IList<object>> { objectList };
+            var updateRequest = service.Spreadsheets.Values.Update(valueRange, SpreedsheetId, range);
+            updateRequest.ValueInputOption = SpreadsheetsResource.ValuesResource.UpdateRequest.ValueInputOptionEnum.USERENTERED;
+            var updateResponse = updateRequest.Execute();
+        }
+
+
+        //Сохранение, считывание и обновление данных в таблице Games
+
+
+        public static void ReadEntriesMasGames()//Ввод данных пользователей из таблицы с данными
+        {
+            sheet = "Games(mcd)";
+            GoogleCredential credential;
+            using (var stream = new FileStream("client_secret.json", FileMode.Open, FileAccess.Read))
+            {
+                credential = GoogleCredential.FromStream(stream).CreateScoped(Scopes);
+            }
+            service = new SheetsService(new Google.Apis.Services.BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential,
+                ApplicationName = ApplicationName,
+            });
+            int i = 0;
+            var range = $"{sheet}!A:E";
+            var request = service.Spreadsheets.Values.Get(SpreedsheetId, range);
+            var responce = request.Execute();
+            var values = responce.Values;
+            using (var db = new MyContext())
+            {
+                foreach (var row in values)
+                {
+                    Game game = new Game
+                    {
+                        //Id = Convert.ToInt32(row[0]),
+                        Question = row[1].ToString(),
+                        RightAnswer = Convert.ToByte(row[2]),
+                        DateStart = Convert.ToDateTime(row[3]),
+                        DateEnd = Convert.ToDateTime(row[4]),
+                    };
+                    db.Games.Add(game);
+                    db.SaveChanges();
+                    i++;
+                }
+            }
+            //a.SetNumUsers(i);
+
+        }
+        public static void CreateEntryGames(MyContext user, Game game)
+        {
+            sheet = "Games(mcd)";
+            GoogleCredential credential;
+            using (var stream = new FileStream("client_secret.json", FileMode.Open, FileAccess.Read))
+            {
+                credential = GoogleCredential.FromStream(stream).CreateScoped(Scopes);
+            }
+            service = new SheetsService(new Google.Apis.Services.BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential,
+                ApplicationName = ApplicationName,
+            });
+            string strochka;
+            strochka = (user.Games.Count()).ToString();
+            var range = $"{sheet}!";
+            range += (char)(65) + strochka + ":" + (char)(65 + 5) + strochka;
+            var request = service.Spreadsheets.Values.Get(SpreedsheetId, range);
+            var responce = request.Execute();
+            var values = responce.Values;
+            var valueRange = new ValueRange();
+            var objectList = new List<object>() { game.Id, game.Question, game.RightAnswer, game.DateStart, game.DateEnd };
+            valueRange.Values = new List<IList<object>> { objectList };
+            var updateRequest = service.Spreadsheets.Values.Update(valueRange, SpreedsheetId, range);
+            updateRequest.ValueInputOption = SpreadsheetsResource.ValuesResource.UpdateRequest.ValueInputOptionEnum.USERENTERED;
+            var updateResponse = updateRequest.Execute();
+        }
     }
 }

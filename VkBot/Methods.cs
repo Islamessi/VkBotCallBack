@@ -194,12 +194,12 @@ namespace VkBot
                     Spredsheet.CreateEntry(db, user);
                     CallbackController.SendMessage($"Поздравляем," +
                         $" {CallbackController._vkApi.Users.Get(new long[] { (long)peerID }).FirstOrDefault().FirstName}, вы зарегестрировались!",
-                        peerID, Keyboards.TopGame);
+                        peerID, Keyboards.UserKeyboard);
                 }
                 else
                 {
                     CallbackController.SendMessage("Здравствуйте! Вы уже есть в базе данных.",
-                        peerID, Keyboards.TopGame);
+                        peerID, Keyboards.UserKeyboard);
                 }
             }
         }
@@ -266,8 +266,13 @@ namespace VkBot
                                     vsp3 += $"\nВаш рейтинг:\n" +
                                         $"{mesto}) [id{user.VkId}|{user.Name}] - {user.Score} 🍔";
                                 }
-                                CallbackController.SendMessage(vsp3, peerID, Keyboards.TopGame);
+                                CallbackController.SendMessage(vsp3, peerID, Keyboards.UserKeyboard);
                             }
+                            break;
+                        case "добавить матч":
+                            CallbackController.SendMessage("Добавьте матч по формату", peerID);
+                            Program.UsersInfo.Add(new List<long?> { peerID });
+                            Program.UsersInfo[Program.UsersInfo.Count - 1].Add(1);
                             break;
                         case "пинг":
                             CallbackController.SendMessage("Понг", peerID);
@@ -285,16 +290,31 @@ namespace VkBot
                             CallbackController.SendMessage("Мой создатель - Ислам. Да! Он гений!", peerID);
                             break;
                             default:
-                            CallbackController.SendMessage("Меню", peerID, Keyboards.TopGame);
+                            if (Program.admins.Contains(peerID))
+                                CallbackController.SendMessage("Меню:", peerID, Keyboards.AdminKeyboard);
+                            else
+                                CallbackController.SendMessage("Меню:", peerID, Keyboards.UserKeyboard);
                             break;
                     }
                 }
                 else
                 {
-                    //switch (Program.UsersInfo[WriteOrNot][1])
-                    //{
-                        
-                    //}
+                    switch (Program.UsersInfo[WriteOrNot][1])
+                    {
+                        case 1: //Добавление вопроса
+                            //var msg2 = userMessageUpp.Split(' ');
+                            try
+                            {
+                                var vsp3 = Convert.ToDateTime(userMessageUpp);
+                                CallbackController.SendMessage(vsp3.ToString(), peerID, Keyboards.AdminKeyboard);
+                            }
+                            catch
+                            {
+                                CallbackController.SendMessage("aaa", peerID, Keyboards.AdminKeyboard);
+                            }
+                            Program.UsersInfo.RemoveAt(WriteOrNot);
+                            break;
+                    }
                 }
             }
             
