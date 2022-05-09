@@ -11,6 +11,7 @@ namespace VkBot
         public DateTime DateStart { get; set; }
         public DateTime DateEnd { get; set; }
         public byte RightAnswer { get; set; }
+        public bool IsPublish { get; set; }
         public ICollection<Betting> Bettings { get; set; }
         public Game()
         {

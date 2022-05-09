@@ -305,8 +305,8 @@ namespace VkBot
                             //var msg2 = userMessageUpp.Split(' ');
                             try
                             {
-                                var vsp3 = Convert.ToDateTime(userMessageUpp);
-                                CallbackController.SendMessage(vsp3.ToString(), peerID, Keyboards.AdminKeyboard);
+                                var vsp3 = userMessageUpp.Split(' ');
+                                CallbackController.SendMessage(vsp3.Length.ToString(), peerID, Keyboards.AdminKeyboard);
                             }
                             catch
                             {

@@ -49,7 +49,7 @@ namespace VkBot
                 {
                     User user = new User
                     {
-                        Id = Convert.ToInt32(row[0]),
+                        //Id = Convert.ToInt32(row[0]),
                         VkId = Convert.ToInt32(row[1]),
                         Name = row[2].ToString(),
                         Score = Convert.ToInt32(row[3]),
@@ -212,7 +212,7 @@ namespace VkBot
                 ApplicationName = ApplicationName,
             });
             int i = 0;
-            var range = $"{sheet}!A:E";
+            var range = $"{sheet}!A:F";
             var request = service.Spreadsheets.Values.Get(SpreedsheetId, range);
             var responce = request.Execute();
             var values = responce.Values;
@@ -227,6 +227,7 @@ namespace VkBot
                         RightAnswer = Convert.ToByte(row[2]),
                         DateStart = Convert.ToDateTime(row[3]),
                         DateEnd = Convert.ToDateTime(row[4]),
+                        IsPublish = Convert.ToBoolean(row[5]),
                     };
                     db.Games.Add(game);
                     db.SaveChanges();
@@ -257,7 +258,7 @@ namespace VkBot
             var responce = request.Execute();
             var values = responce.Values;
             var valueRange = new ValueRange();
-            var objectList = new List<object>() { game.Id, game.Question, game.RightAnswer, game.DateStart, game.DateEnd };
+            var objectList = new List<object>() { game.Id, game.Question, game.RightAnswer, game.DateStart, game.DateEnd, game.IsPublish };
             valueRange.Values = new List<IList<object>> { objectList };
             var updateRequest = service.Spreadsheets.Values.Update(valueRange, SpreedsheetId, range);
             updateRequest.ValueInputOption = SpreadsheetsResource.ValuesResource.UpdateRequest.ValueInputOptionEnum.USERENTERED;
