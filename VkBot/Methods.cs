@@ -306,7 +306,10 @@ namespace VkBot
                             try
                             {
                                 var vsp3 = userMessageUpp.Split(' ');
-                                CallbackController.SendMessage(vsp3.Length.ToString(), peerID, Keyboards.AdminKeyboard);
+                                var vsp4 = vsp3[0] + ' ' + vsp3[1];
+                                var vsp5 = Convert.ToDateTime(vsp4);
+                                CallbackController.SendMessage(vsp3.Length.ToString()+' '+vsp5.ToString(), 
+                                    peerID, Keyboards.AdminKeyboard);
                             }
                             catch
                             {
