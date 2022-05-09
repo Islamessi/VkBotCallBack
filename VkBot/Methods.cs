@@ -324,37 +324,45 @@ namespace VkBot
                             try
                             {
                                 int vsp4 = Convert.ToInt32(userMessage);
-                                CallbackController.SendMessage("Ответ принят.", peerID);
+                                
                                 using (var db = new MyContext())
                                 {
                                     var game = db.Games.Last();
-                                    Betting betting = new Betting
+                                    var betts = db.Bettings.Where(p => p.Game == game);
+                                    if (betts.Count() < 1)
                                     {
-                                        Game = game,
-                                        VkId = peerID,
-                                        AnswerUser = vsp4,
-                                        DateBetting = DateTime.Now,
-                                    };
-                                    db.Add(betting);
-                                    CallbackController.SendMessage("Ответ принят.2", peerID);
-                                    Spredsheet.CreateEntryBettings(db, betting);
-                                    CallbackController.SendMessage("Ответ принят.3", peerID);
-                                    var user = db.Users.Where(p => p.VkId == peerID).FirstOrDefault();
-                                    if (vsp4 == game.RightAnswer)
-                                    {
-                                        user.Score += 1;
-                                        CallbackController.SendMessage("Вы ответили правильно! И заработали 1 🍔.\n" +
-                                            "Ждите следующего вопроса!", peerID, Keyboards.UserKeyboard);
+                                        Betting betting = new Betting
+                                        {
+                                            Game = game,
+                                            VkId = peerID,
+                                            AnswerUser = vsp4,
+                                            DateBetting = DateTime.Now,
+                                        };
+                                        db.Add(betting);
+                                        CallbackController.SendMessage("Ответ принят.", peerID);
+                                        Spredsheet.CreateEntryBettings(db, betting);
+                                        var user = db.Users.Where(p => p.VkId == peerID).FirstOrDefault();
+                                        if (vsp4 == game.RightAnswer)
+                                        {
+                                            user.Score += 1;
+                                            CallbackController.SendMessage("Вы ответили правильно! И заработали 1 🍔.\n" +
+                                                "Ждите следующего вопроса!", peerID, Keyboards.UserKeyboard);
+                                        }
+                                        else
+                                        {
+                                            CallbackController.SendMessage("Вы ответили неправильно. \n" +
+                                                "Ждите следующего вопроса!", peerID, Keyboards.UserKeyboard);
+                                        }
+                                        user.NumSurv += 1;
+                                        db.Update(user);
+                                        Spredsheet.UpdateEntry(user);
+                                        db.SaveChanges();
                                     }
                                     else
                                     {
-                                        CallbackController.SendMessage("Вы ответили неправильно. \n" +
-                                            "Ждите следующего вопроса!", peerID, Keyboards.UserKeyboard);
+                                        CallbackController.SendMessage("Вы уже ответили. \n" +
+                                                "Ждите следующего вопроса!", peerID, Keyboards.UserKeyboard);
                                     }
-                                    user.NumSurv += 1;
-                                    db.Update(user);
-                                    Spredsheet.UpdateEntry(user);
-                                    db.SaveChanges();
                                 }
                             }
                             catch
