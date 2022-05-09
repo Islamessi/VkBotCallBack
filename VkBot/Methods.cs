@@ -218,7 +218,8 @@ namespace VkBot
                         {
                             if (CallbackController._vkApi.Messages.IsMessagesFromGroupAllowed(213110775, (ulong)user.VkId))
                             {
-                                CallbackController.SendMessage("", user.VkId);
+                                CallbackController.SendMessage("Появился новый вопрос! Вот он:\n"+
+                                    game.Question, user.VkId);
                                 game.IsPublish = true;
                                 db.Update(game);
                                 db.SaveChanges();
