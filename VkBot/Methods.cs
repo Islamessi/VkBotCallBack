@@ -219,7 +219,9 @@ namespace VkBot
                             if (CallbackController._vkApi.Messages.IsMessagesFromGroupAllowed(213110775, (ulong)user.VkId))
                             {
                                 CallbackController.SendMessage("Появился новый вопрос! Вот он:\n"+
-                                    game.Question, user.VkId);
+                                    game.Question+"\n"+
+                                    "Если ответов несколько, ответы указывать в порядке возрастания без разделителей." +
+                                    "Например: (Если правильный ответ это 123, то пишем 123 без пробелов и других разделителей).", user.VkId);
                                 game.IsPublish = true;
                                 db.Update(game);
                                 db.SaveChanges();
@@ -400,7 +402,7 @@ namespace VkBot
                                 var qst = vsp3[0];
                                 DateTime dateStart = Convert.ToDateTime(vsp3[1]);
                                 DateTime dateEnd = Convert.ToDateTime(vsp3[2]);
-                                byte answer = Convert.ToByte(vsp3[3]);
+                                int answer = Convert.ToInt32(vsp3[3]);
                                 CallbackController.SendMessage(qst + "\n" + dateStart + "\n" + dateEnd + "\n" + answer,
                                 //CallbackController.SendMessage(vsp3[0]+"\n"+vsp3[1]+"\n"+vsp3[2]+"\n"+vsp3[3], 
                                    peerID, Keyboards.AdminKeyboard);
