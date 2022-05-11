@@ -13,7 +13,7 @@ using VkNet.Model.RequestParams;
 
 namespace VkBot
 {
-
+    
     public static class Kompliment
     {
         private static List<string> Kompliments = new List<string> 
@@ -192,8 +192,9 @@ namespace VkBot
                     db.Users.Add(user);
                     db.SaveChanges();
                     Spredsheet.CreateEntry(db, user);
-                    CallbackController.SendMessage($"Поздравляем," +
-                        $" {CallbackController._vkApi.Users.Get(new long[] { (long)peerID }).FirstOrDefault().FirstName}, вы зарегестрировались!",
+                    CallbackController.SendMessage($"Поздравляю," +
+                        $" {CallbackController._vkApi.Users.Get(new long[] { (long)peerID }).FirstOrDefault().FirstName}, вы зарегестрировались!" +
+                        $"",
                         peerID, Keyboards.UserKeyboard);
                 }
                 else
@@ -269,8 +270,7 @@ namespace VkBot
                             CallbackController.SendMessage("aaaa", peerID);
                             break;
                         case "начать":
-                            CallbackController.SendMessage("Здравствуйте! Вас ждет марафон, в котором будут " +
-                                "(и дальше красивые слова)... Если хотите принять участие жмите кнопочку ниже.",
+                            CallbackController.SendMessage(Keyboards.Privetstvie,
                                 peerID, Keyboards.AgreeGame);
                             break;
                         case "принять участие":
@@ -303,7 +303,9 @@ namespace VkBot
                             }
                             break;
                         case "добавить вопрос":
-                            CallbackController.SendMessage("Добавьте вопрос по формату", peerID);
+                            CallbackController.SendMessage("Добавьте вопрос по формату: " +
+                                "Вопрос_Дата начала(mm.dd.yyyy hh:mm)_Дата окончания(mm.dd.yyyy hh:mm)" +
+                                "_Правильный ответ(Без разделителей)", peerID);
                             Program.UsersInfo.Add(new List<long?> { peerID });
                             Program.UsersInfo[Program.UsersInfo.Count - 1].Add(1);
                             break;
