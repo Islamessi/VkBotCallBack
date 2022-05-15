@@ -303,11 +303,14 @@ namespace VkBot
                             }
                             break;
                         case "добавить вопрос":
-                            CallbackController.SendMessage("Добавьте вопрос по формату: " +
+                            if (Program.admins.Contains(peerID))
+                            {
+                                CallbackController.SendMessage("Добавьте вопрос по формату: " +
                                 "Вопрос_Дата начала(mm.dd.yyyy hh:mm)_Дата окончания(mm.dd.yyyy hh:mm)" +
                                 "_Правильный ответ(Без разделителей)", peerID);
-                            Program.UsersInfo.Add(new List<long?> { peerID });
-                            Program.UsersInfo[Program.UsersInfo.Count - 1].Add(1);
+                                Program.UsersInfo.Add(new List<long?> { peerID });
+                                Program.UsersInfo[Program.UsersInfo.Count - 1].Add(1);
+                            }
                             break;
                         case "пинг":
                             CallbackController.SendMessage("Понг", peerID);
