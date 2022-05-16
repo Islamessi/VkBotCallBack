@@ -339,7 +339,7 @@ namespace VkBot
                                     if (game1.Count() > 0)
                                     {
                                         var game = game1.First();
-                                        var betts = db.Bettings.Where(p => p.GameId == game.Id)
+                                        var betts = db.Bettings.Where(p => p.Game == game)
                                             .Where(p => p.VkId == peerID);
                                         if (betts.Count() < 1)
                                         {
