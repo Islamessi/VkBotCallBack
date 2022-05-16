@@ -341,6 +341,7 @@ namespace VkBot
                                         var game = game1.First();
                                         var betts = db.Bettings.Where(p => p.Game == game)
                                             .Where(p => p.VkId == peerID);
+                                        CallbackController.SendMessage(betts.Count().ToString(), peerID);
                                         if (betts.Count() < 1)
                                         {
                                             Betting betting = new Betting
