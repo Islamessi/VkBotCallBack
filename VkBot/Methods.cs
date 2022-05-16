@@ -345,6 +345,7 @@ namespace VkBot
                                         var betts = db.Bettings.Where(p => p.Game == game)
                                             .Where(p => p.VkId == peerID);
                                         CallbackController.SendMessage(betts.Count().ToString(), peerID);
+                                        
                                         if (betts.Count() < 1)
                                         {
                                             Betting betting = new Betting
@@ -378,6 +379,11 @@ namespace VkBot
                                         {
                                             CallbackController.SendMessage("Вы уже проголосовали в этом опросе. \n" +
                                                 "Ждите следующего вопроса!", peerID, Keyboards.UserKeyboard);
+                                            var bet = betts.FirstOrDefault();
+                                            CallbackController.SendMessage(bet.GameId.ToString()+"\n"+
+                                                bet.VkId.ToString() + "\n" +
+                                                bet.AnswerUser.ToString() + "\n" +
+                                                bet.Id.ToString(), peerID);
                                         }
                                     }
                                     else
