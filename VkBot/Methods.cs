@@ -341,7 +341,7 @@ namespace VkBot
                                         .Where(p => p.DateStart < DateTime.Now.AddHours(3));
                                     if (game1.Count() > 0)
                                     {
-                                        var game = game1.First();
+                                        var game = game1.Last();
                                         var betts = db.Bettings.Where(p => p.Game == game)
                                             .Where(p => p.VkId == peerID);
                                         CallbackController.SendMessage(betts.Count().ToString(), peerID);
