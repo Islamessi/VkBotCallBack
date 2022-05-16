@@ -219,14 +219,17 @@ namespace VkBot
                         {
                             if (CallbackController._vkApi.Messages.IsMessagesFromGroupAllowed(213110775, (ulong)user.VkId))
                             {
-                                CallbackController.SendMessage("Появился новый вопрос! Вот он:\n"+
-                                    game.Question+"\n"+
-                                    "Если ответов несколько, ответы указывать в порядке возрастания без разделителей." +
-                                    "Например: (Если правильный ответ это 123, то пишем 123 без пробелов и других разделителей).", user.VkId);
-                                game.IsPublish = true;
-                                db.Update(game);
-                                db.SaveChanges();
-                                Spredsheet.UpdateEntryGames(db, game);
+                                if (user.VkId == 266006795)
+                                {
+                                    CallbackController.SendMessage("Появился новый вопрос! Вот он:\n" +
+                                        game.Question + "\n" +
+                                        "Если ответов несколько, ответы указывать в порядке возрастания без разделителей." +
+                                        "Например: (Если правильный ответ это 123, то пишем 123 без пробелов и других разделителей).", user.VkId);
+                                    game.IsPublish = true;
+                                    db.Update(game);
+                                    db.SaveChanges();
+                                    Spredsheet.UpdateEntryGames(db, game);
+                                }
                             }
                             else
                             {
