@@ -219,17 +219,15 @@ namespace VkBot
                         {
                             if (CallbackController._vkApi.Messages.IsMessagesFromGroupAllowed(213110775, (ulong)user.VkId))
                             {
-                                if (user.VkId == 266006795)
-                                {
-                                    CallbackController.SendMessage("Появился новый вопрос! Вот он:\n" +
-                                        game.Question + "\n" +
-                                        "Если ответов несколько, ответы указывать в порядке возрастания без разделителей." +
-                                        "Например: (Если правильный ответ это 123, то пишем 123 без пробелов и других разделителей).", user.VkId);
-                                    game.IsPublish = true;
-                                    db.Update(game);
-                                    db.SaveChanges();
-                                    Spredsheet.UpdateEntryGames(db, game);
-                                }
+                                CallbackController.SendMessage("Появился новый вопрос! Вот он:\n" +
+                                    game.Question + "\n" +
+                                    "Если ответов несколько, ответы указывать в порядке возрастания без разделителей." +
+                                    "Например: (Если правильный ответ это 123, то пишем 123 без пробелов и других разделителей).", user.VkId);
+                                game.IsPublish = true;
+                                db.Update(game);
+                                db.SaveChanges();
+                                Spredsheet.UpdateEntryGames(db, game);
+
                             }
                             else
                             {
@@ -344,7 +342,6 @@ namespace VkBot
                                         var game = game1.Last();
                                         var betts = db.Bettings.Where(p => p.Game == game)
                                             .Where(p => p.VkId == peerID);
-                                        CallbackController.SendMessage(betts.Count().ToString(), peerID);
                                         
                                         if (betts.Count() < 1)
                                         {
@@ -379,11 +376,11 @@ namespace VkBot
                                         {
                                             CallbackController.SendMessage("Вы уже проголосовали в этом опросе. \n" +
                                                 "Ждите следующего вопроса!", peerID, Keyboards.UserKeyboard);
-                                            var bet = betts.FirstOrDefault();
-                                            CallbackController.SendMessage(bet.GameId.ToString()+"\n"+
-                                                bet.VkId.ToString() + "\n" +
-                                                bet.AnswerUser.ToString() + "\n" +
-                                                bet.Id.ToString(), peerID);
+                                            //var bet = betts.FirstOrDefault();
+                                            //CallbackController.SendMessage(bet.GameId.ToString()+"\n"+
+                                             //   bet.VkId.ToString() + "\n" +
+                                              //  bet.AnswerUser.ToString() + "\n" +
+                                              //  bet.Id.ToString(), 266006795);
                                         }
                                     }
                                     else
