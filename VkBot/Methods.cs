@@ -278,7 +278,7 @@ namespace VkBot
                             SaveUser(peerID);
                             break;
                         case "топ игроков":
-                            string vsp3 = String.Format("{0, +20}","Вот топ 10 🏆\n");
+                            string vsp3 = "Вот топ 10 🏆\n";
                             int mesto = 0;
                             using (var db = new MyContext())
                             {
