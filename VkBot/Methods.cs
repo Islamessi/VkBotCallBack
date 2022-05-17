@@ -278,7 +278,7 @@ namespace VkBot
                             SaveUser(peerID);
                             break;
                         case "топ игроков":
-                            string vsp3 = "Вот топ 10 🏆\n";
+                            string vsp3 = String.Format("0, +20","Вот топ 10 🏆\n");
                             int mesto = 0;
                             using (var db = new MyContext())
                             {
@@ -290,15 +290,20 @@ namespace VkBot
                                     if (jj >= 11 && mesto != 0) break;
                                     if (jj < 11)
                                     {
-                                        vsp3 += $"{jj}) [id{b.VkId}|{b.Name}] - {b.Score} 🍔\n";
+                                        //vsp3 += $"{jj}) [id{b.VkId}|{b.Name}] - {b.Score} 🍔\n";
+                                        vsp3 += String.Format("{0, -3}) {1, -30}  -  {2, 4} 🍔\n", 
+                                            jj, $"[id{b.VkId}|{b.Name}]", b.Score);
                                     }
                                     jj++;
                                 }
                                 if (mesto > 10)
                                 {
                                     var user = users.Where(p => p.VkId == peerID).FirstOrDefault();
-                                    vsp3 += $"\nВаш рейтинг:\n" +
-                                        $"{mesto}) [id{user.VkId}|{user.Name}] - {user.Score} 🍔";
+                                    //vsp3 += $"\nВаш рейтинг:\n" +
+                                   //     $"{mesto}) [id{user.VkId}|{user.Name}] - {user.Score} 🍔";
+                                    vsp3 += $"\nВаш рейтинг:\n" + 
+                                        String.Format("{0, -3}) {1, -30}  -  {2, 4} 🍔\n",
+                                            mesto, $"[id{user.VkId}|{user.Name}]", user.Score);
                                 }
                                 CallbackController.SendMessage(vsp3, peerID, Keyboards.UserKeyboard);
                             }
