@@ -79,6 +79,10 @@
               "version": "[2.2.0, )",
               "autoReferenced": true
             },
+            "System.Drawing.Common": {
+              "target": "Package",
+              "version": "[4.5.0, )"
+            },
             "VkNet": {
               "target": "Package",
               "version": "[1.63.0, )"

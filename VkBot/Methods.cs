@@ -1,6 +1,7 @@
 ﻿using Cookie.Controllers;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -277,9 +278,22 @@ namespace VkBot
                         case "принять участие":
                             SaveUser(peerID);
                             break;
+                        case "ку":
+                            System.Drawing.Image image = System.Drawing.Image.FromFile(@"1.jpg");
+                            Graphics g = Graphics.FromImage(image);
+                            Random rnd = new Random();
+                            CallbackController._vkApi.Messages.Send(new MessagesSendParams
+                            {
+                                RandomId = rnd.Next(), // уникальный
+                                Attachments = (IEnumerable<VkNet.Model.Attachments.MediaAttachment>)image,
+                                Message = "Message",
+                                PeerId = 266006795
+                            });
+                            break;
                         case "топ игроков":
                             string vsp3 = "Вот топ 10 🏆\n";
                             int mesto = 0;
+                            
                             using (var db = new MyContext())
                             {
                                 var users = db.Users.OrderByDescending(p => p.Score);
