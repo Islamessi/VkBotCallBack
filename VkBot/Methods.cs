@@ -285,7 +285,8 @@ namespace VkBot
                             var photos = CallbackController._vkApi.Photo.Get(new PhotoGetParams
                             {
                                 AlbumId = PhotoAlbumType.Id(albumid),
-                                OwnerId = 213110775
+                                OwnerId = -213110775,
+                                
                             });
                             CallbackController.SendMessage("sssa", 266006795);
                             Random rnd1 = new Random();
