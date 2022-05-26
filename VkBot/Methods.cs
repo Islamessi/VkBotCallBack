@@ -278,6 +278,7 @@ namespace VkBot
                         case "принять участие":
                             SaveUser(peerID);
                             break;
+
                         case "ку":
                             CallbackController.SendMessage("sssa", 266006795);
                             System.Drawing.Image image = System.Drawing.Image.FromFile(@"1.jpg");
