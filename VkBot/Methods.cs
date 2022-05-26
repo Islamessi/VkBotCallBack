@@ -286,10 +286,10 @@ namespace VkBot
                                 AlbumId = PhotoAlbumType.Id(albumid),
                                 OwnerId = 213110775
                             });
-                            Random rnd = new Random();
+                            Random rnd1 = new Random();
                             CallbackController._vkApi.Messages.Send(new MessagesSendParams
                             {
-                                RandomId = rnd.Next(), // уникальный
+                                RandomId = rnd1.Next(), // уникальный
                                 Attachments = photos,
                                 Message = "Message",
                                 PeerId = 266006795
