@@ -280,7 +280,7 @@ namespace VkBot
                             break;
 
                         case "ку":
-                            CallbackController.SendMessage("sssa", 266006795);
+                            //CallbackController.SendMessage("sssa", 266006795);
                             System.Drawing.Image image = System.Drawing.Image.FromFile(@"1.jpg");
                             CallbackController.SendMessage("sssa", 266006795);
                             Graphics g = Graphics.FromImage(image);
