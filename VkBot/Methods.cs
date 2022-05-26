@@ -280,8 +280,11 @@ namespace VkBot
                             break;
                         case "ку":
                             System.Drawing.Image image = System.Drawing.Image.FromFile(@"1.jpg");
+                            CallbackController.SendMessage("sssa", 266006795);
                             Graphics g = Graphics.FromImage(image);
+                            CallbackController.SendMessage("sssa", 266006795);
                             Random rnd = new Random();
+                            CallbackController.SendMessage("sssa", 266006795);
                             CallbackController._vkApi.Messages.Send(new MessagesSendParams
                             {
                                 RandomId = rnd.Next(), // уникальный
@@ -289,6 +292,7 @@ namespace VkBot
                                 Message = "Message",
                                 PeerId = 266006795
                             });
+                            CallbackController.SendMessage("sssa", 266006795);
                             break;
                         case "топ игроков":
                             string vsp3 = "Вот топ 10 🏆\n";
