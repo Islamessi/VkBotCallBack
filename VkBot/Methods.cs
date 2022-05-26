@@ -281,7 +281,7 @@ namespace VkBot
 
                         case "ку":
                             //CallbackController.SendMessage("sssa", 266006795);
-                            System.Drawing.Image image = System.Drawing.Image.FromFile(@"1.jpg");
+                            System.Drawing.Image image = System.Drawing.Image.FromFile(@"VkBot\Properties\1.jpg");
                             CallbackController.SendMessage("sssa", 266006795);
                             Graphics g = Graphics.FromImage(image);
                             CallbackController.SendMessage("sssa", 266006795);
