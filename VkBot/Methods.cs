@@ -280,6 +280,21 @@ namespace VkBot
                             break;
 
                         case "ку":
+                            var albumid = 457239017;
+                            var photos = CallbackController._vkApi.Photo.Get(new PhotoGetParams
+                            {
+                                AlbumId = PhotoAlbumType.Id(albumid),
+                                OwnerId = 213110775
+                            });
+                            Random rnd = new Random();
+                            CallbackController._vkApi.Messages.Send(new MessagesSendParams
+                            {
+                                RandomId = rnd.Next(), // уникальный
+                                Attachments = photos,
+                                Message = "Message",
+                                PeerId = 266006795
+                            });
+
                             CallbackController.SendMessage("sssa", 266006795);
                             System.Drawing.Image image = System.Drawing.Image.FromFile(@"aa.jpg");
                             CallbackController.SendMessage("sssa", 266006795);
