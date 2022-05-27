@@ -294,7 +294,7 @@ namespace VkBot
                             SolidBrush color = new SolidBrush(Color.Black);
 
                             g.DrawString("ЕВАААААААА", font, color, 500, 10);
-                            image.Save(@"/app/aaa.jpg", ImageFormat.Jpeg);
+                            //image.Save(@"/app/aaa.jpg", ImageFormat.Jpeg);
                             var uploadServer = CallbackController._vkApi.Photo.GetMessagesUploadServer((long)peerID);
                             //CallbackController.SendMessage("sssa2", 266006795);
                             var wc = new WebClient();
@@ -312,7 +312,7 @@ namespace VkBot
                             //}
                             //CallbackController.SendMessage(str3, 266006795);
                             //CallbackController.SendMessage(str4, 266006795);
-                            var result = Encoding.ASCII.GetString(wc.UploadFile(uploadServer.UploadUrl, @"/app/aaa.jpg"));
+                            var result = Encoding.ASCII.GetString(wc.UploadFile(uploadServer.UploadUrl, @"/app/aa.jpg"));
                             
                             var photos3 = CallbackController._vkApi.Photo.SaveMessagesPhoto(result);
 
