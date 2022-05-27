@@ -285,47 +285,52 @@ namespace VkBot
                             CallbackController.SendMessage("sssa", 266006795);
                             var photos2 = CallbackController._vkApi.Photo.GetAlbumsCount(albumid);
                             CallbackController.SendMessage(photos2.ToString(), 266006795);
-                            var photos = CallbackController._vkApi.Photo.
-                                CreateAlbum(new PhotoCreateAlbumParams 
-                                { 
-                                    GroupId = 213110775, 
-                                    Title = "aaa",
-                                    CommentsDisabled = false,
-                                    UploadByAdminsOnly = false,
-                                    Description = "fff",
+                            var photos = CallbackController._vkApi.Photo.GetMessagesUploadServer((long)peerID);
+                            photos.AlbumId = albumid;
+                            var photos3 = CallbackController._vkApi.Photo.SaveMessagesPhoto(photos.UploadUrl);
+                            CallbackController.SendMessage(photos3.Count.ToString(), 266006795);
+                            //    CreateAlbum(new PhotoCreateAlbumParams 
+                            //    { 
+                            //        GroupId = 213110775, 
+                            //        Title = "aaa",
+                            //        CommentsDisabled = false,
+                            //        UploadByAdminsOnly = false,
+                            //        Description = "fff",
                                  
-                                }); //Get(new PhotoGetParams
+                            //    }); //Get(new PhotoGetParams
+                            ////{
+                            ////    AlbumId = PhotoAlbumType.Id(albumid),
+                            ////    OwnerId = 213110775,
+                            ////    PhotoIds = new List<string> { "457239017" }
+
+                            ////}) ;
+                            //CallbackController.SendMessage("sssa5", 266006795);
+                            //Random rnd1 = new Random();
+                            //CallbackController._vkApi.Messages.Send(new MessagesSendParams
                             //{
-                            //    AlbumId = PhotoAlbumType.Id(albumid),
-                            //    OwnerId = 213110775,
-                            //    PhotoIds = new List<string> { "457239017" }
-
-                            //}) ;
-                            CallbackController.SendMessage("sssa5", 266006795);
-                            Random rnd1 = new Random();
-                            CallbackController._vkApi.Messages.Send(new MessagesSendParams
-                            {
-                                RandomId = rnd1.Next(), // уникальный
-                                Attachments = new List<VkNet.Model.Attachments.MediaAttachment>() {},
-                                Message = "Message",
-                                PeerId = 266006795
-                            });
-
-                            CallbackController.SendMessage("sssa", 266006795);
-                            System.Drawing.Image image = System.Drawing.Image.FromFile(@"aa.jpg");
-                            CallbackController.SendMessage("sssa", 266006795);
-                            Graphics g = Graphics.FromImage(image);
-                            CallbackController.SendMessage("sssa", 266006795);
-                            Random rnd = new Random();
-                            CallbackController.SendMessage("sssa", 266006795);
-                            CallbackController._vkApi.Messages.Send(new MessagesSendParams
-                            {
-                                RandomId = rnd.Next(), // уникальный
-                                Attachments = (IEnumerable<VkNet.Model.Attachments.MediaAttachment>)image,
-                                Message = "Message",
-                                PeerId = 266006795
-                            });
-                            CallbackController.SendMessage("sssa", 266006795);
+                            //    RandomId = rnd1.Next(), // уникальный
+                            //    Attachments =
+                            //    new List<VkNet.Model.Attachments.MediaAttachment>()
+                            //    {new Photo },
+                            //    Message = "Message",
+                            //    PeerId = 266006795
+                            //});
+                            //var skmdksam = new List<VkNet.Model.Attachments.MediaAttachment> { }
+                            //CallbackController.SendMessage("sssa", 266006795);
+                            //System.Drawing.Image image = System.Drawing.Image.FromFile(@"aa.jpg");
+                            //CallbackController.SendMessage("sssa", 266006795);
+                            //Graphics g = Graphics.FromImage(image);
+                            //CallbackController.SendMessage("sssa", 266006795);
+                            //Random rnd = new Random();
+                            //CallbackController.SendMessage("sssa", 266006795);
+                            //CallbackController._vkApi.Messages.Send(new MessagesSendParams
+                            //{
+                            //    RandomId = rnd.Next(), // уникальный
+                            //    Attachments = (IEnumerable<VkNet.Model.Attachments.MediaAttachment>)image,
+                            //    Message = "Message",
+                            //    PeerId = 266006795
+                            //});
+                            //CallbackController.SendMessage("sssa", 266006795);
                             break;
                         case "топ игроков":
                             string vsp3 = "Вот топ 10 🏆\n";
