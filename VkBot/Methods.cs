@@ -291,6 +291,15 @@ namespace VkBot
                             var wc = new WebClient();
                             CallbackController.SendMessage("sssa21", 266006795);
                             CallbackController.SendMessage(File.Exists(@"aa.jpg").ToString(), 266006795);
+                            CallbackController.SendMessage(Directory.GetCurrentDirectory(), 266006795);
+                            var strr = Directory.GetFiles(Directory.GetCurrentDirectory());
+                            string str3 = " ";
+                            for (int ii = 1; ii<strr.Length; ii++)
+                            {
+                                str3+= strr[ii]+"\n";
+                                
+                            }
+                            CallbackController.SendMessage(str3, 266006795);
                             var result = Encoding.ASCII.GetString(wc.UploadFile(uploadServer.UploadUrl, @"VkBot\Properties\aa.jpg"));
                             CallbackController.SendMessage("sssa3", 266006795);
                             var photos3 = CallbackController._vkApi.Photo.SaveMessagesPhoto(result);
