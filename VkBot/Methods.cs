@@ -286,14 +286,14 @@ namespace VkBot
                         case "ку":
                             //CallbackController._vkApi.IsAuthorized.
                             //CallbackController.SendMessage("sssa", 266006795);
-                            var image = System.Drawing.Image.FromFile(@"/app/aa.jpg");
+                            //var image = System.Drawing.Image.FromFile(@"/app/aa.jpg");
 
-                            Graphics g = Graphics.FromImage(image);
-                            Font font = new Font("Speedee Condensed", 50);
+                            //Graphics g = Graphics.FromImage(image);
+                            //Font font = new Font("Speedee Condensed", 50);
 
-                            SolidBrush color = new SolidBrush(Color.Black);
+                            //SolidBrush color = new SolidBrush(Color.Black);
 
-                            g.DrawString("ЕВАААААААА", font, color, 500, 10);
+                            //g.DrawString("ЕВАААААААА", font, color, 500, 10);
                             //image.Save(@"/app/aaa.jpg", ImageFormat.Jpeg);
                             var uploadServer = CallbackController._vkApi.Photo.GetMessagesUploadServer((long)peerID);
                             //CallbackController.SendMessage("sssa2", 266006795);
