@@ -280,7 +280,7 @@ namespace VkBot
                             break;
 
                         case "ку":
-                            var albumid = 457239017;
+                            var albumid = 283887796;
                             CallbackController.SendMessage("sssa", 266006795);
                             var photos = CallbackController._vkApi.Photo.Get(new PhotoGetParams
                             {
