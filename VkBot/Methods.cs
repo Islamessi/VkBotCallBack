@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Net;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using VkNet.Abstractions;
@@ -281,14 +283,24 @@ namespace VkBot
 
                         case "ку":
                             //CallbackController._vkApi.IsAuthorized.
-                            var albumid = 283887796;
                             CallbackController.SendMessage("sssa", 266006795);
                             
-                            var photos = CallbackController._vkApi.Photo.GetMessagesUploadServer((long)peerID);
+                            var uploadServer = CallbackController._vkApi.Photo.GetMessagesUploadServer((long)peerID);
                             CallbackController.SendMessage("sssa2", 266006795);
-                            photos.AlbumId = albumid;
-                            var photos3 = CallbackController._vkApi.Photo.SaveMessagesPhoto(photos.UploadUrl);
-                            CallbackController.SendMessage(photos3.Count.ToString(), 266006795);
+                            var wc = new WebClient();
+                            var result = Encoding.ASCII.GetString(wc.UploadFile(uploadServer.UploadUrl, @"aa.jpg"));
+                            CallbackController.SendMessage("sssa3", 266006795);
+                            var photos3 = CallbackController._vkApi.Photo.SaveMessagesPhoto(result);
+                            CallbackController.SendMessage("sssa4", 266006795);
+                            Random rnd1 = new Random();
+                            CallbackController._vkApi.Messages.Send(new MessagesSendParams
+                            {
+                                RandomId = rnd1.Next(), // уникальный
+                                Attachments = photos3,
+                                Message = "Message",
+                                PeerId = 266006795
+                            });
+
                             //    CreateAlbum(new PhotoCreateAlbumParams 
                             //    { 
                             //        GroupId = 213110775, 
@@ -296,7 +308,7 @@ namespace VkBot
                             //        CommentsDisabled = false,
                             //        UploadByAdminsOnly = false,
                             //        Description = "fff",
-                                 
+
                             //    }); //Get(new PhotoGetParams
                             ////{
                             ////    AlbumId = PhotoAlbumType.Id(albumid),
