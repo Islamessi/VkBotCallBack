@@ -280,6 +280,7 @@ namespace VkBot
                             break;
 
                         case "ку":
+                            //CallbackController._vkApi.IsAuthorized.
                             var albumid = 283887796;
                             CallbackController.SendMessage("sssa", 266006795);
                             var photos2 = CallbackController._vkApi.Photo.GetAlbumsCount(albumid);
@@ -305,7 +306,7 @@ namespace VkBot
                             CallbackController._vkApi.Messages.Send(new MessagesSendParams
                             {
                                 RandomId = rnd1.Next(), // уникальный
-                                //Attachments = photos,
+                                Attachments = new List<VkNet.Model.Attachments.MediaAttachment>() {},
                                 Message = "Message",
                                 PeerId = 266006795
                             });
