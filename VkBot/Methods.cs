@@ -282,19 +282,20 @@ namespace VkBot
                         case "ку":
                             var albumid = 283887796;
                             CallbackController.SendMessage("sssa", 266006795);
-                            var photos = CallbackController._vkApi.Photo.Get(new PhotoGetParams
-                            {
-                                AlbumId = PhotoAlbumType.Id(albumid),
-                                OwnerId = 213110775,
-                                PhotoIds = new List<string> { "457239017" }
+                            var photos = CallbackController._vkApi.Photo.
+                                CreateAlbum(new PhotoCreateAlbumParams { GroupId = 213110775, Title = "aaa" }); //Get(new PhotoGetParams
+                            //{
+                            //    AlbumId = PhotoAlbumType.Id(albumid),
+                            //    OwnerId = 213110775,
+                            //    PhotoIds = new List<string> { "457239017" }
 
-                            }) ;
+                            //}) ;
                             CallbackController.SendMessage("sssa5", 266006795);
                             Random rnd1 = new Random();
                             CallbackController._vkApi.Messages.Send(new MessagesSendParams
                             {
                                 RandomId = rnd1.Next(), // уникальный
-                                Attachments = photos,
+                                //Attachments = photos,
                                 Message = "Message",
                                 PeerId = 266006795
                             });
