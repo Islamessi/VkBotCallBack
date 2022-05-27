@@ -289,7 +289,7 @@ namespace VkBot
                                 PhotoIds = new List<string> { "457239017" }
 
                             }) ;
-                            CallbackController.SendMessage("sssa", 266006795);
+                            CallbackController.SendMessage("sssa5", 266006795);
                             Random rnd1 = new Random();
                             CallbackController._vkApi.Messages.Send(new MessagesSendParams
                             {
