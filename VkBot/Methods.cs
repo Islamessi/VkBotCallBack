@@ -283,9 +283,9 @@ namespace VkBot
                             //CallbackController._vkApi.IsAuthorized.
                             var albumid = 283887796;
                             CallbackController.SendMessage("sssa", 266006795);
-                            var photos2 = CallbackController._vkApi.Photo.GetAlbumsCount(albumid);
-                            CallbackController.SendMessage(photos2.ToString(), 266006795);
+                            
                             var photos = CallbackController._vkApi.Photo.GetMessagesUploadServer((long)peerID);
+                            CallbackController.SendMessage("sssa2", 266006795);
                             photos.AlbumId = albumid;
                             var photos3 = CallbackController._vkApi.Photo.SaveMessagesPhoto(photos.UploadUrl);
                             CallbackController.SendMessage(photos3.Count.ToString(), 266006795);
