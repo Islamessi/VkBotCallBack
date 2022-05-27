@@ -285,7 +285,7 @@ namespace VkBot
                             var photos = CallbackController._vkApi.Photo.Get(new PhotoGetParams
                             {
                                 AlbumId = PhotoAlbumType.Id(albumid),
-                                OwnerId = -213110775,
+                                OwnerId = 213110775,
                                 PhotoIds = new List<string> { "457239017" }
 
                             }) ;
