@@ -288,7 +288,8 @@ namespace VkBot
                             var uploadServer = CallbackController._vkApi.Photo.GetMessagesUploadServer((long)peerID);
                             CallbackController.SendMessage("sssa2", 266006795);
                             var wc = new WebClient();
-                            var result = Encoding.ASCII.GetString(wc.UploadFile(uploadServer.UploadUrl, @"aa.jpg"));
+                            CallbackController.SendMessage("sssa21", 266006795);
+                            var result = Encoding.ASCII.GetString(wc.UploadFile(uploadServer.UploadUrl, @"VkBot\Properties\aa.jpg"));
                             CallbackController.SendMessage("sssa3", 266006795);
                             var photos3 = CallbackController._vkApi.Photo.SaveMessagesPhoto(result);
                             CallbackController.SendMessage("sssa4", 266006795);
