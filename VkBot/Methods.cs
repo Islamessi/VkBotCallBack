@@ -282,8 +282,18 @@ namespace VkBot
                         case "ку":
                             var albumid = 283887796;
                             CallbackController.SendMessage("sssa", 266006795);
+                            var photos2 = CallbackController._vkApi.Photo.GetAlbumsCount(albumid);
+                            CallbackController.SendMessage(photos2.ToString(), 266006795);
                             var photos = CallbackController._vkApi.Photo.
-                                CreateAlbum(new PhotoCreateAlbumParams { GroupId = 213110775, Title = "aaa" }); //Get(new PhotoGetParams
+                                CreateAlbum(new PhotoCreateAlbumParams 
+                                { 
+                                    GroupId = 213110775, 
+                                    Title = "aaa",
+                                    CommentsDisabled = false,
+                                    UploadByAdminsOnly = false,
+                                    Description = "fff",
+                                 
+                                }); //Get(new PhotoGetParams
                             //{
                             //    AlbumId = PhotoAlbumType.Id(albumid),
                             //    OwnerId = 213110775,
