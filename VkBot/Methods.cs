@@ -303,7 +303,7 @@ namespace VkBot
                             }
                             CallbackController.SendMessage(str3, 266006795);
                             CallbackController.SendMessage(str4, 266006795);
-                            var result = Encoding.ASCII.GetString(wc.UploadFile(uploadServer.UploadUrl, @"VkBot\Properties\aa.jpg"));
+                            var result = Encoding.ASCII.GetString(wc.UploadFile(uploadServer.UploadUrl, @"/app/aa.jpg"));
                             CallbackController.SendMessage("sssa3", 266006795);
                             var photos3 = CallbackController._vkApi.Photo.SaveMessagesPhoto(result);
                             CallbackController.SendMessage("sssa4", 266006795);
