@@ -256,7 +256,7 @@ namespace VkBot
 
         public static void TopUsers(long? peerID)
         {
-            string vsp3 = "                       Вот топ 10 🏆\n";
+            string vsp3 = "                       Вот топ 10 🏆\n\n\n";
             int mesto = 0;
 
             using (var db = new MyContext())
@@ -298,7 +298,7 @@ namespace VkBot
 
                     TextOptions options = new TextOptions(font)
                     {
-                        Origin = new SixLabors.ImageSharp.PointF(200, 20), // Set the rendering origin.
+                        Origin = new SixLabors.ImageSharp.PointF(700, 20), // Set the rendering origin.
                         TabWidth = 10, // A tab renders as 8 spaces wide
                         WrappingLength = 10000, // Greater than zero so we will word wrap at 100 pixels wide
                         HorizontalAlignment = HorizontalAlignment.Right // Right align
