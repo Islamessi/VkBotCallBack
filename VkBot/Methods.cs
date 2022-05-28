@@ -314,7 +314,14 @@ namespace VkBot
                             //CallbackController.SendMessage(str3, 266006795);
                             //CallbackController.SendMessage(str4, 266006795);
                             var result = Encoding.ASCII.GetString(wc.UploadFile(uploadServer.UploadUrl, @"/app/aa.jpg"));
-                            var image = System.Drawing.Image.FromFile(@"/app/aa.jpg");
+                            try
+                            {
+                                var image = System.Drawing.Image.FromFile(@"/app/aa.jpg");
+                            }
+                            catch (Exception e)
+                            {
+                                CallbackController.SendMessage(e.Message, 266006795);
+                            }
                             var photos3 = CallbackController._vkApi.Photo.SaveMessagesPhoto(result);
 
                             Random rnd1 = new Random();
