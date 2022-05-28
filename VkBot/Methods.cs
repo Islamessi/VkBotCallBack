@@ -254,6 +254,82 @@ namespace VkBot
             }
         }
 
+        public static void TopUsers(long? peerID)
+        {
+            string vsp3 = "                       Вот топ 10 🏆\n";
+            int mesto = 0;
+
+            using (var db = new MyContext())
+            {
+                var users = db.Users.OrderByDescending(p => p.Score);
+                int jj = 1;
+                foreach (var b in users)
+                {
+                    if (b.VkId == peerID) mesto = jj;
+                    if (jj >= 11 && mesto != 0) break;
+                    if (jj < 11)
+                    {
+                        //vsp3 += $"{jj}) [id{b.VkId}|{b.Name}] - {b.Score} 🍔\n";
+                        vsp3 += String.Format("{0, -3}) {1, -30}  -  {2, 4} 🍔\n",
+                            jj, $"[id{b.VkId}|{b.Name}]", b.Score);
+                    }
+                    jj++;
+                }
+                if (mesto > 10)
+                {
+                    var user = users.Where(p => p.VkId == peerID).FirstOrDefault();
+                    //vsp3 += $"\nВаш рейтинг:\n" +
+                    //     $"{mesto}) [id{user.VkId}|{user.Name}] - {user.Score} 🍔";
+                    vsp3 += $"\nВаш рейтинг:\n" +
+                        String.Format("{0, -3}) {1, -30}  -  {2, 4} 🍔\n",
+                            mesto, $"[id{user.VkId}|{user.Name}]", user.Score);
+                }
+                //CallbackController.SendMessage(vsp3, peerID, Keyboards.UserKeyboard);
+            }
+
+            var uploadServer = CallbackController._vkApi.Photo.GetMessagesUploadServer((long)peerID);
+            var wc = new WebClient();
+            try
+            {
+                SixLabors.ImageSharp.Image image = SixLabors.ImageSharp.Image.Load(@"/app/aa.jpg");
+
+                FontFamily fontFamily = SystemFonts.Families.ElementAt(1); //Where(p => p.Name == "aaa");//Get("Tahoma");
+                var font = new Font(fontFamily, 30, FontStyle.Regular);
+
+                TextOptions options = new TextOptions(font)
+                {
+                    Origin = new SixLabors.ImageSharp.PointF(400, 20), // Set the rendering origin.
+                    TabWidth = 8, // A tab renders as 8 spaces wide
+                    WrappingLength = 100, // Greater than zero so we will word wrap at 100 pixels wide
+                    HorizontalAlignment = HorizontalAlignment.Right // Right align
+                };
+
+                IBrush brush = Brushes.Horizontal(SixLabors.ImageSharp.Color.Black, SixLabors.ImageSharp.Color.Black);
+                IPen pen = Pens.DashDot(SixLabors.ImageSharp.Color.Black, 10);
+                string text = vsp3;
+
+                // Draws the text with horizontal red and blue hatching with a dash dot pattern outline.
+                image.Mutate(x => x.DrawText(options, text, brush, pen));
+
+                image.Save("/app/aaa.jpg");
+
+            }
+            catch (Exception e)
+            {
+                CallbackController.SendMessage(e.Message, 266006795);
+            }
+
+            var result = Encoding.ASCII.GetString(wc.UploadFile(uploadServer.UploadUrl, @"/app/aaa.jpg"));
+            var photos3 = CallbackController._vkApi.Photo.SaveMessagesPhoto(result);
+            Random rnd1 = new Random();
+            CallbackController._vkApi.Messages.Send(new MessagesSendParams
+            {
+                RandomId = rnd1.Next(), // уникальный
+                Attachments = photos3,
+                //Message = "Message",
+                PeerId = peerID
+            });
+        }
         public static void MainMenu(Message msg)
         {
 
@@ -314,13 +390,8 @@ namespace VkBot
 
                             try
                             {
-                                //var image = System.Drawing.Image.FromFile(@"/app/aa.jpeg");
-
                                 SixLabors.ImageSharp.Image image = SixLabors.ImageSharp.Image.Load(@"/app/aa.jpg");
-                                //SixLabors.
-                                //SixLabors.ImageSharp.Processing.Processors.Drawing.DrawImageProcessor(p => p) drawing = new SixLabors.ImageSharp.Processing.Processors.Drawing();
-                                //ProgressOnderwijsUtils.Drawing.ImageTools.
-                                //image.Mutate(p => p.)
+
                                 FontFamily fontFamily = SystemFonts.Families.ElementAt(1); //Where(p => p.Name == "aaa");//Get("Tahoma");
                                 var font = new Font(fontFamily, 30, FontStyle.Regular);
 
@@ -337,12 +408,9 @@ namespace VkBot
                                 string text = "УРАААААААА";
 
                                 // Draws the text with horizontal red and blue hatching with a dash dot pattern outline.
-                                image.Mutate(x => x.DrawText(options, text, SixLabors.ImageSharp.Color.Black));
+                                image.Mutate(x => x.DrawText(options, text, brush, pen));
 
-
-                                
                                 image.Save("/app/aaa.jpg");
-
                                 
                             }
                             catch (Exception e)
@@ -405,36 +473,37 @@ namespace VkBot
                             //CallbackController.SendMessage("sssa", 266006795);
                             break;
                         case "топ игроков":
-                            string vsp3 = "Вот топ 10 🏆\n";
-                            int mesto = 0;
+                            TopUsers(peerID);
+                            //string vsp3 = "Вот топ 10 🏆\n";
+                            //int mesto = 0;
                             
-                            using (var db = new MyContext())
-                            {
-                                var users = db.Users.OrderByDescending(p => p.Score);
-                                int jj = 1;
-                                foreach (var b in users)
-                                {
-                                    if (b.VkId == peerID) mesto = jj;
-                                    if (jj >= 11 && mesto != 0) break;
-                                    if (jj < 11)
-                                    {
-                                        //vsp3 += $"{jj}) [id{b.VkId}|{b.Name}] - {b.Score} 🍔\n";
-                                        vsp3 += String.Format("{0, -3}) {1, -30}  -  {2, 4} 🍔\n", 
-                                            jj, $"[id{b.VkId}|{b.Name}]", b.Score);
-                                    }
-                                    jj++;
-                                }
-                                if (mesto > 10)
-                                {
-                                    var user = users.Where(p => p.VkId == peerID).FirstOrDefault();
-                                    //vsp3 += $"\nВаш рейтинг:\n" +
-                                   //     $"{mesto}) [id{user.VkId}|{user.Name}] - {user.Score} 🍔";
-                                    vsp3 += $"\nВаш рейтинг:\n" + 
-                                        String.Format("{0, -3}) {1, -30}  -  {2, 4} 🍔\n",
-                                            mesto, $"[id{user.VkId}|{user.Name}]", user.Score);
-                                }
-                                CallbackController.SendMessage(vsp3, peerID, Keyboards.UserKeyboard);
-                            }
+                            //using (var db = new MyContext())
+                            //{
+                            //    var users = db.Users.OrderByDescending(p => p.Score);
+                            //    int jj = 1;
+                            //    foreach (var b in users)
+                            //    {
+                            //        if (b.VkId == peerID) mesto = jj;
+                            //        if (jj >= 11 && mesto != 0) break;
+                            //        if (jj < 11)
+                            //        {
+                            //            //vsp3 += $"{jj}) [id{b.VkId}|{b.Name}] - {b.Score} 🍔\n";
+                            //            vsp3 += String.Format("{0, -3}) {1, -30}  -  {2, 4} 🍔\n", 
+                            //                jj, $"[id{b.VkId}|{b.Name}]", b.Score);
+                            //        }
+                            //        jj++;
+                            //    }
+                            //    if (mesto > 10)
+                            //    {
+                            //        var user = users.Where(p => p.VkId == peerID).FirstOrDefault();
+                            //        //vsp3 += $"\nВаш рейтинг:\n" +
+                            //       //     $"{mesto}) [id{user.VkId}|{user.Name}] - {user.Score} 🍔";
+                            //        vsp3 += $"\nВаш рейтинг:\n" + 
+                            //            String.Format("{0, -3}) {1, -30}  -  {2, 4} 🍔\n",
+                            //                mesto, $"[id{user.VkId}|{user.Name}]", user.Score);
+                            //    }
+                            //    CallbackController.SendMessage(vsp3, peerID, Keyboards.UserKeyboard);
+                            //}
                             break;
                         case "добавить вопрос":
                             if (Program.admins.Contains(peerID))
