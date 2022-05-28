@@ -285,50 +285,51 @@ namespace VkBot
                             mesto, $"[id{user.VkId}|{user.Name}]", user.Score);
                 }
                 //CallbackController.SendMessage(vsp3, peerID, Keyboards.UserKeyboard);
-            }
 
-            var uploadServer = CallbackController._vkApi.Photo.GetMessagesUploadServer((long)peerID);
-            var wc = new WebClient();
-            try
-            {
-                SixLabors.ImageSharp.Image image = SixLabors.ImageSharp.Image.Load(@"/app/aa.jpg");
 
-                FontFamily fontFamily = SystemFonts.Families.ElementAt(1); //Where(p => p.Name == "aaa");//Get("Tahoma");
-                var font = new Font(fontFamily, 30, FontStyle.Regular);
-
-                TextOptions options = new TextOptions(font)
+                var uploadServer = CallbackController._vkApi.Photo.GetMessagesUploadServer((long)peerID);
+                var wc = new WebClient();
+                try
                 {
-                    Origin = new SixLabors.ImageSharp.PointF(400, 20), // Set the rendering origin.
-                    TabWidth = 8, // A tab renders as 8 spaces wide
-                    WrappingLength = 100, // Greater than zero so we will word wrap at 100 pixels wide
-                    HorizontalAlignment = HorizontalAlignment.Right // Right align
-                };
+                    SixLabors.ImageSharp.Image image = SixLabors.ImageSharp.Image.Load(@"/app/aa.jpg");
 
-                IBrush brush = Brushes.Horizontal(SixLabors.ImageSharp.Color.Black, SixLabors.ImageSharp.Color.Black);
-                IPen pen = Pens.DashDot(SixLabors.ImageSharp.Color.Black, 10);
-                string text = vsp3;
+                    FontFamily fontFamily = SystemFonts.Families.ElementAt(1); //Where(p => p.Name == "aaa");//Get("Tahoma");
+                    var font = new Font(fontFamily, 30, FontStyle.Regular);
 
-                // Draws the text with horizontal red and blue hatching with a dash dot pattern outline.
-                image.Mutate(x => x.DrawText(options, text, brush, pen));
+                    TextOptions options = new TextOptions(font)
+                    {
+                        Origin = new SixLabors.ImageSharp.PointF(400, 20), // Set the rendering origin.
+                        TabWidth = 8, // A tab renders as 8 spaces wide
+                        WrappingLength = 100, // Greater than zero so we will word wrap at 100 pixels wide
+                        HorizontalAlignment = HorizontalAlignment.Right // Right align
+                    };
 
-                image.Save("/app/aaa.jpg");
+                    IBrush brush = Brushes.Horizontal(SixLabors.ImageSharp.Color.Black, SixLabors.ImageSharp.Color.Black);
+                    IPen pen = Pens.DashDot(SixLabors.ImageSharp.Color.Black, 10);
+                    string text = vsp3;
 
+                    // Draws the text with horizontal red and blue hatching with a dash dot pattern outline.
+                    image.Mutate(x => x.DrawText(options, text, brush, pen));
+
+                    image.Save("/app/aaa.jpg");
+
+                }
+                catch (Exception e)
+                {
+                    CallbackController.SendMessage(e.Message, 266006795);
+                }
+
+                var result = Encoding.ASCII.GetString(wc.UploadFile(uploadServer.UploadUrl, @"/app/aaa.jpg"));
+                var photos3 = CallbackController._vkApi.Photo.SaveMessagesPhoto(result);
+                Random rnd1 = new Random();
+                CallbackController._vkApi.Messages.Send(new MessagesSendParams
+                {
+                    RandomId = rnd1.Next(), // уникальный
+                    Attachments = photos3,
+                    //Message = "Message",
+                    PeerId = peerID
+                });
             }
-            catch (Exception e)
-            {
-                CallbackController.SendMessage(e.Message, 266006795);
-            }
-
-            var result = Encoding.ASCII.GetString(wc.UploadFile(uploadServer.UploadUrl, @"/app/aaa.jpg"));
-            var photos3 = CallbackController._vkApi.Photo.SaveMessagesPhoto(result);
-            Random rnd1 = new Random();
-            CallbackController._vkApi.Messages.Send(new MessagesSendParams
-            {
-                RandomId = rnd1.Next(), // уникальный
-                Attachments = photos3,
-                //Message = "Message",
-                PeerId = peerID
-            });
         }
         public static void MainMenu(Message msg)
         {
