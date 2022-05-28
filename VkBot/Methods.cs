@@ -286,7 +286,7 @@ namespace VkBot
                         case "ку":
                             //CallbackController._vkApi.IsAuthorized.
                             //CallbackController.SendMessage("sssa", 266006795);
-                            //var image = System.Drawing.Image.FromFile(@"/app/aa.jpg");
+                            var image = System.Drawing.Image.FromFile(@"/app/aa.jpg");
 
                             //Graphics g = Graphics.FromImage(image);
                             //Font font = new Font("Speedee Condensed", 50);
