@@ -317,7 +317,7 @@ namespace VkBot
                                 SixLabors.ImageSharp.Image image = SixLabors.ImageSharp.Image.Load(@"/app/aa.jpg");
 
                                 image.Mutate(c => c.Resize(30, 30));
-                                image.Save("aaa.jpg");
+                                image.Save("/app/aaa.jpg");
 
                             }
                             catch (Exception e)
