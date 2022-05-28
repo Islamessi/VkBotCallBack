@@ -307,9 +307,9 @@ namespace VkBot
                     IBrush brush = Brushes.Horizontal(SixLabors.ImageSharp.Color.Black, SixLabors.ImageSharp.Color.Black);
                     IPen pen = Pens.DashDot(SixLabors.ImageSharp.Color.Black, 10);
                     string text = vsp3;
-
+                    CallbackController.SendMessage(text, 266006795);
                     // Draws the text with horizontal red and blue hatching with a dash dot pattern outline.
-                    image.Mutate(x => x.DrawText(options, text, brush, pen));
+                    image.Mutate(x => x.DrawText(options, text, SixLabors.ImageSharp.Color.Black));
 
                     image.Save("/app/aaa.jpg");
 
@@ -409,7 +409,7 @@ namespace VkBot
                                 string text = "УРАААААААА";
 
                                 // Draws the text with horizontal red and blue hatching with a dash dot pattern outline.
-                                image.Mutate(x => x.DrawText(options, text, brush, pen));
+                                image.Mutate(x => x.DrawText(options, text, SixLabors.ImageSharp.Color.Black));
 
                                 image.Save("/app/aaa.jpg");
                                 
