@@ -3096,7 +3096,7 @@
           }
         }
       },
-      "SixLabors.Fonts/1.0.0-beta16": {
+      "SixLabors.Fonts/1.0.0-beta17": {
         "type": "package",
         "dependencies": {
           "System.Buffers": "4.5.1",
@@ -8259,10 +8259,10 @@
         "version.txt"
       ]
     },
-    "SixLabors.Fonts/1.0.0-beta16": {
-      "sha512": "nv2wE6mjaoLb2t+fpba3tdGftZJgYEC11uRPyGPFL3gt/WDsHfUVRqtDTUThIMo0RTt0iCckHSPp2Oc+WI3iWg==",
+    "SixLabors.Fonts/1.0.0-beta17": {
+      "sha512": "qubgVovAoSR7vyv9tJ68gSzRIPWz7HBjTM9rwAaLjpcJ6T50arnX+GHAZcC0r2mVagyRMknCNda3DGoe8StUUQ==",
       "type": "package",
-      "path": "sixlabors.fonts/1.0.0-beta16",
+      "path": "sixlabors.fonts/1.0.0-beta17",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -8272,7 +8272,7 @@
         "lib/netstandard2.0/SixLabors.Fonts.xml",
         "lib/netstandard2.1/SixLabors.Fonts.dll",
         "lib/netstandard2.1/SixLabors.Fonts.xml",
-        "sixlabors.fonts.1.0.0-beta16.nupkg.sha512",
+        "sixlabors.fonts.1.0.0-beta17.nupkg.sha512",
         "sixlabors.fonts.128.png",
         "sixlabors.fonts.nuspec"
       ]
@@ -13035,6 +13035,7 @@
       "Microsoft.EntityFrameworkCore.Sqlite >= 2.2.6",
       "Microsoft.EntityFrameworkCore.Tools >= 2.2.6",
       "Microsoft.NETCore.App >= 2.2.0",
+      "SixLabors.Fonts >= 1.0.0-beta17",
       "SixLabors.ImageSharp >= 2.1.2",
       "SixLabors.ImageSharp.Drawing >= 1.0.0-beta14",
       "SixLabors.ImageSharp.Web >= 2.0.0",
@@ -13118,6 +13119,10 @@
             "target": "Package",
             "version": "[2.2.0, )",
             "autoReferenced": true
+          },
+          "SixLabors.Fonts": {
+            "target": "Package",
+            "version": "[1.0.0-beta17, )"
           },
           "SixLabors.ImageSharp": {
             "target": "Package",

@@ -79,6 +79,10 @@
               "version": "[2.2.0, )",
               "autoReferenced": true
             },
+            "SixLabors.Fonts": {
+              "target": "Package",
+              "version": "[1.0.0-beta17, )"
+            },
             "SixLabors.ImageSharp": {
               "target": "Package",
               "version": "[2.1.2, )"
