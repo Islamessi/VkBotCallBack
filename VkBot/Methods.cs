@@ -270,7 +270,7 @@ namespace VkBot
                     if (jj < 11)
                     {
                         //vsp3 += $"{jj}) [id{b.VkId}|{b.Name}] - {b.Score} 🍔\n";
-                        vsp3 += $"{mesto} )   {b.Name}  -  {b.Score} 🍔\n";
+                        vsp3 += $"{jj} )   {b.Name}  -  {b.Score} 🍔\n";
                         
                     }
                     jj++;
@@ -298,7 +298,7 @@ namespace VkBot
 
                     TextOptions options = new TextOptions(font)
                     {
-                        Origin = new SixLabors.ImageSharp.PointF(700, 20), // Set the rendering origin.
+                        Origin = new SixLabors.ImageSharp.PointF(800, 20), // Set the rendering origin.
                         TabWidth = 10, // A tab renders as 8 spaces wide
                         WrappingLength = 10000, // Greater than zero so we will word wrap at 100 pixels wide
                         HorizontalAlignment = HorizontalAlignment.Right // Right align
