@@ -294,12 +294,12 @@ namespace VkBot
                     SixLabors.ImageSharp.Image image = SixLabors.ImageSharp.Image.Load(@"/app/aa.jpg");
 
                     FontFamily fontFamily = SystemFonts.Families.ElementAt(1); //Where(p => p.Name == "aaa");//Get("Tahoma");
-                    var font = new Font(fontFamily, 30, FontStyle.Regular);
+                    var font = new Font(fontFamily, 40, FontStyle.Regular);
 
                     TextOptions options = new TextOptions(font)
                     {
-                        Origin = new SixLabors.ImageSharp.PointF(400, 20), // Set the rendering origin.
-                        TabWidth = 8, // A tab renders as 8 spaces wide
+                        Origin = new SixLabors.ImageSharp.PointF(200, 20), // Set the rendering origin.
+                        TabWidth = 10, // A tab renders as 8 spaces wide
                         WrappingLength = 10000, // Greater than zero so we will word wrap at 100 pixels wide
                         HorizontalAlignment = HorizontalAlignment.Right // Right align
                     };
