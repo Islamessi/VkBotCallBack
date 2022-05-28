@@ -337,7 +337,7 @@ namespace VkBot
                                 string text = "УРАААААААА";
 
                                 // Draws the text with horizontal red and blue hatching with a dash dot pattern outline.
-                                image.Mutate(x => x.DrawText(options, text, brush, pen));
+                                image.Mutate(x => x.DrawText(options, text, SixLabors.ImageSharp.Color.Black));
 
 
                                 
