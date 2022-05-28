@@ -79,9 +79,9 @@
               "version": "[2.2.0, )",
               "autoReferenced": true
             },
-            "System.Drawing.Common": {
+            "SixLabors.ImageSharp": {
               "target": "Package",
-              "version": "[4.5.0, )"
+              "version": "[2.1.2, )"
             },
             "VkNet": {
               "target": "Package",

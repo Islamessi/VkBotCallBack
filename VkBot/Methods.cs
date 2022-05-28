@@ -313,11 +313,12 @@ namespace VkBot
                             //}
                             //CallbackController.SendMessage(str3, 266006795);
                             //CallbackController.SendMessage(str4, 266006795);
-                            var result = Encoding.ASCII.GetString(wc.UploadFile(uploadServer.UploadUrl, @"/app/aa.jpeg"));
+                            var result = Encoding.ASCII.GetString(wc.UploadFile(uploadServer.UploadUrl, @"/app/aa.jpg"));
 
                             try
                             {
-                                var image = System.Drawing.Image.FromFile(@"/app/aa.jpeg");
+                                //var image = System.Drawing.Image.FromFile(@"/app/aa.jpeg");
+                                SixLabors.ImageSharp.Image.Load(@"/app/aa.jpg");
                             }
                             catch (Exception e)
                             {
