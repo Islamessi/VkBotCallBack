@@ -280,9 +280,9 @@ namespace VkBot
                     var user = users.Where(p => p.VkId == peerID).FirstOrDefault();
                     //vsp3 += $"\nВаш рейтинг:\n" +
                     //     $"{mesto}) [id{user.VkId}|{user.Name}] - {user.Score} 🍔";
-                    vsp3 += $"\nВаш рейтинг:\n" +
-                        String.Format("{0, -3}) {1, -30}  -  {2, 4} 🍔\n",
-                            mesto, $"[id{user.VkId}|{user.Name}]", user.Score);
+                    vsp3 += $"\nВаш рейтинг:\n" + $"{mesto}    {user.Name}    {user.Score}";
+                        //String.Format("{0, -3}) {1, -30}  -  {2, 4} 🍔\n",
+                        //    mesto, $"{user.Name}", user.Score);
                 }
                 //CallbackController.SendMessage(vsp3, peerID, Keyboards.UserKeyboard);
 
