@@ -1,4 +1,6 @@
 ﻿using Cookie.Controllers;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.PixelFormats;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -15,6 +17,13 @@ using VkNet.Model;
 using VkNet.Model.GroupUpdate;
 using VkNet.Model.Keyboard;
 using VkNet.Model.RequestParams;
+
+
+
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.Processing;
+
+
 
 namespace VkBot
 {
@@ -297,34 +306,26 @@ namespace VkBot
                             //image.Save(@"/app/aaa.jpg", ImageFormat.Jpeg);
                             
                             var uploadServer = CallbackController._vkApi.Photo.GetMessagesUploadServer((long)peerID);
-                            //CallbackController.SendMessage("sssa2", 266006795);
+
                             var wc = new WebClient();
-                            //CallbackController.SendMessage("sssa21", 266006795);
-                            //CallbackController.SendMessage(File.Exists(@"aa.jpg").ToString(), 266006795);
-                            //CallbackController.SendMessage(Directory.GetCurrentDirectory(), 266006795);
-                            //var strr = Directory.GetFiles("/app");
-                            //var strr2 = Directory.GetDirectories("/app");
-                            //string str3 = "a";
-                            //string str4 = "a";
-                            //for (int ii = 1; ii<strr.Length; ii++)
-                            //{
-                            //    str3+= strr[ii]+"\n";
-                            //    str4 += strr2[ii] + "\n";
-                            //}
-                            //CallbackController.SendMessage(str3, 266006795);
-                            //CallbackController.SendMessage(str4, 266006795);
-                            var result = Encoding.ASCII.GetString(wc.UploadFile(uploadServer.UploadUrl, @"/app/aa.jpg"));
+
+                            
 
                             try
                             {
                                 //var image = System.Drawing.Image.FromFile(@"/app/aa.jpeg");
-                                SixLabors.ImageSharp.Image.Load(@"/app/aa.jpg");
+                                SixLabors.ImageSharp.Image image = SixLabors.ImageSharp.Image.Load(@"/app/aa.jpg");
+
+                                image.Mutate(c => c.Resize(30, 30));
+                                image.Save("aaa.jpg");
+
                             }
                             catch (Exception e)
                             {
                                 CallbackController.SendMessage(e.Message, 266006795);
                             }
 
+                            var result = Encoding.ASCII.GetString(wc.UploadFile(uploadServer.UploadUrl, @"/app/aaa.jpg"));
                             var photos3 = CallbackController._vkApi.Photo.SaveMessagesPhoto(result);
                             Random rnd1 = new Random();
                             CallbackController._vkApi.Messages.Send(new MessagesSendParams

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "5a0IPqzr67AL3hQP0ReJcNAbrHc+tPSrg6vsRMLZfnfXe3fqZR9uOIsWbfx929bCm/htCFJZLATZtOICNjvHWA==",
+  "dgSpecHash": "3cUv9OgFgvUwJ0vbg02RNoyPujTapuC6XgJk9lIv20+jXM8O1UE3Nybgk+at/4lD7BfmvQUeXMmS7MijMpxWDg==",
   "success": true,
   "projectFilePath": "C:\\Users\\islam\\source\\repos\\VkBotCallBack\\VkBot\\VkBot.csproj",
   "expectedPackageFiles": [
@@ -176,6 +176,7 @@
     "C:\\Users\\islam\\.nuget\\packages\\microsoft.identitymodel.tokens\\5.3.0\\microsoft.identitymodel.tokens.5.3.0.nupkg.sha512",
     "C:\\Users\\islam\\.nuget\\packages\\microsoft.identitymodel.tokens.saml\\5.3.0\\microsoft.identitymodel.tokens.saml.5.3.0.nupkg.sha512",
     "C:\\Users\\islam\\.nuget\\packages\\microsoft.identitymodel.xml\\5.3.0\\microsoft.identitymodel.xml.5.3.0.nupkg.sha512",
+    "C:\\Users\\islam\\.nuget\\packages\\microsoft.io.recyclablememorystream\\2.2.0\\microsoft.io.recyclablememorystream.2.2.0.nupkg.sha512",
     "C:\\Users\\islam\\.nuget\\packages\\microsoft.net.http.headers\\2.2.0\\microsoft.net.http.headers.2.2.0.nupkg.sha512",
     "C:\\Users\\islam\\.nuget\\packages\\microsoft.netcore.app\\2.2.0\\microsoft.netcore.app.2.2.0.nupkg.sha512",
     "C:\\Users\\islam\\.nuget\\packages\\microsoft.netcore.dotnetapphost\\2.2.0\\microsoft.netcore.dotnetapphost.2.2.0.nupkg.sha512",
@@ -209,6 +210,7 @@
     "C:\\Users\\islam\\.nuget\\packages\\runtime.win-x64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\islam\\.nuget\\packages\\runtime.win-x86.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\islam\\.nuget\\packages\\sixlabors.imagesharp\\2.1.2\\sixlabors.imagesharp.2.1.2.nupkg.sha512",
+    "C:\\Users\\islam\\.nuget\\packages\\sixlabors.imagesharp.web\\2.0.0\\sixlabors.imagesharp.web.2.0.0.nupkg.sha512",
     "C:\\Users\\islam\\.nuget\\packages\\sqlitepclraw.bundle_green\\1.1.12\\sqlitepclraw.bundle_green.1.1.12.nupkg.sha512",
     "C:\\Users\\islam\\.nuget\\packages\\sqlitepclraw.core\\1.1.12\\sqlitepclraw.core.1.1.12.nupkg.sha512",
     "C:\\Users\\islam\\.nuget\\packages\\sqlitepclraw.lib.e_sqlite3.linux\\1.1.12\\sqlitepclraw.lib.e_sqlite3.linux.1.1.12.nupkg.sha512",
