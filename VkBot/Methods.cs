@@ -322,18 +322,18 @@ namespace VkBot
                                 //ProgressOnderwijsUtils.Drawing.ImageTools.
                                 //image.Mutate(p => p.)
                                 FontFamily fontFamily = SystemFonts.Families.First(); //Where(p => p.Name == "aaa");//Get("Tahoma");
-                                var font = new Font(fontFamily, 25, FontStyle.Regular);
+                                var font = new Font(fontFamily, 30, FontStyle.Regular);
 
                                 TextOptions options = new TextOptions(font)
                                 {
-                                    Origin = new SixLabors.ImageSharp.PointF(100, 100), // Set the rendering origin.
+                                    Origin = new SixLabors.ImageSharp.PointF(500, 100), // Set the rendering origin.
                                     TabWidth = 8, // A tab renders as 8 spaces wide
                                     WrappingLength = 100, // Greater than zero so we will word wrap at 100 pixels wide
                                     HorizontalAlignment = HorizontalAlignment.Right // Right align
                                 };
 
-                                IBrush brush = Brushes.Horizontal(SixLabors.ImageSharp.Color.Red, SixLabors.ImageSharp.Color.Blue);
-                                IPen pen = Pens.DashDot(SixLabors.ImageSharp.Color.Black, 5);
+                                IBrush brush = Brushes.Horizontal(SixLabors.ImageSharp.Color.Black, SixLabors.ImageSharp.Color.Black);
+                                IPen pen = Pens.DashDot(SixLabors.ImageSharp.Color.Black, 10);
                                 string text = "УРАААААААА";
 
                                 // Draws the text with horizontal red and blue hatching with a dash dot pattern outline.
