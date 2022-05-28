@@ -270,8 +270,8 @@ namespace VkBot
                     if (jj < 11)
                     {
                         //vsp3 += $"{jj}) [id{b.VkId}|{b.Name}] - {b.Score} 🍔\n";
-                        vsp3 += String.Format("{0, -3}) {1, -30}  -  {2, 4} 🍔\n",
-                            jj, $"[id{b.VkId}|{b.Name}]", b.Score);
+                        vsp3 += $"{mesto} )   {b.Name}  -  {b.Score} 🍔\n";
+                        
                     }
                     jj++;
                 }
@@ -280,7 +280,7 @@ namespace VkBot
                     var user = users.Where(p => p.VkId == peerID).FirstOrDefault();
                     //vsp3 += $"\nВаш рейтинг:\n" +
                     //     $"{mesto}) [id{user.VkId}|{user.Name}] - {user.Score} 🍔";
-                    vsp3 += $"\nВаш рейтинг:\n" + $"{mesto}    {user.Name}    {user.Score}";
+                    vsp3 += $"\nВаш рейтинг:\n" + $"{mesto}    {user.Name}    {user.Score} 🍔\n";
                         //String.Format("{0, -3}) {1, -30}  -  {2, 4} 🍔\n",
                         //    mesto, $"{user.Name}", user.Score);
                 }
