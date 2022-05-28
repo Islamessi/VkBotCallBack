@@ -12,6 +12,7 @@ using Google.Apis.Util.Store;
 using Google.Apis.Services;
 using System.IO;
 using Cookie.Controllers;
+using System.Drawing;
 
 namespace VkBot
 {
@@ -120,7 +121,6 @@ namespace VkBot
             var values = responce.Values;
             var valueRange = new ValueRange();
             var objectList = new List<object>() { user.Score.ToString(), user.NumSurv.ToString() };
-
             valueRange.Values = new List<IList<object>> { objectList };
             var updateRequest = service.Spreadsheets.Values.Update(valueRange, SpreedsheetId, range);
             updateRequest.ValueInputOption = SpreadsheetsResource.ValuesResource.UpdateRequest.ValueInputOptionEnum.USERENTERED;
