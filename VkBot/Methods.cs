@@ -1,6 +1,7 @@
 ﻿using Cookie.Controllers;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
+using SixLabors.ImageSharp.Processing;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -21,9 +22,9 @@ using VkNet.Model.RequestParams;
 
 
 using SixLabors.ImageSharp;
-using SixLabors.ImageSharp.Processing;
-
-
+using SixLabors.ImageSharp.Processing.Processors.Drawing;
+using SixLabors.ImageSharp.Drawing.Processing;
+using SixLabors.Fonts;
 
 namespace VkBot
 {
@@ -314,11 +315,35 @@ namespace VkBot
                             try
                             {
                                 //var image = System.Drawing.Image.FromFile(@"/app/aa.jpeg");
-                                SixLabors.ImageSharp.Image image = SixLabors.ImageSharp.Image.Load(@"/app/aa.jpg");
 
-                                image.Mutate(c => c.Resize(30, 30));
+                                SixLabors.ImageSharp.Image image = SixLabors.ImageSharp.Image.Load(@"/app/aa.jpg");
+                                //SixLabors.
+                                //SixLabors.ImageSharp.Processing.Processors.Drawing.DrawImageProcessor(p => p) drawing = new SixLabors.ImageSharp.Processing.Processors.Drawing();
+                                //ProgressOnderwijsUtils.Drawing.ImageTools.
+                                //image.Mutate(p => p.)
+                                FontFamily fontFamily = SystemFonts.Get("Arial");
+                                var font = new Font(fontFamily, 10, FontStyle.Regular);
+
+                                TextOptions options = new TextOptions(font)
+                                {
+                                    Origin = new SixLabors.ImageSharp.PointF(100, 100), // Set the rendering origin.
+                                    TabWidth = 8, // A tab renders as 8 spaces wide
+                                    WrappingLength = 100, // Greater than zero so we will word wrap at 100 pixels wide
+                                    HorizontalAlignment = HorizontalAlignment.Right // Right align
+                                };
+
+                                IBrush brush = Brushes.Horizontal(SixLabors.ImageSharp.Color.Red, SixLabors.ImageSharp.Color.Blue);
+                                IPen pen = Pens.DashDot(SixLabors.ImageSharp.Color.Green, 5);
+                                string text = "sample text";
+
+                                // Draws the text with horizontal red and blue hatching with a dash dot pattern outline.
+                                image.Mutate(x => x.DrawText(options, text, brush, pen));
+
+
+                                
                                 image.Save("/app/aaa.jpg");
 
+                                
                             }
                             catch (Exception e)
                             {

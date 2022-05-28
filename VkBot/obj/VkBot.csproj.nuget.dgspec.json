@@ -83,6 +83,10 @@
               "target": "Package",
               "version": "[2.1.2, )"
             },
+            "SixLabors.ImageSharp.Drawing": {
+              "target": "Package",
+              "version": "[1.0.0-beta14, )"
+            },
             "SixLabors.ImageSharp.Web": {
               "target": "Package",
               "version": "[2.0.0, )"
