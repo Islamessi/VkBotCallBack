@@ -321,7 +321,7 @@ namespace VkBot
                                 //SixLabors.ImageSharp.Processing.Processors.Drawing.DrawImageProcessor(p => p) drawing = new SixLabors.ImageSharp.Processing.Processors.Drawing();
                                 //ProgressOnderwijsUtils.Drawing.ImageTools.
                                 //image.Mutate(p => p.)
-                                FontFamily fontFamily = SystemFonts.Get("Arial");
+                                FontFamily fontFamily = SystemFonts.Get("Tahoma");
                                 var font = new Font(fontFamily, 10, FontStyle.Regular);
 
                                 TextOptions options = new TextOptions(font)
