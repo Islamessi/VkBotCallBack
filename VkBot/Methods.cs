@@ -537,10 +537,13 @@ namespace VkBot
                                 "Удачи!", peerID);
                             Random rnd1 = new Random();
                             var num = rnd1.Next(0, Program.Question.Count-1);
+
                             Program.UsersInfo.Add(new List<long?> { peerID });
                             Program.UsersInfo[Program.UsersInfo.Count - 1].Add(2);
                             Program.UsersInfo[Program.UsersInfo.Count - 1].Add(num);
                             string question = Program.Question[num][0];
+                            CallbackController.SendMessage("Program.Question.Count-1 - "+ (Program.Question.Count - 1).ToString()+
+                                "\n"+ num +"\n"+ Program.Question[num][1], peerID);
                             CallbackController.SendMessage(question, peerID);
                             break;
                         case "пинок":
@@ -666,6 +669,7 @@ namespace VkBot
                                 int vsp4 = Convert.ToInt32(userMessageUpp);
                                 var answer = Program.UsersInfo[WriteOrNot][Program.UsersInfo[WriteOrNot].Count - 1];
                                 CallbackController.SendMessage(answer.ToString(), peerID);
+                                CallbackController.SendMessage((Program.UsersInfo[WriteOrNot].Count - 2).ToString(), peerID);
                                 CallbackController.SendMessage(Program.UsersInfo[WriteOrNot].Count.ToString(), peerID);
                             }
                             catch
