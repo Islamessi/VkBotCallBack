@@ -539,11 +539,11 @@ namespace VkBot
                             var num = rnd1.Next(0, Program.Question.Count-1);
 
                             Program.UsersInfo.Add(new List<long?> { peerID });
-                            Program.UsersInfo[Program.UsersInfo.Count - 1].Add(2);
+                            Program.UsersInfo[Program.UsersInfo.Count - 1].Add(100);
+                            Program.UsersInfo[Program.UsersInfo.Count - 1].Add(101);
+                            Program.UsersInfo[Program.UsersInfo.Count - 1].Add(1);
                             Program.UsersInfo[Program.UsersInfo.Count - 1].Add(num);
                             string question = Program.Question[num][0];
-                            CallbackController.SendMessage("Program.Question.Count-1 - "+ (Program.Question.Count - 1).ToString()+
-                                "\n"+ num +"\n"+ Program.Question[num][1], peerID);
                             CallbackController.SendMessage(question, peerID);
                             break;
                         case "пинок":
@@ -663,19 +663,52 @@ namespace VkBot
                             }
                             Program.UsersInfo.RemoveAt(WriteOrNot);
                             break;
-                        case 2:
+                        case 100:
                             try
                             {
-                                int vsp4 = Convert.ToInt32(userMessageUpp);
-                                var answer = Program.UsersInfo[WriteOrNot][Program.UsersInfo[WriteOrNot].Count - 1];
-                                int jj = 0;
-                                foreach (var a in Program.UsersInfo[WriteOrNot])
+                                if (Program.UsersInfo[WriteOrNot][3] <= Program.Question.Count)
                                 {
-                                    CallbackController.SendMessage(a.ToString(), peerID);
+                                    int vsp4 = Convert.ToInt32(userMessageUpp);
+                                    int indexofquest =
+                                        Convert.ToInt32(Program.UsersInfo[WriteOrNot][Program.UsersInfo[WriteOrNot].Count - 1]);
+                                    int rightanswer = Convert.ToInt32(Program.Question[indexofquest][1]);
+                                    if (rightanswer != vsp4)
+                                    {
+                                        Program.UsersInfo[WriteOrNot][2] = 102;
+                                    }
+                                    Random rnd33 = new Random();
+                                    var num = rnd33.Next(0, Program.Question.Count - 1);
+                                    bool flag = true;
+                                    while (flag == true)
+                                    {
+                                        flag = false;
+                                        for (int ii = 4; ii < Program.UsersInfo[WriteOrNot].Count - 1; ii++)
+                                        {
+                                            if (Program.UsersInfo[WriteOrNot][ii] == num)
+                                            {
+                                                num = rnd33.Next(0, Program.Question.Count - 1);
+                                                flag = true;
+                                                break;
+                                            }
+                                        }
+                                    }
+                                    Program.UsersInfo[WriteOrNot].Add(num);
+                                    string question = Program.Question[num][0];
+                                    Program.UsersInfo[WriteOrNot][3] += 1;//учитываем количество вопросов.
+                                    CallbackController.SendMessage(question, peerID);
                                 }
-                                //CallbackController.SendMessage(answer.ToString(), peerID);
-                                //CallbackController.SendMessage((Program.UsersInfo[WriteOrNot].Count - 2).ToString(), peerID);
-                                //CallbackController.SendMessage(Program.UsersInfo[WriteOrNot].Count.ToString(), peerID);
+                                else
+                                {
+                                    if (Program.UsersInfo[WriteOrNot][2] == 102)
+                                    {
+                                        CallbackController.SendMessage("Вы где-то ответили неправильно. Попробуйте снова))", peerID);
+                                    }
+                                    else if (Program.UsersInfo[WriteOrNot][2] == 101)
+                                    {
+                                        CallbackController.SendMessage("Вы все ответили правильно!", peerID);
+                                    }
+                                    Program.UsersInfo.RemoveAt(WriteOrNot);
+                                }
                             }
                             catch
                             {
