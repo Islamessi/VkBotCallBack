@@ -352,7 +352,13 @@ namespace VkBot
             }
             if (userMessage == "отмена")
             {
-                
+                if (WriteOrNot != -1)
+                {
+                    Program.UsersInfo.RemoveAt(WriteOrNot);
+                    CallbackController.SendMessage("Меню", peerID, Keyboards.UserKeyboard);
+                }
+                else
+                    CallbackController.SendMessage("Меню", peerID, Keyboards.UserKeyboard);
             }
             else
             {
@@ -360,9 +366,6 @@ namespace VkBot
                 {
                     switch (userMessage)
                     {
-                        case "11":
-                            CallbackController.SendMessage("aaaa", peerID);
-                            break;
                         case "начать":
                             CallbackController.SendMessage(Keyboards.Privetstvie,
                                 peerID, Keyboards.AgreeGame);
