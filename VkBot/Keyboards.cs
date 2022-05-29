@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model.Keyboard;
 
@@ -6,15 +7,24 @@ namespace VkBot
 {
     public class Keyboards
     {
-        public static MessageKeyboard UserTesty // Тесты
+        public static MessageKeyboard UserTesty(long? peerID) // Тесты
         {
-            get
+            using (var db = new MyContext())
             {
+                User user = db.Users.Where(p => p.VkId == peerID).FirstOrDefault();
                 KeyboardBuilder userKey = new KeyboardBuilder();
-                userKey.AddButton("Химия", "", KeyboardButtonColor.Positive, "");
+                if (user.IsHimia == true)
+                {
+                    userKey.AddButton("Химия", "", KeyboardButtonColor.Positive, "");
+                }
+                else
+                {
+                    userKey.AddButton("Химия", "", KeyboardButtonColor.Negative, "");
+                }
                 userKey.SetOneTime();
                 return userKey.Build();
             }
+
         }
         public static MessageKeyboard UserKeyboard // Клавиатура для обычных пользователей
         {
@@ -27,6 +37,7 @@ namespace VkBot
                 userKey.SetOneTime();
                 return userKey.Build();
             }
+            
         }
         public static MessageKeyboard AgreeGame // Клавиатура для обычных пользователей
         {
