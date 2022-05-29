@@ -668,9 +668,14 @@ namespace VkBot
                             {
                                 int vsp4 = Convert.ToInt32(userMessageUpp);
                                 var answer = Program.UsersInfo[WriteOrNot][Program.UsersInfo[WriteOrNot].Count - 1];
-                                CallbackController.SendMessage(answer.ToString(), peerID);
-                                CallbackController.SendMessage((Program.UsersInfo[WriteOrNot].Count - 2).ToString(), peerID);
-                                CallbackController.SendMessage(Program.UsersInfo[WriteOrNot].Count.ToString(), peerID);
+                                int jj = 0;
+                                foreach (var a in Program.UsersInfo[WriteOrNot])
+                                {
+                                    CallbackController.SendMessage(a.ToString(), peerID);
+                                }
+                                //CallbackController.SendMessage(answer.ToString(), peerID);
+                                //CallbackController.SendMessage((Program.UsersInfo[WriteOrNot].Count - 2).ToString(), peerID);
+                                //CallbackController.SendMessage(Program.UsersInfo[WriteOrNot].Count.ToString(), peerID);
                             }
                             catch
                             {
