@@ -519,7 +519,6 @@ namespace VkBot
                         case "пинг":
                             CallbackController.SendMessage("Понг", peerID);
                             break;
-                        
                         case "комплимент":
                             CallbackController.SendMessage(Kompliment.RerurnKomp(), peerID);
                             break;
