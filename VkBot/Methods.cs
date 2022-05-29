@@ -680,7 +680,7 @@ namespace VkBot
                                         Program.UsersInfo[WriteOrNot][2] = 102;
                                     }
                                     Random rnd33 = new Random();
-                                    var num = rnd33.Next(0, Program.Question.Count - 1);
+                                    var num = rnd33.Next(0, Program.Question.Count);
                                     bool flag = true;
                                     while (flag == true)
                                     {
@@ -689,7 +689,7 @@ namespace VkBot
                                         {
                                             if (Program.UsersInfo[WriteOrNot][ii] == num)
                                             {
-                                                num = rnd33.Next(0, Program.Question.Count - 1);
+                                                num = rnd33.Next(0, Program.Question.Count);
                                                 flag = true;
                                                 break;
                                             }
