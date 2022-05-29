@@ -61,6 +61,8 @@ namespace VkBot
                 userKey.AddButton("Топ игроков", "", KeyboardButtonColor.Primary, "");
                 userKey.AddLine();
                 userKey.AddButton("Добавить вопрос", "", KeyboardButtonColor.Primary, "");
+                userKey.AddLine();
+                userKey.AddButton("Тесты", "", KeyboardButtonColor.Primary, "");
                 userKey.SetOneTime();
                 return userKey.Build();
             }
