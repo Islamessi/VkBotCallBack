@@ -40,7 +40,7 @@ namespace VkBot
                 ApplicationName = ApplicationName,
             });
             int i = 0;
-            var range = $"{sheet}!A:E";
+            var range = $"{sheet}!A:F";
             var request = service.Spreadsheets.Values.Get(SpreedsheetId, range);
             var responce = request.Execute();
             var values = responce.Values;
@@ -55,6 +55,7 @@ namespace VkBot
                         Name = row[2].ToString(),
                         Score = Convert.ToInt32(row[3]),
                         NumSurv = Convert.ToInt32(row[4]),
+                        IsHimia = Convert.ToBoolean(row[5]),
                     };
                     db.Users.Add(user);
                     db.SaveChanges();
@@ -86,13 +87,12 @@ namespace VkBot
             string strochka;
             strochka = (user.Users.Count()).ToString();
             var range = $"{sheet}!";
-            range += (char)(65) + strochka + ":" + (char)(65 + 5) + strochka;
+            range += (char)(65) + strochka + ":" + (char)(65 + 6) + strochka;
             var request = service.Spreadsheets.Values.Get(SpreedsheetId, range);
             var responce = request.Execute();
             var values = responce.Values;
             var valueRange = new ValueRange();
-            var objectList = new List<object>() { user1.Id, user1.VkId, user1.Name, user1.Score, user1.NumSurv };
-
+            var objectList = new List<object>() { user1.Id, user1.VkId, user1.Name, user1.Score, user1.NumSurv, user1.IsHimia };
             valueRange.Values = new List<IList<object>> { objectList };
             var updateRequest = service.Spreadsheets.Values.Update(valueRange, SpreedsheetId, range);
             updateRequest.ValueInputOption = SpreadsheetsResource.ValuesResource.UpdateRequest.ValueInputOptionEnum.USERENTERED;
@@ -121,6 +121,35 @@ namespace VkBot
             var values = responce.Values;
             var valueRange = new ValueRange();
             var objectList = new List<object>() { user.Score.ToString(), user.NumSurv.ToString() };
+            valueRange.Values = new List<IList<object>> { objectList };
+            var updateRequest = service.Spreadsheets.Values.Update(valueRange, SpreedsheetId, range);
+            updateRequest.ValueInputOption = SpreadsheetsResource.ValuesResource.UpdateRequest.ValueInputOptionEnum.USERENTERED;
+            var updateResponse = updateRequest.Execute();
+        }
+
+        public static void UpdateEntryTesty(User user)
+        {
+            sheet = "Users(Mcd)";
+            GoogleCredential credential;
+            using (var stream = new FileStream("client_secret.json", FileMode.Open, FileAccess.Read))
+            {
+                credential = GoogleCredential.FromStream(stream).CreateScoped(Scopes);
+            }
+            service = new SheetsService(new Google.Apis.Services.BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential,
+                ApplicationName = ApplicationName,
+            });
+
+            string strochka;
+            strochka = (user.Id).ToString();
+            var range = $"{sheet}!";
+            range += (char)(65 + 5) + strochka + ":" + (char)(65 + 5) + strochka;
+            var request = service.Spreadsheets.Values.Get(SpreedsheetId, range);
+            var responce = request.Execute();
+            var values = responce.Values;
+            var valueRange = new ValueRange();
+            var objectList = new List<object>() { user.IsHimia.ToString() };
             valueRange.Values = new List<IList<object>> { objectList };
             var updateRequest = service.Spreadsheets.Values.Update(valueRange, SpreedsheetId, range);
             updateRequest.ValueInputOption = SpreadsheetsResource.ValuesResource.UpdateRequest.ValueInputOptionEnum.USERENTERED;

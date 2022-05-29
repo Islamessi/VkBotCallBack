@@ -6,12 +6,24 @@ namespace VkBot
 {
     public class Keyboards
     {
+        public static MessageKeyboard UserTesty // Тесты
+        {
+            get
+            {
+                KeyboardBuilder userKey = new KeyboardBuilder();
+                userKey.AddButton("Химия", "", KeyboardButtonColor.Positive, "");
+                userKey.SetOneTime();
+                return userKey.Build();
+            }
+        }
         public static MessageKeyboard UserKeyboard // Клавиатура для обычных пользователей
         {
             get
             {
                 KeyboardBuilder userKey = new KeyboardBuilder();
                 userKey.AddButton("Топ игроков", "", KeyboardButtonColor.Primary, "");
+                userKey.AddLine();
+                userKey.AddButton("Тесты", "", KeyboardButtonColor.Primary, "");
                 userKey.SetOneTime();
                 return userKey.Build();
             }

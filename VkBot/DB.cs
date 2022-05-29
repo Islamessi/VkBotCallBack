@@ -35,6 +35,7 @@ namespace VkBot
         public string Name { get; set; }
         public long? Score { get; set; } = 0;
         public long? NumSurv { get; set; } = 0; //Кол-во опросов в которых проголосовал
+        public bool IsHimia { get; set; } = false;//Прошел ли тест по химии на 100%
     }
 
 

@@ -372,140 +372,140 @@ namespace VkBot
                             break;
 
                         case "ку":
-                            //CallbackController._vkApi.IsAuthorized.
-                            //CallbackController.SendMessage("sssa", 266006795);
-
-
-                            //Graphics g = Graphics.FromImage(image);
-                            //Font font = new Font("Speedee Condensed", 50);
-
-                            //SolidBrush color = new SolidBrush(Color.Black);
-
-                            //g.DrawString("ЕВАААААААА", font, color, 500, 10);
-                            //image.Save(@"/app/aaa.jpg", ImageFormat.Jpeg);
-                            
-                            var uploadServer = CallbackController._vkApi.Photo.GetMessagesUploadServer((long)peerID);
-
-                            var wc = new WebClient();
-
-                            
-
-                            try
                             {
-                                SixLabors.ImageSharp.Image image = SixLabors.ImageSharp.Image.Load(@"/app/aa.jpg");
+                                //CallbackController._vkApi.IsAuthorized.
+                                //CallbackController.SendMessage("sssa", 266006795);
 
-                                FontFamily fontFamily = SystemFonts.Families.ElementAt(1); //Where(p => p.Name == "aaa");//Get("Tahoma");
-                                var font = new Font(fontFamily, 30, FontStyle.Regular);
 
-                                TextOptions options = new TextOptions(font)
+                                //Graphics g = Graphics.FromImage(image);
+                                //Font font = new Font("Speedee Condensed", 50);
+
+                                //SolidBrush color = new SolidBrush(Color.Black);
+
+                                //g.DrawString("ЕВАААААААА", font, color, 500, 10);
+                                //image.Save(@"/app/aaa.jpg", ImageFormat.Jpeg);
+
+                                var uploadServer = CallbackController._vkApi.Photo.GetMessagesUploadServer((long)peerID);
+                                var wc = new WebClient();
+                                try
                                 {
-                                    Origin = new SixLabors.ImageSharp.PointF(500, 100), // Set the rendering origin.
-                                    TabWidth = 8, // A tab renders as 8 spaces wide
-                                    WrappingLength = 100, // Greater than zero so we will word wrap at 100 pixels wide
-                                    HorizontalAlignment = HorizontalAlignment.Right // Right align
-                                };
+                                    SixLabors.ImageSharp.Image image = SixLabors.ImageSharp.Image.Load(@"/app/aa.jpg");
 
-                                IBrush brush = Brushes.Horizontal(SixLabors.ImageSharp.Color.Black, SixLabors.ImageSharp.Color.Black);
-                                IPen pen = Pens.DashDot(SixLabors.ImageSharp.Color.Black, 10);
-                                string text = "УРАААААААА";
+                                    FontFamily fontFamily = SystemFonts.Families.ElementAt(1); //Where(p => p.Name == "aaa");//Get("Tahoma");
+                                    var font = new Font(fontFamily, 30, FontStyle.Regular);
 
-                                // Draws the text with horizontal red and blue hatching with a dash dot pattern outline.
-                                image.Mutate(x => x.DrawText(options, text, SixLabors.ImageSharp.Color.Black));
+                                    TextOptions options = new TextOptions(font)
+                                    {
+                                        Origin = new SixLabors.ImageSharp.PointF(500, 100), // Set the rendering origin.
+                                        TabWidth = 8, // A tab renders as 8 spaces wide
+                                        WrappingLength = 100, // Greater than zero so we will word wrap at 100 pixels wide
+                                        HorizontalAlignment = HorizontalAlignment.Right // Right align
+                                    };
 
-                                image.Save("/app/aaa.jpg");
-                                
+                                    IBrush brush = Brushes.Horizontal(SixLabors.ImageSharp.Color.Black, SixLabors.ImageSharp.Color.Black);
+                                    IPen pen = Pens.DashDot(SixLabors.ImageSharp.Color.Black, 10);
+                                    string text = "УРАААААААА";
+
+                                    // Draws the text with horizontal red and blue hatching with a dash dot pattern outline.
+                                    image.Mutate(x => x.DrawText(options, text, SixLabors.ImageSharp.Color.Black));
+
+                                    image.Save("/app/aaa.jpg");
+
+                                }
+                                catch (Exception e)
+                                {
+                                    CallbackController.SendMessage(e.Message, 266006795);
+                                }
+
+                                var result = Encoding.ASCII.GetString(wc.UploadFile(uploadServer.UploadUrl, @"/app/aaa.jpg"));
+                                var photos3 = CallbackController._vkApi.Photo.SaveMessagesPhoto(result);
+                                Random rnd1 = new Random();
+                                CallbackController._vkApi.Messages.Send(new MessagesSendParams
+                                {
+                                    RandomId = rnd1.Next(), // уникальный
+                                    Attachments = photos3,
+                                    Message = "Message",
+                                    PeerId = peerID
+                                });
+
+                                //    CreateAlbum(new PhotoCreateAlbumParams 
+                                //    { 
+                                //        GroupId = 213110775, 
+                                //        Title = "aaa",
+                                //        CommentsDisabled = false,
+                                //        UploadByAdminsOnly = false,
+                                //        Description = "fff",
+
+                                //    }); //Get(new PhotoGetParams
+                                ////{
+                                ////    AlbumId = PhotoAlbumType.Id(albumid),
+                                ////    OwnerId = 213110775,
+                                ////    PhotoIds = new List<string> { "457239017" }
+
+                                ////}) ;
+                                //CallbackController.SendMessage("sssa5", 266006795);
+                                //Random rnd1 = new Random();
+                                //CallbackController._vkApi.Messages.Send(new MessagesSendParams
+                                //{
+                                //    RandomId = rnd1.Next(), // уникальный
+                                //    Attachments =
+                                //    new List<VkNet.Model.Attachments.MediaAttachment>()
+                                //    {new Photo },
+                                //    Message = "Message",
+                                //    PeerId = 266006795
+                                //});
+                                //var skmdksam = new List<VkNet.Model.Attachments.MediaAttachment> { }
+                                //CallbackController.SendMessage("sssa", 266006795);
+                                //System.Drawing.Image image = System.Drawing.Image.FromFile(@"aa.jpg");
+                                //CallbackController.SendMessage("sssa", 266006795);
+                                //Graphics g = Graphics.FromImage(image);
+                                //CallbackController.SendMessage("sssa", 266006795);
+                                //Random rnd = new Random();
+                                //CallbackController.SendMessage("sssa", 266006795);
+                                //CallbackController._vkApi.Messages.Send(new MessagesSendParams
+                                //{
+                                //    RandomId = rnd.Next(), // уникальный
+                                //    Attachments = (IEnumerable<VkNet.Model.Attachments.MediaAttachment>)image,
+                                //    Message = "Message",
+                                //    PeerId = 266006795
+                                //});
+                                //CallbackController.SendMessage("sssa", 266006795);
                             }
-                            catch (Exception e)
-                            {
-                                CallbackController.SendMessage(e.Message, 266006795);
-                            }
-
-                            var result = Encoding.ASCII.GetString(wc.UploadFile(uploadServer.UploadUrl, @"/app/aaa.jpg"));
-                            var photos3 = CallbackController._vkApi.Photo.SaveMessagesPhoto(result);
-                            Random rnd1 = new Random();
-                            CallbackController._vkApi.Messages.Send(new MessagesSendParams
-                            {
-                                RandomId = rnd1.Next(), // уникальный
-                                Attachments = photos3,
-                                Message = "Message",
-                                PeerId = peerID
-                            });
-
-                            //    CreateAlbum(new PhotoCreateAlbumParams 
-                            //    { 
-                            //        GroupId = 213110775, 
-                            //        Title = "aaa",
-                            //        CommentsDisabled = false,
-                            //        UploadByAdminsOnly = false,
-                            //        Description = "fff",
-
-                            //    }); //Get(new PhotoGetParams
-                            ////{
-                            ////    AlbumId = PhotoAlbumType.Id(albumid),
-                            ////    OwnerId = 213110775,
-                            ////    PhotoIds = new List<string> { "457239017" }
-
-                            ////}) ;
-                            //CallbackController.SendMessage("sssa5", 266006795);
-                            //Random rnd1 = new Random();
-                            //CallbackController._vkApi.Messages.Send(new MessagesSendParams
-                            //{
-                            //    RandomId = rnd1.Next(), // уникальный
-                            //    Attachments =
-                            //    new List<VkNet.Model.Attachments.MediaAttachment>()
-                            //    {new Photo },
-                            //    Message = "Message",
-                            //    PeerId = 266006795
-                            //});
-                            //var skmdksam = new List<VkNet.Model.Attachments.MediaAttachment> { }
-                            //CallbackController.SendMessage("sssa", 266006795);
-                            //System.Drawing.Image image = System.Drawing.Image.FromFile(@"aa.jpg");
-                            //CallbackController.SendMessage("sssa", 266006795);
-                            //Graphics g = Graphics.FromImage(image);
-                            //CallbackController.SendMessage("sssa", 266006795);
-                            //Random rnd = new Random();
-                            //CallbackController.SendMessage("sssa", 266006795);
-                            //CallbackController._vkApi.Messages.Send(new MessagesSendParams
-                            //{
-                            //    RandomId = rnd.Next(), // уникальный
-                            //    Attachments = (IEnumerable<VkNet.Model.Attachments.MediaAttachment>)image,
-                            //    Message = "Message",
-                            //    PeerId = 266006795
-                            //});
-                            //CallbackController.SendMessage("sssa", 266006795);
                             break;
                         case "топ игроков":
                             TopUsers(peerID);
-                            //string vsp3 = "Вот топ 10 🏆\n";
-                            //int mesto = 0;
-                            
-                            //using (var db = new MyContext())
-                            //{
-                            //    var users = db.Users.OrderByDescending(p => p.Score);
-                            //    int jj = 1;
-                            //    foreach (var b in users)
-                            //    {
-                            //        if (b.VkId == peerID) mesto = jj;
-                            //        if (jj >= 11 && mesto != 0) break;
-                            //        if (jj < 11)
-                            //        {
-                            //            //vsp3 += $"{jj}) [id{b.VkId}|{b.Name}] - {b.Score} 🍔\n";
-                            //            vsp3 += String.Format("{0, -3}) {1, -30}  -  {2, 4} 🍔\n", 
-                            //                jj, $"[id{b.VkId}|{b.Name}]", b.Score);
-                            //        }
-                            //        jj++;
-                            //    }
-                            //    if (mesto > 10)
-                            //    {
-                            //        var user = users.Where(p => p.VkId == peerID).FirstOrDefault();
-                            //        //vsp3 += $"\nВаш рейтинг:\n" +
-                            //       //     $"{mesto}) [id{user.VkId}|{user.Name}] - {user.Score} 🍔";
-                            //        vsp3 += $"\nВаш рейтинг:\n" + 
-                            //            String.Format("{0, -3}) {1, -30}  -  {2, 4} 🍔\n",
-                            //                mesto, $"[id{user.VkId}|{user.Name}]", user.Score);
-                            //    }
-                            //    CallbackController.SendMessage(vsp3, peerID, Keyboards.UserKeyboard);
-                            //}
+                            {
+                                //string vsp3 = "Вот топ 10 🏆\n";
+                                //int mesto = 0;
+
+                                //using (var db = new MyContext())
+                                //{
+                                //    var users = db.Users.OrderByDescending(p => p.Score);
+                                //    int jj = 1;
+                                //    foreach (var b in users)
+                                //    {
+                                //        if (b.VkId == peerID) mesto = jj;
+                                //        if (jj >= 11 && mesto != 0) break;
+                                //        if (jj < 11)
+                                //        {
+                                //            //vsp3 += $"{jj}) [id{b.VkId}|{b.Name}] - {b.Score} 🍔\n";
+                                //            vsp3 += String.Format("{0, -3}) {1, -30}  -  {2, 4} 🍔\n", 
+                                //                jj, $"[id{b.VkId}|{b.Name}]", b.Score);
+                                //        }
+                                //        jj++;
+                                //    }
+                                //    if (mesto > 10)
+                                //    {
+                                //        var user = users.Where(p => p.VkId == peerID).FirstOrDefault();
+                                //        //vsp3 += $"\nВаш рейтинг:\n" +
+                                //       //     $"{mesto}) [id{user.VkId}|{user.Name}] - {user.Score} 🍔";
+                                //        vsp3 += $"\nВаш рейтинг:\n" + 
+                                //            String.Format("{0, -3}) {1, -30}  -  {2, 4} 🍔\n",
+                                //                mesto, $"[id{user.VkId}|{user.Name}]", user.Score);
+                                //    }
+                                //    CallbackController.SendMessage(vsp3, peerID, Keyboards.UserKeyboard);
+                                //}
+                            }
                             break;
                         case "добавить вопрос":
                             if (Program.admins.Contains(peerID))
@@ -520,8 +520,11 @@ namespace VkBot
                         case "пинг":
                             CallbackController.SendMessage("Понг", peerID);
                             break;
-                        case "понг":
-                            CallbackController.SendMessage("Пошел нахуй...", peerID);
+                        case "Тесты":
+                            CallbackController.SendMessage("Это новый раздел!\nЗдесь будут тесты по некоторым темам, " +
+                                "за которые можно получить бургеры!!! Одно условие - пройди тест на 100% правильно, " +
+                                "и получишь 20 бургеров за каждый тест)) Попыток бесконечно много. Но начислю тебе" +
+                                " бургеры только один раз)) Выбирай какой тест хочешь пройти!", peerID, Keyboards.UserTesty);
                             break;
                         case "комплимент":
                             CallbackController.SendMessage(Kompliment.RerurnKomp(), peerID);
