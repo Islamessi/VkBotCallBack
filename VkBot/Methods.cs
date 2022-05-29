@@ -370,7 +370,6 @@ namespace VkBot
                         case "принять участие":
                             SaveUser(peerID);
                             break;
-
                         case "ку":
                             {
                                 //CallbackController._vkApi.IsAuthorized.
@@ -520,14 +519,15 @@ namespace VkBot
                         case "пинг":
                             CallbackController.SendMessage("Понг", peerID);
                             break;
-                        case "Тесты":
+                        
+                        case "комплимент":
+                            CallbackController.SendMessage(Kompliment.RerurnKomp(), peerID);
+                            break;
+                        case "тесты":
                             CallbackController.SendMessage("Это новый раздел!\nЗдесь будут тесты по некоторым темам, " +
                                 "за которые можно получить бургеры!!! Одно условие - пройди тест на 100% правильно, " +
                                 "и получишь 20 бургеров за каждый тест)) Попыток бесконечно много. Но начислю тебе" +
                                 " бургеры только один раз)) Выбирай какой тест хочешь пройти!", peerID, Keyboards.UserTesty);
-                            break;
-                        case "комплимент":
-                            CallbackController.SendMessage(Kompliment.RerurnKomp(), peerID);
                             break;
                         case "пинок":
                             CallbackController.SendMessage(Motivation.RerurnMotivation(), peerID);
