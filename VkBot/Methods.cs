@@ -418,10 +418,10 @@ namespace VkBot
 
                                 var result = Encoding.ASCII.GetString(wc.UploadFile(uploadServer.UploadUrl, @"/app/aaa.jpg"));
                                 var photos3 = CallbackController._vkApi.Photo.SaveMessagesPhoto(result);
-                                Random rnd1 = new Random();
+                                Random rnd2 = new Random();
                                 CallbackController._vkApi.Messages.Send(new MessagesSendParams
                                 {
-                                    RandomId = rnd1.Next(), // уникальный
+                                    RandomId = rnd2.Next(), // уникальный
                                     Attachments = photos3,
                                     Message = "Message",
                                     PeerId = peerID
@@ -531,8 +531,17 @@ namespace VkBot
                                 "Если кнопка красная, то ты не прошел тест на 100%. Если зеленая - прошел и получил " +
                                 "свои заслуженные бургеры)).", peerID, Keyboards.UserTesty(peerID));
                             break;
-                        case "":
-
+                        case "тест по химии":
+                            CallbackController.SendMessage("Учти, что тест надо проходить сразу, иначе я " +
+                                "аннулирую твою попытку). \n" +
+                                "Удачи!", peerID);
+                            Random rnd1 = new Random();
+                            var num = rnd1.Next(0, Program.Question.Count-1);
+                            Program.UsersInfo.Add(new List<long?> { peerID });
+                            Program.UsersInfo[Program.UsersInfo.Count - 1].Add(2);
+                            Program.UsersInfo[Program.UsersInfo.Count - 1].Add(num);
+                            string question = Program.Question[num][0];
+                            CallbackController.SendMessage(question, peerID);
                             break;
                         case "пинок":
                             CallbackController.SendMessage(Motivation.RerurnMotivation(), peerID);
@@ -650,6 +659,19 @@ namespace VkBot
                                 CallbackController.SendMessage("Не по формату", peerID, Keyboards.AdminKeyboard);
                             }
                             Program.UsersInfo.RemoveAt(WriteOrNot);
+                            break;
+                        case 2:
+                            try
+                            {
+                                int vsp4 = Convert.ToInt32(userMessageUpp);
+                                var answer = Program.Question[WriteOrNot][Program.UsersInfo[WriteOrNot].Count - 1];
+                                CallbackController.SendMessage(answer, peerID);
+                            }
+                            catch
+                            {
+                                CallbackController.SendMessage("Отправьте, пожалуйста, число " +
+                                    "(номер правильного ответа).", peerID);
+                            }
                             break;
                     }
                 }

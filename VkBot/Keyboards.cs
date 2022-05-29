@@ -15,11 +15,11 @@ namespace VkBot
                 KeyboardBuilder userKey = new KeyboardBuilder();
                 if (user.IsHimia == true)
                 {
-                    userKey.AddButton("Химия", "", KeyboardButtonColor.Positive, "");
+                    userKey.AddButton("Тест по химии", "", KeyboardButtonColor.Positive, "");
                 }
                 else
                 {
-                    userKey.AddButton("Химия", "", KeyboardButtonColor.Negative, "");
+                    userKey.AddButton("Тест по химии", "", KeyboardButtonColor.Negative, "");
                 }
                 userKey.SetOneTime();
                 return userKey.Build();

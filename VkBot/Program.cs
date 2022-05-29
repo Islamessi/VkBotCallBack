@@ -29,7 +29,25 @@ namespace VkBot
         public static Penaltys Penaltys = new Penaltys();
         public static PenaltysWithFriend PenaltysWithFriend = new PenaltysWithFriend();
 
-        
+        public static List<List<string>> Question = new List<List<string>>
+        {
+            new List<string>{ "Что такое Soft Care Sensiset?\n" +
+                "1) Антисептик для рук\n" +
+                "2) Крем для рук\n" +
+                "3) Дезинфицирующее мыло для рук\n" +
+                "4) Средство для мытья полов", "3"},
+            new List<string>{"Что такое Soft Care Aquagard?\n" +
+                "1) Средство для мытья полов\n" +
+                "2) Средство для дезинфекции поверхностей\n" +
+                "3) Средство для полировки искусственной кожи\n" +
+                "4) Защитный крем для рук", "4" },
+            new List<string>{"Что такое McD DR?\n" +
+                "1) Антисептик для рук\n" +
+                "2) Крем для полировки для искусственной кожи\n" +
+                "3) Средство для ручного мытья посуды\n" +
+                "4) Средство для мытья и дезинфекции оборудования и поверхностей\n" +
+                "5) Средство для мытья полов","4" },
+        };
 
         public static void Main(string[] args)
         {
