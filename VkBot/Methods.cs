@@ -669,19 +669,21 @@ namespace VkBot
                         case 100:
                             try
                             {
-                                if (Program.UsersInfo[WriteOrNot][3] <= Program.Question.Count)
+
+                                int vsp4 = Convert.ToInt32(userMessageUpp);
+                                int indexofquest =
+                                    Convert.ToInt32(Program.UsersInfo[WriteOrNot][Program.UsersInfo[WriteOrNot].Count - 1]);
+                                int rightanswer = Convert.ToInt32(Program.Question[indexofquest][1]);
+                                if (rightanswer != vsp4)
                                 {
-                                    int vsp4 = Convert.ToInt32(userMessageUpp);
-                                    int indexofquest =
-                                        Convert.ToInt32(Program.UsersInfo[WriteOrNot][Program.UsersInfo[WriteOrNot].Count - 1]);
-                                    int rightanswer = Convert.ToInt32(Program.Question[indexofquest][1]);
-                                    if (rightanswer != vsp4)
-                                    {
-                                        Program.UsersInfo[WriteOrNot][2] = 102;
-                                    }
-                                    Random rnd33 = new Random();
-                                    var num = rnd33.Next(0, Program.Question.Count);
-                                    bool flag = true;
+                                    Program.UsersInfo[WriteOrNot][2] = 102;
+                                }
+                                Random rnd33 = new Random();
+                                var num = rnd33.Next(0, Program.Question.Count);
+                                bool flag = true;
+                                Program.UsersInfo[WriteOrNot][3] += 1;//учитываем количество вопросов.
+                                if (Program.UsersInfo[WriteOrNot][3] < Program.Question.Count)
+                                {
                                     while (flag == true)
                                     {
                                         flag = false;
@@ -697,7 +699,7 @@ namespace VkBot
                                     }
                                     Program.UsersInfo[WriteOrNot].Add(num);
                                     string question = Program.Question[num][0];
-                                    Program.UsersInfo[WriteOrNot][3] += 1;//учитываем количество вопросов.
+
                                     CallbackController.SendMessage(question, peerID);
                                 }
                                 else
@@ -713,6 +715,8 @@ namespace VkBot
                                     Program.UsersInfo.RemoveAt(WriteOrNot);
                                 }
                             }
+
+
                             catch
                             {
                                 CallbackController.SendMessage("Отправьте, пожалуйста, число " +
