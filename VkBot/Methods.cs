@@ -685,7 +685,7 @@ namespace VkBot
                                     while (flag == true)
                                     {
                                         flag = false;
-                                        for (int ii = 4; ii < Program.UsersInfo[WriteOrNot].Count - 1; ii++)
+                                        for (int ii = 4; ii <= Program.UsersInfo[WriteOrNot].Count - 1; ii++)
                                         {
                                             if (Program.UsersInfo[WriteOrNot][ii] == num)
                                             {
