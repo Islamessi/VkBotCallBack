@@ -335,6 +335,44 @@ namespace VkBot
                 });
             }
         }
+
+        public static void SendQuestion(string question, long? peerID)
+        {
+            var uploadServer = CallbackController._vkApi.Photo.GetMessagesUploadServer((long)peerID);
+            var wc = new WebClient();
+            string result = "-1";
+
+            if (question == Program.Question[0][0])
+                result = Encoding.ASCII.GetString(wc.UploadFile(uploadServer.UploadUrl, @"/app/Sensisept.png"));
+            else if (question == Program.Question[1][0])
+                result = Encoding.ASCII.GetString(wc.UploadFile(uploadServer.UploadUrl, @"/app/Aquaguard.png"));
+            else if (question == Program.Question[2][0])
+                result = Encoding.ASCII.GetString(wc.UploadFile(uploadServer.UploadUrl, @"/app/DR.png"));
+            else if (question == Program.Question[3][0])
+                result = Encoding.ASCII.GetString(wc.UploadFile(uploadServer.UploadUrl, @"/app/HA.png"));
+            else if (question == Program.Question[4][0])
+                result = Encoding.ASCII.GetString(wc.UploadFile(uploadServer.UploadUrl, @"/app/FC.png"));
+            else if (question == Program.Question[5][0])
+                result = Encoding.ASCII.GetString(wc.UploadFile(uploadServer.UploadUrl, @"/app/SK.png"));
+            else if (question == Program.Question[6][0])
+                result = Encoding.ASCII.GetString(wc.UploadFile(uploadServer.UploadUrl, @"/app/D4.png"));
+            else if (question == Program.Question[7][0])
+                result = Encoding.ASCII.GetString(wc.UploadFile(uploadServer.UploadUrl, @"/app/cafe tab.png"));
+            else if (question == Program.Question[8][0])
+                result = Encoding.ASCII.GetString(wc.UploadFile(uploadServer.UploadUrl, @"/app/milkclean.png"));
+            else if (question == Program.Question[9][0])
+                result = Encoding.ASCII.GetString(wc.UploadFile(uploadServer.UploadUrl, @"/app/SG.png"));
+
+            if (result == "-1")
+            {
+                CallbackController.SendMessage(question, peerID);
+            }
+            else
+            {
+                var photos3 = CallbackController._vkApi.Photo.SaveMessagesPhoto(result);
+                CallbackController.SendMessage(question, peerID, photos3);
+            }
+        }
         public static void MainMenu(Message msg)
         {
 
@@ -702,18 +740,7 @@ namespace VkBot
                                     }
                                     Program.UsersInfo[WriteOrNot].Add(num);
                                     string question = Program.Question[num][0];
-                                    if (question == Program.Question[0][0])
-                                    {
-                                        var uploadServer = CallbackController._vkApi.Photo.GetMessagesUploadServer((long)peerID);
-                                        var wc = new WebClient();
-                                        var result = Encoding.ASCII.GetString(wc.UploadFile(uploadServer.UploadUrl, @"/app/Sensisept.png"));
-                                        var photos3 = CallbackController._vkApi.Photo.SaveMessagesPhoto(result);
-                                        CallbackController.SendMessage(question, peerID, photos3);
-                                    }
-                                    else
-                                    {
-                                        CallbackController.SendMessage(question, peerID);
-                                    }
+                                    SendQuestion(question, peerID);
                                 }
                                 else
                                 {
