@@ -706,11 +706,26 @@ namespace VkBot
                                 {
                                     if (Program.UsersInfo[WriteOrNot][2] == 102)
                                     {
-                                        CallbackController.SendMessage("Вы где-то ответили неправильно. Попробуйте снова))", peerID);
+                                        CallbackController.SendMessage("Вы где-то ответили неправильно(( Попробуйте снова.",
+                                            peerID, Keyboards.UserKeyboard);
                                     }
                                     else if (Program.UsersInfo[WriteOrNot][2] == 101)
                                     {
-                                        CallbackController.SendMessage("Вы все ответили правильно!", peerID);
+                                        CallbackController.SendMessage("Вы ответили на 100% правильно!!! Поздравляю!",
+                                            peerID, Keyboards.UserKeyboard);
+                                        using (var db = new MyContext())
+                                        {
+                                            User user = db.Users.Where(p => p.VkId == peerID).First();
+                                            if (user.IsHimia == false)
+                                            {
+                                                user.IsHimia = true;
+                                                user.Score += 20;
+                                                Spredsheet.UpdateEntry(user);
+                                                CallbackController.SendMessage("Я начислил вам 20 бургеров) Так держать!\n" +
+                                                    "Горжусь!",
+                                            peerID, Keyboards.UserKeyboard);
+                                            }
+                                        }
                                     }
                                     Program.UsersInfo.RemoveAt(WriteOrNot);
                                 }

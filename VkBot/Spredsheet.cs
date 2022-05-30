@@ -115,12 +115,12 @@ namespace VkBot
             string strochka;
             strochka = (user.Id).ToString();
             var range = $"{sheet}!";
-            range += (char)(65 + 3) + strochka + ":" + (char)(65 + 4) + strochka;
+            range += (char)(65 + 3) + strochka + ":" + (char)(65 + 5) + strochka;
             var request = service.Spreadsheets.Values.Get(SpreedsheetId, range);
             var responce = request.Execute();
             var values = responce.Values;
             var valueRange = new ValueRange();
-            var objectList = new List<object>() { user.Score.ToString(), user.NumSurv.ToString() };
+            var objectList = new List<object>() { user.Score.ToString(), user.NumSurv.ToString(), user.IsHimia.ToString() };
             valueRange.Values = new List<IList<object>> { objectList };
             var updateRequest = service.Spreadsheets.Values.Update(valueRange, SpreedsheetId, range);
             updateRequest.ValueInputOption = SpreadsheetsResource.ValuesResource.UpdateRequest.ValueInputOptionEnum.USERENTERED;
