@@ -577,7 +577,8 @@ namespace VkBot
                             break;
                         case "тест по химии":
                             CallbackController.SendMessage("Учти, что тест надо проходить сразу, иначе я " +
-                                "аннулирую твою попытку). \n" +
+                                "аннулирую твою попытку). Если ответов несколько пиши их в порядке возрастания " +
+                                "без разделителей (123). \n" +
                                 "Удачи!", peerID);
                             Random rnd1 = new Random();
                             var num = rnd1.Next(0, Program.Question.Count-1);
@@ -588,7 +589,7 @@ namespace VkBot
                             Program.UsersInfo[Program.UsersInfo.Count - 1].Add(1);
                             Program.UsersInfo[Program.UsersInfo.Count - 1].Add(num);
                             string question = Program.Question[num][0];
-                            CallbackController.SendMessage(question, peerID);
+                            SendQuestion(question, peerID);
                             break;
                         case "пинок":
                             CallbackController.SendMessage(Motivation.RerurnMotivation(), peerID);
