@@ -478,38 +478,38 @@ namespace VkBot
                             }
                             break;
                         case "топ игроков":
-                            TopUsers(peerID);
+                            //TopUsers(peerID);
                             {
-                                //string vsp3 = "Вот топ 10 🏆\n";
-                                //int mesto = 0;
+                                string vsp3 = "Вот топ 10 🏆\n";
+                                int mesto = 0;
 
-                                //using (var db = new MyContext())
-                                //{
-                                //    var users = db.Users.OrderByDescending(p => p.Score);
-                                //    int jj = 1;
-                                //    foreach (var b in users)
-                                //    {
-                                //        if (b.VkId == peerID) mesto = jj;
-                                //        if (jj >= 11 && mesto != 0) break;
-                                //        if (jj < 11)
-                                //        {
-                                //            //vsp3 += $"{jj}) [id{b.VkId}|{b.Name}] - {b.Score} 🍔\n";
-                                //            vsp3 += String.Format("{0, -3}) {1, -30}  -  {2, 4} 🍔\n", 
-                                //                jj, $"[id{b.VkId}|{b.Name}]", b.Score);
-                                //        }
-                                //        jj++;
-                                //    }
-                                //    if (mesto > 10)
-                                //    {
-                                //        var user = users.Where(p => p.VkId == peerID).FirstOrDefault();
-                                //        //vsp3 += $"\nВаш рейтинг:\n" +
-                                //       //     $"{mesto}) [id{user.VkId}|{user.Name}] - {user.Score} 🍔";
-                                //        vsp3 += $"\nВаш рейтинг:\n" + 
-                                //            String.Format("{0, -3}) {1, -30}  -  {2, 4} 🍔\n",
-                                //                mesto, $"[id{user.VkId}|{user.Name}]", user.Score);
-                                //    }
-                                //    CallbackController.SendMessage(vsp3, peerID, Keyboards.UserKeyboard);
-                                //}
+                                using (var db = new MyContext())
+                                {
+                                    var users = db.Users.OrderByDescending(p => p.Score);
+                                    int jj = 1;
+                                    foreach (var b in users)
+                                    {
+                                        if (b.VkId == peerID) mesto = jj;
+                                        if (jj >= 11 && mesto != 0) break;
+                                        if (jj < 11)
+                                        {
+                                            //vsp3 += $"{jj}) [id{b.VkId}|{b.Name}] - {b.Score} 🍔\n";
+                                            vsp3 += String.Format("{0, -3}) {1, -30}  -  {2, 4} 🍔\n",
+                                                jj, $"[id{b.VkId}|{b.Name}]", b.Score);
+                                        }
+                                        jj++;
+                                    }
+                                    if (mesto > 10)
+                                    {
+                                        var user = users.Where(p => p.VkId == peerID).FirstOrDefault();
+                                        //vsp3 += $"\nВаш рейтинг:\n" +
+                                        //     $"{mesto}) [id{user.VkId}|{user.Name}] - {user.Score} 🍔";
+                                        vsp3 += $"\nВаш рейтинг:\n" +
+                                            String.Format("{0, -3}) {1, -30}  -  {2, 4} 🍔\n",
+                                                mesto, $"[id{user.VkId}|{user.Name}]", user.Score);
+                                    }
+                                    CallbackController.SendMessage(vsp3, peerID, Keyboards.UserKeyboard);
+                                }
                             }
                             break;
                         case "добавить вопрос":
