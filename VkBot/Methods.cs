@@ -721,6 +721,7 @@ namespace VkBot
                                                 user.IsHimia = true;
                                                 user.Score += 20;
                                                 Spredsheet.UpdateEntry(user);
+                                                db.SaveChanges();
                                                 CallbackController.SendMessage("Я начислил вам 20 бургеров) Так держать!\n" +
                                                     "Горжусь!",
                                             peerID, Keyboards.UserKeyboard);
