@@ -423,7 +423,6 @@ namespace VkBot
                                 }
 
                                 var result = Encoding.ASCII.GetString(wc.UploadFile(uploadServer.UploadUrl, @"/app/aaa.jpg"));
-                                Spredsheet.UpdateEntryPhoto(result);
                                 var  photos3 = CallbackController._vkApi.Photo.SaveMessagesPhoto(result);
                                 Random rnd2 = new Random();
                                 CallbackController._vkApi.Messages.Send(new MessagesSendParams
@@ -703,8 +702,18 @@ namespace VkBot
                                     }
                                     Program.UsersInfo[WriteOrNot].Add(num);
                                     string question = Program.Question[num][0];
-
-                                    CallbackController.SendMessage(question, peerID);
+                                    if (question == Program.Question[0][0])
+                                    {
+                                        var uploadServer = CallbackController._vkApi.Photo.GetMessagesUploadServer((long)peerID);
+                                        var wc = new WebClient();
+                                        var result = Encoding.ASCII.GetString(wc.UploadFile(uploadServer.UploadUrl, @"/app/Sensisept.png"));
+                                        var photos3 = CallbackController._vkApi.Photo.SaveMessagesPhoto(result);
+                                        CallbackController.SendMessage(question, peerID, photos3);
+                                    }
+                                    else
+                                    {
+                                        CallbackController.SendMessage(question, peerID);
+                                    }
                                 }
                                 else
                                 {
