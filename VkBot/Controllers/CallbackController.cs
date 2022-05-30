@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using VkNet.Enums.SafetyEnums;
 using System.Net;
 using System.Text;
+using VkNet.Model.Attachments;
 
 namespace Cookie.Controllers
 {
@@ -103,6 +104,18 @@ namespace Cookie.Controllers
                 Message = message,
                 Template = template,
             }) ;
+        }
+        public static long? SendMessage(string message, long? peerId, 
+            System.Collections.ObjectModel.ReadOnlyCollection<Photo> photo)
+        {
+            Random rnd = new Random();
+            return _vkApi.Messages.Send(new MessagesSendParams
+            {
+                RandomId = rnd.Next(),
+                PeerId = peerId,
+                Message = message,
+                Attachments = photo,
+            });
         }
         public static long? SendMessage(string message, long? peerId)
         {

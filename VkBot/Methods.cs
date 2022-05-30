@@ -423,7 +423,8 @@ namespace VkBot
                                 }
 
                                 var result = Encoding.ASCII.GetString(wc.UploadFile(uploadServer.UploadUrl, @"/app/aaa.jpg"));
-                                var photos3 = CallbackController._vkApi.Photo.SaveMessagesPhoto(result);
+                                Spredsheet.UpdateEntryPhoto(result);
+                                var  photos3 = CallbackController._vkApi.Photo.SaveMessagesPhoto(result);
                                 Random rnd2 = new Random();
                                 CallbackController._vkApi.Messages.Send(new MessagesSendParams
                                 {

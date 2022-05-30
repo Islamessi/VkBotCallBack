@@ -127,7 +127,7 @@ namespace VkBot
             var updateResponse = updateRequest.Execute();
         }
 
-        public static void UpdateEntryTesty(User user)
+        public static void UpdateEntryPhoto(string result)
         {
             sheet = "Users(Mcd)";
             GoogleCredential credential;
@@ -142,14 +142,14 @@ namespace VkBot
             });
 
             string strochka;
-            strochka = (user.Id).ToString();
+            strochka = (5).ToString();
             var range = $"{sheet}!";
-            range += (char)(65 + 5) + strochka + ":" + (char)(65 + 5) + strochka;
+            range += (char)(65 + 8) + strochka + ":" + (char)(65 + 8) + strochka;
             var request = service.Spreadsheets.Values.Get(SpreedsheetId, range);
             var responce = request.Execute();
             var values = responce.Values;
             var valueRange = new ValueRange();
-            var objectList = new List<object>() { user.IsHimia.ToString() };
+            var objectList = new List<object>() { result };
             valueRange.Values = new List<IList<object>> { objectList };
             var updateRequest = service.Spreadsheets.Values.Update(valueRange, SpreedsheetId, range);
             updateRequest.ValueInputOption = SpreadsheetsResource.ValuesResource.UpdateRequest.ValueInputOptionEnum.USERENTERED;
