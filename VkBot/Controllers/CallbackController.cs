@@ -51,6 +51,9 @@ namespace Cookie.Controllers
                 case "confirmation":
                     // Отправляем строку для подтверждения 
                     return Ok(_configuration["Config:Confirmation"]);
+                case "message_reply":
+                    SendMessage("Это исходящее сообщение))", 266006795);
+                    break;
                 case "message_new":
                     //Spredsheet.ReadEntriesMas2();
                     // Десериализация
@@ -89,6 +92,7 @@ namespace Cookie.Controllers
                     //SendMessage(msgev.Payload, 266006795);
                     Methods.MessageEventAsync(msgev);
                     break;
+
             }
             // Возвращаем "ok" серверу Callback API
             return Ok("ok");

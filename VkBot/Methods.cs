@@ -41,7 +41,7 @@ namespace VkBot
                         CallbackController.SendMessage("Yes", 266006795);
                     else
                         CallbackController.SendMessage("No", 266006795);
-                    Thread.Sleep(1000 * 60);
+                    Thread.Sleep(1000 * 60 );
                     //Task.Delay(1000 * 60);
                 }
             });
