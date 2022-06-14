@@ -52,7 +52,9 @@ namespace Cookie.Controllers
                     // Отправляем строку для подтверждения 
                     return Ok(_configuration["Config:Confirmation"]);
                 case "message_reply":
-                    SendMessage("Это исходящее сообщение))", 266006795);
+                    //SendMessage("Это исходящее сообщение))", 266006795);
+                    //Methods.SendAboutQst();
+                    
                     break;
                 case "message_new":
                     //Spredsheet.ReadEntriesMas2();
