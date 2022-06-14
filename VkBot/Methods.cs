@@ -29,6 +29,18 @@ using SixLabors.Fonts;
 namespace VkBot
 {
     
+    public static class AsyncMethods
+    {
+        public async static void Message()
+        {
+            await Task.Run(() =>
+            {
+                Task.Delay(5000);
+            });
+        }
+    }
+
+
     public static class Kompliment
     {
         private static List<string> Kompliments = new List<string> 
@@ -407,6 +419,10 @@ namespace VkBot
                 {
                     switch (userMessage)
                     {
+                        case "аа":
+                            AsyncMethods.Message();
+                            CallbackController.SendMessage("22", peerID);
+                            break;
                         case "начать":
                             CallbackController.SendMessage(Keyboards.Privetstvie,
                                 peerID, Keyboards.AgreeGame);
