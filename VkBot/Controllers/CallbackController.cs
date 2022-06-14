@@ -57,7 +57,8 @@ namespace Cookie.Controllers
                     //Methods.SendAboutQst();
                     var msg2 = Message.FromJson(new VkResponse(updates.Object));
                     if (msg2.Text == "HelloBro12345")
-                        SendMessage("Это исходящее сообщение))", 266006795);
+                        Methods.SendAboutQst();
+                    //SendMessage("Это исходящее сообщение))", 266006795);
                     break;
                 case "message_new":
                     //Spredsheet.ReadEntriesMas2();

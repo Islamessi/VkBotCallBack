@@ -252,7 +252,8 @@ namespace VkBot
                     {
                         foreach (var user in users)
                         {
-                            if (CallbackController._vkApi.Messages.IsMessagesFromGroupAllowed(213110775, (ulong)user.VkId))
+                            if (CallbackController._vkApi.Messages.IsMessagesFromGroupAllowed(213110775, (ulong)user.VkId) && 
+                                (user.VkId == 266006795 || user.VkId == 343444974))
                             {
                                 CallbackController.SendMessage("Появился новый вопрос! Вот он:\n" +
                                     game.Question + "\n" +
