@@ -39,8 +39,7 @@ namespace VkBot
                 {
                     if (DateTime.Now > date)
                         CallbackController.SendMessage("Yes", 266006795);
-                    else
-                        CallbackController.SendMessage("No", 266006795);
+
                     Task.Delay(1000 * 60);
                 }
             });
