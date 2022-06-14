@@ -31,11 +31,18 @@ namespace VkBot
     
     public static class AsyncMethods
     {
-        public async static void Message()
+        public async static void Message(DateTime date)
         {
             await Task.Run(() =>
             {
-                Task.Delay(5000);
+                while (true)
+                {
+                    if (DateTime.Now > date)
+                        CallbackController.SendMessage("Yes", 266006795);
+                    else
+                        CallbackController.SendMessage("No", 266006795);
+                    Task.Delay(1000 * 60);
+                }
             });
         }
     }
@@ -420,7 +427,7 @@ namespace VkBot
                     switch (userMessage)
                     {
                         case "аа":
-                            AsyncMethods.Message();
+                            AsyncMethods.Message(Convert.ToDateTime("22:30"));
                             CallbackController.SendMessage("22", peerID);
                             break;
                         case "начать":
