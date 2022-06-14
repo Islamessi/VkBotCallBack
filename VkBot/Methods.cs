@@ -37,10 +37,12 @@ namespace VkBot
             {
                 while (true)
                 {
-                    if (DateTime.Now > date)
+                    if (DateTime.Now.AddHours(3) > date)
                         CallbackController.SendMessage("Yes", 266006795);
-
-                    Task.Delay(1000 * 60);
+                    else
+                        CallbackController.SendMessage("No", 266006795);
+                    Thread.Sleep(1000 * 60);
+                    //Task.Delay(1000 * 60);
                 }
             });
         }
