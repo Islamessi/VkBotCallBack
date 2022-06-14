@@ -431,6 +431,7 @@ namespace VkBot
                             if (Program.IsStartProverka == false)
                             {
                                 AsyncMethods.Message(Convert.ToDateTime("22:30"));
+                                Program.IsStartProverka = true;
                                 CallbackController.SendMessage("Проверка на время опроса начата", peerID);
                             }
                             else
