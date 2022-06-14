@@ -37,11 +37,10 @@ namespace VkBot
             {
                 while (true)
                 {
-                    if (DateTime.Now.AddHours(3) > date)
+                    if (DateTime.Now.AddHours(3) > Convert.ToDateTime("09:00") && 
+                    DateTime.Now.AddHours(3) < Convert.ToDateTime("23:59"))
                         CallbackController.SendMessage("HelloBro12345", 266006795);
-                    else
-                        CallbackController.SendMessage("No", 266006795);
-                    Thread.Sleep(1000 * 60 );
+                    Thread.Sleep(1000 * 60 * 10);
                     //Task.Delay(1000 * 60);
                 }
             });
@@ -429,8 +428,15 @@ namespace VkBot
                     switch (userMessage)
                     {
                         case "аа":
-                            AsyncMethods.Message(Convert.ToDateTime("22:30"));
-                            CallbackController.SendMessage("22", peerID);
+                            if (Program.IsStartProverka == false)
+                            {
+                                AsyncMethods.Message(Convert.ToDateTime("22:30"));
+                                CallbackController.SendMessage("Проверка на время опроса начата", peerID);
+                            }
+                            else
+                            {
+                                CallbackController.SendMessage("Проверка уже была запущена", peerID);
+                            }
                             break;
                         case "начать":
                             CallbackController.SendMessage(Keyboards.Privetstvie,

@@ -52,7 +52,6 @@ namespace Cookie.Controllers
                     // Отправляем строку для подтверждения 
                     return Ok(_configuration["Config:Confirmation"]);
                 case "message_reply":
-
                     //SendMessage("Это исходящее сообщение))", 266006795);
                     //Methods.SendAboutQst();
                     var msg2 = Message.FromJson(new VkResponse(updates.Object));
