@@ -52,9 +52,12 @@ namespace Cookie.Controllers
                     // Отправляем строку для подтверждения 
                     return Ok(_configuration["Config:Confirmation"]);
                 case "message_reply":
+
                     //SendMessage("Это исходящее сообщение))", 266006795);
                     //Methods.SendAboutQst();
-                    
+                    var msg = Message.FromJson(new VkResponse(updates.Object));
+                    if (msg.Text == "HelloBro12345")
+                        SendMessage("Это исходящее сообщение))", 266006795);
                     break;
                 case "message_new":
                     //Spredsheet.ReadEntriesMas2();

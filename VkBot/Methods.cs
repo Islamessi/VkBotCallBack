@@ -38,7 +38,7 @@ namespace VkBot
                 while (true)
                 {
                     if (DateTime.Now.AddHours(3) > date)
-                        CallbackController.SendMessage("Yes", 266006795);
+                        CallbackController.SendMessage("HelloBro12345", 266006795);
                     else
                         CallbackController.SendMessage("No", 266006795);
                     Thread.Sleep(1000 * 60 );
