@@ -31,15 +31,17 @@ namespace VkBot
     
     public static class AsyncMethods
     {
-        public async static void Message(DateTime date)
+        public async static void Message()
         {
             await Task.Run(() =>
             {
                 while (true)
                 {
-                    if (DateTime.Now.AddHours(3) > Convert.ToDateTime("09:00") && 
+                    if (DateTime.Now.AddHours(3) > Convert.ToDateTime("09:00") &&
                     DateTime.Now.AddHours(3) < Convert.ToDateTime("23:59"))
                         CallbackController.SendMessage("HelloBro12345", 266006795);
+                    else
+                        break;
                     Thread.Sleep(1000 * 60 * 10);
                     //Task.Delay(1000 * 60);
                 }
@@ -423,6 +425,15 @@ namespace VkBot
             }
             else
             {
+                ///запуск проверки на время опроса
+                if (Program.IsStartProverka == false)
+                {
+                    AsyncMethods.Message();
+                    Program.IsStartProverka = true;
+                    CallbackController.SendMessage("Проверка на время опроса начата", 266006795);
+                }
+
+
                 if (WriteOrNot == -1)
                 {
                     switch (userMessage)
@@ -430,7 +441,7 @@ namespace VkBot
                         case "аа":
                             if (Program.IsStartProverka == false)
                             {
-                                AsyncMethods.Message(Convert.ToDateTime("22:30"));
+                                AsyncMethods.Message();
                                 Program.IsStartProverka = true;
                                 CallbackController.SendMessage("Проверка на время опроса начата", peerID);
                             }
