@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "jS4QjRgubXCL0IH7hxQPsyCpWWnqQ6C+0v4caKyUAcGZ3zS/AyBQt8x9kSeqeiGFOXL+EehwIGBJvmnhi1oThQ==",
+  "dgSpecHash": "Tz3W8BGpBMh5Zjb3aNwa8mjQsIGPxHxuBSxj+uaVddbCbt2MP3oKAiNb5BVCUIq9mvJjOPKUZIhBt3Aw8ffV9A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\islam\\source\\repos\\VkBotCallBack\\VkBot\\VkBot.csproj",
+  "projectFilePath": "C:\\Users\\islam\\Source\\Repos\\VkBotCallBack\\VkBot\\VkBot.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\islam\\.nuget\\packages\\google.apis\\1.51.0\\google.apis.1.51.0.nupkg.sha512",
     "C:\\Users\\islam\\.nuget\\packages\\google.apis.auth\\1.51.0\\google.apis.auth.1.51.0.nupkg.sha512",
