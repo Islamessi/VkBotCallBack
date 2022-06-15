@@ -427,13 +427,7 @@ namespace VkBot
             }
             else
             {
-                ///запуск проверки на время опроса
-                if (Program.IsStartProverka == false)
-                {
-                    AsyncMethods.Message();
-                    Program.IsStartProverka = true;
-                    CallbackController.SendMessage("Проверка на время опроса начата", 266006795);
-                }
+               
 
 
                 if (WriteOrNot == -1)
