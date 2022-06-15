@@ -31,24 +31,24 @@ namespace VkBot
     
     public static class AsyncMethods
     {
-        //public async static void Message()
-        //{
-        //    await Task.Run(() =>
-        //    {
-        //        while (true)
-        //        {
-        //            if (DateTime.Now.AddHours(3) > Convert.ToDateTime("11:00") &&
-        //            DateTime.Now.AddHours(3) < Convert.ToDateTime("23:59"))
-        //                CallbackController.SendMessage("HelloBro12345", 266006795);
-        //            else
-        //                break;
-        //            Thread.Sleep(1000 * 60);
-        //            //Task.Delay(1000 * 60);
-        //        }
-        //        Program.IsStartProverka = false;
-        //        CallbackController.SendMessage("Поток остановлен", 266006795);
-        //    });
-        //}
+        public async static void Message()
+        {
+            await Task.Run(() =>
+            {
+                while (true)
+                {
+                    if (DateTime.Now.AddHours(3) > Convert.ToDateTime("21:00") &&
+                    DateTime.Now.AddHours(3) < Convert.ToDateTime("23:59"))
+                        CallbackController.SendMessage("HelloBro12345", 266006795);
+                    else
+                        break;
+                    Thread.Sleep(1000 * 60);
+                    //Task.Delay(1000 * 60);
+                }
+                Program.IsStartProverka = false;
+                CallbackController.SendMessage("Поток остановлен", 266006795);
+            });
+        }
     }
 
 
@@ -437,7 +437,7 @@ namespace VkBot
                         case "аа":
                             if (Program.IsStartProverka == false)
                             {
-                                //AsyncMethods.Message();
+                                AsyncMethods.Message();
                                 Program.IsStartProverka = true;
                                 CallbackController.SendMessage("Проверка на время опроса начата", peerID);
                             }
