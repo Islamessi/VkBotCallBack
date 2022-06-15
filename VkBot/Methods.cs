@@ -37,7 +37,7 @@ namespace VkBot
             {
                 while (true)
                 {
-                    if (DateTime.Now.AddHours(3) > Convert.ToDateTime("09:00") &&
+                    if (DateTime.Now.AddHours(3) > Convert.ToDateTime("11:00") &&
                     DateTime.Now.AddHours(3) < Convert.ToDateTime("23:59"))
                         CallbackController.SendMessage("HelloBro12345", 266006795);
                     else
