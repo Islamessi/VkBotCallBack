@@ -45,6 +45,8 @@ namespace VkBot
                     Thread.Sleep(1000 * 60 * 10);
                     //Task.Delay(1000 * 60);
                 }
+                Program.IsStartProverka = false;
+                CallbackController.SendMessage("Поток остановлен", 266006795);
             });
         }
     }
