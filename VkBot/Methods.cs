@@ -668,14 +668,14 @@ namespace VkBot
                                                 user.Score += 1;
                                                 string str4 = "Вы ответили правильно! И заработали 1 🍔.\n" +
                                                     "Ждите следующего вопроса!Вот правильный ответ:\n\n";
-                                                str4 = game.Answer;
+                                                str4 += game.Answer;
                                                 CallbackController.SendMessage(str4, peerID, Keyboards.UserKeyboard);
                                             }
                                             else
                                             {
                                                 string str4 = "Вы ответили неправильно. \n" +
                                                     "Ждите следующего вопроса! Правильный ответ:\n\n";
-                                                str4 = game.Answer;
+                                                str4 += game.Answer;
                                                 CallbackController.SendMessage(str4, peerID, Keyboards.UserKeyboard);
                                             }
                                             user.NumSurv += 1;
