@@ -42,7 +42,7 @@ namespace VkBot
                         CallbackController.SendMessage("HelloBro12345", 266006795);
                     else
                         break;
-                    Thread.Sleep(1000 * 60 * 10);
+                    Thread.Sleep(1000 * 60);
                     //Task.Delay(1000 * 60);
                 }
                 Program.IsStartProverka = false;
