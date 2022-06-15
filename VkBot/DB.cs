@@ -12,7 +12,7 @@ namespace VkBot
         public DateTime DateEnd { get; set; }
         public int RightAnswer { get; set; }
         public bool IsPublish { get; set; } = false;
-
+        public string Answer { get; set; }
         public ICollection<Betting> Bettings { get; set; }
         public Game()
         {

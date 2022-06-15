@@ -37,9 +37,9 @@ namespace VkBot
             {
                 while (true)
                 {
-                    if (DateTime.Now.AddHours(3) > Convert.ToDateTime("21:00") &&
+                    if (DateTime.Now.AddHours(3) > Convert.ToDateTime("09:00") &&
                     DateTime.Now.AddHours(3) < Convert.ToDateTime("23:59"))
-                        CallbackController.SendMessage("HelloBro12345", 266006795);
+                        CallbackController.SendMessage("HelloBro12345", 222634461);
                     else
                         break;
                     Thread.Sleep(1000 * 60);
@@ -386,7 +386,6 @@ namespace VkBot
                 result = Encoding.ASCII.GetString(wc.UploadFile(uploadServer.UploadUrl, @"/app/milkclean.png"));
             else if (question == Program.Question[9][0])
                 result = Encoding.ASCII.GetString(wc.UploadFile(uploadServer.UploadUrl, @"/app/SG.png"));
-
             if (result == "-1")
             {
                 CallbackController.SendMessage(question, peerID);
@@ -594,7 +593,7 @@ namespace VkBot
                             {
                                 CallbackController.SendMessage("Добавьте вопрос по формату: " +
                                 "Вопрос_Дата начала(mm.dd.yyyy hh:mm)_Дата окончания(mm.dd.yyyy hh:mm)" +
-                                "_Правильный ответ(Без разделителей)", peerID);
+                                "_Правильный ответ(Без разделителей)_Поянительный правильный ответ", peerID);
                                 Program.UsersInfo.Add(new List<long?> { peerID });
                                 Program.UsersInfo[Program.UsersInfo.Count - 1].Add(1);
                             }
@@ -667,13 +666,17 @@ namespace VkBot
                                             if (vsp4 == game.RightAnswer)
                                             {
                                                 user.Score += 1;
-                                                CallbackController.SendMessage("Вы ответили правильно! И заработали 1 🍔.\n" +
-                                                    "Ждите следующего вопроса!", peerID, Keyboards.UserKeyboard);
+                                                string str4 = "Вы ответили правильно! И заработали 1 🍔.\n" +
+                                                    "Ждите следующего вопроса!Вот правильный ответ:\n\n";
+                                                str4 = game.Answer;
+                                                CallbackController.SendMessage(str4, peerID, Keyboards.UserKeyboard);
                                             }
                                             else
                                             {
-                                                CallbackController.SendMessage("Вы ответили неправильно. \n" +
-                                                    "Ждите следующего вопроса!", peerID, Keyboards.UserKeyboard);
+                                                string str4 = "Вы ответили неправильно. \n" +
+                                                    "Ждите следующего вопроса! Правильный ответ:\n\n";
+                                                str4 = game.Answer;
+                                                CallbackController.SendMessage(str4, peerID, Keyboards.UserKeyboard);
                                             }
                                             user.NumSurv += 1;
                                             db.Update(user);
@@ -722,7 +725,9 @@ namespace VkBot
                                 DateTime dateStart = Convert.ToDateTime(vsp3[1]);
                                 DateTime dateEnd = Convert.ToDateTime(vsp3[2]);
                                 int answer = Convert.ToInt32(vsp3[3]);
-                                CallbackController.SendMessage(qst + "\n" + dateStart + "\n" + dateEnd + "\n" + answer,
+                                string answer2 = vsp3[4];
+                                CallbackController.SendMessage(qst + "\n" + dateStart + "\n" + dateEnd + "\n" 
+                                    + answer +"\n" + answer2,
                                 //CallbackController.SendMessage(vsp3[0]+"\n"+vsp3[1]+"\n"+vsp3[2]+"\n"+vsp3[3], 
                                    peerID, Keyboards.AdminKeyboard);
                                 
@@ -733,7 +738,8 @@ namespace VkBot
                                         Question = qst,
                                         DateStart = dateStart,
                                         DateEnd = dateEnd,
-                                        RightAnswer = answer
+                                        RightAnswer = answer,
+                                        Answer = answer2,
                                     };
                                     db.Add(game);
                                     db.SaveChanges();
