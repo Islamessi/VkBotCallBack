@@ -241,7 +241,7 @@ namespace VkBot
                 ApplicationName = ApplicationName,
             });
             int i = 0;
-            var range = $"{sheet}!A:F";
+            var range = $"{sheet}!A:G";
             var request = service.Spreadsheets.Values.Get(SpreedsheetId, range);
             var responce = request.Execute();
             var values = responce.Values;
@@ -283,7 +283,7 @@ namespace VkBot
             string strochka;
             strochka = (user.Games.Count()).ToString();
             var range = $"{sheet}!";
-            range += (char)(65) + strochka + ":" + (char)(65 + 5) + strochka;
+            range += (char)(65) + strochka + ":" + (char)(65 + 6) + strochka;
             var request = service.Spreadsheets.Values.Get(SpreedsheetId, range);
             var responce = request.Execute();
             var values = responce.Values;
