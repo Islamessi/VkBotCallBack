@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\islam\\Source\\Repos\\VkBotCallBack\\VkBot\\VkBot.csproj": {}
+    "C:\\Users\\islam\\source\\repos\\VkBotCallBack\\VkBot\\VkBot.csproj": {}
   },
   "projects": {
-    "C:\\Users\\islam\\Source\\Repos\\VkBotCallBack\\VkBot\\VkBot.csproj": {
+    "C:\\Users\\islam\\source\\repos\\VkBotCallBack\\VkBot\\VkBot.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\islam\\Source\\Repos\\VkBotCallBack\\VkBot\\VkBot.csproj",
+        "projectUniqueName": "C:\\Users\\islam\\source\\repos\\VkBotCallBack\\VkBot\\VkBot.csproj",
         "projectName": "VkBot",
-        "projectPath": "C:\\Users\\islam\\Source\\Repos\\VkBotCallBack\\VkBot\\VkBot.csproj",
+        "projectPath": "C:\\Users\\islam\\source\\repos\\VkBotCallBack\\VkBot\\VkBot.csproj",
         "packagesPath": "C:\\Users\\islam\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\islam\\Source\\Repos\\VkBotCallBack\\VkBot\\obj\\",
+        "outputPath": "C:\\Users\\islam\\source\\repos\\VkBotCallBack\\VkBot\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\islam\\AppData\\Roaming\\NuGet\\NuGet.Config",
