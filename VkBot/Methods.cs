@@ -413,7 +413,7 @@ namespace VkBot
                 }
                 vsp2++;
             }
-            if (userMessage == "отмена")
+            if (userMessage == "отмена" || userMessage == "выйти из теста")
             {
                 if (WriteOrNot != -1)
                 {
@@ -616,7 +616,7 @@ namespace VkBot
                             CallbackController.SendMessage("Учти, что тест надо проходить сразу, иначе я " +
                                 "аннулирую твою попытку). Если ответов несколько пиши их в порядке возрастания " +
                                 "без разделителей (123). \n" +
-                                "Удачи!", peerID);
+                                "Удачи!", peerID, Keyboards.CansellKeyboard);
                             Random rnd1 = new Random();
                             var num = rnd1.Next(0, Program.Question.Count-1);
 
@@ -763,6 +763,7 @@ namespace VkBot
                                 if (rightanswer != vsp4)
                                 {
                                     Program.UsersInfo[WriteOrNot][2] = 102;
+                                    CallbackController.SendMessage("В данном опросе вы ответили не правильно.", peerID);
                                 }
                                 Random rnd33 = new Random();
                                 var num = rnd33.Next(0, Program.Question.Count);

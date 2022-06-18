@@ -7,6 +7,16 @@ namespace VkBot
 {
     public class Keyboards
     {
+        public static MessageKeyboard CansellKeyboard // Клавиатура для обычных пользователей
+        {
+            get
+            {
+                KeyboardBuilder userKey = new KeyboardBuilder();
+                userKey.AddButton("Выйти из теста", "", KeyboardButtonColor.Negative, "");
+                return userKey.Build();
+            }
+
+        }
         public static MessageKeyboard UserTesty(long? peerID) // Тесты
         {
             using (var db = new MyContext())
