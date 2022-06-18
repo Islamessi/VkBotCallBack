@@ -763,7 +763,7 @@ namespace VkBot
                                 if (rightanswer != vsp4)
                                 {
                                     Program.UsersInfo[WriteOrNot][2] = 102;
-                                    CallbackController.SendMessage("В данном опросе вы ответили не правильно.", peerID);
+                                    CallbackController.SendMessage("В данном вопросе вы ответили неправильно.", peerID);
                                 }
                                 Random rnd33 = new Random();
                                 var num = rnd33.Next(0, Program.Question.Count);
