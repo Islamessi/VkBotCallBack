@@ -277,6 +277,17 @@ namespace VkBot
             }
         }
 
+
+        public static void SendQestUser(int numstart, int numend, long? peerID)
+        {
+            Random rnd1 = new Random();
+            var num = rnd1.Next(0, Program.Question.Count - 1);
+            Program.UsersInfo[Program.UsersInfo.Count - 1].Add(numstart);//Начиная с какого вопроса [4]
+            Program.UsersInfo[Program.UsersInfo.Count - 1].Add(numend);//Заканчивая каким вопросом (на 1 больше)[5]
+            Program.UsersInfo[Program.UsersInfo.Count - 1].Add(num);
+            string question = Program.Question[num][0];
+            SendQuestion(question, peerID);
+        }
         public static void TopUsers(long? peerID)
         {
             string vsp3 = "                       Вот топ 10 🏆\n\n\n";
@@ -617,16 +628,28 @@ namespace VkBot
                                 "аннулирую твою попытку). Если ответов несколько пиши их в порядке возрастания " +
                                 "без разделителей (123). \n" +
                                 "Удачи!", peerID, Keyboards.CansellKeyboard);
-                            Random rnd1 = new Random();
-                            var num = rnd1.Next(0, Program.Question.Count-1);
+                            
 
                             Program.UsersInfo.Add(new List<long?> { peerID });
-                            Program.UsersInfo[Program.UsersInfo.Count - 1].Add(100);
-                            Program.UsersInfo[Program.UsersInfo.Count - 1].Add(101);
-                            Program.UsersInfo[Program.UsersInfo.Count - 1].Add(1);
-                            Program.UsersInfo[Program.UsersInfo.Count - 1].Add(num);
-                            string question = Program.Question[num][0];
-                            SendQuestion(question, peerID);
+                            Program.UsersInfo[Program.UsersInfo.Count - 1].Add(100);//Понимание, что пользователь сейчас в Тесте.
+                            Program.UsersInfo[Program.UsersInfo.Count - 1].Add(101);//Флаг, ответил ли пользователь на все ответы правильно. (101 - да, 102 - нет)
+                            Program.UsersInfo[Program.UsersInfo.Count - 1].Add(1);//Количество вопросов на которые ответил
+                            
+
+                            if (userMessage == "тест по химии")
+                            {
+                                SendQestUser(0, 17, peerID);
+
+                                //Random rnd1 = new Random();
+                                //var num = rnd1.Next(0, Program.Question.Count - 1);
+                                //Program.UsersInfo[Program.UsersInfo.Count - 1].Add(0);//Начиная с какого вопроса [4]
+                                //Program.UsersInfo[Program.UsersInfo.Count - 1].Add(17);//Заканчивая каким вопросом (на 1 больше)[5]
+                                //Program.UsersInfo[Program.UsersInfo.Count - 1].Add(num);
+                                //string question = Program.Question[num][0];
+                                //SendQuestion(question, peerID);
+                            }
+                            
+
                             break;
                         case "пинок":
                             CallbackController.SendMessage(Motivation.RerurnMotivation(), peerID);
@@ -766,10 +789,10 @@ namespace VkBot
                                     CallbackController.SendMessage("В данном вопросе вы ответили неправильно.", peerID);
                                 }
                                 Random rnd33 = new Random();
-                                var num = rnd33.Next(0, Program.Question.Count);
+                                var num = rnd33.Next((int)Program.UsersInfo[WriteOrNot][4], (int)Program.UsersInfo[WriteOrNot][5]);
                                 bool flag = true;
                                 Program.UsersInfo[WriteOrNot][3] += 1;//учитываем количество вопросов.
-                                if (Program.UsersInfo[WriteOrNot][3] <= Program.Question.Count)
+                                if (Program.UsersInfo[WriteOrNot][3] <= (int)Program.UsersInfo[WriteOrNot][5])
                                 {
                                     while (flag == true)
                                     {
@@ -778,7 +801,7 @@ namespace VkBot
                                         {
                                             if (Program.UsersInfo[WriteOrNot][ii] == num)
                                             {
-                                                num = rnd33.Next(0, Program.Question.Count);
+                                                num = rnd33.Next((int)Program.UsersInfo[WriteOrNot][4], (int)Program.UsersInfo[WriteOrNot][5]);
                                                 flag = true;
                                                 break;
                                             }
