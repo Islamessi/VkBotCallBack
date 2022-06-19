@@ -638,7 +638,7 @@ namespace VkBot
 
                             if (userMessage == "тест по химии")
                             {
-                                SendQestUser(0, 17, peerID);
+                                SendQestUser(0, 16, peerID);
 
                                 //Random rnd1 = new Random();
                                 //var num = rnd1.Next(0, Program.Question.Count - 1);
