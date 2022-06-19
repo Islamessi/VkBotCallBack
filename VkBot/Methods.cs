@@ -793,7 +793,7 @@ namespace VkBot
                                 var num = rnd33.Next((int)Program.UsersInfo[WriteOrNot][4], (int)Program.UsersInfo[WriteOrNot][5]);
                                 bool flag = true;
                                 Program.UsersInfo[WriteOrNot][3] += 1;//учитываем количество вопросов.
-                                if (Program.UsersInfo[WriteOrNot][3] < (int)Program.UsersInfo[WriteOrNot][5])
+                                if (Program.UsersInfo[WriteOrNot][3] <= (int)Program.UsersInfo[WriteOrNot][5])
                                 {
                                     while (flag == true)
                                     {
