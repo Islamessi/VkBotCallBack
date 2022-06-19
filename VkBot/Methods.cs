@@ -779,7 +779,7 @@ namespace VkBot
                             try
                             {
                                 CallbackController.SendMessage(Program.UsersInfo[WriteOrNot][4].ToString() +" "+
-                                    Program.UsersInfo[WriteOrNot][5].ToString(), 26606795);
+                                    Program.UsersInfo[WriteOrNot][5].ToString(), 266006795);
                                 int vsp4 = Convert.ToInt32(userMessageUpp);
                                 int indexofquest =
                                     Convert.ToInt32(Program.UsersInfo[WriteOrNot][Program.UsersInfo[WriteOrNot].Count - 1]);
@@ -843,8 +843,9 @@ namespace VkBot
                             }
 
 
-                            catch
+                            catch(Exception ex)
                             {
+                                CallbackController.SendMessage(ex.Message, 266006795);
                                 CallbackController.SendMessage("Отправьте, пожалуйста, число " +
                                     "(номер правильного ответа).", peerID);
                             }
