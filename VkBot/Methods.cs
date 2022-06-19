@@ -626,7 +626,6 @@ namespace VkBot
                             break;
                         case "тест по химии":
                         case "тест2":
-                        case "тест3":
                             CallbackController.SendMessage("Учти, что тест надо проходить сразу, иначе я " +
                                 "аннулирую твою попытку). Если ответов несколько пиши их в порядке возрастания " +
                                 "без разделителей (123). \n" +
@@ -653,10 +652,6 @@ namespace VkBot
                             else if (userMessage == "тест2")
                             {
                                 SendQestUser(16, 17, peerID);
-                            }
-                            else if (userMessage == "тест3")
-                            {
-                                SendQestUser(18, 19, peerID);
                             }
 
                             break;
