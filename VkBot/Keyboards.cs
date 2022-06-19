@@ -19,6 +19,7 @@ namespace VkBot
                 userKey.AddButton("4", "", KeyboardButtonColor.Primary, "");
                 userKey.AddButton("5", "", KeyboardButtonColor.Primary, "");
                 userKey.AddButton("6", "", KeyboardButtonColor.Primary, "");
+                userKey.AddLine();
                 userKey.AddButton("Выйти из теста", "", KeyboardButtonColor.Negative, "");
                 return userKey.Build();
             }
