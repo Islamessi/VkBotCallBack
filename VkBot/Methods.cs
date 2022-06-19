@@ -282,6 +282,7 @@ namespace VkBot
         {
             Random rnd1 = new Random();
             var num = rnd1.Next(numstart, numend);
+            CallbackController.SendMessage(num.ToString(), peerID);
             Program.UsersInfo[Program.UsersInfo.Count - 1].Add(numstart);//Начиная с какого вопроса [4]
             Program.UsersInfo[Program.UsersInfo.Count - 1].Add(numend);//Заканчивая каким вопросом (на 1 больше)[5]
             Program.UsersInfo[Program.UsersInfo.Count - 1].Add(num);
