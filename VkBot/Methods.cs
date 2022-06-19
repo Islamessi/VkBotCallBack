@@ -790,7 +790,7 @@ namespace VkBot
                                     CallbackController.SendMessage("В данном вопросе вы ответили неправильно.", peerID);
                                 }
                                 Random rnd33 = new Random();
-                                var num = rnd33.Next((int)Program.UsersInfo[WriteOrNot][4]-1, (int)Program.UsersInfo[WriteOrNot][5]);
+                                var num = rnd33.Next((int)Program.UsersInfo[WriteOrNot][4], (int)Program.UsersInfo[WriteOrNot][5]);
                                 bool flag = true;
                                 Program.UsersInfo[WriteOrNot][3] += 1;//учитываем количество вопросов.
                                 if (Program.UsersInfo[WriteOrNot][3] < (int)Program.UsersInfo[WriteOrNot][5])
@@ -798,11 +798,11 @@ namespace VkBot
                                     while (flag == true)
                                     {
                                         flag = false;
-                                        for (int ii = 4; ii <= Program.UsersInfo[WriteOrNot].Count - 1; ii++)
+                                        for (int ii = 6; ii <= Program.UsersInfo[WriteOrNot].Count - 1; ii++)
                                         {
                                             if (Program.UsersInfo[WriteOrNot][ii] == num)
                                             {
-                                                num = rnd33.Next((int)Program.UsersInfo[WriteOrNot][4]-1, (int)Program.UsersInfo[WriteOrNot][5]);
+                                                num = rnd33.Next((int)Program.UsersInfo[WriteOrNot][4], (int)Program.UsersInfo[WriteOrNot][5]);
                                                 flag = true;
                                                 break;
                                             }
