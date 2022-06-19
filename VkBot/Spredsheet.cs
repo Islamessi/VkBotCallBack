@@ -92,7 +92,14 @@ namespace VkBot
             var responce = request.Execute();
             var values = responce.Values;
             var valueRange = new ValueRange();
-            var objectList = new List<object>() { user1.Id, user1.VkId, user1.Name, user1.Score, user1.NumSurv, user1.IsHimia };
+            var objectList = new List<object>() { 
+                user1.Id, 
+                user1.VkId, 
+                user1.Name, 
+                user1.Score, 
+                user1.NumSurv, 
+                user1.IsHimia 
+            };
             valueRange.Values = new List<IList<object>> { objectList };
             var updateRequest = service.Spreadsheets.Values.Update(valueRange, SpreedsheetId, range);
             updateRequest.ValueInputOption = SpreadsheetsResource.ValuesResource.UpdateRequest.ValueInputOptionEnum.USERENTERED;
@@ -120,7 +127,11 @@ namespace VkBot
             var responce = request.Execute();
             var values = responce.Values;
             var valueRange = new ValueRange();
-            var objectList = new List<object>() { user.Score.ToString(), user.NumSurv.ToString(), user.IsHimia.ToString() };
+            var objectList = new List<object>() { 
+                user.Score.ToString(), 
+                user.NumSurv.ToString(), 
+                user.IsHimia.ToString() 
+            };
             valueRange.Values = new List<IList<object>> { objectList };
             var updateRequest = service.Spreadsheets.Values.Update(valueRange, SpreedsheetId, range);
             updateRequest.ValueInputOption = SpreadsheetsResource.ValuesResource.UpdateRequest.ValueInputOptionEnum.USERENTERED;

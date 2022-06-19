@@ -787,9 +787,9 @@ namespace VkBot
                         case 100:
                             try
                             {
-                                CallbackController.SendMessage(Program.UsersInfo[WriteOrNot][3] +" "+Program.UsersInfo[WriteOrNot][4].ToString() +" "+
-                                    Program.UsersInfo[WriteOrNot][5].ToString() +" "+ 
-                                    Program.UsersInfo[WriteOrNot].Count, 266006795);
+                                //CallbackController.SendMessage(Program.UsersInfo[WriteOrNot][3] +" "+Program.UsersInfo[WriteOrNot][4].ToString() +" "+
+                                //    Program.UsersInfo[WriteOrNot][5].ToString() +" "+ 
+                                //    Program.UsersInfo[WriteOrNot].Count, 266006795);
                                 int vsp4 = Convert.ToInt32(userMessageUpp);
                                 int indexofquest =
                                     Convert.ToInt32(Program.UsersInfo[WriteOrNot][Program.UsersInfo[WriteOrNot].Count - 1]);
