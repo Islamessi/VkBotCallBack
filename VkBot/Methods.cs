@@ -624,6 +624,7 @@ namespace VkBot
                                 "свои заслуженные бургеры)).", peerID, Keyboards.UserTesty(peerID));
                             break;
                         case "тест по химии":
+                        case "тест2":
                             CallbackController.SendMessage("Учти, что тест надо проходить сразу, иначе я " +
                                 "аннулирую твою попытку). Если ответов несколько пиши их в порядке возрастания " +
                                 "без разделителей (123). \n" +
@@ -647,7 +648,10 @@ namespace VkBot
                                 //string question = Program.Question[num][0];
                                 //SendQuestion(question, peerID);
                             }
-                            
+                            else if (userMessage == "тест2")
+                            {
+                                SendQestUser(16, 17, peerID);
+                            }    
 
                             break;
                         case "пинок":
