@@ -12,6 +12,13 @@ namespace VkBot
             get
             {
                 KeyboardBuilder userKey = new KeyboardBuilder();
+                userKey.AddButton("1", "", KeyboardButtonColor.Primary, "");
+                userKey.AddButton("2", "", KeyboardButtonColor.Primary, "");
+                userKey.AddButton("3", "", KeyboardButtonColor.Primary, "");
+                userKey.AddLine();
+                userKey.AddButton("4", "", KeyboardButtonColor.Primary, "");
+                userKey.AddButton("5", "", KeyboardButtonColor.Primary, "");
+                userKey.AddButton("6", "", KeyboardButtonColor.Primary, "");
                 userKey.AddButton("Выйти из теста", "", KeyboardButtonColor.Negative, "");
                 return userKey.Build();
             }
