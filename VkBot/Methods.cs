@@ -813,7 +813,7 @@ namespace VkBot
                                             if (Program.UsersInfo[WriteOrNot][ii] == num)
                                             {
                                                 num = rnd33.Next((int)Program.UsersInfo[WriteOrNot][4], (int)Program.UsersInfo[WriteOrNot][5]+1);
-                                                CallbackController.SendMessage(num.ToString(), peerID);
+                                                
                                                 flag = true;
                                                 break;
                                             }
