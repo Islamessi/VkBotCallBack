@@ -13,12 +13,15 @@ namespace VkBot
             {
                 KeyboardBuilder userKey = new KeyboardBuilder();
                 userKey.AddButton("Пенёк стандартной булочки", "", KeyboardButtonColor.Primary, "");
+                userKey.AddLine();
                 userKey.AddButton("Котлета 10:1", "", KeyboardButtonColor.Primary, "");
                 userKey.AddLine();
                 userKey.AddButton("Кетчуп - 1 стандартная порция", "", KeyboardButtonColor.Primary, "");
+                userKey.AddLine();
                 userKey.AddButton("Маринованные огурцы - 1 шт.", "", KeyboardButtonColor.Primary, "");
                 userKey.AddLine();
                 userKey.AddButton("Горчица  - 1 порция", "", KeyboardButtonColor.Primary, "");
+                userKey.AddLine();
                 userKey.AddButton("Верхушка стандартной булочки", "", KeyboardButtonColor.Primary, "");
                 userKey.SetOneTime();
                 return userKey.Build();
