@@ -881,7 +881,7 @@ namespace VkBot
                                 CallbackController.SendMessage(numVopros.ToString(), peerID);
                                 if (ChastiBurger[numVopros] == userMessage)
                                 {
-                                    if (numVopros < numInBurger-1)
+                                    if (numVopros <= numInBurger-1)
                                     {
                                         var uploadServer = CallbackController._vkApi.Photo.GetMessagesUploadServer((long)peerID);
                                         var wc = new WebClient();
@@ -890,7 +890,7 @@ namespace VkBot
                                         CallbackController.SendMessage("Верно! Понали дальше!", peerID, photos3);
                                         Program.UsersInfo[WriteOrNot][2]++;
                                     }
-                                    else
+                                    else if (numVopros == numInBurger - 1)
                                     {
                                         var uploadServer = CallbackController._vkApi.Photo.GetMessagesUploadServer((long)peerID);
                                         var wc = new WebClient();
