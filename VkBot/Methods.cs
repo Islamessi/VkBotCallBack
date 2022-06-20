@@ -872,13 +872,11 @@ namespace VkBot
                             break;
                         case 2:
                             {
-                                CallbackController.SendMessage("aaa", peerID);
                                 int numburger = (int)Program.UsersInfo[WriteOrNot][3];
                                 var FileNames = Program.Burgers[numburger].FileNames;
                                 var ChastiBurger = Program.Burgers[numburger].ChastiBurger;
                                 int numInBurger = Program.Burgers[numburger].NumInBurger;
                                 int numVopros = (int)Program.UsersInfo[WriteOrNot][2];
-                                CallbackController.SendMessage(ChastiBurger.Count.ToString(), peerID);
                                 if (ChastiBurger[numVopros] == userMessage)
                                 {
                                     if (numVopros <= numInBurger-1)
