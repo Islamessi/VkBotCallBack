@@ -655,6 +655,16 @@ namespace VkBot
                             }
 
                             break;
+
+                        case "сборка бургеров":
+                            CallbackController.SendMessage("Выбери бургер который хочешь собрать)", peerID, Keyboards.UserBurgers);
+                            break;
+                        case "гамбургер":
+                            CallbackController.SendMessage("Начни собирать бургер по порядку (как он собираются на производстве)" +
+                                "", peerID, Keyboards.UserSostavBurgers);
+                            Program.UsersInfo.Add(new List<long?> { peerID });
+                            Program.UsersInfo[Program.UsersInfo.Count - 1].Add(2);
+                            break;
                         case "пинок":
                             CallbackController.SendMessage(Motivation.RerurnMotivation(), peerID);
                             break;
@@ -779,7 +789,7 @@ namespace VkBot
                             }
                             Program.UsersInfo.RemoveAt(WriteOrNot);
                             break;
-                        case 100:
+                        case 100: //Ответы в тестах
                             try
                             {
                                 //CallbackController.SendMessage(Program.UsersInfo[WriteOrNot][3] +" "+Program.UsersInfo[WriteOrNot][4].ToString() +" "+
@@ -855,6 +865,9 @@ namespace VkBot
                                 CallbackController.SendMessage("Отправьте, пожалуйста, число " +
                                     "(номер правильного ответа).", peerID);
                             }
+                            break;
+                        case 2:
+
                             break;
                     }
                 }

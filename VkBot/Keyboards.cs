@@ -7,6 +7,37 @@ namespace VkBot
 {
     public class Keyboards
     {
+        public static MessageKeyboard UserSostavBurgers // Клавиатура для обычных пользователей
+        {
+            get
+            {
+                KeyboardBuilder userKey = new KeyboardBuilder();
+                userKey.AddButton("Пенёк стандартной булочки", "", KeyboardButtonColor.Primary, "");
+                userKey.AddButton("Котлета 10:1", "", KeyboardButtonColor.Primary, "");
+                userKey.AddButton("Кетчуп - 1 стандартная порция", "", KeyboardButtonColor.Primary, "");
+                userKey.AddLine();
+                userKey.AddButton("Маринованные огурцы - 1 шт.", "", KeyboardButtonColor.Primary, "");
+                userKey.AddButton("Горчица  - 1 порция", "", KeyboardButtonColor.Primary, "");
+                userKey.AddButton("Верхушка стандартной булочки", "", KeyboardButtonColor.Primary, "");
+                userKey.SetOneTime();
+                return userKey.Build();
+            }
+
+        }
+
+        public static MessageKeyboard UserBurgers // Клавиатура для обычных пользователей
+        {
+            get
+            {
+                KeyboardBuilder userKey = new KeyboardBuilder();
+                userKey.AddButton("Гамбургер", "", KeyboardButtonColor.Primary, "");
+                userKey.SetOneTime();
+                return userKey.Build();
+            }
+
+        }
+
+
         public static MessageKeyboard CansellKeyboard // Клавиатура для обычных пользователей
         {
             get
@@ -52,6 +83,8 @@ namespace VkBot
                 userKey.AddButton("Топ игроков", "", KeyboardButtonColor.Primary, "");
                 userKey.AddLine();
                 userKey.AddButton("Тесты", "", KeyboardButtonColor.Primary, "");
+                userKey.AddLine();
+                userKey.AddButton("Сборка бургеров", "", KeyboardButtonColor.Primary, "");
                 userKey.SetOneTime();
                 return userKey.Build();
             }
