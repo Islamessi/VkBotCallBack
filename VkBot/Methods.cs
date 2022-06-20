@@ -881,7 +881,6 @@ namespace VkBot
                                 {
                                     if (numVopros <= numInBurger-1)
                                     {
-
                                         var uploadServer = CallbackController._vkApi.Photo.GetMessagesUploadServer((long)peerID);
                                         var wc = new WebClient();
                                         var result2 = Encoding.ASCII.GetString(wc.UploadFile(uploadServer.UploadUrl, FileNames[numVopros]));
