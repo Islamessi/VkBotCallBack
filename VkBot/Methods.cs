@@ -880,7 +880,7 @@ namespace VkBot
                                 CallbackController.SendMessage(numVopros.ToString(), peerID);
                                 if (ChastiBurger[numVopros] == userMessage)
                                 {
-                                    if (numVopros <= numInBurger)
+                                    if (numVopros < numInBurger)
                                     {
                                         var uploadServer = CallbackController._vkApi.Photo.GetMessagesUploadServer((long)peerID);
                                         var wc = new WebClient();
