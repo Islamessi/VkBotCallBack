@@ -19,7 +19,7 @@ namespace VkBot
                 var shuffled = ChastiBurger.OrderBy(_ => rnd.Next()).ToList();
                 for (int i = 0; i < shuffled.Count; i++)
                 {
-                    userKey.AddButton(ChastiBurger[i], "", KeyboardButtonColor.Primary, "");
+                    userKey.AddButton(shuffled[i], "", KeyboardButtonColor.Primary, "");
                     userKey.AddLine();
                 }
                 userKey.AddButton("Выйти в меню", "", KeyboardButtonColor.Negative, "");
