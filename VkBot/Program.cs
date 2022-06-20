@@ -19,6 +19,7 @@ namespace VkBot
         public int NumInBurger;
         public List<string> ChastiBurger;
         public List<string> FileNames;
+        public string BurgerLastName = "";
     }
 
     public class Program
@@ -165,7 +166,8 @@ namespace VkBot
         {
             new Burger
             {
-                BurgerName = "сочный мощный гамбургер",
+                BurgerLastName = "Cочный мощный ",
+                BurgerName = "гамбургер",
                 NumInBurger = 6,
                 ChastiBurger = new List<string> 
                 {

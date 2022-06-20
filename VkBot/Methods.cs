@@ -896,9 +896,9 @@ namespace VkBot
                                         var wc = new WebClient();
                                         var result2 = Encoding.ASCII.GetString(wc.UploadFile(uploadServer.UploadUrl, FileNames[numVopros]));
                                         var photos3 = CallbackController._vkApi.Photo.SaveMessagesPhoto(result2);
-                                        CallbackController.SendMessage("Поздравляю!\n" +
-                                            "Ты собрал " + Program.Burgers[numburger].BurgerName+ "!\n"+
-                                            "Можешь собрать другие булки или выйти в меню.", peerID, Keyboards.UserBurgers, photos3);
+                                        CallbackController.SendMessage("Иииии вооот он!\n" +
+                                             Program.Burgers[numburger].BurgerLastName + Program.Burgers[numburger].BurgerName, 
+                                             peerID, Keyboards.UserBurgers, photos3);
                                     }
                                 }
                                 else
