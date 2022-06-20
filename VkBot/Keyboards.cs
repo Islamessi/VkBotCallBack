@@ -13,8 +13,13 @@ namespace VkBot
             get
             {
                 var num = (int)Program.UsersInfo[Program.UsersInfo.Count - 1][3];
-                var ChastiBurger = Program.Burgers[num].ChastiBurger;
+                
                 int numInBurger = Program.Burgers[num].NumInBurger;
+                List<string> ChastiBurger = new List<string>();
+                for (int i = 0; i < numInBurger; i++)
+                {
+                    ChastiBurger[i] = Program.Burgers[num].ChastiBurger[i];
+                }
                 KeyboardBuilder userKey = new KeyboardBuilder();
                 Random rnd = new Random();
                 for (int i = 0; i<numInBurger; i++)
