@@ -890,7 +890,7 @@ namespace VkBot
                                         CallbackController.SendMessage("Верно! Понали дальше!", peerID, photos3);
                                         Program.UsersInfo[WriteOrNot][2]++;
                                     }
-                                    else if (numVopros == numInBurger)
+                                    if (numVopros == numInBurger-1)
                                     {
                                         var uploadServer = CallbackController._vkApi.Photo.GetMessagesUploadServer((long)peerID);
                                         var wc = new WebClient();
@@ -899,6 +899,7 @@ namespace VkBot
                                         CallbackController.SendMessage("Иииии вооот он!\n" +
                                              Program.Burgers[numburger].BurgerLastName + Program.Burgers[numburger].BurgerName, 
                                              peerID, Keyboards.UserBurgers, photos3);
+                                        Program.UsersInfo.RemoveAt(WriteOrNot);
                                     }
                                 }
                                 else
