@@ -873,21 +873,21 @@ namespace VkBot
                             break;
                         case 2:
                             {
-                                CallbackController.SendMessage(WriteOrNot.ToString(), peerID);
                                 CallbackController.SendMessage(Program.Burgers[(int)Program.UsersInfo[WriteOrNot][4]].BurgerName, peerID);
-                                if (Program.Burgers.First(p => p.BurgerName == userMessage).
-                                    ChastiBurger[(int)Program.UsersInfo[WriteOrNot][2]] == userMessage
-                                    && Program.UsersInfo[WriteOrNot][2] <= Program.Burgers.First(p => p.BurgerName == userMessage).NumInBurger)
+                                int numburger = (int)Program.UsersInfo[WriteOrNot][4];
+                                var FileNames = Program.Burgers[numburger].FileNames;
+                                var ChastiBurger = Program.Burgers[numburger].ChastiBurger;
+                                int numInBurger = Program.Burgers[numburger].NumInBurger;
+                                int numVopros = (int)Program.UsersInfo[WriteOrNot][2];
+                                if (ChastiBurger[numVopros] == userMessage
+                                    && numVopros <= numInBurger)
                                 {
-                                    Program.UsersInfo[WriteOrNot][2]++;
                                     var uploadServer = CallbackController._vkApi.Photo.GetMessagesUploadServer((long)peerID);
                                     var wc = new WebClient();
-                                    CallbackController.SendMessage(Program.Burgers.First(p => p.BurgerName == userMessage).
-                                        FileNames[(int)Program.UsersInfo[WriteOrNot][2]], peerID);
-                                    var result2 = Encoding.ASCII.GetString(wc.UploadFile(uploadServer.UploadUrl, Program.Burgers.First(p => p.BurgerName == userMessage).
-                                    FileNames[(int)Program.UsersInfo[WriteOrNot][2]]));
+                                    var result2 = Encoding.ASCII.GetString(wc.UploadFile(uploadServer.UploadUrl, FileNames[numVopros]));
                                     var photos3 = CallbackController._vkApi.Photo.SaveMessagesPhoto(result2);
                                     CallbackController.SendMessage("Верно! Понали дальше!", peerID, photos3);
+                                    Program.UsersInfo[WriteOrNot][2]++;
                                 }
                                 else
                                     CallbackController.SendMessage("Неверно( Попробуй снова.", peerID);
