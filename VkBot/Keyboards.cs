@@ -35,6 +35,7 @@ namespace VkBot
                             }
                         }
                     }
+                    nums.Add(num3);
                     userKey.AddButton(ChastiBurger[num3], "", KeyboardButtonColor.Primary, "");
                     userKey.AddLine();
                 }
