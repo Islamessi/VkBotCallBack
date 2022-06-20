@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model.Keyboard;
@@ -15,12 +16,15 @@ namespace VkBot
                 var ChastiBurger = Program.Burgers[num].ChastiBurger;
                 int numInBurger = Program.Burgers[num].NumInBurger;
                 KeyboardBuilder userKey = new KeyboardBuilder();
+                Random rnd = new Random();
                 for (int i = 0; i<numInBurger; i++)
                 {
-                    userKey.AddButton(ChastiBurger[i], "", KeyboardButtonColor.Primary, "");
+                    int ii = rnd.Next(0, ChastiBurger.Count-1);
+                    userKey.AddButton(ChastiBurger[ii], "", KeyboardButtonColor.Primary, "");
+                    ChastiBurger.RemoveAt(ii);
                     userKey.AddLine();
                 }
-                userKey.AddButton("Выйти в меню", "", KeyboardButtonColor.Primary, "");
+                userKey.AddButton("Выйти в меню", "", KeyboardButtonColor.Negative, "");
                 return userKey.Build();
             }
         }
