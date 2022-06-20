@@ -32,6 +32,8 @@ namespace VkBot
                 KeyboardBuilder userKey = new KeyboardBuilder();
                 userKey.AddButton("Гамбургер", "", KeyboardButtonColor.Primary, "");
                 userKey.AddLine();
+                userKey.AddButton("Чизбургер", "", KeyboardButtonColor.Primary, "");
+                userKey.AddLine();
                 userKey.AddButton("Выйти в меню", "", KeyboardButtonColor.Negative, "");
                 userKey.SetOneTime();
                 return userKey.Build();

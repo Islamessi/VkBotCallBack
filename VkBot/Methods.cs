@@ -660,7 +660,7 @@ namespace VkBot
                             CallbackController.SendMessage("Выбери бургер который хочешь собрать)", peerID, Keyboards.UserBurgers);
                             break;
                         case "гамбургер":
-                            
+                        case "чизбургер":
                             Program.UsersInfo.Add(new List<long?> { peerID });
                             Program.UsersInfo[Program.UsersInfo.Count - 1].Add(2);//пользователь играет в собери бургер
                             Program.UsersInfo[Program.UsersInfo.Count - 1].Add(0); //первый эллемент (счетчик на каком эллементе сейчас пользоватлеь)
