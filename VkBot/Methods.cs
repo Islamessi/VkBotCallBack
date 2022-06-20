@@ -876,7 +876,7 @@ namespace VkBot
                                         {
                                             var uploadServer = CallbackController._vkApi.Photo.GetMessagesUploadServer((long)peerID);
                                             var wc = new WebClient();
-                                            var result2 = Encoding.ASCII.GetString(wc.UploadFile(uploadServer.UploadUrl, @"/app/Верхушка стандартной булочки"));
+                                            var result2 = Encoding.ASCII.GetString(wc.UploadFile(uploadServer.UploadUrl, @"/app/photoburgers/Верхушка стандартной булочки.png"));
                                             var photos3 = CallbackController._vkApi.Photo.SaveMessagesPhoto(result2);
                                             CallbackController.SendMessage("Верно! Понали дальше!", peerID, photos3);
                                         }
