@@ -664,6 +664,7 @@ namespace VkBot
                                 "", peerID, Keyboards.UserSostavBurgers);
                             Program.UsersInfo.Add(new List<long?> { peerID });
                             Program.UsersInfo[Program.UsersInfo.Count - 1].Add(2);
+                            Program.UsersInfo[Program.UsersInfo.Count - 1].Add(1);
                             break;
                         case "пинок":
                             CallbackController.SendMessage(Motivation.RerurnMotivation(), peerID);
@@ -867,7 +868,21 @@ namespace VkBot
                             }
                             break;
                         case 2:
-
+                            {
+                                switch (Program.UsersInfo[WriteOrNot][2])
+                                {
+                                    case 1:
+                                        if (userMessage == "верхушка стандартной булочки")
+                                        {
+                                            var uploadServer = CallbackController._vkApi.Photo.GetMessagesUploadServer((long)peerID);
+                                            var wc = new WebClient();
+                                            var result2 = Encoding.ASCII.GetString(wc.UploadFile(uploadServer.UploadUrl, @"/app/Верхушка стандартной булочки"));
+                                            var photos3 = CallbackController._vkApi.Photo.SaveMessagesPhoto(result2);
+                                            CallbackController.SendMessage("Верно! Понали дальше!", peerID, photos3);
+                                        }
+                                        break;
+                                }
+                            }
                             break;
                     }
                 }
