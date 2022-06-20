@@ -667,7 +667,7 @@ namespace VkBot
                             Program.UsersInfo[Program.UsersInfo.Count - 1].Add(
                                 Program.Burgers.FindIndex(p => p.BurgerName == userMessage));//Каким по счету идет данный бургер в списке Burgers
                             CallbackController.SendMessage("Начни собирать бургер по порядку (как он собираются на производстве)" +
-                                "", peerID, Keyboards.UserSostavBurgers);
+                                "", peerID);
                             break;
                         case "пинок":
                             CallbackController.SendMessage(Motivation.RerurnMotivation(), peerID);
