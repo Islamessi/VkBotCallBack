@@ -885,6 +885,8 @@ namespace VkBot
                                     var photos3 = CallbackController._vkApi.Photo.SaveMessagesPhoto(result2);
                                     CallbackController.SendMessage("Верно! Понали дальше!", peerID, photos3);
                                 }
+                                else
+                                    CallbackController.SendMessage("Неверно( Попробуй снова.", peerID);
                                 //switch (Program.UsersInfo[WriteOrNot][2])
                                 //{
                                 //    case 1:
