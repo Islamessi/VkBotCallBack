@@ -873,6 +873,8 @@ namespace VkBot
                             break;
                         case 2:
                             {
+                                CallbackController.SendMessage(WriteOrNot.ToString(), peerID);
+                                CallbackController.SendMessage(Program.Burgers[(int)Program.UsersInfo[WriteOrNot][4]].BurgerName, peerID);
                                 if (Program.Burgers.First(p => p.BurgerName == userMessage).
                                     ChastiBurger[(int)Program.UsersInfo[WriteOrNot][2]] == userMessage
                                     && Program.UsersInfo[WriteOrNot][2] <= Program.Burgers.First(p => p.BurgerName == userMessage).NumInBurger)
