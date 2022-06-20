@@ -13,15 +13,29 @@ namespace VkBot
             get
             {
                 var num = (int)Program.UsersInfo[Program.UsersInfo.Count - 1][3];
-                
                 int numInBurger = Program.Burgers[num].NumInBurger;
-                List<int> ChastiBurger = new List<int>();
+                List<int> nums = new List<int>();
+                List<string> ChastiBurger = Program.Burgers[num].ChastiBurger;
                 KeyboardBuilder userKey = new KeyboardBuilder();
                 Random rnd = new Random();
-                for (int i = 0; i<numInBurger; i++)
+                int num3 = rnd.Next(0, ChastiBurger.Count - 1);
+                for (int i = 0; i < numInBurger; i++)
                 {
-                    int ii = rnd.Next(0, ChastiBurger.Count-1);
-                    //userKey.AddButton(ChastiBurger[ii], "", KeyboardButtonColor.Primary, "");
+                    bool flag = true;
+                    while (flag == true)
+                    {
+                        flag = false;
+                        for (int ii = 0; ii < nums.Count; ii++)
+                        {
+                            if (nums[ii] == num3)
+                            {
+                                num3 = rnd.Next(0, ChastiBurger.Count - 1);
+                                flag = true;
+                                break;
+                            }
+                        }
+                    }
+                    userKey.AddButton(ChastiBurger[num3], "", KeyboardButtonColor.Primary, "");
                     userKey.AddLine();
                 }
                 userKey.AddButton("Выйти в меню", "", KeyboardButtonColor.Negative, "");
