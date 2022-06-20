@@ -890,7 +890,7 @@ namespace VkBot
                                         CallbackController.SendMessage("Верно! Понали дальше!", peerID, photos3);
                                         Program.UsersInfo[WriteOrNot][2]++;
                                     }
-                                    else if (numVopros == numInBurger - 1)
+                                    else if (numVopros == numInBurger)
                                     {
                                         var uploadServer = CallbackController._vkApi.Photo.GetMessagesUploadServer((long)peerID);
                                         var wc = new WebClient();
