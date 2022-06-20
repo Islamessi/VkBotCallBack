@@ -378,7 +378,8 @@ namespace VkBot
             string result = "-1";
 
             if (question == Program.Question[0][0])
-                result = Encoding.ASCII.GetString(wc.UploadFile(uploadServer.UploadUrl, @"/app/Sensisept.png"));
+                //result = Encoding.ASCII.GetString(wc.UploadFile(uploadServer.UploadUrl, @"/app/Sensisept.png"));
+                result = Encoding.ASCII.GetString(wc.UploadFile(uploadServer.UploadUrl, @"/app/Верхушка стандартной булочки.png"));
             else if (question == Program.Question[1][0])
                 result = Encoding.ASCII.GetString(wc.UploadFile(uploadServer.UploadUrl, @"/app/Aquaguard.png"));
             else if (question == Program.Question[2][0])
