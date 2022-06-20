@@ -425,7 +425,7 @@ namespace VkBot
                 }
                 vsp2++;
             }
-            if (userMessage == "отмена" || userMessage == "выйти из теста")
+            if (userMessage == "отмена" || userMessage == "выйти из теста" || userMessage == "выйти в меню")
             {
                 if (WriteOrNot != -1)
                 {
@@ -664,9 +664,7 @@ namespace VkBot
                                 "", peerID, Keyboards.UserSostavBurgers);
                             Program.UsersInfo.Add(new List<long?> { peerID });
                             Program.UsersInfo[Program.UsersInfo.Count - 1].Add(2);//пользователь играет в собери бургер
-                            Program.UsersInfo[Program.UsersInfo.Count - 1].Add(1); //первый эллемент (счетчик на каком эллементе сейчас пользоватлеь)
-                            Program.UsersInfo[Program.UsersInfo.Count - 1].Add(
-                                Program.Burgers.First(p => p.BurgerName == userMessage).NumInBurger); //Всего составных частей в бургере
+                            Program.UsersInfo[Program.UsersInfo.Count - 1].Add(0); //первый эллемент (счетчик на каком эллементе сейчас пользоватлеь)
                             Program.UsersInfo[Program.UsersInfo.Count - 1].Add(
                                 Program.Burgers.FindIndex(p => p.BurgerName == userMessage));//Каким по счету идет данный бургер в списке Burgers
                             break;
@@ -873,23 +871,30 @@ namespace VkBot
                             break;
                         case 2:
                             {
-                                CallbackController.SendMessage(Program.Burgers[(int)Program.UsersInfo[WriteOrNot][4]].BurgerName, peerID);
-                                int numburger = (int)Program.UsersInfo[WriteOrNot][4];
+                                int numburger = (int)Program.UsersInfo[WriteOrNot][3];
                                 var FileNames = Program.Burgers[numburger].FileNames;
                                 var ChastiBurger = Program.Burgers[numburger].ChastiBurger;
                                 int numInBurger = Program.Burgers[numburger].NumInBurger;
                                 int numVopros = (int)Program.UsersInfo[WriteOrNot][2];
                                 CallbackController.SendMessage(ChastiBurger[numVopros], peerID);
                                 CallbackController.SendMessage(numVopros.ToString(), peerID);
-                                if (ChastiBurger[numVopros] == userMessage
-                                    && numVopros <= numInBurger)
+                                if (ChastiBurger[numVopros] == userMessage)
                                 {
-                                    var uploadServer = CallbackController._vkApi.Photo.GetMessagesUploadServer((long)peerID);
-                                    var wc = new WebClient();
-                                    var result2 = Encoding.ASCII.GetString(wc.UploadFile(uploadServer.UploadUrl, FileNames[numVopros]));
-                                    var photos3 = CallbackController._vkApi.Photo.SaveMessagesPhoto(result2);
-                                    CallbackController.SendMessage("Верно! Понали дальше!", peerID, photos3);
-                                    Program.UsersInfo[WriteOrNot][2]++;
+                                    if (numVopros <= numInBurger)
+                                    {
+                                        var uploadServer = CallbackController._vkApi.Photo.GetMessagesUploadServer((long)peerID);
+                                        var wc = new WebClient();
+                                        var result2 = Encoding.ASCII.GetString(wc.UploadFile(uploadServer.UploadUrl, FileNames[numVopros]));
+                                        var photos3 = CallbackController._vkApi.Photo.SaveMessagesPhoto(result2);
+                                        CallbackController.SendMessage("Верно! Понали дальше!", peerID, photos3);
+                                        Program.UsersInfo[WriteOrNot][2]++;
+                                    }
+                                    else
+                                    {
+                                        CallbackController.SendMessage("Поздравляю!\n" +
+                                            "Ты собрал этот бургер правильно! " +
+                                            "Можешь собрать еще или выйти в меню.", peerID, Keyboards.UserBurgers);
+                                    }
                                 }
                                 else
                                     CallbackController.SendMessage("Неверно( Попробуй снова.", peerID);
