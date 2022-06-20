@@ -871,6 +871,7 @@ namespace VkBot
                             break;
                         case 2:
                             {
+                                CallbackController.SendMessage(Program.UsersInfo[WriteOrNot][3].ToString(), peerID);
                                 int numburger = (int)Program.UsersInfo[WriteOrNot][3];
                                 var FileNames = Program.Burgers[numburger].FileNames;
                                 var ChastiBurger = Program.Burgers[numburger].ChastiBurger;
