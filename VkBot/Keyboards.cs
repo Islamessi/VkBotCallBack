@@ -23,7 +23,6 @@ namespace VkBot
                 userKey.AddButton("Горчица  - 1 порция", "", KeyboardButtonColor.Primary, "");
                 userKey.AddLine();
                 userKey.AddButton("Верхушка стандартной булочки", "", KeyboardButtonColor.Primary, "");
-                userKey.SetOneTime();
                 return userKey.Build();
             }
 

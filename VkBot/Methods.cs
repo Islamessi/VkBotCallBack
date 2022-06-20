@@ -663,8 +663,12 @@ namespace VkBot
                             CallbackController.SendMessage("Начни собирать бургер по порядку (как он собираются на производстве)" +
                                 "", peerID, Keyboards.UserSostavBurgers);
                             Program.UsersInfo.Add(new List<long?> { peerID });
-                            Program.UsersInfo[Program.UsersInfo.Count - 1].Add(2);
-                            Program.UsersInfo[Program.UsersInfo.Count - 1].Add(1);
+                            Program.UsersInfo[Program.UsersInfo.Count - 1].Add(2);//пользователь играет в собери бургер
+                            Program.UsersInfo[Program.UsersInfo.Count - 1].Add(1); //первый эллемент (счетчик на каком эллементе сейчас пользоватлеь)
+                            Program.UsersInfo[Program.UsersInfo.Count - 1].Add(
+                                Program.Burgers.First(p => p.BurgerName == userMessage).NumInBurger); //Всего составных частей в бургере
+                            Program.UsersInfo[Program.UsersInfo.Count - 1].Add(
+                                Program.Burgers.FindIndex(p => p.BurgerName == userMessage));//Каким по счету идет данный бургер в списке Burgers
                             break;
                         case "пинок":
                             CallbackController.SendMessage(Motivation.RerurnMotivation(), peerID);
@@ -869,19 +873,35 @@ namespace VkBot
                             break;
                         case 2:
                             {
-                                switch (Program.UsersInfo[WriteOrNot][2])
+                                if (Program.Burgers.First(p => p.BurgerName == userMessage).
+                                    ChastiBurger[(int)Program.UsersInfo[WriteOrNot][2]] == userMessage
+                                    && Program.UsersInfo[WriteOrNot][2] <= Program.Burgers.First(p => p.BurgerName == userMessage).NumInBurger)
                                 {
-                                    case 1:
-                                        if (userMessage == "верхушка стандартной булочки")
-                                        {
-                                            var uploadServer = CallbackController._vkApi.Photo.GetMessagesUploadServer((long)peerID);
-                                            var wc = new WebClient();
-                                            var result2 = Encoding.ASCII.GetString(wc.UploadFile(uploadServer.UploadUrl, @"/app/photoburgers/Верхушка стандартной булочки.png"));
-                                            var photos3 = CallbackController._vkApi.Photo.SaveMessagesPhoto(result2);
-                                            CallbackController.SendMessage("Верно! Понали дальше!", peerID, photos3);
-                                        }
-                                        break;
+                                    Program.UsersInfo[WriteOrNot][2]++;
+                                    var uploadServer = CallbackController._vkApi.Photo.GetMessagesUploadServer((long)peerID);
+                                    var wc = new WebClient();
+                                    var result2 = Encoding.ASCII.GetString(wc.UploadFile(uploadServer.UploadUrl, Program.Burgers.First(p => p.BurgerName == userMessage).
+                                    FileNames[(int)Program.UsersInfo[WriteOrNot][2]]));
+                                    var photos3 = CallbackController._vkApi.Photo.SaveMessagesPhoto(result2);
+                                    CallbackController.SendMessage("Верно! Понали дальше!", peerID, photos3);
                                 }
+                                //switch (Program.UsersInfo[WriteOrNot][2])
+                                //{
+                                //    case 1:
+                                //        if (userMessage == "верхушка стандартной булочки")
+                                //        {
+                                //            var uploadServer = CallbackController._vkApi.Photo.GetMessagesUploadServer((long)peerID);
+                                //            var wc = new WebClient();
+                                //            var result2 = Encoding.ASCII.GetString(wc.UploadFile(uploadServer.UploadUrl, @"/app/photoburgers/Верхушка стандартной булочки.png"));
+                                //            var photos3 = CallbackController._vkApi.Photo.SaveMessagesPhoto(result2);
+                                //            CallbackController.SendMessage("Верно! Понали дальше!", peerID, photos3);
+                                //        }
+                                //        else
+                                //        {
+                                //            CallbackController.SendMessage("Неверно( Попробуй снова.", peerID);
+                                //        }
+                                //        break;
+                                //}
                             }
                             break;
                     }

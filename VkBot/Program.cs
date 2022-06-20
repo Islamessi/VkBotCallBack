@@ -13,6 +13,14 @@ using Microsoft.Extensions.Logging;
 
 namespace VkBot
 {
+    public class Burger
+    {
+        public string BurgerName; //Наименование
+        public int NumInBurger;
+        public List<string> ChastiBurger;
+        public List<string> FileNames;
+    }
+
     public class Program
     {
         static readonly string[] Scopes = { SheetsService.Scope.Spreadsheets };
@@ -152,6 +160,33 @@ namespace VkBot
 
         };
 
+
+        public static List<Burger> Burgers = new List<Burger>
+        {
+            new Burger
+            {
+                BurgerName = "гамбургер",
+                NumInBurger = 6,
+                ChastiBurger = new List<string> 
+                {
+                    "верхушка стандартной булочки",
+                    "горчица  - 1 порция",
+                    "кетчуп - 1 стандартная порция",
+                    "маринованные огурцы - 1 шт.",
+                    "котлета 10:1",
+                    "пенёк стандартной булочки"
+                },
+                FileNames = new List<string>
+                {
+                    "/app/photoburgers/гамбургер/Верхушка стандартной булочки.png",
+                    "/app/photoburgers/гамбургер/Горчица  - 1 порция.png",
+                    "/app/photoburgers/гамбургер/Кетчуп - 1 стандартная порция.png",
+                    "/app/photoburgers/гамбургер/Маринованные огурцы - 1 шт.png",
+                    "/app/photoburgers/гамбургер/Гамбургер.png",
+                    "/app/photoburgers/гамбургер/Гамбургер с пеньком.png",
+                }
+            }, 
+        };
         public static void Main(string[] args)
         {
             CreateWebHostBuilder(args).Build().Run();
