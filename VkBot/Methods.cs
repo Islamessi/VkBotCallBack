@@ -880,6 +880,8 @@ namespace VkBot
                                     Program.UsersInfo[WriteOrNot][2]++;
                                     var uploadServer = CallbackController._vkApi.Photo.GetMessagesUploadServer((long)peerID);
                                     var wc = new WebClient();
+                                    CallbackController.SendMessage(Program.Burgers.First(p => p.BurgerName == userMessage).
+                                        FileNames[(int)Program.UsersInfo[WriteOrNot][2]], peerID);
                                     var result2 = Encoding.ASCII.GetString(wc.UploadFile(uploadServer.UploadUrl, Program.Burgers.First(p => p.BurgerName == userMessage).
                                     FileNames[(int)Program.UsersInfo[WriteOrNot][2]]));
                                     var photos3 = CallbackController._vkApi.Photo.SaveMessagesPhoto(result2);
