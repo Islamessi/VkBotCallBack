@@ -11,21 +11,18 @@ namespace VkBot
         {
             get
             {
+                var num = (int)Program.UsersInfo[Program.UsersInfo.Count - 1][3];
+                var ChastiBurger = Program.Burgers[num].ChastiBurger;
+                int numInBurger = Program.Burgers[num].NumInBurger;
                 KeyboardBuilder userKey = new KeyboardBuilder();
-                userKey.AddButton("Пенёк стандартной булочки", "", KeyboardButtonColor.Primary, "");
-                userKey.AddLine();
-                userKey.AddButton("Котлета 10:1", "", KeyboardButtonColor.Primary, "");
-                userKey.AddLine();
-                userKey.AddButton("Кетчуп - 1 стандартная порция", "", KeyboardButtonColor.Primary, "");
-                userKey.AddLine();
-                userKey.AddButton("Маринованные огурцы - 1 шт.", "", KeyboardButtonColor.Primary, "");
-                userKey.AddLine();
-                userKey.AddButton("Горчица  - 1 порция", "", KeyboardButtonColor.Primary, "");
-                userKey.AddLine();
-                userKey.AddButton("Верхушка стандартной булочки", "", KeyboardButtonColor.Primary, "");
+                for (int i = 0; i<numInBurger; i++)
+                {
+                    userKey.AddButton(ChastiBurger[i], "", KeyboardButtonColor.Primary, "");
+                    userKey.AddLine();
+                }
+                userKey.AddButton("Выйти в меню", "", KeyboardButtonColor.Primary, "");
                 return userKey.Build();
             }
-
         }
 
         public static MessageKeyboard UserBurgers // Клавиатура для обычных пользователей

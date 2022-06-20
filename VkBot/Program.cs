@@ -166,7 +166,7 @@ namespace VkBot
         {
             new Burger
             {
-                BurgerLastName = "Cочный мощный ",
+                BurgerLastName = "Cочный, мощный ",
                 BurgerName = "гамбургер",
                 NumInBurger = 6,
                 ChastiBurger = new List<string> 
@@ -188,7 +188,35 @@ namespace VkBot
                     "/app/photoburgers/гамбургер/Гамбургер с пеньком.png",
                     "/app/photoburgers/гамбургер/Готовый гамбургер.png",
                 }
-            }, 
+            },
+
+            new Burger
+            {
+                BurgerLastName = "Красивый и дерзкий ",
+                BurgerName = "чизбургер",
+                NumInBurger = 7,
+                ChastiBurger = new List<string>
+                {
+                    "верхушка стандартной булочки",
+                    "горчица  - 1 порция",
+                    "кетчуп - 1 стандартная порция",
+                    "маринованные огурцы - 1 шт",
+                    "сыр чеддер  - 1 ломтик",
+                    "котлета 10:1",
+                    "пенёк стандартной булочки"
+                },
+                FileNames = new List<string>
+                {
+                    "/app/photoburgers/чизбургер/Верхушка стандартной булочки.png",
+                    "/app/photoburgers/чизбургер/Горчица  - 1 порция.png",
+                    "/app/photoburgers/чизбургер/Кетчуп - 1 стандартная порция.png",
+                    "/app/photoburgers/чизбургер/Маринованные огурцы - 1 шт.png",
+                    "/app/photoburgers/чизбургер/Сыр Чеддер  - 1 ломтик.png",
+                    "/app/photoburgers/чизбургер/Котлета.png",
+                    "/app/photoburgers/чизбургер/Чизбургер.png",
+                    "/app/photoburgers/чизбургер/Готовый чизбургер.png",
+                }
+            },
         };
         public static void Main(string[] args)
         {
