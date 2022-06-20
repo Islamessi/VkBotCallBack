@@ -871,14 +871,11 @@ namespace VkBot
                             break;
                         case 2:
                             {
-                                CallbackController.SendMessage(Program.UsersInfo[WriteOrNot][3].ToString(), peerID);
                                 int numburger = (int)Program.UsersInfo[WriteOrNot][3];
                                 var FileNames = Program.Burgers[numburger].FileNames;
                                 var ChastiBurger = Program.Burgers[numburger].ChastiBurger;
                                 int numInBurger = Program.Burgers[numburger].NumInBurger;
                                 int numVopros = (int)Program.UsersInfo[WriteOrNot][2];
-                                CallbackController.SendMessage(ChastiBurger[numVopros], peerID);
-                                CallbackController.SendMessage(numVopros.ToString(), peerID);
                                 if (ChastiBurger[numVopros] == userMessage)
                                 {
                                     if (numVopros <= numInBurger-1)
@@ -894,7 +891,7 @@ namespace VkBot
                                     {
                                         var uploadServer = CallbackController._vkApi.Photo.GetMessagesUploadServer((long)peerID);
                                         var wc = new WebClient();
-                                        var result2 = Encoding.ASCII.GetString(wc.UploadFile(uploadServer.UploadUrl, FileNames[numVopros]));
+                                        var result2 = Encoding.ASCII.GetString(wc.UploadFile(uploadServer.UploadUrl, FileNames[numVopros+1]));
                                         var photos3 = CallbackController._vkApi.Photo.SaveMessagesPhoto(result2);
                                         CallbackController.SendMessage("Иииии вооот он!\n" +
                                              Program.Burgers[numburger].BurgerLastName + Program.Burgers[numburger].BurgerName, 
