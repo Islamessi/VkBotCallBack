@@ -103,6 +103,19 @@ namespace Cookie.Controllers
             return Ok("ok");
         }
 
+        public static long? SendMessage(string message, long? peerId, MessageKeyboard keyboard, 
+            System.Collections.ObjectModel.ReadOnlyCollection<Photo> photo)
+        {
+            Random rnd = new Random();
+            return _vkApi.Messages.Send(new MessagesSendParams
+            {
+                RandomId = rnd.Next(),
+                PeerId = peerId,
+                Message = message,
+                Keyboard = keyboard,
+                Attachments = photo
+            });
+        }
         public static long? SendMessage(string message, long? peerId, VkNet.Model.Template.MessageTemplate template)
         {
             Random rnd = new Random();

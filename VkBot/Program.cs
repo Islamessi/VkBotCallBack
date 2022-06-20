@@ -165,7 +165,7 @@ namespace VkBot
         {
             new Burger
             {
-                BurgerName = "гамбургер",
+                BurgerName = "сочный мощный гамбургер",
                 NumInBurger = 6,
                 ChastiBurger = new List<string> 
                 {
@@ -184,6 +184,7 @@ namespace VkBot
                     "/app/photoburgers/гамбургер/Маринованные огурцы - 1 шт.png",
                     "/app/photoburgers/гамбургер/Гамбургер.png",
                     "/app/photoburgers/гамбургер/Гамбургер с пеньком.png",
+                    "/app/photoburgers/гамбургер/Готовый гамбургер.png",
                 }
             }, 
         };

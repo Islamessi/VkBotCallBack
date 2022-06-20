@@ -891,9 +891,13 @@ namespace VkBot
                                     }
                                     else
                                     {
+                                        var uploadServer = CallbackController._vkApi.Photo.GetMessagesUploadServer((long)peerID);
+                                        var wc = new WebClient();
+                                        var result2 = Encoding.ASCII.GetString(wc.UploadFile(uploadServer.UploadUrl, FileNames[numVopros]));
+                                        var photos3 = CallbackController._vkApi.Photo.SaveMessagesPhoto(result2);
                                         CallbackController.SendMessage("Поздравляю!\n" +
-                                            "Ты собрал этот бургер правильно! " +
-                                            "Можешь собрать еще или выйти в меню.", peerID, Keyboards.UserBurgers);
+                                            "Ты собрал " + Program.Burgers[numburger].BurgerName+ "!\n"+
+                                            "Можешь собрать другие булки или выйти в меню.", peerID, Keyboards.UserBurgers, photos3);
                                     }
                                 }
                                 else
