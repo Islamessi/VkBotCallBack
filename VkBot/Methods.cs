@@ -878,7 +878,7 @@ namespace VkBot
                                 var ChastiBurger = Program.Burgers[numburger].ChastiBurger;
                                 int numInBurger = Program.Burgers[numburger].NumInBurger;
                                 int numVopros = (int)Program.UsersInfo[WriteOrNot][2];
-                                CallbackController.SendMessage(numVopros.ToString(), peerID);
+                                CallbackController.SendMessage(ChastiBurger.Count.ToString(), peerID);
                                 if (ChastiBurger[numVopros] == userMessage)
                                 {
                                     if (numVopros <= numInBurger-1)
