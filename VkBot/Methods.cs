@@ -872,6 +872,7 @@ namespace VkBot
                             break;
                         case 2:
                             {
+
                                 int numburger = (int)Program.UsersInfo[WriteOrNot][3];
                                 var FileNames = Program.Burgers[numburger].FileNames;
                                 var ChastiBurger = Program.Burgers[numburger].ChastiBurger;
