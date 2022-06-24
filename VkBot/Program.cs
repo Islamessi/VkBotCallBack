@@ -302,17 +302,55 @@ namespace VkBot
                 },
                 FileNames = new List<string>
                 {
-                    "/app/photoburgers/гранд/1.png",
-                    "/app/photoburgers/гранд/2.png",
-                    "/app/photoburgers/гранд/3.png",
-                    "/app/photoburgers/гранд/4.png",
-                    "/app/photoburgers/гранд/5.png",
-                    "/app/photoburgers/гранд/6.png",
-                    "/app/photoburgers/гранд/7.png",
-                    "/app/photoburgers/гранд/8.png",
-                    "/app/photoburgers/гранд/9.png",
-                    "/app/photoburgers/гранд/10.png",
-                    "/app/photoburgers/гранд/11.png",
+                    "/app/photoburgers/двойной гранд/1.png",
+                    "/app/photoburgers/двойной гранд/2.png",
+                    "/app/photoburgers/двойной гранд/3.png",
+                    "/app/photoburgers/двойной гранд/4.png",
+                    "/app/photoburgers/двойной гранд/5.png",
+                    "/app/photoburgers/двойной гранд/6.png",
+                    "/app/photoburgers/двойной гранд/7.png",
+                    "/app/photoburgers/двойной гранд/8.png",
+                    "/app/photoburgers/двойной гранд/9.png",
+                    "/app/photoburgers/двойной гранд/10.png",
+                    "/app/photoburgers/двойной гранд/11.png",
+                }
+            },
+
+             new Burger
+            {
+                BurgerLastName = "Мистер в пиджаке ",
+                BurgerName = "гранд де люкс",
+                NumInBurger = 12,
+                ChastiBurger = new List<string>
+                {
+                    "верхушка квотера",
+                    "горчица  - 1 порция",
+                    "кетчуп - 1*15 мл",
+                    "соус чикен - 15 мл",
+                    "свежий лук - 7г",
+                    "маринованные огурцы - 2 шт",
+                    "салат мелкой нарезки 14 гр",
+                    "помидор",
+                    "сыр чеддер",
+                    "котлета 4:1",
+                    "сыр чеддер",
+                    "пенёк квотера"
+                },
+                FileNames = new List<string>
+                {
+                    "/app/photoburgers/двойной гранд/1.png",
+                    "/app/photoburgers/двойной гранд/2.png",
+                    "/app/photoburgers/двойной гранд/3.png",
+                    "/app/photoburgers/двойной гранд/4.png",
+                    "/app/photoburgers/двойной гранд/5.png",
+                    "/app/photoburgers/двойной гранд/6.png",
+                    "/app/photoburgers/двойной гранд/7.png",
+                    "/app/photoburgers/двойной гранд/8.png",
+                    "/app/photoburgers/двойной гранд/9.png",
+                    "/app/photoburgers/двойной гранд/10.png",
+                    "/app/photoburgers/двойной гранд/11.png",
+                    "/app/photoburgers/двойной гранд/12.png",
+                    "/app/photoburgers/двойной гранд/13.png",
                 }
             },
         };
