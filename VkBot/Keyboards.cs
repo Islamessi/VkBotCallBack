@@ -18,7 +18,14 @@ namespace VkBot
                 KeyboardBuilder userKey = new KeyboardBuilder();
                 Random rnd = new Random();
                 var shuffled = ChastiBurger.OrderBy(_ => rnd.Next()).ToList();
-                shuffled.Distinct();
+                for (int i=0; i < shuffled.Count-1; i++)
+                {
+                    for (int j = i+1; j< shuffled.Count; j++)
+                    if (shuffled[i] == shuffled[j])
+                    {
+                        shuffled.RemoveAt(i);
+                    }
+                }
                 for (int i = 0; i < shuffled.Count; i++)
                 {
                     userKey.AddButton(shuffled[i], "", KeyboardButtonColor.Primary, "");
