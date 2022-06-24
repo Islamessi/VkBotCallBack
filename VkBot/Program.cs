@@ -249,6 +249,72 @@ namespace VkBot
                     "/app/photoburgers/двойной чизбургер/Двойной чизбургер готовый.png",
                 }
             },
+
+             new Burger
+            {
+                BurgerLastName = "Горячий, сочный ",
+                BurgerName = "гранд",
+                NumInBurger = 10,
+                ChastiBurger = new List<string>
+                {
+                    "верхушка квотера",
+                    "горчица  - 1 порция",
+                    "кетчуп - 1*15 мл",
+                    "Свежий лук - 7г",
+                    "маринованные огурцы - 2 шт",
+                    "сыр чеддер",
+                    "котлета 4:1",
+                    "сыр чеддер",
+                    "пенёк квотера"
+                },
+                FileNames = new List<string>
+                {
+                    "/app/photoburgers/гранд/1.png",
+                    "/app/photoburgers/гранд/2.png",
+                    "/app/photoburgers/гранд/3.png",
+                    "/app/photoburgers/гранд/4.png",
+                    "/app/photoburgers/гранд/5.png",
+                    "/app/photoburgers/гранд/6.png",
+                    "/app/photoburgers/гранд/7.png",
+                    "/app/photoburgers/гранд/8.png",
+                    "/app/photoburgers/гранд/9.png",
+                    "/app/photoburgers/гранд/10.png",
+                }
+            },
+
+             new Burger
+            {
+                BurgerLastName = "Вдвойне горячий, сочный ",
+                BurgerName = "двойной гранд",
+                NumInBurger = 11,
+                ChastiBurger = new List<string>
+                {
+                    "верхушка квотера",
+                    "горчица  - 1 порция",
+                    "кетчуп - 1*15 мл",
+                    "Свежий лук - 7г",
+                    "маринованные огурцы - 2 шт",
+                    "сыр чеддер",
+                    "котлета 4:1",
+                    "сыр чеддер",
+                    "котлета 4:1",
+                    "пенёк квотера"
+                },
+                FileNames = new List<string>
+                {
+                    "/app/photoburgers/гранд/1.png",
+                    "/app/photoburgers/гранд/2.png",
+                    "/app/photoburgers/гранд/3.png",
+                    "/app/photoburgers/гранд/4.png",
+                    "/app/photoburgers/гранд/5.png",
+                    "/app/photoburgers/гранд/6.png",
+                    "/app/photoburgers/гранд/7.png",
+                    "/app/photoburgers/гранд/8.png",
+                    "/app/photoburgers/гранд/9.png",
+                    "/app/photoburgers/гранд/10.png",
+                    "/app/photoburgers/гранд/11.png",
+                }
+            },
         };
         public static void Main(string[] args)
         {
