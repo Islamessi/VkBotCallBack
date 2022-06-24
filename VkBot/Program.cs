@@ -254,7 +254,7 @@ namespace VkBot
             {
                 BurgerLastName = "Горячий, сочный ",
                 BurgerName = "гранд",
-                NumInBurger = 10,
+                NumInBurger = 9,
                 ChastiBurger = new List<string>
                 {
                     "верхушка квотера",
@@ -286,7 +286,7 @@ namespace VkBot
             {
                 BurgerLastName = "Вдвойне горячий, сочный ",
                 BurgerName = "двойной гранд",
-                NumInBurger = 11,
+                NumInBurger = 10,
                 ChastiBurger = new List<string>
                 {
                     "верхушка квотера",
