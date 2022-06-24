@@ -664,6 +664,7 @@ namespace VkBot
                         case "двойной чизбургер":
                         case "гранд":
                         case "двойной гранд":
+                        case "гранд де люкс":
                             Program.UsersInfo.Add(new List<long?> { peerID });
                             Program.UsersInfo[Program.UsersInfo.Count - 1].Add(2);//пользователь играет в собери бургер
                             Program.UsersInfo[Program.UsersInfo.Count - 1].Add(0); //первый эллемент (счетчик на каком эллементе сейчас пользоватлеь)
