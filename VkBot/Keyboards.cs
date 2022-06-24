@@ -15,11 +15,10 @@ namespace VkBot
             {
                 var num = (int)Program.UsersInfo[Program.UsersInfo.Count - 1][3];
                 List<string> ChastiBurger = Program.Burgers[num].ChastiBurger;
-                CallbackController.SendMessage("22", 266006795);
                 KeyboardBuilder userKey = new KeyboardBuilder();
                 Random rnd = new Random();
                 var shuffled = ChastiBurger.OrderBy(_ => rnd.Next()).ToList();
-                CallbackController.SendMessage("22", 266006795);
+                shuffled.Distinct();
                 for (int i = 0; i < shuffled.Count; i++)
                 {
                     userKey.AddButton(shuffled[i], "", KeyboardButtonColor.Primary, "");

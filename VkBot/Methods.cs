@@ -666,15 +666,10 @@ namespace VkBot
                         case "двойной гранд":
                         case "гранд де люкс":
                             Program.UsersInfo.Add(new List<long?> { peerID });
-                            CallbackController.SendMessage("11", peerID);
                             Program.UsersInfo[Program.UsersInfo.Count - 1].Add(2);//пользователь играет в собери бургер
-                            CallbackController.SendMessage("11", peerID);
                             Program.UsersInfo[Program.UsersInfo.Count - 1].Add(0); //первый эллемент (счетчик на каком эллементе сейчас пользоватлеь)
-                            CallbackController.SendMessage("11", peerID);
                             Program.UsersInfo[Program.UsersInfo.Count - 1].Add(
                                 Program.Burgers.FindIndex(p => p.BurgerName == userMessage));//Каким по счету идет данный бургер в списке Burgers
-                            CallbackController.SendMessage(Program.Burgers.FindIndex(
-                                p => p.BurgerName == userMessage).ToString(), peerID);
                             CallbackController.SendMessage("Начни собирать бургер по порядку (как он собираются на производстве)" +
                                 "", peerID, Keyboards.UserSostavBurgers);
                             break;
