@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cookie.Controllers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using VkNet.Enums.SafetyEnums;
@@ -14,9 +15,11 @@ namespace VkBot
             {
                 var num = (int)Program.UsersInfo[Program.UsersInfo.Count - 1][3];
                 List<string> ChastiBurger = Program.Burgers[num].ChastiBurger;
+                CallbackController.SendMessage("22", 266006795);
                 KeyboardBuilder userKey = new KeyboardBuilder();
                 Random rnd = new Random();
                 var shuffled = ChastiBurger.OrderBy(_ => rnd.Next()).ToList();
+                CallbackController.SendMessage("22", 266006795);
                 for (int i = 0; i < shuffled.Count; i++)
                 {
                     userKey.AddButton(shuffled[i], "", KeyboardButtonColor.Primary, "");
