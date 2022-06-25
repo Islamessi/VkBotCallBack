@@ -674,6 +674,13 @@ namespace VkBot
                                 "", peerID, Keyboards.UserSostavBurgers);
                             break;
                         case "пинок":
+                            Carousel.AddEllement("aa", "bb", "1");
+                            VkNet.Model.Template.MessageTemplate template = new VkNet.Model.Template.MessageTemplate
+                            {
+                                Elements = Carousel.ReturnCarouselElements(),
+                                Type = TemplateType.Carousel
+                            };
+                            CallbackController.SendMessage("aa", peerID, template);
                             CallbackController.SendMessage(Motivation.RerurnMotivation(), peerID);
                             break;
                         case "кто гений":

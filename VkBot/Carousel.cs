@@ -10,7 +10,7 @@ namespace VkBot
 {
     public class Carousel
     {
-        private static List<VkNet.Model.Template.Carousel.CarouselElement> carouselElements = new List<VkNet.Model.Template.Carousel.CarouselElement>();
+        public static List<VkNet.Model.Template.Carousel.CarouselElement> carouselElements = new List<VkNet.Model.Template.Carousel.CarouselElement>();
 
         public static void AddEllement(string Title, string Description, string Payload)
         {
