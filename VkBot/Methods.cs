@@ -672,15 +672,17 @@ namespace VkBot
                                 Program.Burgers.FindIndex(p => p.BurgerName == userMessage));//Каким по счету идет данный бургер в списке Burgers
                             CallbackController.SendMessage("Начни собирать бургер по порядку (как он собираются на производстве)" +
                                 "", peerID, Keyboards.UserSostavBurgers);
+                            
                             break;
                         case "пинок":
-                            Carousel.AddEllement("aa", "bb", "1");
+                            Carousel.AddEllement("верхушка стандартной булочки", "", "верхушка стандартной булочки");
                             VkNet.Model.Template.MessageTemplate template = new VkNet.Model.Template.MessageTemplate
                             {
                                 Elements = Carousel.ReturnCarouselElements(),
                                 Type = TemplateType.Carousel
                             };
-                            CallbackController.SendMessage("aa", peerID, template);
+                            CallbackController.SendMessage("Начни собирать бургер по порядку (как он собираются на производстве)"
+                                , peerID, template);
                             CallbackController.SendMessage(Motivation.RerurnMotivation(), peerID);
                             break;
                         case "кто гений":

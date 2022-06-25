@@ -22,8 +22,9 @@ namespace VkBot
                     Action = new MessageKeyboardButtonAction
                     {
                         Type = KeyboardButtonActionType.Callback, //Тип кнопки клавиатуры
-                        Label = "Поставить", //Надпись на кнопке
-                        Payload = Payload
+                        Label = "Положить", //Надпись на кнопке
+                        Payload = Payload,
+                        
                     },
                 }
             };
@@ -31,7 +32,8 @@ namespace VkBot
             {
                 Title = Title,
                 Description = Description,
-                Buttons = buttons
+                Buttons = buttons,
+                PhotoId = "213110775_457239020",
             });
         }
 
