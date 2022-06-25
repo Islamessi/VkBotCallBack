@@ -724,6 +724,7 @@ namespace VkBot
                                 Program.Burgers.FindIndex(p => p.BurgerName == userMessage));//Каким по счету идет данный бургер в списке Burgers
                             //CallbackController.SendMessage("Начни собирать бургер по порядку (как он собираются на производстве)" +
                             //    "", peerID, Keyboards.UserSostavBurgers);
+                            Carousel.RemoveCarouselElements();
                             Carousel.AddEllement("Верхушка", "Стандартная булочка(рекс)", "верхушка стандартной булочки");
                             Carousel.AddEllement("Горчица", "1 порция", "горчица  - 1 порция");
                             Carousel.AddEllement("кетчуп", "1 стандартная порция", "кетчуп - 1 стандартная порция");
