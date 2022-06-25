@@ -203,10 +203,62 @@ namespace VkBot
                 }
                 if (WriteOrNot != -1)
                 {
-                    //switch (Program.UsersInfo[WriteOrNot][1])
-                    //{
-                         
-                    //}
+                    switch (Program.UsersInfo[WriteOrNot][1])
+                    {
+                        case 2:
+                            {
+
+                                int numburger = (int)Program.UsersInfo[WriteOrNot][3];
+                                var FileNames = Program.Burgers[numburger].FileNames;
+                                var ChastiBurger = Program.Burgers[numburger].ChastiBurger;
+                                int numInBurger = Program.Burgers[numburger].NumInBurger;
+                                int numVopros = (int)Program.UsersInfo[WriteOrNot][2];
+                                if (ChastiBurger[numVopros] == userMessage)
+                                {
+                                    if (numVopros <= numInBurger - 1)
+                                    {
+
+                                        var uploadServer = CallbackController._vkApi.Photo.GetMessagesUploadServer((long)peerID);
+                                        var wc = new WebClient();
+                                        var result2 = Encoding.ASCII.GetString(wc.UploadFile(uploadServer.UploadUrl, FileNames[numVopros]));
+                                        var photos3 = CallbackController._vkApi.Photo.SaveMessagesPhoto(result2);
+                                        CallbackController.SendMessage("Верно! Понали дальше!", peerID, photos3);
+                                        Program.UsersInfo[WriteOrNot][2]++;
+                                    }
+                                    if (numVopros == numInBurger - 1)
+                                    {
+                                        var uploadServer = CallbackController._vkApi.Photo.GetMessagesUploadServer((long)peerID);
+                                        var wc = new WebClient();
+                                        var result2 = Encoding.ASCII.GetString(wc.UploadFile(uploadServer.UploadUrl, FileNames[numVopros + 1]));
+                                        var photos3 = CallbackController._vkApi.Photo.SaveMessagesPhoto(result2);
+                                        CallbackController.SendMessage("Иииии вооот он!\n" +
+                                             Program.Burgers[numburger].BurgerLastName + Program.Burgers[numburger].BurgerName,
+                                             peerID, Keyboards.UserBurgers, photos3);
+                                        Program.UsersInfo.RemoveAt(WriteOrNot);
+                                    }
+                                }
+                                else
+                                    CallbackController.SendMessage("Неверно( Попробуй снова.", peerID);
+                                //switch (Program.UsersInfo[WriteOrNot][2])
+                                //{
+                                //    case 1:
+                                //        if (userMessage == "верхушка стандартной булочки")
+                                //        {
+                                //            var uploadServer = CallbackController._vkApi.Photo.GetMessagesUploadServer((long)peerID);
+                                //            var wc = new WebClient();
+                                //            var result2 = Encoding.ASCII.GetString(wc.UploadFile(uploadServer.UploadUrl, @"/app/photoburgers/Верхушка стандартной булочки.png"));
+                                //            var photos3 = CallbackController._vkApi.Photo.SaveMessagesPhoto(result2);
+                                //            CallbackController.SendMessage("Верно! Понали дальше!", peerID, photos3);
+                                //        }
+                                //        else
+                                //        {
+                                //            CallbackController.SendMessage("Неверно( Попробуй снова.", peerID);
+                                //        }
+                                //        break;
+                                //}
+                            }
+                            break;
+                    }
                 }
                 //CallbackController._vkApi.Messages.SendMessageEventAnswer($"{msgev.EventId}", (long)msgev.UserId, (long)msgev.PeerId);
             });
@@ -675,7 +727,10 @@ namespace VkBot
                             
                             break;
                         case "пинок":
-                            Carousel.AddEllement("верхушка стандартной булочки", "Верхушка", "1");
+                            Carousel.AddEllement("Верхушка", "Стандартная булочка(рекс)", "верхушка стандартной булочки");
+                            Carousel.AddEllement("Горчица", "1 порция", "горчица  - 1 порция");
+                            Carousel.AddEllement("кетчуп", "1 стандартная порция", "кетчуп - 1 стандартная порция");
+                            Carousel.AddEllement("Горчица", "1 порция", "горчица  - 1 порция");
                             VkNet.Model.Template.MessageTemplate template = new VkNet.Model.Template.MessageTemplate
                             {
                                 Elements = Carousel.ReturnCarouselElements(),
