@@ -675,7 +675,7 @@ namespace VkBot
                             
                             break;
                         case "пинок":
-                            Carousel.AddEllement("верхушка стандартной булочки", "", "1");
+                            Carousel.AddEllement("верхушка стандартной булочки", "Верхушка", "1");
                             VkNet.Model.Template.MessageTemplate template = new VkNet.Model.Template.MessageTemplate
                             {
                                 Elements = Carousel.ReturnCarouselElements(),
