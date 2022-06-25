@@ -33,7 +33,7 @@ namespace VkBot
                 Title = Title,
                 Description = Description,
                 Buttons = buttons,
-                PhotoId = "213110775_457239020",
+                PhotoId = "-213110775_457239020",
             });
         }
 
