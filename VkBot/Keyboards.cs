@@ -29,7 +29,7 @@ namespace VkBot
                 for (int i = 0; i < shuffled.Count; i++)
                 {
                     int j = i;
-                    while (shuffled[i].Length > 14 || j < shuffled.Count)
+                    while (shuffled[i].Length > 14 && j < shuffled.Count)
                     {
                         var tmp = shuffled[i];
                         shuffled.RemoveAt(i);
