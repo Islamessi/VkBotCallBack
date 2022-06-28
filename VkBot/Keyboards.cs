@@ -43,8 +43,11 @@ namespace VkBot
                         CallbackController.SendMessage(shuffled[i + 1].Length.ToString(), 266006795);
                         userKey.AddLine();
                     }
-                    userKey.AddButton(shuffled[i+1], "", KeyboardButtonColor.Primary, "");
-                    userKey.AddLine();
+                    if (i + 1 < shuffled.Count)
+                    {
+                        userKey.AddButton(shuffled[i + 1], "", KeyboardButtonColor.Primary, "");
+                        userKey.AddLine();
+                    }
                 }
                 userKey.AddButton("Выйти в меню", "", KeyboardButtonColor.Negative, "");
                 return userKey.Build();
