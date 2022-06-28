@@ -35,6 +35,23 @@ namespace VkBot
                         shuffled.Add(tmp);
                     }
                 }
+                for (int i = 0; i < shuffled.Count - 1; i++)
+                {
+                    userKey.AddButton(shuffled[i], "", KeyboardButtonColor.Primary, "");
+                    if (shuffled[i].Length > 14 || shuffled[i + 1].Length > 14)
+                    {
+                        userKey.AddLine();
+                    }
+                    else if (i % 2 == 0 && i != 0)
+                    {
+                        userKey.AddLine();
+                    }
+                }
+                userKey.AddButton(shuffled[shuffled.Count-1], "", KeyboardButtonColor.Primary, "");
+                userKey.AddButton("Выйти в меню", "", KeyboardButtonColor.Negative, "");
+                return userKey.Build();
+
+
                 for (int i = 0; i < shuffled.Count; i+=2)
                 {
                     userKey.AddButton(shuffled[i], "", KeyboardButtonColor.Primary, "");
@@ -50,6 +67,7 @@ namespace VkBot
                         userKey.AddButton(shuffled[i + 1], "", KeyboardButtonColor.Primary, "");
                         CallbackController.SendMessage("13", 266006795);
                     }
+                    
                     CallbackController.SendMessage("14", 266006795);
                     userKey.AddLine();
                     CallbackController.SendMessage("15", 266006795);
