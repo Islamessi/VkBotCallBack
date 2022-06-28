@@ -48,30 +48,7 @@ namespace VkBot
                     }
                 }
                 userKey.AddButton(shuffled[shuffled.Count-1], "", KeyboardButtonColor.Primary, "");
-                userKey.AddButton("Выйти в меню", "", KeyboardButtonColor.Negative, "");
-                return userKey.Build();
-
-
-                for (int i = 0; i < shuffled.Count; i+=2)
-                {
-                    userKey.AddButton(shuffled[i], "", KeyboardButtonColor.Primary, "");
-                    if (shuffled[i].Length > 14 || shuffled[i+1].Length >14)
-                    {
-                        CallbackController.SendMessage(shuffled[i + 1].Length.ToString(), 266006795);
-                        userKey.AddLine();
-                    }
-                    CallbackController.SendMessage("11", 266006795);
-                    if (i + 1 < shuffled.Count)
-                    {
-                        CallbackController.SendMessage("12", 266006795);
-                        userKey.AddButton(shuffled[i + 1], "", KeyboardButtonColor.Primary, "");
-                        CallbackController.SendMessage("13", 266006795);
-                    }
-                    
-                    CallbackController.SendMessage("14", 266006795);
-                    userKey.AddLine();
-                    CallbackController.SendMessage("15", 266006795);
-                }
+                userKey.AddLine();
                 userKey.AddButton("Выйти в меню", "", KeyboardButtonColor.Negative, "");
                 return userKey.Build();
             }
