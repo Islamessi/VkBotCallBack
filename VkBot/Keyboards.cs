@@ -29,7 +29,7 @@ namespace VkBot
                 for (int i = 0; i < shuffled.Count; i+=2)
                 {
                     userKey.AddButton(shuffled[i], "", KeyboardButtonColor.Primary, "");
-                    if (shuffled[i].Length > 13 || shuffled[i+1].Length >13)
+                    if (shuffled[i].Length > 14 || shuffled[i+1].Length >14)
                     {
                         CallbackController.SendMessage(shuffled[i + 1].Length.ToString(), 266006795);
                         userKey.AddLine();
