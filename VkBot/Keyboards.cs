@@ -46,8 +46,8 @@ namespace VkBot
                     if (i + 1 < shuffled.Count)
                     {
                         userKey.AddButton(shuffled[i + 1], "", KeyboardButtonColor.Primary, "");
-                        userKey.AddLine();
                     }
+                    userKey.AddLine();
                 }
                 userKey.AddButton("Выйти в меню", "", KeyboardButtonColor.Negative, "");
                 return userKey.Build();
