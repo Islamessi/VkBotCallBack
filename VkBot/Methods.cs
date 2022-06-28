@@ -722,19 +722,19 @@ namespace VkBot
                             Program.UsersInfo[Program.UsersInfo.Count - 1].Add(0); //первый эллемент (счетчик на каком эллементе сейчас пользоватлеь)
                             Program.UsersInfo[Program.UsersInfo.Count - 1].Add(
                                 Program.Burgers.FindIndex(p => p.BurgerName == userMessage));//Каким по счету идет данный бургер в списке Burgers
-                            //CallbackController.SendMessage("Начни собирать бургер по порядку (как он собираются на производстве)" +
-                            //    "", peerID, Keyboards.UserSostavBurgers);
-                            Carousel.RemoveCarouselElements();
-                            Carousel.AddEllement("Верхушка", "Стандартная булочка(рекс)", "верхушка стандартной булочки");
-                            Carousel.AddEllement("Горчица", "1 порция", "горчица  - 1 порция");
-                            Carousel.AddEllement("кетчуп", "1 стандартная порция", "кетчуп - 1 стандартная порция");
-                            VkNet.Model.Template.MessageTemplate template = new VkNet.Model.Template.MessageTemplate
-                            {
-                                Elements = Carousel.ReturnCarouselElements(),
-                                Type = TemplateType.Carousel
-                            };
-                            CallbackController.SendMessage("Начни собирать бургер по порядку (как он собираются на производстве)"
-                                , peerID, template);
+                            CallbackController.SendMessage("Начни собирать бургер по порядку (как он собираются на производстве)" +
+                                "", peerID, Keyboards.UserSostavBurgers);
+                            //Carousel.RemoveCarouselElements();
+                            //Carousel.AddEllement("Верхушка", "Стандартная булочка(рекс)", "верхушка стандартной булочки");
+                            //Carousel.AddEllement("Горчица", "1 порция", "горчица  - 1 порция");
+                            //Carousel.AddEllement("кетчуп", "1 стандартная порция", "кетчуп - 1 стандартная порция");
+                            //VkNet.Model.Template.MessageTemplate template = new VkNet.Model.Template.MessageTemplate
+                            //{
+                            //    Elements = Carousel.ReturnCarouselElements(),
+                            //    Type = TemplateType.Carousel
+                            //};
+                            //CallbackController.SendMessage("Начни собирать бургер по порядку (как он собираются на производстве)"
+                            //    , peerID, template);
                             break;
                         case "пинок":
                             
