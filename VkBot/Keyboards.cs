@@ -26,6 +26,15 @@ namespace VkBot
                         shuffled.RemoveAt(i);
                     }
                 }
+                for (int i = 0; i < shuffled.Count; i++)
+                {
+                    if (shuffled[i].Length > 14)
+                    {
+                        var tmp = shuffled[i];
+                        shuffled.RemoveAt(i);
+                        shuffled.Add(tmp);
+                    }
+                }
                 for (int i = 0; i < shuffled.Count; i+=2)
                 {
                     userKey.AddButton(shuffled[i], "", KeyboardButtonColor.Primary, "");
