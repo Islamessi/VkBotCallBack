@@ -31,6 +31,7 @@ namespace VkBot
                     userKey.AddButton(shuffled[i], "", KeyboardButtonColor.Primary, "");
                     if (shuffled[i].Length > 13 || shuffled[i+1].Length >13)
                     {
+                        CallbackController.SendMessage(shuffled[i + 1].Length.ToString(), 266006795);
                         userKey.AddLine();
                     }
                     userKey.AddButton(shuffled[i+1], "", KeyboardButtonColor.Primary, "");
