@@ -42,7 +42,7 @@ namespace VkBot
                     {
                         userKey.AddLine();
                     }
-                    else if (i % 2 == 0 && i != 0)
+                    else if (i % 2 == 1 && i != 0)
                     {
                         userKey.AddLine();
                     }
