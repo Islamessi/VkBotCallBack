@@ -222,7 +222,7 @@ namespace VkBot
                                         var wc = new WebClient();
                                         var result2 = Encoding.ASCII.GetString(wc.UploadFile(uploadServer.UploadUrl, FileNames[numVopros]));
                                         var photos3 = CallbackController._vkApi.Photo.SaveMessagesPhoto(result2);
-                                        CallbackController.SendMessage("Верно! Понали дальше!", peerID, photos3);
+                                        CallbackController.SendMessage("Верно! Погнали дальше!", peerID, photos3);
                                         Program.UsersInfo[WriteOrNot][2]++;
                                     }
                                     if (numVopros == numInBurger - 1)
@@ -717,6 +717,7 @@ namespace VkBot
                         case "гранд":
                         case "двойной гранд":
                         case "гранд де люкс":
+                        case "биг спешиал":
                             Program.UsersInfo.Add(new List<long?> { peerID });
                             Program.UsersInfo[Program.UsersInfo.Count - 1].Add(2);//пользователь играет в собери бургер
                             Program.UsersInfo[Program.UsersInfo.Count - 1].Add(0); //первый эллемент (счетчик на каком эллементе сейчас пользоватлеь)

@@ -353,6 +353,38 @@ namespace VkBot
                     "/app/photoburgers/гранд де люкс/13.png",
                 }
             },
+
+             new Burger
+            {
+                BurgerLastName = "Мощный и сытный ",
+                BurgerName = "биг спешиал",
+                NumInBurger = 9,
+                ChastiBurger = new List<string>
+                {
+                    "верхушка булочки",
+                    "соус - 3*10мл",
+                    "свежий лук - 10 г",
+                    "салат айсберг крупной нарезки - 28 г",
+                    "кусочки свежего помидора - 2шт",
+                    "сыр эмменталь - 1",
+                    "котлета 3:1",
+                    "сыр эмменталь - 2 кусочка внахлест",
+                    "пенёк булочки"
+                },
+                FileNames = new List<string>
+                {
+                    "/app/photoburgers/биг спешиал/1.png",
+                    "/app/photoburgers/биг спешиал/2.png",
+                    "/app/photoburgers/биг спешиал/3.png",
+                    "/app/photoburgers/биг спешиал/4.png",
+                    "/app/photoburgers/биг спешиал/5.png",
+                    "/app/photoburgers/биг спешиал/6.png",
+                    "/app/photoburgers/биг спешиал/7.png",
+                    "/app/photoburgers/биг спешиал/8.png",
+                    "/app/photoburgers/биг спешиал/9.png",
+                    "/app/photoburgers/биг спешиал/10.png",
+                }
+            },
         };
         public static void Main(string[] args)
         {
