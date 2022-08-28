@@ -107,6 +107,8 @@ namespace VkBot
                 {
                     userKey.AddButton("Тест по химии", "", KeyboardButtonColor.Negative, "");
                 }
+                userKey.AddLine();
+                userKey.AddButton("", "Выйти в меню", KeyboardButtonColor.Negative, "");
                 userKey.SetOneTime();
                 return userKey.Build();
             }
